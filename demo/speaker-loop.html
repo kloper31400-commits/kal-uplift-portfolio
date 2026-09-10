@@ -448,10 +448,19 @@
   <p class="intro">Pressing <em>Confirm &amp; book</em> does one thing: it writes the booking and takes
     the date off the board for everyone else. Three more things then have to happen in three
     different places, and none of them are the same act as booking.</p>
-  <p class="intro"><strong>So the board's real job is knowing which of the four actually happened.</strong>
-    A system that fires all four and assumes they worked is a system where a speaker turns up to an
-    event that was never published, or does not turn up because the invite went to an address nobody
-    reads.</p>
+  <p class="intro"><strong>The interface says so itself</strong>, directly under the link to the
+    application form, so nobody mistakes a booking for a confirmation:</p>
+
+  <div class="trap" style="margin-top:16px;margin-bottom:6px">
+    <p style="font-size:15px"><em>"Share this with anyone who wants to speak. Approving here books
+      the slot; the Luma event title and the invite are still yours to send."</em></p>
+  </div>
+
+  <p class="intro"><strong>That sentence is a design decision, not a caveat.</strong> A system that
+    fires all four and assumes they worked is a system where a speaker turns up to an event that was
+    never published, or does not turn up because the invite went to an address nobody reads. So the
+    booking is automatic, each remaining step is cued with whatever can be pre-filled, and the board's
+    real job is knowing which of the four actually happened.</p>
 
   <div class="chain" style="margin-top:24px">
     <div class="link">
@@ -467,19 +476,20 @@
     <div class="link">
       <div class="num">2</div>
       <div>
-        <span class="who human">Recorded, not fired</span>
+        <span class="who human">Cued and drafted, sent by a person</span>
         <h3>The confirmation email</h3>
-        <p>Goes to the speaker with their slot, the format and what to prepare. The board carries
-          <code>confirmationEmailSent</code> as a date, so an unbooked-but-emailed and a
-          booked-but-unemailed speaker are visibly different states rather than both reading
-          as green.</p>
+        <p>Approving puts a compose button on the row with the subject already written:
+          <em>"You're speaking at Uplift, Session 7."</em> It opens a draft; it does not send. The
+          board then carries <code>confirmationEmailSent</code> as a date, so
+          <strong>booked-but-unemailed and emailed-but-unbooked are visibly different states</strong>
+          rather than both reading as green.</p>
       </div>
     </div>
     <div class="arrow">↓</div>
     <div class="link">
       <div class="num">3</div>
       <div>
-        <span class="who human">Recorded, not fired</span>
+        <span class="who human">Tracked, sent by a person</span>
         <h3>The calendar hold</h3>
         <p>Two fields, not one: <code>calendarInviteSent</code> and <code>inviteResponse</code>.
           Sending a hold and having it accepted are different facts, and the gap between them is the
@@ -491,10 +501,13 @@
     <div class="link">
       <div class="num">4</div>
       <div>
-        <span class="who ext">Scripted</span>
-        <h3>The Luma event</h3>
-        <p>The session copy is pushed to the published event page founders register through, from the
-          same application text. Registration counts come back the other way into the console.</p>
+        <span class="who ext">Scripted, run by a person</span>
+        <h3>The brief, then the Luma event</h3>
+        <p>The one-pager is generated, but not from the application on its own: an approved speaker
+          is added to the roster file and <code>build-session-briefs.py</code> re-run. Until that
+          happens the console says exactly what is wrong, in its own words:
+          <em>"The slot is booked and the event page has nothing to publish."</em> Session copy then
+          goes to Luma, and registration counts come back the other way into the console.</p>
       </div>
     </div>
   </div>

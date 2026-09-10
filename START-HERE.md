@@ -32,11 +32,16 @@ Your browser opens the portfolio. Click every link. You are checking for:
 - Any name you recognise as a **real** founder, mentor or speaker
 - Anything that reads wrong to you
 
-**Two pages to read properly:**
+**What to look at properly:**
 
-- **The interface inventory** — all 96 screens, linked just under the three cards.
-  The Founder Lookbook is the first section.
-- **The speaker loop** — the fourth card under "Walk through the real thing".
+- **The inventory itself** — it is the front page now. 120 frames, twelve
+  sections, starting with the console. Click any frame to open it full size.
+- **The three deep dives** at the bottom, under "Want to walk through more?"
+
+The 145 images on this site are the one thing no script can check for you.
+Grep proved there is not a single real participant name in any of the text.
+It cannot read a face or a screenshot. Four images were pulled today for
+exactly that reason, so scroll the frames with that in mind.
 
 If something is wrong, tell Claude now, before Part 3. Once it is on the
 internet it has been on the internet.

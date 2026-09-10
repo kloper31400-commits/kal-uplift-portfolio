@@ -1,98 +1,167 @@
-# Do these four things, in order
+# Do these in order
 
-Nothing here assumes you know git. Copy each command exactly, one at a time.
+Nothing assumed. Copy each command, paste, press Enter, wait for it to finish
+before the next one.
 
-To open a Terminal: press `Cmd + Space`, type `Terminal`, press Enter.
+**To open Terminal:** press `Cmd + Space`, type `Terminal`, press Enter.
 
 ---
 
-## Step 1 — Make the screenshots
+# Part 1 · Make the screenshots (2 minutes)
 
-The portfolio shows real screenshots of your console and portal. They have to be
-shrunk down for the web first. This does that.
-
-Copy this line, paste it into Terminal, press Enter:
+The portfolio shows real screenshots of your console and portal. They are
+currently 135 MB of retina captures, far too big for a website. This shrinks
+them.
 
 ```
 python3 /Users/kennedy/uplift-portfolio/make-shots.py
 ```
 
-It takes about a minute. When it finishes it prints something like
-`converted 40 of 40 frames`.
+**You should see:** `converted 41 of 41 frames` and a size around 15 MB.
+
+If you instead see `source frames not found`, stop and tell Claude.
 
 ---
 
-## Step 2 — Look at it before anyone else does
-
-Copy, paste, Enter:
+# Part 2 · Look at it yourself (5 minutes)
 
 ```
 open /Users/kennedy/uplift-portfolio/index.html
 ```
 
-That opens the portfolio in your browser. Click through it. If anything is
-wrong, tell Claude before you do Step 3.
+Your browser opens the portfolio. Click every link. You are checking for:
+
+- Any screenshot that did not load
+- Any name you recognise as a **real** founder, mentor or speaker
+- Anything that reads wrong to you
+
+**The speaker loop is the page you said matters most.** It is the fourth card
+under "Walk through the real thing". Read it end to end.
+
+If something is wrong, tell Claude now, before Part 3. Once it is on the
+internet it has been on the internet.
 
 ---
 
-## Step 3 — Put it on GitHub
+# Part 3 · Put it online (5 minutes)
 
-You already made the repo at `kloper31400-commits/uplift-portfolio`.
+You already created the repo `kloper31400-commits/uplift-portfolio`.
 
-Copy this whole block, paste it into Terminal, press Enter:
+### 3a. Send the files up
+
+Copy this whole block as one piece:
 
 ```
 cd /Users/kennedy/uplift-portfolio && git add -A && git commit -m "Portfolio" && git branch -M main && git remote add origin https://github.com/kloper31400-commits/uplift-portfolio.git && git push -u origin main
 ```
 
-GitHub will ask you to sign in. A browser window opens; approve it there.
+GitHub will ask you to sign in. A browser window opens. Approve it there.
 
-If it says `remote origin already exists`, run this instead:
+**If it says `remote origin already exists`,** use this instead:
 
 ```
 cd /Users/kennedy/uplift-portfolio && git add -A && git commit -m "Portfolio" && git push -u origin main
 ```
 
----
+**If it says `nothing to commit`,** that is fine, it means everything is already
+saved. Use this:
 
-## Step 4 — Turn the website on
+```
+cd /Users/kennedy/uplift-portfolio && git push -u origin main
+```
 
-1. Go to https://github.com/kloper31400-commits/uplift-portfolio
-2. Click **Settings** (top right of the repo, not your account settings)
+### 3b. Turn the website on
+
+1. Open https://github.com/kloper31400-commits/uplift-portfolio
+2. Click **Settings** (the tab across the top of the repo, not your profile menu)
 3. Click **Pages** in the left sidebar
-4. Under **Source**, choose **Deploy from a branch**
-5. Under **Branch**, choose **main** and **/ (root)**, then click **Save**
-6. Wait about two minutes, then refresh the page
+4. Under **Source**, pick **Deploy from a branch**
+5. Under **Branch**, pick **main** and **/ (root)**
+6. Click **Save**
+7. Wait two minutes, then reload the page
 
-Your site is now live at:
+Your site is live at:
 
-**https://kloper31400-commits.github.io/uplift-portfolio/**
+### https://kloper31400-commits.github.io/uplift-portfolio/
 
 That is the link you send people.
 
 ---
 
-## Two things to know
+# Part 4 · Protect the things that are not backed up (15 minutes)
 
-**Your username looks auto-generated.** `kloper31400-commits` is in the public
-URL. If you want it to read `kennedyloper.github.io/uplift-portfolio`, change it
-at https://github.com/settings/admin **before** you send the link anywhere. The
-site URL updates automatically. Do it now or not at all, because links you have
-already sent will break.
+This is the part that actually matters for the job transfer, and it has a
+deadline: the day your laptop goes back.
 
-**The `private/` folder never gets uploaded.** It holds the one-on-one logs, the
-NJEDA forms, and anything naming a real founder. Git is told to skip it. It stays
-on your Mac only. Back that folder up somewhere separate, because it is not in
-the repo and it is not on your work laptop forever.
+### 4a. There are two folders, and only one is safe
+
+| Folder | What it is | Where it lives |
+|---|---|---|
+| `~/uplift-portfolio` | The public site | GitHub, after Part 3 |
+| `~/uplift-archive` | Everything, 1.6 GB | **This Mac only** |
+
+`~/uplift-archive` is the complete application: all 963 commits, every
+screenshot, the one-on-one logs, the certificates, and your `.env` files with
+the live credentials. **It exists in exactly one place.**
+
+### 4b. Copy the archive somewhere personal
+
+Plug in a personal external drive, or use a personal cloud account. Not a work
+account, not a work drive. Then drag `uplift-archive` onto it, or run:
+
+```
+open /Users/kennedy
+```
+
+and copy the `uplift-archive` folder across by hand.
+
+### 4c. Never push the archive anywhere
+
+I removed its git remote on purpose, so there is no accidental upload. It
+contains live API keys and 46 founders' private mentorship logs. Read
+`ARCHIVE-README.md` inside it if you want the detail.
 
 ---
 
-## To change something later
+# Two decisions only you can make
 
-Edit the file, then run:
+### Your username is in the public URL
+
+`kloper31400-commits` reads like a throwaway account, and it is the address you
+are putting on applications. To change it:
+
+https://github.com/settings/admin → Change username
+
+**Do it before you share the link, or not at all.** Links you have already sent
+will break.
+
+### Tell TechUnited about the password
+
+`pages/admin-fall.js` line 647 checks the admin console password by comparing
+against the text `SporkMarcel27`, written directly in the code. That code runs
+in the browser, so anyone who opens the page can read it. The same password is
+in two of the capture scripts.
+
+This is not a portfolio problem. It is a handover problem. Mention it to
+whoever takes the system over so they can change it.
+
+---
+
+# Changing something later
+
+Edit the file, then:
 
 ```
 cd /Users/kennedy/uplift-portfolio && git add -A && git commit -m "Update" && git push
 ```
 
 The live site updates about a minute later.
+
+If you ever re-run the collector after changing the source repo:
+
+```
+cd /Users/kennedy/uplift-portfolio && python3 collect-everything.py
+```
+
+It re-reads all 235 real participant names and re-sorts every file into
+`work/` (published) or `private/` (never published).

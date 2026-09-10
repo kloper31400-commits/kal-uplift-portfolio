@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css?v=7">
+<link rel="stylesheet" href="../assets/portal.css?v=9">
 <style>
   body { background:#fff; }
   .wrap { max-width: 1180px; }
@@ -27,27 +27,24 @@
      embedded documents can be scaled to a known width and every plate is the
      same size: the point of the grid is taking the whole set in at a glance. */
   .plates { margin-top:22px; display:grid; gap:16px 14px;
-            grid-template-columns:repeat(auto-fill, 220px); justify-content:space-between; }
-  /* Image first, caption under it. With the caption on top every plate started
-     its picture at a different height, because a one-line note and a five-line
-     note push the frame down differently, and a grid whose images do not line
-     up cannot be scanned. */
+            grid-template-columns:repeat(auto-fill, 280px); justify-content:space-between; }
+  /* Number and note on top, picture underneath. The caption block is given a
+     floor so a one-line note and a four-line note still start their pictures
+     on the same line: without it the images stagger and the grid stops being
+     scannable. */
   .plate { display:flex; flex-direction:column; }
-  .plate .fr   { order:1; margin-bottom:8px; }
-  .plate .pn   { order:2; }
-  .plate .sub  { order:3; margin-bottom:0; }
-  .plate .open { order:4; }
+  .plate .cap-h { height: 100px; overflow: hidden; }
   .plate .pn { display:flex; align-items:baseline; gap:6px; margin-bottom:4px; flex-wrap:wrap; }
   .plate .idx {
     font-size:9.5px; font-weight:800; letter-spacing:.05em; color:#fff;
     background:var(--indigo-light); border-radius:3px; padding:1px 5px;
   }
-  .plate .ttl { font-size:12.5px; font-weight:750; line-height:1.25; }
-  .plate .sub { font-size:11px; color:var(--muted); line-height:1.45; margin-bottom:7px; }
+  .plate .ttl { font-size:13.5px; font-weight:750; line-height:1.25; }
+  .plate .sub { font-size:11.5px; color:var(--muted); line-height:1.5; margin-bottom:8px; }
   .plate .fr {
     border:1px solid var(--line); border-radius:10px; background:var(--surface);
     box-shadow:0 1px 3px rgba(26,23,51,.06), 0 10px 26px rgba(26,23,51,.07);
-    max-height:190px; min-height:150px; overflow-y:auto; cursor:zoom-in;
+    height:230px; overflow-y:auto; cursor:zoom-in;
   }
   .plate .fr img { display:block; width:100%; height:auto; background:var(--surface); }
 
@@ -57,15 +54,15 @@
      screenshotted: a miniature of the live page, scrolling in place, and
      the real thing when you open it. */
   .doc .fr { padding:0; background:#fff; }
-  .doc .fr .mini { width:1000px; height:2600px; border:0; transform:scale(.22);
+  .doc .fr .mini { width:1000px; height:2600px; border:0; transform:scale(.28);
                    transform-origin:top left; display:block; }
-  .doc .fr .cage { width:220px; height:572px; overflow:hidden; }
+  .doc .fr .cage { width:280px; height:728px; overflow:hidden; }
   .doc .open { display:inline-block; margin-top:6px; font-size:10.5px; font-weight:800;
                color:var(--indigo); text-decoration:none; }
   .doc .open:hover { text-decoration:underline; }
 
   .plate.wide { grid-column: 1 / -1; }
-  .plate.wide .fr { max-height: 420px; }
+  .plate.wide .fr { height: 420px; }
 
 </style>
 </head>
@@ -150,30 +147,30 @@
     <a href="speaker-loop.html" style="color:var(--indigo);font-weight:700">Follow the whole loop, with the slot board →</a></p>
 
   <div class="plates">
-    <div class="plate doc"><div class="pn"><span class="idx">01</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">01</span>
       <span class="ttl">Share Your Expertise</span></div>
-      <div class="sub">The public call. Its date choices are generated from the same source file the board reads.</div>
+      <div class="sub">The public call. Its date choices are generated from the same source file the board reads.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/share-your-expertise.html" loading="lazy"
         title="Share Your Expertise" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/share-your-expertise.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">02</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">02</span>
       <span class="ttl">The Speaker Briefs</span></div>
-      <div class="sub">One page per speaker, in calendar order, generated from the roster.</div>
+      <div class="sub">One page per speaker, in calendar order, generated from the roster.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/speaker-onepagers.html" loading="lazy"
         title="Speaker briefs" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/speaker-onepagers.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">03</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">03</span>
       <span class="ttl">The Speaker Runbook</span></div>
-      <div class="sub">Booking 22 speakers without a spreadsheet in your lap.</div>
+      <div class="sub">Booking 22 speakers without a spreadsheet in your lap.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/speaker-runbook.html" loading="lazy"
         title="Speaker runbook" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/speaker-runbook.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate"><div class="pn"><span class="idx">04</span>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">04</span>
       <span class="ttl">The published event</span></div>
-      <div class="sub">Where founders register. Registration comes back as attendance.</div>
+      <div class="sub">Where founders register. Registration comes back as attendance.</div></div>
       <div class="fr"><img src="../shots/speaker-luma.jpg" alt="The published Luma event" loading="lazy"></div>
     </div>
   </div>
@@ -192,23 +189,23 @@
     the roster, which is why an 86-page document could be reissued whenever the cohort changed.</p>
 
   <div class="plates">
-    <div class="plate"><div class="pn"><span class="idx">01</span><span class="ttl">Cover</span></div>
-      <div class="sub">The photo wall: 68 founders, one grid.</div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">01</span><span class="ttl">Cover</span></div>
+      <div class="sub">The photo wall: 68 founders, one grid.</div></div>
       <div class="fr"><img src="../shots/a25-lookbook.jpg" alt="Lookbook cover" loading="lazy"></div></div>
-    <div class="plate"><div class="pn"><span class="idx">02</span><span class="ttl">Contents</span></div>
-      <div class="sub">All 68 founders and their companies, paginated.</div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">02</span><span class="ttl">Contents</span></div>
+      <div class="sub">All 68 founders and their companies, paginated.</div></div>
       <div class="fr"><img src="../shots/a25b-lookbook-p2.jpg" alt="Lookbook contents" loading="lazy"></div></div>
-    <div class="plate"><div class="pn"><span class="idx">03</span><span class="ttl">At a glance</span></div>
-      <div class="sub">Stage, industry, county, and what they want help with. All computed.</div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">03</span><span class="ttl">At a glance</span></div>
+      <div class="sub">Stage, industry, county, and what they want help with. All computed.</div></div>
       <div class="fr"><img src="../shots/a25c-lookbook-p3.jpg" alt="Lookbook at a glance" loading="lazy"></div></div>
-    <div class="plate"><div class="pn"><span class="idx">04</span><span class="ttl">Hiring in the next six months</span></div>
-      <div class="sub">A filter over the roster, not a hand-written list.</div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">04</span><span class="ttl">Hiring in the next six months</span></div>
+      <div class="sub">A filter over the roster, not a hand-written list.</div></div>
       <div class="fr"><img src="../shots/a25d-lookbook-hiring.jpg" alt="Lookbook hiring page" loading="lazy"></div></div>
-    <div class="plate"><div class="pn"><span class="idx">05</span><span class="ttl">Looking for customers and partners</span></div>
-      <div class="sub">The same mechanism, different question.</div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">05</span><span class="ttl">Looking for customers and partners</span></div>
+      <div class="sub">The same mechanism, different question.</div></div>
       <div class="fr"><img src="../shots/a25e-lookbook-partners.jpg" alt="Lookbook partners page" loading="lazy"></div></div>
-    <div class="plate"><div class="pn"><span class="idx">06</span><span class="ttl">In the founder portal</span></div>
-      <div class="sub">Founders can browse it from inside their own portal.</div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">06</span><span class="ttl">In the founder portal</span></div>
+      <div class="sub">Founders can browse it from inside their own portal.</div></div>
       <div class="fr"><img src="../shots/m16-lookbook.jpg" alt="Lookbook in the portal" loading="lazy"></div></div>
   </div>
 </section>
@@ -293,165 +290,165 @@
     reissued when the fall dates moved. <strong>Every participant in these has been replaced by an
     invented one; the design, structure and writing are untouched.</strong></p>
   <div class="plates">
-    <div class="plate doc"><div class="pn"><span class="idx">01</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">01</span>
       <span class="ttl">How We Match Founders &amp; Mentors</span></div>
-      <div class="sub">The whole method, published to participants rather than kept internal</div>
+      <div class="sub">The whole method, published to participants rather than kept internal</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/uplift-matching-logic-one-pager.html" loading="lazy"
         title="How We Match Founders &amp; Mentors" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/uplift-matching-logic-one-pager.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">02</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">02</span>
       <span class="ttl">Your Three Mentor Meetings</span></div>
-      <div class="sub">Discover, Act, Roadmap, and the job each one does</div>
+      <div class="sub">Discover, Act, Roadmap, and the job each one does</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/uplift-three-meetings-one-pager.html" loading="lazy"
         title="Your Three Mentor Meetings" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/uplift-three-meetings-one-pager.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">03</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">03</span>
       <span class="ttl">The Uplift Goal Loop</span></div>
-      <div class="sub">A goal, followed all the way through</div>
+      <div class="sub">A goal, followed all the way through</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/uplift-goal-loop.html" loading="lazy"
         title="The Uplift Goal Loop" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/uplift-goal-loop.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">04</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">04</span>
       <span class="ttl">How We Decided</span></div>
-      <div class="sub">Admissions reasoning, published to applicants</div>
+      <div class="sub">Admissions reasoning, published to applicants</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/uplift-how-we-decided.html" loading="lazy"
         title="How We Decided" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/uplift-how-we-decided.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">05</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">05</span>
       <span class="ttl">The Onboarding Deck</span></div>
-      <div class="sub">29 slides, the session every founder started with</div>
+      <div class="sub">29 slides, the session every founder started with</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/onboarding-deck-fall2026.html" loading="lazy"
         title="The Onboarding Deck" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/onboarding-deck-fall2026.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">06</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">06</span>
       <span class="ttl">The Match Email</span></div>
-      <div class="sub">Current version: why you two, the five Deep Work answers, November</div>
+      <div class="sub">Current version: why you two, the five Deep Work answers, November</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/match-email-example.html" loading="lazy"
         title="The Match Email" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/match-email-example.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">07</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">07</span>
       <span class="ttl">The Mentor Update</span></div>
-      <div class="sub">Written from the two Sept 9 onboarding transcripts</div>
+      <div class="sub">Written from the two Sept 9 onboarding transcripts</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/mentor-icymi-email.html" loading="lazy"
         title="The Mentor Update" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/mentor-icymi-email.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">08</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">08</span>
       <span class="ttl">The Acceptance Email</span></div>
-      <div class="sub">Generated per founder from the roster</div>
+      <div class="sub">Generated per founder from the roster</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/fall-acceptance-email.html" loading="lazy"
         title="The Acceptance Email" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/fall-acceptance-email.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">09</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">09</span>
       <span class="ttl">Mentor Handbook</span></div>
-      <div class="sub">Everything a mentor needs, written for this programme</div>
+      <div class="sub">Everything a mentor needs, written for this programme</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-mentor-handbook.html" loading="lazy"
         title="Mentor Handbook" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/resource-mentor-handbook.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">10</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">10</span>
       <span class="ttl">First Meeting Framework</span></div>
-      <div class="sub">How to run a good first session</div>
+      <div class="sub">How to run a good first session</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-first-meeting.html" loading="lazy"
         title="First Meeting Framework" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/resource-first-meeting.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">11</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">11</span>
       <span class="ttl">How to Give Feedback to Founders</span></div>
-      <div class="sub">Why founder feedback is different</div>
+      <div class="sub">Why founder feedback is different</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-feedback-guide.html" loading="lazy"
         title="How to Give Feedback to Founders" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/resource-feedback-guide.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">12</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">12</span>
       <span class="ttl">How We Verify Mentors</span></div>
-      <div class="sub">The standard published, the scoring key withheld</div>
+      <div class="sub">The standard published, the scoring key withheld</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-mentor-credibility.html" loading="lazy"
         title="How We Verify Mentors" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/resource-mentor-credibility.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">13</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">13</span>
       <span class="ttl">NJ Startup Ecosystem</span></div>
-      <div class="sub">Capital, networks and key players</div>
+      <div class="sub">Capital, networks and key players</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-nj-ecosystem.html" loading="lazy"
         title="NJ Startup Ecosystem" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/resource-nj-ecosystem.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">14</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">14</span>
       <span class="ttl">Programme Schedule</span></div>
-      <div class="sub">Key dates as a timeline</div>
+      <div class="sub">Key dates as a timeline</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-program-schedule.html" loading="lazy"
         title="Programme Schedule" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/resource-program-schedule.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">15</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">15</span>
       <span class="ttl">Portal User Guide</span></div>
-      <div class="sub">Your portal, explained tab by tab</div>
+      <div class="sub">Your portal, explained tab by tab</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/portal-guide-fall2026.html" loading="lazy"
         title="Portal User Guide" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/portal-guide-fall2026.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">16</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">16</span>
       <span class="ttl">Programme Requirements</span></div>
-      <div class="sub">What completion actually takes</div>
+      <div class="sub">What completion actually takes</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/program-requirements-fall2026.html" loading="lazy"
         title="Programme Requirements" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/program-requirements-fall2026.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">17</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">17</span>
       <span class="ttl">Speaker Briefs</span></div>
-      <div class="sub">One page per speaker, in calendar order</div>
+      <div class="sub">One page per speaker, in calendar order</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/speaker-onepagers.html" loading="lazy"
         title="Speaker Briefs" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/speaker-onepagers.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">18</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">18</span>
       <span class="ttl">Share Your Expertise</span></div>
-      <div class="sub">The public call that filled the speaker pipeline</div>
+      <div class="sub">The public call that filled the speaker pipeline</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/share-your-expertise.html" loading="lazy"
         title="Share Your Expertise" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/share-your-expertise.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">19</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">19</span>
       <span class="ttl">Completion Certificate</span></div>
-      <div class="sub">Generated per founder, print-ready</div>
+      <div class="sub">Generated per founder, print-ready</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/certificate.html" loading="lazy"
         title="Completion Certificate" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/certificate.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">20</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">20</span>
       <span class="ttl">We're Building a Diner</span></div>
-      <div class="sub">A 19-page visual essay on what the programme is</div>
+      <div class="sub">A 19-page visual essay on what the programme is</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/uplift-diner-essay.pdf" loading="lazy"
         title="We're Building a Diner" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/uplift-diner-essay.pdf" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
 
-    <div class="plate doc"><div class="pn"><span class="idx">22</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">22</span>
       <span class="ttl">Hot Seat</span></div>
-      <div class="sub">Session 17, as founders received it. Halftone, Impact display and an animated flame. The format is the programming, so there is no speaker to chase.</div>
+      <div class="sub">Session 17, as founders received it. Halftone, Impact display and an animated flame. The format is the programming, so there is no speaker to chase.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/hot-seat.html" loading="lazy"
         title="Hot Seat" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/hot-seat.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">23</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">23</span>
       <span class="ttl">Pitch Without a Deck</span></div>
-      <div class="sub">Session 1. Three minutes to a genuinely cold audience.</div>
+      <div class="sub">Session 1. Three minutes to a genuinely cold audience.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/pitch-without-a-deck.html" loading="lazy"
         title="Pitch Without a Deck" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/pitch-without-a-deck.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="pn"><span class="idx">24</span>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">24</span>
       <span class="ttl">Customer Hat</span></div>
       <div class="sub">The same build in blue and yellow: rules of engagement, a comic-strip run of
-        show, good-versus-vague examples, and what not to do.</div>
+        show, good-versus-vague examples, and what not to do.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/customer-hat.html" loading="lazy"
         title="Customer Hat" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/customer-hat.html" target="_blank" rel="noopener">Open the real document ↗</a>
@@ -479,15 +476,15 @@ const GROUPS = {
     ["a05c-roster-profile","Founder profile","Everything known about one person"],
     ["a05d-roster-profile-2","Profile, continued","Sessions, pulse history, emails"],
     ["a07-founders","Accepted founders","The confirmed cohort"],
-    ["a10-cohorts","Peer rooms","Grouped so the problems in a room rhyme and everyone can actually make the time. A mentor gives a founder expertise; a room gives them the evidence that their problem is normal, which is usually what gets somebody moving again."],
-    ["a11-signals","Signals","Useful, not urgent. A parking place for anything noticed on a call or in an email that is not worth acting on today, plus anomalies the system finds by itself: duplicate applications, the same person applying twice under two addresses. The point is that a small observation has somewhere to go other than one person&rsquo;s memory."],
-    ["a12-pulse","Pulse and wins","Eight weeks is compressed enough that a founder can quietly disengage in week three and be gone by week five, so the cost of noticing late is the whole programme. Three options, once a week, cheap enough that people actually answer. Read as a grid it stops being 68 individual answers and starts showing patterns: who is sliding two weeks running, and which weeks dip for everyone at once. That second pattern is the useful one. A founder having a hard week usually thinks it is just them, and it almost never is. Being able to say \"it is not just you, week four was hard for most of the room, and we are all getting there together\" is often the whole intervention, because feeling alone is what makes people quietly stop showing up."],
+    ["a10-cohorts","Peer rooms","Grouped so the problems in a room rhyme and everyone can make the time. A mentor gives expertise; a room gives the evidence that your problem is normal."],
+    ["a11-signals","Signals","Useful, not urgent. Observations not worth acting on today, plus anomalies found automatically, like one person applying twice under two addresses."],
+    ["a12-pulse","Pulse and wins","Three options a week, cheap enough that people answer. The grid shows who is sliding, and which weeks dip for everyone at once: a founder having a hard week thinks it is just them, and it rarely is."],
     ["a21-wins","Wins","Collected for the Tuesday update"],
     ["a15-decided","Decisions","The admissions record"],
     ["a16-sessions","Sessions","The 22-session calendar"],
     ["a18-review-meetings","Session review","Nothing counts until both sides agree it happened. That is what makes 8,000 minutes defensible to an auditor, and it costs a mentor four seconds."],
     ["a19-review-edu","Educational attendance","Pulled from the event platform"],
-    ["a30-intros","Intros this week","Reads what founders wrote and finds the pairs whose problems solve each other. Three a week, cross-room on purpose, with the evidence attached: a cohort that introduces itself is the thing founders actually stay for."],
+    ["a30-intros","Intros this week","Finds the pairs whose problems solve each other, from what founders wrote. Three a week, cross-room, with the evidence attached."],
     ["a29-resources","Resources","The curated library"],
   ],
   "p-reporting": [
@@ -594,9 +591,11 @@ function build(DIMS) {
       const el = document.createElement("div");
       el.className = "plate";
       el.innerHTML =
-        '<div class="pn"><span class="idx">' + String(n).padStart(2, "0") + '</span>' +
-        '<span class="ttl">' + title + '</span></div>' +
-        '<div class="sub">' + sub + '</div>' +
+        '<div class="cap-h">' +
+          '<div class="pn"><span class="idx">' + String(n).padStart(2, "0") + '</span>' +
+          '<span class="ttl">' + title + '</span></div>' +
+          '<div class="sub">' + sub + '</div>' +
+        '</div>' +
         '<div class="fr"><img src="../shots/' + slug + '.jpg" alt="' + title + '"' +
           (d ? ' width="' + d[0] + '" height="' + d[1] + '"' : '') +
           // The first sixteen load immediately so the top is never blank.

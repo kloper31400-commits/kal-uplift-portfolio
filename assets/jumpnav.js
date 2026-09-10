@@ -31,13 +31,13 @@
   const LINKS = [
     ["Portfolio home",        P + "index.html",              "home"],
     ["Interface inventory",   P + "demo/book.html",          "123 screens, all of it"],
-    ["The programme console", P + "demo/console.html",       "19 frames"],
+    ["The programme console", P + "demo/book.html#g-console", "22 tabs, in the grid"],
     ["Why these two",         P + "demo/why-these-two.html", "the matching engine explains itself"],
     ["The speaker loop",      P + "demo/speaker-loop.html",  "one date, five systems"],
     ["The Founder Lookbook",  P + "demo/lookbook.html",      "86 pages from one form"],
     ["The comms board",       P + "demo/comms.html",         "receipt vs reconstruction"],
     ["The peer rooms",        P + "demo/cohorts.html",       "four-factor grouping"],
-    ["The founder portal",    P + "demo/portal.html",        "15 frames"],
+    ["The founder portal",    P + "demo/book.html#g-portal",  "gate to certificate"],
     ["The mentor guide",      P + "demo/mentor.html",        "one ungated page"],
     ["Everything I made",     P + "work/library.html",       "95 deliverables"],
   ];

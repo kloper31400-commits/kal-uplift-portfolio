@@ -18,7 +18,7 @@
   // simply carry you home and land you on the right one.
   const SECTIONS = [
     ["Walk through the real thing",  "#demos"],
-    ["Seven systems",                "#systems"],
+    ["Six systems",                  "#systems"],
     ["Write it once",                "#writeonce"],
     ["Programme collateral",         "#collateral"],
     ["Stack and constraints",        "#how"],

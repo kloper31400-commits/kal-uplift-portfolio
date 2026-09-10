@@ -26,16 +26,18 @@
     ["Get in touch",                 "#contact"],
   ];
 
+  // Same ranking as the inventory: the pieces that would work somewhere else
+  // first, the programme they were built for after.
   const LINKS = [
     ["Portfolio home",        P + "index.html",              "home"],
-    ["Interface inventory",   P + "demo/book.html",          "122 screens"],
+    ["Interface inventory",   P + "demo/book.html",          "123 screens, all of it"],
     ["The programme console", P + "demo/console.html",       "19 frames"],
+    ["Why these two",         P + "demo/why-these-two.html", "the matching engine explains itself"],
+    ["The speaker loop",      P + "demo/speaker-loop.html",  "one date, five systems"],
+    ["The Founder Lookbook",  P + "demo/lookbook.html",      "86 pages from one form"],
+    ["The comms board",       P + "demo/comms.html",         "receipt vs reconstruction"],
+    ["The peer rooms",        P + "demo/cohorts.html",       "four-factor grouping"],
     ["The founder portal",    P + "demo/portal.html",        "15 frames"],
-    ["The Founder Lookbook",  P + "demo/lookbook.html",      "86 pages"],
-    ["The speaker loop",      P + "demo/speaker-loop.html",  "end to end"],
-    ["Why these two",         P + "demo/why-these-two.html", "match reasoning"],
-    ["The peer rooms",        P + "demo/cohorts.html",       "grouping logic"],
-    ["The comms board",       P + "demo/comms.html",         "who was told what"],
     ["The mentor guide",      P + "demo/mentor.html",        "one ungated page"],
     ["Everything I made",     P + "work/library.html",       "95 deliverables"],
   ];

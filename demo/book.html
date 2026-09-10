@@ -102,16 +102,13 @@
   invented people. Five frames are withheld entirely because they name real participants.
 </div>
 
-<!-- ══ THE FOUNDER PORTAL ══════════════════════════════════════ -->
-<section class="grp" id="g-portal">
-  <div class="k">What a founder sees</div>
-  <h2>The founder portal</h2>
-  <p class="lead">Nine tabs, gated week by week, private to each founder.</p>
-  <p class="lead"><strong>The gating is the design.</strong> Showing a founder eight weeks of
-    homework on day one is how you lose them in week two, so each week opens when they reach it and
-    the mentor stays hidden until the work that makes the first meeting useful is done.</p>
-  <div class="plates" id="p-portal"></div>
-</section>
+<div class="note" style="margin-top:26px">
+  <strong>Ordered by how much of it lifts out.</strong> The first six are the pieces that would
+  work somewhere else with the nouns changed: a matching engine, a booking loop, a publication that
+  generates itself from a form, compliance exhibits built from live data, and a comms board that
+  knows the difference between a receipt and a reconstruction. The rest is the programme they were
+  built for.
+</div>
 
 <!-- ══ THE PROGRAMME CONSOLE ═══════════════════════════════════ -->
 <section class="grp" id="g-console">
@@ -182,36 +179,6 @@
   </div>
 </section>
 
-<!-- ══ APPLICATIONS AND VERIFICATION ═══════════════════════════ -->
-<section class="grp" id="g-apps">
-  <div class="k">Getting in</div>
-  <h2>Applications and review</h2>
-  <p class="lead">143 founder applications and 46 mentor applications, reviewed in the console with
-    the full submission, the resume and the verification verdict on one screen.</p>
-  <div class="plates" id="p-apps"></div>
-</section>
-
-<!-- ══ GRANT REPORTING ═════════════════════════════════════════ -->
-<section class="grp" id="g-reporting">
-  <div class="k">Where the money comes from</div>
-  <h2>Grant reporting</h2>
-  <p class="lead">The programme is state-funded, and funding is released against evidence rather
-    than assertion. Every exhibit is generated from the same rows the console reads.</p>
-  <p class="lead"><strong>These used to be rebuilt by hand each reporting period from spreadsheet
-    exports.</strong> Every hand-rebuild is a chance for the report and the underlying data to drift
-    apart, and the entire point of a compliance document is that it does not drift.</p>
-  <div class="plates" id="p-reporting"></div>
-</section>
-
-<!-- ══ EMAIL AND COMMS ═════════════════════════════════════════ -->
-<section class="grp" id="g-email">
-  <div class="k">Reaching people</div>
-  <h2>Generated email</h2>
-  <p class="lead">Acceptance, match reveal and mentor acceptance. Each is generated per recipient,
-    previewable before it fires and logged after.</p>
-  <div class="plates" id="p-email"></div>
-</section>
-
 <!-- ══ THE FOUNDER LOOKBOOK ════════════════════════════════════ -->
 <section class="grp" id="g-lookbook">
   <div class="k">The piece I would show first</div>
@@ -244,6 +211,47 @@
       <div class="sub">Founders can browse it from inside their own portal.</div>
       <div class="fr"><img src="../shots/m16-lookbook.jpg" alt="Lookbook in the portal" loading="lazy"></div></div>
   </div>
+</section>
+
+<!-- ══ GRANT REPORTING ═════════════════════════════════════════ -->
+<section class="grp" id="g-reporting">
+  <div class="k">Where the money comes from</div>
+  <h2>Grant reporting</h2>
+  <p class="lead">The programme is state-funded, and funding is released against evidence rather
+    than assertion. Every exhibit is generated from the same rows the console reads.</p>
+  <p class="lead"><strong>These used to be rebuilt by hand each reporting period from spreadsheet
+    exports.</strong> Every hand-rebuild is a chance for the report and the underlying data to drift
+    apart, and the entire point of a compliance document is that it does not drift.</p>
+  <div class="plates" id="p-reporting"></div>
+</section>
+
+<!-- ══ EMAIL AND COMMS ═════════════════════════════════════════ -->
+<section class="grp" id="g-email">
+  <div class="k">Reaching people</div>
+  <h2>Generated email</h2>
+  <p class="lead">Acceptance, match reveal and mentor acceptance. Each is generated per recipient,
+    previewable before it fires and logged after.</p>
+  <div class="plates" id="p-email"></div>
+</section>
+
+<!-- ══ APPLICATIONS AND VERIFICATION ═══════════════════════════ -->
+<section class="grp" id="g-apps">
+  <div class="k">Getting in</div>
+  <h2>Applications and review</h2>
+  <p class="lead">143 founder applications and 46 mentor applications, reviewed in the console with
+    the full submission, the resume and the verification verdict on one screen.</p>
+  <div class="plates" id="p-apps"></div>
+</section>
+
+<!-- ══ THE FOUNDER PORTAL ══════════════════════════════════════ -->
+<section class="grp" id="g-portal">
+  <div class="k">What a founder sees</div>
+  <h2>The founder portal</h2>
+  <p class="lead">Nine tabs, gated week by week, private to each founder.</p>
+  <p class="lead"><strong>The gating is the design.</strong> Showing a founder eight weeks of
+    homework on day one is how you lose them in week two, so each week opens when they reach it and
+    the mentor stays hidden until the work that makes the first meeting useful is done.</p>
+  <div class="plates" id="p-portal"></div>
 </section>
 
 <!-- ══ EVERY STATE ═════════════════════════════════════════════ -->
@@ -619,9 +627,9 @@ fetch("../shots/manifest.json")
 
 // Section nav
 const NAV = [
-  ["g-portal","Founder portal"],["g-console","Console"],["g-matching","Matching"],
-  ["g-speakers","Speakers"],["g-apps","Applications"],["g-reporting","Reporting"],
-  ["g-email","Email & comms"],["g-lookbook","Lookbook"],["g-states","States"],
+  ["g-console","Console"],["g-matching","Matching"],["g-speakers","Speakers"],
+  ["g-lookbook","Lookbook"],["g-reporting","Reporting"],["g-email","Email & comms"],
+  ["g-apps","Applications"],["g-portal","Founder portal"],["g-states","States"],
   ["g-tips","Tooltips"],["g-public","Public"],["g-docs","Resources"]
 ];
 const bn = document.getElementById("bnav");
@@ -650,6 +658,6 @@ function wire() {
 </script>
 <script src="../assets/lightbox.js?v=5"></script>
 <script src="../assets/autopan.js?v=4"></script>
-<script src="../assets/jumpnav.js?v=2"></script>
+<script src="../assets/jumpnav.js?v=3"></script>
 </body>
 </html>

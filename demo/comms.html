@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Comms Board · Kennedy Loper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css?v=4">
+<style>
+  body { background:#fff; }
+  .wrap { max-width: 1140px; }
+  .hdr-in, .foot-in { max-width: 1140px; }
+
+  .sec { padding-top: 54px; scroll-margin-top: 60px; }
+  .sec > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+              color:var(--indigo-light); margin-bottom:7px; }
+  .sec > h2 { font-family:'Instrument Serif',Georgia,serif; font-size:32px; font-weight:400;
+              letter-spacing:-.4px; line-height:1.1; }
+  .sec > .intro { font-size:15px; color:var(--muted); line-height:1.68; margin-top:12px; max-width:68ch; }
+  .sec > .intro + .intro { margin-top:11px; }
+  .sec > .intro strong { color:var(--ink); font-weight:650; }
+  .sec > .intro em { color:var(--ink); font-style:italic; }
+
+  /* matrix */
+  .mtx-wrap { border:1px solid var(--line); border-radius:12px; overflow:auto; box-shadow:var(--shadow); margin-top:20px; }
+  table.mtx { width:100%; border-collapse:collapse; font-size:12.5px; background:#fff; min-width:820px; }
+  table.mtx th { text-align:left; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+                 color:var(--muted); background:var(--surface); padding:10px 12px;
+                 border-bottom:1px solid var(--line); white-space:nowrap; }
+  table.mtx th.n, table.mtx td.n { text-align:center; }
+  table.mtx td { padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  table.mtx tr:last-child td { border-bottom:0; }
+  table.mtx tbody tr:hover { background:#fcfbff; }
+  .aud { font-size:9.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+         border-radius:4px; padding:2px 6px; }
+  .aud.f { background:#e8f0ff; color:#1a4fa8; }
+  .aud.m { background:#efeaff; color:#5c4eb5; }
+  .aud.b { background:#e8f8f0; color:#1a6e42; }
+  .cnt { font-weight:750; }
+  .cnt.full { color:var(--ok-fg); }
+  .cnt.part { color:var(--warn-fg); }
+  .cnt.zero { color:var(--risk-fg); }
+  .cnt.na   { color:#c9c3dc; }
+  .src { font-size:10px; font-weight:700; border-radius:4px; padding:2px 7px; white-space:nowrap; }
+  .src.ok   { background:#e8f8f0; color:#1a6e42; }
+  .src.soft { background:#fff3e0; color:#b35c00; }
+  .src.draft{ background:#f0eef8; color:#6b6480; }
+  .asks { font-size:11.5px; color:var(--muted); font-style:italic; }
+
+  /* person timeline */
+  .person { border:1px solid var(--line); border-radius:13px; background:#fff; box-shadow:var(--shadow);
+            overflow:hidden; margin-top:20px; }
+  .person .ph { padding:15px 20px; border-bottom:1px solid var(--line); display:flex; gap:14px;
+                align-items:center; background:var(--surface); flex-wrap:wrap; }
+  .tl2 { padding:6px 20px 16px; }
+  .ev { display:grid; grid-template-columns:104px 1fr auto; gap:16px; align-items:baseline;
+        padding:11px 0; border-top:1px solid var(--line); }
+  .ev:first-child { border-top:0; }
+  .ev .when { font-size:11.5px; font-weight:700; color:var(--muted); }
+  .ev .what { font-size:13.5px; }
+  .ev .what em { display:block; font-style:normal; font-size:12px; color:var(--muted); margin-top:2px; }
+  @media(max-width:640px){ .ev{grid-template-columns:1fr} }
+
+  .trap { border:1px solid #e3c9a0; background:#fffaf0; border-radius:13px; padding:22px 24px; margin-top:22px; }
+  .trap h3 { font-size:17px; font-weight:800; margin-bottom:10px; color:#7a5c00; }
+  .trap p { font-size:14px; color:#6b5a33; line-height:1.68; }
+  .trap p + p { margin-top:10px; }
+  .trap code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px;
+               background:#fff; border:1px solid #e3c9a0; border-radius:5px; padding:1px 6px; color:#7a5c00; }
+
+  .quote { border-left:3px solid var(--indigo); padding:3px 0 3px 20px; margin-top:22px;
+           font-size:16px; line-height:1.66; }
+  .quote span { display:block; font-size:13px; color:var(--muted); margin-top:9px; font-weight:600; }
+
+  .before { display:grid; gap:11px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:20px; }
+  .bcard { border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:#fff; box-shadow:var(--shadow); }
+  .bcard h4 { font-size:13.5px; font-weight:750; margin-bottom:6px; }
+  .bcard p { font-size:12.5px; color:var(--muted); line-height:1.6; }
+  .bcard code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11.5px;
+                background:var(--surface); border:1px solid var(--indigo-pale); border-radius:4px; padding:1px 5px; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>MOCK DATA</strong> · The real board, invented people. The live captures of this tab
+    name six actual founders, so it is rebuilt rather than shown.</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="wordmark" href="../index.html" style="text-decoration:none">
+      <div class="nm">Kennedy Loper</div>
+      <div class="rl">Summer 2026 Work Portfolio</div>
+    </a>
+    <div class="kicker">The Comms Board</div>
+    <h1>What has this person actually been sent?</h1>
+    <div class="sub">One question, which nothing in the programme could answer until this existed.</div>
+    <div class="sub-2">Not what we meant to send. Not what their milestones imply we sent. What
+      reached them.</div>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabs-in" id="nav"></div></nav>
+
+<main class="wrap">
+
+<!-- ══ BEFORE ═══════════════════════════════════════════════════ -->
+<section class="sec" id="s-before">
+  <div class="k">The problem</div>
+  <h2>The answer was in three places, none of them queryable</h2>
+  <p class="intro">Before the log existed, "has this founder been told?" required opening three
+    different things and reconciling them by eye. None could be searched together, and none of them
+    knew about the others.</p>
+
+  <div class="before">
+    <div class="bcard"><h4>Hardcoded arrays inside each sender</h4>
+      <p>An <code>ALREADY_SENT</code> list in the route itself, edited by hand after every batch so
+        the next run would skip people. Correct only until somebody forgot.</p></div>
+    <div class="bcard"><h4>A "sent" flag in one sheet tab</h4>
+      <p>Covering one email type, for one audience, with no date on it.</p></div>
+    <div class="bcard"><h4>Markdown send logs</h4>
+      <p>For the batches that went out by hand from Gmail. Real records, in prose, unqueryable.</p></div>
+  </div>
+
+  <div class="quote">
+    Every row is one email to one person. A send to a founder and their mentor on the same thread
+    writes two rows, because the question being asked is always about a person, never about a
+    message.
+    <span>Which is why the board is addressed by participant rather than by campaign.</span>
+  </div>
+</section>
+
+<!-- ══ MATRIX ═══════════════════════════════════════════════════ -->
+<section class="sec" id="s-matrix">
+  <div class="k">Fourteen emails, two audiences</div>
+  <h2>The board</h2>
+  <p class="intro">Every email the programme can send, who it can go to, how many have received it,
+    and <strong>how we know</strong>. That last column is the one that took the longest to get
+    right.</p>
+
+  <div class="mtx-wrap">
+    <table class="mtx">
+      <thead><tr>
+        <th>Email</th><th>Audience</th><th class="n">Reached</th><th>How we know</th>
+        <th>What it asks them</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><strong>Accepted</strong></td><td><span class="aud f">Founder</span></td>
+          <td class="n"><span class="cnt full">68 / 68</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">Will you take the place?</td></tr>
+        <tr><td><strong>Accepted (mentor)</strong></td><td><span class="aud m">Mentor</span></td>
+          <td class="n"><span class="cnt full">45 / 45</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">Confirm your session count</td></tr>
+        <tr><td><strong>ICYMI update</strong></td><td><span class="aud m">Mentor</span></td>
+          <td class="n"><span class="cnt full">45 / 45</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">—</td></tr>
+        <tr><td><strong>Meet your match</strong></td><td><span class="aud b">Both</span></td>
+          <td class="n"><span class="cnt full">124 / 124</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">Reply within 72 hours</td></tr>
+        <tr><td><strong>Match in progress</strong></td><td><span class="aud f">Founder</span></td>
+          <td class="n"><span class="cnt part">6 / 6</span></td>
+          <td><span class="src soft">Reconstructed from Gmail</span></td>
+          <td class="asks">—</td></tr>
+        <tr style="background:#fcfbff"><td><strong>Meet your cohort</strong>
+            <div style="color:var(--muted);font-size:11.5px;margin-top:2px">Which of the five peer
+              rooms a founder is in, who is in it, and why</div></td>
+          <td><span class="aud f">Founder</span></td>
+          <td class="n"><span class="cnt zero">0 / 68</span></td>
+          <td><span class="src draft">Drafted, never sent</span></td>
+          <td class="asks">—</td></tr>
+        <tr><td><strong>Check: connected?</strong></td><td><span class="aud m">Mentor</span></td>
+          <td class="n"><span class="cnt part">41 / 45</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">Have you two spoken yet?</td></tr>
+        <tr><td><strong>Check: two meetings?</strong></td><td><span class="aud m">Mentor</span></td>
+          <td class="n"><span class="cnt part">28 / 45</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">Have you had the second one?</td></tr>
+        <tr><td><strong>Pulse missed</strong></td><td><span class="aud f">Founder</span></td>
+          <td class="n"><span class="cnt part">19 / 68</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">—</td></tr>
+        <tr><td><strong>Pulse yellow</strong></td><td><span class="aud f">Founder</span></td>
+          <td class="n"><span class="cnt part">14 / 68</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">What would help this week?</td></tr>
+        <tr><td><strong>Pulse red</strong></td><td><span class="aud f">Founder</span></td>
+          <td class="n"><span class="cnt part">4 / 68</span></td>
+          <td><span class="src ok">Logged at send</span></td>
+          <td class="asks">Can we get you on a call?</td></tr>
+        <tr><td><strong>Midpoint nudge</strong></td><td><span class="aud b">Both</span></td>
+          <td class="n"><span class="cnt part">38 / 113</span></td>
+          <td><span class="src soft">Recorded by hand</span></td>
+          <td class="asks">—</td></tr>
+        <tr><td><strong>Tuesday update</strong></td><td><span class="aud b">Both</span></td>
+          <td class="n"><span class="cnt full">113 / 113</span></td>
+          <td><span class="src ok">Backfilled from the sender's list</span></td>
+          <td class="asks">—</td></tr>
+        <tr><td><strong>Demo Night invite</strong></td><td><span class="aud b">Both</span></td>
+          <td class="n"><span class="cnt full">113 / 113</span></td>
+          <td><span class="src soft">Recorded by hand</span></td>
+          <td class="asks">Are you coming?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ PROVENANCE ═══════════════════════════════════════════════ -->
+<section class="sec" id="s-provenance">
+  <div class="k">The column that mattered most</div>
+  <h2>How we know is not the same as how sure we are</h2>
+  <p class="intro">A tick in a comms board is a claim about the past, and the claims are not equally
+    good. One is a receipt written by the thing that did the sending. The rest are reconstructions
+    made afterwards, from evidence of varying quality.</p>
+  <p class="intro"><strong>Collapsing those into one green tick would have made the board
+    confident and wrong</strong>, which is worse than a board that admits what it is guessing at.
+    So there are five provenances, and only one of them is a receipt.</p>
+
+  <div class="mtx-wrap" style="margin-top:20px">
+    <table class="mtx">
+      <thead><tr><th>Provenance</th><th>What it means</th><th class="n">Trusted?</th></tr></thead>
+      <tbody>
+        <tr><td><span class="src ok">Logged at send</span></td>
+          <td>Written by the route that sent it, at the moment it sent. The only true receipt.</td>
+          <td class="n"><span class="cnt full">Yes</span></td></tr>
+        <tr><td><span class="src ok">Backfilled from the sender's list</span></td>
+          <td>Recovered from the hardcoded skip-list a route was carrying. The route did send them.</td>
+          <td class="n"><span class="cnt full">Yes</span></td></tr>
+        <tr><td><span class="src ok">Backfilled from the sheet</span></td>
+          <td>Recovered from the old "sent" flag. A record, just not a dated one.</td>
+          <td class="n"><span class="cnt full">Yes</span></td></tr>
+        <tr><td><span class="src soft">Reconstructed from Gmail</span></td>
+          <td>Found in a mailbox after the fact. Evidence something went, not proof of what.</td>
+          <td class="n"><span class="cnt part">Shown softer</span></td></tr>
+        <tr><td><span class="src soft">Recorded by hand</span></td>
+          <td>Somebody wrote it down. Usually true, occasionally optimistic.</td>
+          <td class="n"><span class="cnt part">Shown softer</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quote">
+    The Comms tab shows them differently so a reconstructed tick is never mistaken for a receipt.
+    <span>Five provenances, two confidence levels, one visual difference that carries the whole
+      distinction.</span>
+  </div>
+</section>
+
+<!-- ══ ZERO ═════════════════════════════════════════════════════ -->
+<section class="sec" id="s-zero">
+  <div class="k">The row that reads 0 / 68</div>
+  <h2>Showing the email you have not sent</h2>
+  <p class="intro">"Meet your cohort" is written. It tells a founder which of the five peer rooms
+    they are in, who else is in it, and why those people. It has a template, a subject and a
+    render. <strong>There is no sender route for it, so it has never gone out.</strong></p>
+  <p class="intro">The easy thing is to leave an unsendable email off the board. It would look
+    finished. Instead the row sits there reading <em>0 / 68</em> with a <em>drafted, never sent</em>
+    tag, because that is the single most useful fact the board holds:
+    <strong>the one thing the programme has written for founders and not delivered.</strong></p>
+
+  <div class="trap">
+    <h3>What the log cannot tell you, and says so</h3>
+    <p>The board answers what the <em>routes</em> sent. It is not evidence that a person was never
+      contacted, because plenty of conversations happen by hand from a mailbox and never touch a
+      route at all.</p>
+    <p><strong>An empty row means "no send is recorded", not "nobody spoke to them".</strong> Getting
+      that distinction into the interface mattered more than the feature did: a comms board that
+      quietly implies silence will have someone chasing a founder who has already been called.</p>
+  </div>
+</section>
+
+<!-- ══ PERSON ═══════════════════════════════════════════════════ -->
+<section class="sec" id="s-person">
+  <div class="k">Addressed by person</div>
+  <h2>One founder, everything they have received</h2>
+  <p class="intro">Because the row is a person and not a campaign, the board opens into a timeline.
+    This is what somebody looks at before picking up the phone.</p>
+
+  <div class="person">
+    <div class="ph">
+      <div class="av">MR</div>
+      <div class="grow">
+        <span class="t">Maya Restrepo</span>
+        <span class="s">Trellis Health · Cohort Hopper · matched with Daniel Okafor</span>
+      </div>
+      <span class="chip ok">9 sent</span>
+      <span class="chip warn">1 awaiting reply</span>
+    </div>
+    <div class="tl2">
+      <div class="ev"><span class="when">Aug 28</span>
+        <span class="what">Accepted <em>Asked: will you take the place? — answered yes, Aug 28</em></span>
+        <span class="src ok">Logged</span></div>
+      <div class="ev"><span class="when">Sept 8</span>
+        <span class="what">Demo Night invite <em>Asked: are you coming? — no answer recorded</em></span>
+        <span class="src soft">By hand</span></div>
+      <div class="ev"><span class="when">Sept 15</span>
+        <span class="what">Meet your match <em>Asked: reply within 72 hours — replied in 19 hours</em></span>
+        <span class="src ok">Logged</span></div>
+      <div class="ev"><span class="when">Sept 23</span>
+        <span class="what">Tuesday update</span>
+        <span class="src ok">Backfilled</span></div>
+      <div class="ev"><span class="when">Sept 30</span>
+        <span class="what">Tuesday update</span>
+        <span class="src ok">Logged</span></div>
+      <div class="ev"><span class="when">Oct 2</span>
+        <span class="what">Pulse yellow <em>Asked: what would help this week? — awaiting reply</em></span>
+        <span class="src ok">Logged</span></div>
+      <div class="ev"><span class="when">—</span>
+        <span class="what" style="color:var(--muted)">Meet your cohort
+          <em>Drafted. No sender route exists, so this has not gone to anyone.</em></span>
+        <span class="src draft">Never sent</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ASKS ═════════════════════════════════════════════════════ -->
+<section class="sec" id="s-asks">
+  <div class="k">The bit I would defend hardest</div>
+  <h2>An email that asks something becomes answerable by being written down</h2>
+  <p class="intro">Six of the fourteen emails put a question to the person. Those answers need
+    recording against the email that asked, so "we asked and they said yes" is a fact the programme
+    holds rather than something living in one person's memory.</p>
+  <p class="intro">The obvious implementation is a list of answerable email keys somewhere in the
+    admin board. It works, and it is a trap: <strong>every new email that asks something then
+    requires a second edit in a second place, and the day someone forgets, the question silently
+    stops being answerable.</strong></p>
+  <p class="intro">So <code>asks</code> is a property of the email itself, in the catalogue. Writing
+    the email down is the whole of the work. Nothing has to remember to keep up.</p>
+
+  <div class="quote">
+    A new email that asks something should become answerable by being written down once, not by
+    remembering to add its key in a second place.
+    <span>The same rule the rest of the system runs on, applied to the thing that is easiest to get
+      lazy about.</span>
+  </div>
+</section>
+
+<div style="border-top:1px solid var(--line);padding-top:32px;margin-top:52px">
+  <div style="display:flex;gap:9px;flex-wrap:wrap">
+    <a class="btn pri" href="console.html" style="text-decoration:none">The programme console →</a>
+    <a class="btn" href="speaker-loop.html" style="text-decoration:none">The speaker loop</a>
+    <a class="btn" href="why-these-two.html" style="text-decoration:none">Why these two</a>
+    <a class="btn" href="../index.html" style="text-decoration:none">Back to portfolio</a>
+  </div>
+</div>
+
+</main>
+
+<footer class="foot"><div class="foot-in">
+  The Uplift comms board, rebuilt with invented participants.
+  Designed and built by Kennedy Loper.
+</div></footer>
+
+<script>
+const NAV = [["s-before","The problem"],["s-matrix","The board"],["s-provenance","Provenance"],
+             ["s-zero","0 / 68"],["s-person","One person"],["s-asks","Asks"]];
+const nav = document.getElementById("nav");
+NAV.forEach(([id,label]) => {
+  const b=document.createElement("button"); b.className="tab"; b.textContent=label;
+  b.onclick=()=>document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"});
+  nav.appendChild(b);
+});
+</script>
+<script src="../assets/lightbox.js?v=4"></script>
+</body>
+</html>

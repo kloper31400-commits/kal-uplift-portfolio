@@ -24,6 +24,7 @@
     ["Email and comms",              "#g-email"],
     ["Applications",                 "#g-apps"],
     ["The founder portal",           "#g-portal"],
+    ["Ulrike, the assistant",        "#g-ulrike"],
     ["The resources",                "#g-docs"],
     ["Walk through more",            "#more"],
     ["Six systems",                  "#systems"],

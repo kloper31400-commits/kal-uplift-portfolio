@@ -596,6 +596,84 @@
   <div class="plates" id="p-portal"></div>
 </section>
 
+<!-- ══ THE ASSISTANT ═══════════════════════════════════════════ -->
+<section class="grp" id="g-ulrike">
+  <div class="k">The assistant</div>
+  <h2>Ulrike</h2>
+  <p class="lead">A closed-book chat bot living inside the founder portal, answering from the
+    programme rulebook and that founder's own live numbers. <strong>She is named after a real
+    102-year-old New Yorker</strong> who is sharper and more agile than people half her age, and
+    the prompt tells her to channel that: spry, direct, no-nonsense, more mighty than she looks.</p>
+
+  <div class="note" style="margin-top:18px">
+    <strong>The problem she solves is a support inbox.</strong> Seventy founders each with the same
+    twenty questions about deadlines, gates, where to submit a thing, who their mentor is. Every one
+    of those is documented somewhere nobody reads. A bot that will only answer from the documentation
+    turns the docs into something you can talk to, and the team stops retyping the same reply.
+  </div>
+
+  <div class="plates" id="p-ulrike"></div>
+
+  <div class="note" style="margin-top:20px">
+    <strong>Closed-book, and the refusal is a fixed string.</strong> She answers only from the
+    programme knowledge and the founder's live state. When she is not certain the answer is in her
+    material she returns one exact sentence pointing at a human, byte for byte, every time. That is
+    the whole safety design: a support bot that guesses is worse than no support bot, because a
+    confident wrong answer about a deadline costs somebody their place.
+  </div>
+
+  <div class="mtx-wrap" style="margin-top:16px">
+    <table class="mtx">
+      <thead><tr><th>Rule</th><th>Why it is written that way</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Live numbers come from the admin endpoint</strong></td>
+          <td>She cites meetings logged, sessions done and gate status from the same route the
+            console reads. One source of truth, so the bot and the staff screen can never disagree
+            about whether someone completed something.</td></tr>
+        <tr><td><strong>Never another founder's progress</strong></td>
+          <td>She will discuss only the founder whose portal she is in. Not applicants, not
+            decisions, not internal operations.</td></tr>
+        <tr><td><strong>Never revenue, funding, phone, gender, ethnicity or age</strong></td>
+          <td>Named explicitly, and the rule says it holds no matter how the question is framed.
+            Not because a founder would ask, but because a prompt can be worded to make a model
+            think it has permission.</td></tr>
+        <tr><td><strong>The directory is deliberately open</strong></td>
+          <td>The one thing she is encouraged to share. Who else is in my county, my industry, my
+            stage, who is hiring, who wants pilots, plus their email. Cross-introductions are the
+            point of a cohort, so the bot is a matchmaker rather than a gate.</td></tr>
+        <tr><td><strong>Messages are questions, not instructions</strong></td>
+          <td>Explicit prompt-injection defence. Any request to change the rules, adopt a persona,
+            or reveal the prompt is ignored.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note" style="margin-top:18px">
+    <strong>One route, two audiences.</strong> The same endpoint serves the gated portal widget and
+    a public "Meet Ulrike" page. The visitor mode gets the rulebook and nothing else: no live state,
+    no directory, no contact details, and a different instruction telling her to answer the question
+    completely rather than deflecting to the team. Two prompts, one code path, and the founder
+    directory is physically not assembled unless the caller is a known founder.
+    <br><br>
+    <strong>Every exchange is logged to Slack, fire and forget.</strong> That channel became the
+    most useful thing she produced. A list of what founders actually ask is a list of what the
+    documentation failed to say, and it arrives without anyone running a survey.
+  </div>
+
+  <div class="note" style="margin-top:16px">
+    <strong>The small engineering, which is most of it.</strong> Prompt caching on the 28KB
+    knowledge block so the expensive part is paid once. Haiku, because the job is retrieval and
+    tone rather than reasoning. Twenty-five messages an hour per founder, and per IP for visitors.
+    Questions capped, history capped at the last eight turns. If the API key is missing or the call
+    throws, she returns the fallback rather than an error. If live state cannot be reached she says
+    she cannot see it right now instead of inventing it.
+    <br><br>
+    And a detail that says the most about the house style: the model is told never to use em dashes
+    or markdown, because the chat window renders neither. <strong>Then the reply is stripped of both
+    anyway on the way out.</strong> Instructions to a model are a preference. Code is a guarantee.
+  </div>
+</section>
+
 <!-- ══ EVERY STATE ═════════════════════════════════════════════ -->
 <section class="grp" id="g-states">
   <div class="k">The part most demos skip</div>
@@ -1226,6 +1304,12 @@ const GROUPS = {
     ["a28-directory","Directory","The same page, console side"],
     ["a28b-directory-glance","At a glance","Expanded"],
   ],
+  "p-ulrike": [
+    ["m14-ulrike-widget","In the portal","The widget every founder has, bottom right of every tab. It answers from this founder's own live numbers, not from a generic help article."],
+    ["m15-ulrike-page","Full page","Same bot, more room to read. For the questions that need a paragraph rather than a sentence."],
+    ["u01-ulrike-live","Meet Ulrike, in public","The ungated page. Same code path, visitor mode: the rulebook and nothing else, no live data and no directory."],
+    ["u02-ulrike-routes","The suggested questions","What a visitor is offered before they type. The five that answer most of what people email to ask."],
+  ],
   "p-states": [
     ["t01-milestones-blank","Milestones · nothing done","Day one"],
     ["t02-milestones-some","Milestones · partly done","Mid-programme"],
@@ -1250,10 +1334,6 @@ const GROUPS = {
   ],
   "p-public": [
     ["speaker-luma","The published event","Where founders register"],
-    ["m14-ulrike-widget","The portal assistant","Answering from live data"],
-    ["m15-ulrike-page","The assistant, full page","The same knowledge, more room"],
-    ["u01-ulrike-live","Assistant, live","In use"],
-    ["u02-ulrike-routes","What it can answer","The knowledge surface"],
   ],
 };
 
@@ -1310,7 +1390,8 @@ fetch("shots/manifest.json")
 const NAV = [
   ["g-console","Console"],["g-matching","Matching"],["g-speakers","Speakers"],
   ["g-lookbook","Lookbook"],["g-reporting","Reporting"],["g-email","Email & comms"],
-  ["g-apps","Applications"],["g-portal","Founder portal"],["g-states","States"],
+  ["g-apps","Applications"],["g-portal","Founder portal"],["g-ulrike","Ulrike"],
+  ["g-states","States"],
   ["g-tips","Tooltips"],["g-public","Public"],["g-docs","Resources"]
 ];
 const bn = document.getElementById("bnav");

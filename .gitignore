@@ -8,3 +8,4 @@ private/
 
 # Contact sheets used to audit frames for real names. Working artefacts.
 .audit/
+.git/.credentials-kal

@@ -14,9 +14,13 @@
 
   body { background: #fff; }
 
+  /* The title page used to run 442px, and a second indigo header ran another
+     193, so the first frame of actual work sat 1,276px down: two screens on a
+     laptop. The masthead is folded into this block and the whole thing is
+     sized to leave the grid above the fold. */
   .hero {
     background: var(--indigo-night);
-    color: #fff; padding: 112px 24px 120px; position: relative; overflow: hidden;
+    color: #fff; padding: 40px 24px 30px; position: relative; overflow: hidden;
   }
   .hero::after {
     content:""; position:absolute; right:-140px; top:-140px; width:460px; height:460px;
@@ -29,21 +33,22 @@
   }
   .hero h1 {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(48px, 8.2vw, 86px); font-weight: 400; letter-spacing: -1.5px;
+    font-size: clamp(34px, 5vw, 52px); font-weight: 400; letter-spacing: -1px;
     line-height: 1; margin: 0;
   }
   /* A title page, so the hierarchy is name, then what the thing is, then when.
      The rule is there to stop the year floating loose under the subtitle. */
   .hero .h-sub {
-    margin-top: 22px; font-size: clamp(12.5px, 1.5vw, 14.5px); font-weight: 700;
-    letter-spacing: .3em; text-transform: uppercase; color: #cfc4ff;
+    margin-top: 12px; font-size: 12px; font-weight: 700;
+    letter-spacing: .26em; text-transform: uppercase; color: #cfc4ff;
   }
-  .hero .h-rule { margin-top: 34px; width: 96px; height: 1px;
-                  background: rgba(255,255,255,.34); }
-  .hero .h-year {
-    margin-top: 26px; font-size: 13px; font-weight: 600; letter-spacing: .14em;
-    text-transform: uppercase; color: rgba(255,255,255,.62);
-  }
+  .hero .h-rule { margin-top: 18px; width: 76px; height: 1px;
+                  background: rgba(255,255,255,.30); }
+  /* the old second header, now a single line inside the same block */
+  .hero .h-what { margin-top: 18px; font-size: 15.5px; line-height: 1.55;
+                  color: rgba(255,255,255,.86); max-width: 62ch; }
+  .hero .h-what strong { font-weight: 700; color: #fff; }
+  .hero .h-what em { font-style: normal; color: rgba(255,255,255,.6); }
   .hero .lede { font-size: clamp(16px, 2.2vw, 19.5px); line-height: 1.6; opacity: .9; max-width: 65ch; }
   .hero .lede + .lede { margin-top: 15px; }
   .hero .meta { margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap; }
@@ -176,6 +181,8 @@
   .bnav .in { max-width:1180px; margin:0 auto; padding:0 24px; display:flex; gap:2px; overflow-x:auto; }
 
   .grp { padding-top: 52px; scroll-margin-top: 62px; }
+  /* the first section sits right under the sticky nav, so it needs no lead-in */
+  .grp:first-of-type { padding-top: 18px; }
   .grp > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
               color:var(--indigo-light); margin-bottom:6px; }
   .grp > h2 { font-size:26px; font-weight:850; letter-spacing:-.7px; }
@@ -266,45 +273,24 @@
 <section class="hero">
   <div class="hero-in">
     <h1>Kennedy Loper</h1>
-    <div class="h-sub">Programme Work Portfolio</div>
+    <div class="h-sub">Programme Work Portfolio &middot; Summer 2026</div>
     <div class="h-rule"></div>
-    <div class="h-year">Summer 2026</div>
+    <div class="h-what"><strong>Every screen, end to end.</strong> 120 frames of the console, the
+      founder portal, the lookbook, the emails, and the state variations most walkthroughs skip.
+      <em>Click any frame to open it full size.</em></div>
   </div>
 </section>
 
 <div class="demo-bar">
-  <span><strong>MOCK DATA</strong> · 96 screens of the real application, running on a generated
-    cohort. Every person and company is invented.</span>
+  <span><strong>MOCK DATA</strong> &middot; the real application, running on a generated cohort.
+    Every person and company is invented.</span>
 </div>
-
-<header class="hdr">
-  <div class="hdr-in">
-    <div class="kicker">Interface Inventory</div>
-    <h1>Every screen, end to end</h1>
-    <div class="sub">96 captures: the console, the founder portal, the lookbook, the emails, and the
-      state variations most walkthroughs skip.</div>
-    <div class="sub-2">Click any frame to open it full size.</div>
-  </div>
-</header>
 
 <nav class="bnav"><div class="in" id="bnav"></div></nav>
 
 <main class="wrap">
 
-<div class="note" style="margin-top:26px">
-  <strong>A note on the two builds.</strong> The console captures run against an anonymised demo
-  build that also renames things: the programme is "the program", mentors are "experts", cohorts are
-  "pods". The founder-portal captures run against the real Uplift naming. Both are populated with
-  invented people. Five frames are withheld entirely because they name real participants.
-</div>
 
-<div class="note" style="margin-top:26px">
-  <strong>Ordered by how much of it lifts out.</strong> The first six are the pieces that would
-  work somewhere else with the nouns changed: a matching engine, a booking loop, a publication that
-  generates itself from a form, compliance exhibits built from live data, and a comms board that
-  knows the difference between a receipt and a reconstruction. The rest is the programme they were
-  built for.
-</div>
 
 <!-- ══ THE PROGRAMME CONSOLE ═══════════════════════════════════ -->
 <section class="grp" id="g-console">
@@ -316,6 +302,20 @@
     of truth on load, which is why nobody has to remember to update anything and why the console and
     the founder portal can never disagree about the same fact.</p>
   <div class="plates" id="p-console"></div>
+<div class="note" style="margin-top:20px">
+  <strong>A note on the two builds.</strong> The console captures run against an anonymised demo
+  build that also renames things: the programme is "the program", mentors are "experts", cohorts are
+  "pods". The founder-portal captures run against the real Uplift naming. Both are populated with
+  invented people. Five frames are withheld entirely because they name real participants.
+</div>
+<div class="note" style="margin-top:20px">
+  <strong>Ordered by how much of it lifts out.</strong> The first six are the pieces that would
+  work somewhere else with the nouns changed: a matching engine, a booking loop, a publication that
+  generates itself from a form, compliance exhibits built from live data, and a comms board that
+  knows the difference between a receipt and a reconstruction. The rest is the programme they were
+  built for.
+</div>
+
 
   <div class="note" style="margin-top:20px">
     <strong>One number per person, and it is also their password.</strong> Every founder and mentor

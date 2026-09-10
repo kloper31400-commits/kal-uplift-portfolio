@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css">
+<link rel="stylesheet" href="../assets/portal.css?v=3">
 <style>
   body { background:#fff; }
   .wrap { max-width: 1180px; }
@@ -37,25 +37,13 @@
   .plate .fr {
     border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface);
     box-shadow:0 1px 3px rgba(26,23,51,.06), 0 10px 26px rgba(26,23,51,.07);
-    max-height:340px; min-height:200px; overflow-y:auto; cursor:zoom-in;
+    max-height:340px; min-height:200px;
   }
   .plate .fr img { display:block; width:100%; height:auto; background:var(--surface); }
-  /* The box reserves its real shape from the manifest before the image
-     downloads. Without this a lazy image gives its container zero height, the
-     section collapses, and unloaded content reads as missing content. */
-  .plate .fr img[data-ar] { aspect-ratio: var(--ar); }
 
   .plate.wide { grid-column: 1 / -1; }
   .plate.wide .fr { max-height: 620px; }
 
-  /* lightbox */
-  #lb { position:fixed; inset:0; background:rgba(16,13,38,.93); z-index:200; display:none;
-        overflow:auto; padding:26px; }
-  #lb.on { display:block; }
-  #lb img { display:block; max-width:1180px; width:100%; margin:0 auto; border-radius:10px; }
-  #lb .x { position:fixed; top:16px; right:22px; background:#fff; border:0; border-radius:9px;
-           font:800 13px var(--font); padding:9px 15px; cursor:pointer; color:var(--indigo-deep); }
-  #lb .cap { max-width:1180px; margin:0 auto 12px; color:#cfc7f5; font-size:13px; font-weight:600; }
 </style>
 </head>
 <body>
@@ -198,8 +186,6 @@
 
 </main>
 
-<div id="lb"><button class="x" onclick="closeLb()">Close ✕</button>
-  <div class="cap" id="lbc"></div><img id="lbi" src="" alt=""></div>
 
 <footer class="foot"><div class="foot-in">
   96 captures of the Uplift application on a generated cohort.
@@ -374,19 +360,6 @@ NAV.forEach(([id,label]) => {
   bn.appendChild(b);
 });
 
-// Lightbox
-const lb = document.getElementById("lb"), lbi = document.getElementById("lbi"), lbc = document.getElementById("lbc");
-document.addEventListener("click", e => {
-  const img = e.target.closest(".fr img");
-  if (!img) return;
-  lbi.src = img.getAttribute("src");
-  lbc.textContent = img.getAttribute("alt");
-  lb.classList.add("on");
-  document.body.style.overflow = "hidden";
-});
-function closeLb() { lb.classList.remove("on"); document.body.style.overflow = ""; }
-lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
 
 // Missing frames degrade to a note rather than a broken icon. Called after the
 // plates are built: attaching these at load only ever reached the handful of
@@ -403,5 +376,6 @@ function wire() {
   });
 }
 </script>
+<script src="../assets/lightbox.js?v=3"></script>
 </body>
 </html>

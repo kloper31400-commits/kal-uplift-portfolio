@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css">
+<link rel="stylesheet" href="../assets/portal.css?v=3">
 <style>
   body { background: #fff; }
   .wrap { max-width: 1120px; }
@@ -33,13 +33,7 @@
     background: var(--surface); position: relative;
   }
   .shot img { display: block; width: 100%; height: auto; }
-  .shot.tall { max-height: 620px; overflow-y: auto; }
-  .shot.tall::after {
-    content: "scroll"; position: sticky; bottom: 8px; left: 100%; margin-right: 10px;
-    display: block; width: max-content; background: rgba(26,23,51,.72); color:#fff;
-    font-size: 10px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
-    padding: 4px 9px; border-radius: 20px;
-  }
+  .shot.tall { max-height: 620px; }
   .shot .missing { padding: 46px 24px; text-align: center; font-size: 13.5px; color: var(--muted); }
   .shot .missing code { background:#fff; border:1px solid var(--line); border-radius:6px; padding:2px 7px; }
 
@@ -286,5 +280,6 @@ document.querySelectorAll(".shot img").forEach(img => {
   });
 });
 </script>
+<script src="../assets/lightbox.js?v=3"></script>
 </body>
 </html>

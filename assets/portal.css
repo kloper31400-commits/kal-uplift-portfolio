@@ -219,3 +219,62 @@ textarea:focus, input:focus { outline: 2px solid var(--indigo-light); outline-of
   .wrap { padding: 20px 14px 60px; }
   .step .body { padding-left: 18px; }
 }
+
+/* ── Screenshot frames and the shared lightbox ──────────────────
+   Frames CLIP. They used to inner-scroll, which made every plate a scroll
+   trap once the captures were full height: a 22,000px page inside a 340px
+   window swallows the wheel and the page underneath never moves. */
+.fr, .shot.tall {
+  position: relative;
+  overflow: hidden !important;
+  cursor: zoom-in;
+}
+.fr::after, .shot.tall::after {
+  content: "" !important;
+  position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.96));
+  pointer-events: none;
+  display: block !important;
+  width: auto !important; margin: 0 !important; padding: 0 !important;
+  border-radius: 0 !important;
+}
+.fr::before, .shot.tall::before {
+  content: "Click to open";
+  position: absolute; right: 10px; bottom: 10px; z-index: 2;
+  background: rgba(26,23,51,.8); color: #fff;
+  font: 800 10px/1 var(--font); letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: 20px; pointer-events: none;
+}
+
+html.lbx-locked, html.lbx-locked body { overflow: hidden; }
+
+.lbx { position: fixed; inset: 0; z-index: 999; display: none; background: rgba(14,11,34,.95); }
+.lbx.on { display: flex; flex-direction: column; }
+.lbx-bar {
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 12px 18px; background: rgba(0,0,0,.35);
+  color: #cfc7f5; font-size: 13px; font-weight: 600;
+}
+.lbx-act { display: flex; gap: 9px; align-items: center; flex: 0 0 auto; }
+.lbx-open {
+  color: #cfc7f5; font-size: 12px; font-weight: 700; text-decoration: none;
+  border: 1px solid rgba(255,255,255,.3); border-radius: 8px; padding: 7px 12px;
+}
+.lbx-open:hover { background: rgba(255,255,255,.1); }
+.lbx-x {
+  background: #fff; color: #1a1733; border: 0; border-radius: 8px;
+  font: 800 12px var(--font); padding: 8px 14px; cursor: pointer;
+}
+/* min-height:0 is load-bearing. A flex item defaults to min-height:auto, which
+   is its content height, so `flex:1` plus `overflow:auto` still grew this box
+   to the full 22,000px of a tall capture instead of constraining it. The
+   scroller then had nothing to scroll and the page behind it was locked, so
+   opening a tall screenshot left you stuck. */
+.lbx-scroll {
+  flex: 1 1 auto; min-height: 0;
+  overflow: auto; padding: 18px; -webkit-overflow-scrolling: touch;
+}
+.lbx-scroll img {
+  display: block; width: 100%; max-width: 1180px; height: auto;
+  margin: 0 auto; border-radius: 10px; background: #fff;
+}

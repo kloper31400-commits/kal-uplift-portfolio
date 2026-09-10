@@ -25,7 +25,13 @@ DST = pathlib.Path(__file__).parent / "shots"
 SHEETS = pathlib.Path(__file__).parent / ".audit"
 DST.mkdir(parents=True, exist_ok=True)
 
-MAX_W, MAX_H, QUALITY = 1400, 5200, 78
+# Scale by WIDTH only. An earlier version also capped height at 5200px by
+# rescaling the whole image, which meant a very tall capture had its width
+# crushed to keep the height down: the resumes page came out 374px wide, 13% of
+# the original, and unreadable the moment anyone zoomed. A full-page capture is
+# legitimately tall, so let it be tall.
+MAX_W, QUALITY = 1600, 80
+MAX_H = 30000  # safety only; nothing real approaches this
 
 EXCLUDE = {
     "a13-comms",        # six real founders by name

@@ -33,6 +33,11 @@ TARGETS = [
     ("public/uplift-fall-speaker-runbook.html",   "speaker-runbook.html"),
     ("public/uplift-certificate.html",            "certificate.html"),
     ("public/uplift-speak.html",                  "share-your-expertise.html"),
+    # The current match email, regenerated 10 Sept. Picked because it carries
+    # both the founder's five Deep Work answers and the November progress
+    # section, so the published example is the richest version rather than the
+    # thinnest.
+    ("public/match-emails/laura-acosta.html",     "match-email-example.html"),
 ]
 
 FIRST = """Amara Nora Hugo Omar Tessa Priya Delphine Soren Ingrid Rosa Emil Ada Naomi Theo

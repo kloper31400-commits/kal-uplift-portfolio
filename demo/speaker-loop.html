@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css?v=4">
+<link rel="stylesheet" href="../assets/portal.css?v=5">
 <style>
   body { background:#fff; }
   .wrap { max-width: 1120px; }
@@ -108,7 +108,7 @@
   pre.code .str { color:#a8e6c0; }
   pre.code .kw  { color:#c7bcff; }
 
-  .shot { border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:18px;
+  .shot { border:1px solid var(--line); border-radius:12px; margin-top:18px; cursor:zoom-in;
           box-shadow:0 2px 6px rgba(26,23,51,.07), 0 18px 44px rgba(26,23,51,.09); background:var(--surface); }
   .shot img { display:block; width:100%; height:auto; }
   .shot .missing { padding:40px 24px; text-align:center; font-size:13.5px; color:var(--muted); }
@@ -665,6 +665,7 @@ document.querySelectorAll(".shot img").forEach(img => {
   });
 });
 </script>
-<script src="../assets/lightbox.js?v=4"></script>
+<script src="../assets/lightbox.js?v=5"></script>
+<script src="../assets/autopan.js?v=2"></script>
 </body>
 </html>

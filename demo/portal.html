@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css?v=4">
+<link rel="stylesheet" href="../assets/portal.css?v=5">
 <style>
   body { background:#fff; }
   .wrap { max-width: 1120px; }
@@ -28,9 +28,9 @@
   .frame .cap p strong { color: var(--ink); font-weight: 650; }
 
   .shot {
-    border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 12px;
     box-shadow: 0 2px 6px rgba(26,23,51,.07), 0 18px 44px rgba(26,23,51,.09);
-    background: var(--surface); position: relative;
+    background: var(--surface); position: relative; cursor: zoom-in;
   }
   .shot img { display: block; width: 100%; height: auto; }
   .shot.tall { max-height: 620px; }
@@ -283,6 +283,7 @@ document.querySelectorAll(".shot img").forEach(img => {
   });
 });
 </script>
-<script src="../assets/lightbox.js?v=4"></script>
+<script src="../assets/lightbox.js?v=5"></script>
+<script src="../assets/autopan.js?v=2"></script>
 </body>
 </html>

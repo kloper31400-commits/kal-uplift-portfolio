@@ -527,6 +527,78 @@
   </div>
 </section>
 
+<!-- ══ NEXT ═════════════════════════════════════════════════════ -->
+<section class="sec" id="s-next">
+  <div class="k">Designed, not yet shipped</div>
+  <h2>Collapsing the four into one</h2>
+  <p class="intro">Every one of those three manual steps is a place a speaker falls through, and the
+    board exists to catch that rather than to prevent it. Catching it is the interim answer. The next
+    version makes <em>Confirm &amp; book</em> do the whole thing.</p>
+
+  <div class="chain" style="margin-top:24px">
+    <div class="link">
+      <div class="num">→</div>
+      <div>
+        <span class="who sys">Next</span>
+        <h3>The confirmation email sends itself</h3>
+        <p>The draft already writes its own subject and knows the slot, the format and what the
+          speaker said they would cover. Sending it is the only human act left in that step, and it
+          is the one most often forgotten. It goes on approval, and
+          <code>confirmationEmailSent</code> gets stamped by the thing that actually sent it rather
+          than by somebody remembering to tick a box.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="link">
+      <div class="num">→</div>
+      <div>
+        <span class="who sys">Next</span>
+        <h3>The brief renders on approval</h3>
+        <p>Today an approved speaker has to be added to the roster file by hand before
+          <code>build-session-briefs.py</code> can produce their page, which is why the console can
+          say "the slot is booked and the event page has nothing to publish". The application already
+          holds everything the brief needs. Approval writes the roster entry and renders the
+          one-pager in the same action.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="link">
+      <div class="num">→</div>
+      <div>
+        <span class="who sys">Next</span>
+        <h3>A calendar invite, with the brief attached</h3>
+        <p>An ICS generated from the session date, sent to the speaker with their own one-pager on
+          it, so the thing in their calendar carries the thing they need to prepare.
+          <code>inviteResponse</code> then comes back from the calendar itself rather than from
+          someone reading their inbox and updating a sheet.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="link">
+      <div class="num">→</div>
+      <div>
+        <span class="who ext">Next</span>
+        <h3>Luma updates in the same action</h3>
+        <p>Title and description are already written on the application. Pushing them to the event
+          page is one call, and it closes the last gap between a speaker being booked and founders
+          being able to register.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trap" style="margin-top:22px">
+    <h3>Why it was not built that way first</h3>
+    <p>Because the failure states had to be understood before they could be removed. Building the
+      automation first would have produced a system that fires four actions and assumes all four
+      worked, and the interesting information, <strong>the gap between a hold being sent and a hold
+      being accepted</strong>, would never have been visible at all.</p>
+    <p>The board earned the automation by making the failures countable first. That is also why the
+      fields survive the change: <code>confirmationEmailSent</code>, <code>calendarInviteSent</code>
+      and <code>inviteResponse</code> still record what happened, they just stop depending on a
+      person to write them down.</p>
+  </div>
+</section>
+
 <!-- ══ THE SECOND PATH ══════════════════════════════════════════ -->
 <section class="sec">
   <div class="k">What the design missed</div>

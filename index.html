@@ -147,10 +147,17 @@
   }
   .cta h2 { font-family:'Instrument Serif',Georgia,serif; font-size: 34px; font-weight: 400;
              letter-spacing: -.4px; margin-bottom: 10px; }
-  .cta p { font-size: 15px; opacity: .88; max-width: 52ch; margin: 0 auto 20px; line-height: 1.6; }
-  .cta a {
-    display: inline-block; background: #fff; color: var(--indigo-deep); text-decoration: none;
-    font-weight: 800; font-size: 14.5px; border-radius: 10px; padding: 12px 26px;
+  /* The card is a colophon now: a face, a name, and what he does. No pitch and
+     no button, so the only rules left are for those three things. The ring
+     stops the photo dissolving into the indigo behind it. */
+  .cta img.face {
+    width: 116px; height: 116px; border-radius: 50%; object-fit: cover;
+    display: block; margin: 0 auto 20px;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.30), 0 10px 30px rgba(0,0,0,.30);
+  }
+  .cta .role {
+    font-size: 12.5px; font-weight: 700; letter-spacing: .17em;
+    text-transform: uppercase; color: rgba(255,255,255,.74);
   }
 
   footer.pf { border-top: 1px solid var(--line); padding: 26px 24px 52px; }
@@ -606,17 +613,15 @@
 </section>
 
 <div class="cta" id="contact">
+  <img class="face" src="assets/img/kennedy-loper.webp" alt="Kennedy Loper" width="116" height="116">
   <h2>Kennedy Loper</h2>
-  <p>I built all of this over one summer and wrote it up so I would not forget how any of it
-    worked. If you are putting something similar together and want the details behind a screen
-    here, or you just want to talk about it, say hello.</p>
-  <a href="mailto:kennedyloper@outlook.com">Say hello</a>
+  <div class="role">AI integrator and community builder</div>
 </div>
 
 </main>
 
 <footer class="pf"><div>
-  Design, engineering and writing by Kennedy Loper, 2026.<br>
+  Design, engineering and writing by Kennedy Loper, 2026 &middot; <a href="mailto:kennedyloper@outlook.com" style="color:inherit">kennedyloper@outlook.com</a><br>
   Demos use synthetic data. Any names and marks appearing in screenshots belong to their owners.
 </div></footer>
 

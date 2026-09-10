@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; lineup reveal, mark as headline</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Full lineup reveal, 1080x1350 (4:5).
+     Render: bash scripts/render-post-graphic.sh demo-night-lineup-post-v4
+
+     Third in the series after demo-night-post (the call) and
+     demo-night-mobius-post (first pitch confirmed). Same paper ground, same
+     masthead, same label between hairlines, same 5px foot rule, so the three
+     read as one run. New here: a three-row index where each company gets its
+     own logo, one founder portrait, and a single line in its own words.
+
+     Logos sit under mix-blend-mode: multiply so their white plates drop into
+     the paper without needing alpha-trimmed files. Juricratic has no wordmark,
+     only a square app icon, so its name is typeset beside the mark. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f7f6f2;
+    --ink: #110465;
+    --ink-soft: #4b4470;
+    --pink: #cf5b8d;
+    --rule: #cfc9d9;
+    --rule-strong: #110465;
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .frame {
+    width: 1080px; height: 1350px;
+    padding: 60px 74px 52px;
+    display: flex; flex-direction: column;
+  }
+
+  .top-rule { height: 5px; background: var(--rule-strong); }
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 16px 0 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  .label {
+    margin-top: 40px;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--pink);
+  }
+  .label .r { color: var(--ink-soft); letter-spacing: 0.14em; font-weight: 500; }
+
+  /* The event mark carries the headline slot. Yellow-on-dark is the version
+     people know from the AIDN posts; on paper it has to run navy. */
+  .mark { margin-top: 30px; }
+  .mark img { width: 486px; height: auto; display: block; }
+
+  /* Three-row company index */
+  .lineup { margin-top: 30px; border-top: 2px solid var(--rule-strong); }
+
+  .row {
+    display: flex; align-items: center; gap: 28px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .row:last-child { border-bottom: none; }
+
+  .row .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--pink);
+    width: 26px; flex: none; align-self: flex-start; padding-top: 6px;
+  }
+
+  /* Fixed-width portrait bay so the logo column starts at the same x on every
+     row, whether the company fields one founder or two. */
+  .row .portraits { width: 238px; flex: none; display: flex; gap: 10px; }
+  .row .portrait {
+    width: 118px; height: 118px; flex: none;
+    background-color: #e6e2ee;
+    background-size: cover; background-position: center center;
+    border: 1px solid var(--rule);
+  }
+  /* Slot with no approved photo yet */
+  .row .portrait.pending {
+    display: flex; align-items: center; justify-content: center;
+    background-color: #e6e2ee;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+    text-align: center; line-height: 1.5;
+  }
+
+  .row .who { flex: 1; min-width: 0; }
+
+  .row .brand { display: flex; align-items: center; gap: 16px; height: 52px; }
+  .row .brand img.wordmark { width: auto; mix-blend-mode: multiply; }
+  .row .brand img.clicr  { max-height: 54px; max-width: 250px; }
+  .row .brand img.mobius { max-height: 44px; max-width: 320px; }
+  .row .brand img.icon { width: 46px; height: 46px; flex: none; }
+  .row .brand .typeset {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 46px; line-height: 1; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+
+  .row .founders {
+    margin-top: 11px;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .row .line {
+    margin-top: 9px;
+    font-size: 22px; line-height: 1.3; font-weight: 500; color: var(--ink);
+  }
+  .row .line b { color: var(--pink); font-weight: 700; }
+
+  .spacer { flex: 1; }
+
+  /* Night details, same three-column field system as the rest of the series */
+  .sub {
+    margin-top: 26px; display: flex; gap: 0; border-top: 1px solid var(--rule);
+  }
+  .sub div {
+    flex: 1; padding: 18px 24px 0 0; border-right: 1px solid var(--rule);
+  }
+  .sub div:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+  .sub .k {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink);
+    margin-bottom: 8px;
+  }
+  .sub .v { font-size: 24px; font-weight: 600; line-height: 1.22; color: var(--ink); }
+  .sub .v em { font-style: normal; color: var(--ink-soft); font-weight: 500; }
+
+  .foot {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    border-top: 5px solid var(--rule-strong); padding-top: 18px; margin-top: 26px;
+  }
+  .logo { width: 244px; height: 78px; background: url("techunited-logo.png") left bottom / contain no-repeat; }
+  .foot .right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; line-height: 1.6;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .foot .right b { color: var(--pink); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="top-rule"></div>
+  <div class="masthead">
+    <span>TechUnited:NJ &middot; AI Demo Night</span>
+    <span>Sept 10 &middot; Jersey City</span>
+  </div>
+
+  <div class="label">
+    <span>The lineup</span>
+    <span class="r">Three of more than a hundred</span>
+  </div>
+
+  <div class="mark">
+    <img src="aidn-logo-navy.svg" alt="AI Demo Nights">
+  </div>
+
+  <div class="lineup">
+
+    <div class="row">
+      <span class="n">01</span>
+      <div class="portraits">
+        <div class="portrait" style="background-image:url('founder-harrison.jpg')"></div>
+        <div class="portrait" style="background-image:url('founder-lucas.jpg')"></div>
+      </div>
+      <div class="who">
+        <div class="brand"><img class="wordmark clicr" src="clicr-logo-trim.png" alt="CLICR"></div>
+        <div class="founders">Harrison Wilkins &amp; Lucas Martinez &middot; Co-founders</div>
+        <div class="line"><b>1.6 million guests counted.</b> Live crowd data for TikTok
+          events and all 215 events of Atlanta Tech Week. Backed by HCP Ventures.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="n">02</span>
+      <div class="portraits">
+        <div class="portrait" style="background-image:url('founder-caroline.jpg')"></div>
+        <div class="portrait" style="background-image:url('founder-julia.jpg')"></div>
+      </div>
+      <div class="who">
+        <div class="brand"><img class="wordmark mobius" src="mobius-logo-trim.png" alt="mobius"></div>
+        <div class="founders">Caroline Turnbull &amp; Julia Suozzi &middot; Co-founders</div>
+        <div class="line"><b>Live on the App Store.</b> An engineer-athlete and an
+          engineer-trainer building the fitness network where your walk counts as much
+          as someone else&rsquo;s marathon.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="n">03</span>
+      <div class="portraits">
+        <div class="portrait" style="background-image:url('founder-connor.png')"></div>
+      </div>
+      <div class="who">
+        <div class="brand">
+          <img class="icon" src="juricratic-icon.png" alt="">
+          <span class="typeset">Juricratic</span>
+        </div>
+        <div class="founders">Connor O&rsquo;Dea &middot; Founder, CEO &amp; CTO</div>
+        <div class="line"><b>First exit at 24.</b> Building a new class of legal
+          intelligence infrastructure, where the moat is compounding systems rather
+          than features.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="sub">
+    <div>
+      <p class="k">The night</p>
+      <p class="v">Sept 10<br><em>Doors 6:30, pitches 7:00</em></p>
+    </div>
+    <div>
+      <p class="k">The format</p>
+      <p class="v">5 min pitch<br><em>Plus 5 min live Q&amp;A</em></p>
+    </div>
+    <div>
+      <p class="k">The room</p>
+      <p class="v">Apprentice.IO<br><em>Jersey City</em></p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="logo"></div>
+    <div class="right">
+      <b>Tickets in the comments</b><br>
+      kennedy@techunited.co
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; lineup reveal, AIDN house style</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Lineup reveal, AI Demo Nights house style, 1080x1350 (4:5).
+     Render: bash scripts/render-post-graphic.sh demo-night-lineup-post-v3
+
+     Follows the branding from previous AI Demo Nights: midnight ground with a
+     magenta city glow low right, coral eyebrow behind a left accent bar, coral
+     rail down the left edge, partner lockup across the top, circular founder
+     portraits in coral rings, and the date and venue sitting on the baseline.
+
+     Kept from the earlier draft: the row index rather than cards.
+
+     Every logo sits on a white plate. The TechUnited gradient glyph overlaps
+     the "united" letters so the mark can never be knocked out to white, Better
+     Future Labs ships navy on white, and neither clicr nor mobius has an alpha
+     version, so plates are the only safe treatment on a dark ground. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --midnight: #0c1436;
+    --coral: #ef8a76;
+    --paper: #f7f6f2;
+    --muted: #9aa3c8;
+    --hair: rgba(247,246,242,0.16);
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--midnight); color: var(--paper);
+    font-family: 'Archivo', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .frame {
+    position: relative;
+    width: 1080px; height: 1350px;
+    padding: 54px 66px 48px 78px;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(820px 420px at 80% 88%, rgba(214,60,168,0.50), transparent 70%),
+      radial-gradient(900px 340px at 40% 96%, rgba(120,60,220,0.40), transparent 72%),
+      radial-gradient(600px 340px at 6% 8%, rgba(57,110,229,0.18), transparent 70%),
+      var(--midnight);
+  }
+  /* Horizon streak, the glowing skyline edge from the earlier posts */
+  .frame::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 268px; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(238,140,200,0.75) 45%, rgba(255,214,170,0.55) 72%, transparent);
+    opacity: 0.7;
+  }
+  /* Night skyline over the glow, the city motif the AIDN posts run */
+  .skyline {
+    position: absolute; left: 0; right: 0; bottom: 128px; height: 150px;
+    pointer-events: none;
+  }
+  .skyline svg { display: block; width: 1080px; height: 150px; }
+
+  /* Coral rail down the left edge */
+  .rail {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 7px;
+    background: var(--coral);
+  }
+
+  /* Partner lockup */
+  .lockup { display: inline-flex; align-items: center; gap: 20px; align-self: flex-start; }
+  .lockup img.aidn { height: 52px; }
+  .lockup .sep { width: 1px; height: 40px; background: rgba(247,246,242,0.28); }
+  .lockup .partners {
+    background: #fff; border-radius: 10px; padding: 10px 16px;
+    display: inline-flex; align-items: center; gap: 16px;
+  }
+  .lockup .partners .div { width: 1px; height: 28px; background: #d8d5e2; }
+  .lockup img.tu  { height: 30px; }
+  .lockup img.bfl { height: 28px; }
+
+  .topline {
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  }
+  .topline .when {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    text-align: right;
+  }
+
+  .eyebrow {
+    margin-top: 40px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--coral);
+  }
+  .eyebrow .bar { width: 4px; height: 20px; background: var(--coral); flex: none; }
+  .eyebrow .r { color: var(--muted); font-weight: 500; letter-spacing: 0.13em; }
+
+  h1 {
+    margin-top: 18px;
+    font-weight: 700; font-size: 126px; line-height: 0.94;
+    letter-spacing: -0.035em; color: var(--paper);
+  }
+  h1 span { display: block; }
+  h1 .accent { color: var(--coral); }
+
+  .standfirst {
+    margin-top: 20px;
+    font-size: 26px; line-height: 1.35; font-weight: 500; color: var(--muted);
+    max-width: 800px;
+  }
+  .standfirst b { color: var(--paper); font-weight: 700; }
+
+  /* Row index */
+  .lineup { margin-top: 34px; border-top: 1px solid var(--hair); }
+
+  .row {
+    display: flex; align-items: center; gap: 26px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .row:last-child { border-bottom: none; }
+
+  .row .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--coral);
+    width: 24px; flex: none; align-self: flex-start; padding-top: 8px;
+  }
+
+  /* Circular portraits, overlapped when a company fields two founders */
+  .row .faces { width: 212px; flex: none; display: flex; align-items: center; }
+  .row .face {
+    width: 114px; height: 114px; flex: none; border-radius: 50%;
+    background-color: #242a55;
+    background-size: cover; background-position: center center;
+    box-shadow: 0 0 0 3px var(--coral), 0 0 0 8px var(--midnight);
+  }
+  .row .face + .face { margin-left: -22px; }
+
+  .row .who { flex: 1; min-width: 0; }
+
+  .row .plate {
+    background: #fff; border-radius: 9px; padding: 7px 13px;
+    display: inline-flex; align-items: center; gap: 11px;
+  }
+  .row .plate img.wordmark { width: auto; display: block; }
+  .row .plate img.clicr  { max-height: 30px; max-width: 150px; }
+  .row .plate img.mobius { max-height: 25px; max-width: 190px; }
+  .row .plate img.icon   { width: 27px; height: 27px; border-radius: 5px; flex: none; }
+  .row .plate .typeset {
+    font-weight: 700; font-size: 27px; line-height: 1;
+    letter-spacing: -0.02em; color: #0c1436;
+  }
+
+  .row .founders {
+    margin-top: 11px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+  .row .line {
+    margin-top: 8px;
+    font-size: 23px; line-height: 1.26; font-weight: 600; color: var(--paper);
+  }
+
+  .spacer { flex: 1; }
+
+  .foot {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    border-top: 1px solid var(--hair); padding-top: 22px;
+  }
+  .foot .left .big {
+    font-size: 27px; font-weight: 700; color: var(--paper); letter-spacing: -0.01em;
+  }
+  .foot .left .small {
+    margin-top: 6px; font-size: 21px; font-weight: 500; color: var(--muted);
+  }
+  .foot .right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; line-height: 1.65;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted);
+  }
+  .foot .right b { color: var(--coral); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="rail"></div>
+  <div class="skyline">
+    <svg viewBox="0 0 1080 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,150 L0,150 L0,106 L42,106 L42,38 L92,38 L92,122 L118,122 L118,122 L176,122 L176,54 L218,54 L218,54 L244,54 L244,122 L278,122 L278,72 L304,72 L304,122 L354,122 L354,122 L388,122 L388,72 L446,72 L446,20 L472,20 L472,122 L530,122 L530,38 L564,38 L564,122 L622,122 L622,54 L680,54 L680,122 L730,122 L730,122 L764,122 L764,20 L822,20 L822,90 L856,90 L856,106 L906,106 L906,122 L964,122 L964,90 L1022,90 L1022,20 L1080,20 L1080,150 Z" fill="#080e28" opacity="0.82"/>
+    </svg>
+  </div>
+
+  <div class="topline">
+    <div class="lockup">
+      <img class="aidn" src="aidn-logo-yellow.svg" alt="AI Demo Nights">
+      <span class="sep"></span>
+      <span class="partners">
+        <img class="tu" src="techunited-logo.png" alt="TechUnited New Jersey">
+        <span class="div"></span>
+        <img class="bfl" src="bfl-logo.png" alt="Better Future Labs">
+      </span>
+    </div>
+    <div class="when">Sept 10<br>Jersey City</div>
+  </div>
+
+  <div class="eyebrow">
+    <span class="bar"></span>
+    <span>The lineup</span>
+    <span class="r">&mdash; Three of more than a hundred</span>
+  </div>
+
+  <h1>
+    <span>AI Demo</span>
+    <span class="accent">Night.</span>
+  </h1>
+
+  <p class="standfirst">
+    More than <b>100 companies</b> applied in under 24 hours. These three are pitching.
+  </p>
+
+  <div class="lineup">
+
+    <div class="row">
+      <span class="n">01</span>
+      <div class="faces">
+        <div class="face" style="background-image:url('founder-harrison.jpg')"></div>
+        <div class="face" style="background-image:url('founder-lucas.jpg')"></div>
+      </div>
+      <div class="who">
+        <span class="plate"><img class="wordmark clicr" src="clicr-logo-trim.png" alt="clicr"></span>
+        <div class="founders">Harrison Wilkins &amp; Lucas Martinez &middot; Co-founders</div>
+        <div class="line">Crowd intelligence for the people who run the room.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="n">02</span>
+      <div class="faces">
+        <div class="face" style="background-image:url('founder-caroline.jpg')"></div>
+        <div class="face" style="background-image:url('founder-julia.jpg')"></div>
+      </div>
+      <div class="who">
+        <span class="plate"><img class="wordmark mobius" src="mobius-logo-trim.png" alt="mobius"></span>
+        <div class="founders">Caroline Turnbull &amp; Julia Suozzi &middot; Co-founders</div>
+        <div class="line">The fitness social network where all movement counts.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="n">03</span>
+      <div class="faces">
+        <div class="face" style="background-image:url('founder-connor.png')"></div>
+      </div>
+      <div class="who">
+        <span class="plate">
+          <img class="icon" src="juricratic-icon.png" alt="">
+          <span class="typeset">Juricratic</span>
+        </span>
+        <div class="founders">Connor O&rsquo;Dea &middot; Founder, CEO &amp; CTO</div>
+        <div class="line">Rehearse the lawsuit before you live it.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="foot">
+    <div class="left">
+      <div class="big">Sept 10, 2026 &middot; Doors 6:30, pitches 7:00</div>
+      <div class="small">Apprentice.IO, Jersey City &middot; 5 min pitch, 5 min live Q&amp;A</div>
+    </div>
+    <div class="right">
+      <b>Tickets in the comments</b><br>
+      kennedy@techunited.co
+    </div>
+  </div>
+</div>
+</body>
+</html>

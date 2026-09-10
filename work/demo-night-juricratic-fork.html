@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; Juricratic, the fork</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Juricratic's post, 1080x1350 (4:5).
+     Render: bash scripts/render-graphic-file.sh demo-night-juricratic-fork
+
+     Three of three, where each pitching company's product does the marketing.
+     Juricratic forks a matter and simulates what the other side does next, so
+     the post forks the reader's Thursday and rules on it. It teaches their
+     mental model in one look, which no blurb has managed.
+
+     Copper on ink, sampled from their app icon, rather than the AIDN paper
+     system. Like the clicr post, the small print admits this was done by hand
+     and points at the real product: that admission is what keeps a riff on
+     someone else's software honest. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e1015;
+    --panel: #171a22;
+    --panel-2: #1d2029;
+    --line: #2b303c;
+    --copper: #d2764a;
+    --copper-deep: #c0603c;
+    --white: #f2f0ee;
+    --mute: #8b8f9c;
+    --dim: #5f6472;
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--ink); color: var(--white);
+    font-family: 'Archivo', system-ui, sans-serif; overflow: hidden;
+  }
+  .frame {
+    width: 1080px; height: 1350px; padding: 52px 62px 42px;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(820px 500px at 100% 0%, rgba(192,96,60,0.22), transparent 68%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.022) 0 1px, transparent 1px 44px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.022) 0 1px, transparent 1px 44px);
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .head .lock { display: flex; align-items: center; gap: 15px; }
+  .head .lock img { width: 46px; height: 46px; border-radius: 9px; }
+  .head .lock span {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 42px; line-height: 1; letter-spacing: -0.01em;
+  }
+  .head .case {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); line-height: 1.7;
+  }
+  .head .case b { color: var(--copper); font-weight: 700; }
+
+  .kicker {
+    margin-top: 46px; max-width: 800px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.1em; line-height: 1.7; color: var(--mute);
+  }
+  .kicker b { color: var(--white); font-weight: 700; }
+  h1 {
+    margin-top: 16px;
+    font-size: 88px; line-height: 0.98; font-weight: 800; letter-spacing: -0.034em;
+  }
+  h1 em { font-style: normal; color: var(--copper); }
+
+  /* The fork itself */
+  .split { margin-top: 24px; }
+  .split svg { display: block; width: 956px; height: 92px; }
+
+  .forks { display: flex; gap: 22px; }
+  .fork {
+    flex: 1; min-width: 0;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    padding: 24px 26px 22px;
+  }
+  .fork.a { border-color: rgba(210,118,74,0.55); background: var(--panel-2); }
+  .fork .t {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
+  }
+  .fork.a .t { color: var(--copper); }
+  .fork .h {
+    margin-top: 10px; font-size: 34px; font-weight: 800; letter-spacing: -0.024em;
+  }
+  .fork ul { margin-top: 18px; list-style: none; }
+  .fork li {
+    padding: 15px 0 15px 22px; position: relative;
+    border-top: 1px solid var(--line);
+    font-size: 19px; line-height: 1.32; font-weight: 500; color: #d9d7d4;
+  }
+  .fork li:before {
+    content: ""; position: absolute; left: 0; top: 23px;
+    width: 8px; height: 8px; border-radius: 2px; background: var(--dim);
+  }
+  .fork.a li:before { background: var(--copper); }
+
+  /* Leverage and risk, the two dials their product actually watches */
+  .dials { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .dial .lab {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+    margin-bottom: 7px;
+  }
+  .dial .lab b { color: var(--white); }
+  .fork.a .dial .lab b { color: var(--copper); }
+  .dial .segs { display: flex; gap: 5px; }
+  .dial .segs i {
+    flex: 1; height: 9px; border-radius: 2px; background: rgba(255,255,255,0.08);
+  }
+  .dial .segs i.on { background: var(--dim); }
+  .fork.a .dial .segs i.on { background: var(--copper); }
+
+  .out { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .out .t {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
+  }
+  .fork.a .out .t { color: var(--copper); }
+  .out .v { margin-top: 8px; font-size: 20px; line-height: 1.3; font-weight: 600; }
+
+  .spacer { flex: 1; }
+
+  /* The board, since their whole pitch is that nobody gets to see it */
+  .board { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .board .bt {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+  }
+  .board .cells { margin-top: 14px; display: flex; }
+  .board .cells > div {
+    flex: 1; min-width: 0; padding: 0 16px; border-right: 1px solid var(--line);
+  }
+  .board .cells > div:first-child { padding-left: 0; }
+  .board .cells > div:last-child { border-right: none; padding-right: 0; }
+  .board .ti {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--copper);
+  }
+  .board .la { margin-top: 7px; font-size: 19px; font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; }
+  .board .su { margin-top: 5px; font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--mute); }
+
+  .ruling {
+    margin-top: 20px;
+    border: 1px solid rgba(210,118,74,0.5); border-radius: 18px;
+    background: linear-gradient(90deg, rgba(192,96,60,0.20), rgba(192,96,60,0.05));
+    padding: 22px 26px;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  }
+  .ruling .l .t {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--copper);
+  }
+  .ruling .l .v { margin-top: 9px; font-size: 34px; font-weight: 800; letter-spacing: -0.024em; }
+  .ruling .r {
+    flex: none; text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+  }
+  .ruling .r b { color: var(--copper); font-weight: 700; font-size: 17px; }
+
+  .foot {
+    margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.75;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+  }
+  .foot b { color: var(--white); font-weight: 700; }
+  .foot .r { text-align: right; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="head">
+    <div class="lock"><img src="juricratic-icon.png" alt=""><span>Juricratic</span></div>
+    <p class="case">Simulation<br><b>Matter 2026-0910</b></p>
+  </div>
+
+  <p class="kicker"><b>Juricratic forks a legal matter and simulates what the other side does next.</b> Their software does that to lawsuits. We did it by hand to your Thursday.</p>
+  <h1>In re: <em>Thursday night.</em></h1>
+
+  <div class="split">
+    <svg viewBox="0 0 956 92" fill="none">
+      <circle cx="478" cy="8" r="7" fill="#d2764a"/>
+      <path d="M478 15C478 52 242 38 242 92" stroke="#d2764a" stroke-width="2.5"/>
+      <path d="M478 15C478 52 714 38 714 92" stroke="#2b303c" stroke-width="2.5" stroke-dasharray="7 7"/>
+    </svg>
+  </div>
+
+  <div class="forks">
+
+    <div class="fork a">
+      <p class="t">Fork A</p>
+      <p class="h">You go.</p>
+      <ul>
+        <li>Three founders, ten minutes each, no panel</li>
+        <li>Your question gets asked live, by you</li>
+        <li>The room votes, and you are the room</li>
+      </ul>
+      <div class="dials">
+        <div class="dial">
+          <p class="lab"><span>Leverage</span><b>High</b></p>
+          <p class="segs"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></p>
+        </div>
+        <div class="dial">
+          <p class="lab"><span>Exposure</span><b>One weeknight</b></p>
+          <p class="segs"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
+        </div>
+      </div>
+      <div class="out">
+        <p class="t">Simulated outcome</p>
+        <p class="v">You know which one won before the internet does.</p>
+      </div>
+    </div>
+
+    <div class="fork b">
+      <p class="t">Fork B</p>
+      <p class="h">You catch the recap.</p>
+      <ul>
+        <li>A post next week, three photos, no context</li>
+        <li>Someone else asked the question you had</li>
+        <li>The winner is already decided</li>
+      </ul>
+      <div class="dials">
+        <div class="dial">
+          <p class="lab"><span>Leverage</span><b>None</b></p>
+          <p class="segs"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
+        </div>
+        <div class="dial">
+          <p class="lab"><span>Exposure</span><b>Nothing at all</b></p>
+          <p class="segs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
+        </div>
+      </div>
+      <div class="out">
+        <p class="t">Simulated outcome</p>
+        <p class="v">You find out on LinkedIn, like everybody else.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="board">
+    <p class="bt">The whole board</p>
+    <div class="cells">
+      <div><p class="ti">6:30</p><p class="la">Doors</p><p class="su">Pizza, seltzer, name tags</p></div>
+      <div><p class="ti">7:00</p><p class="la">Pitches</p><p class="su">Three teams, ten minutes each</p></div>
+      <div><p class="ti">01 &rarr; 03</p><p class="la">clicr, mobius, Juricratic</p><p class="su">In that order</p></div>
+      <div><p class="ti">Then</p><p class="la">The room votes</p><p class="su">Audience picks the winner</p></div>
+      <div><p class="ti">9:00</p><p class="la">Close</p><p class="su">Founders stay by the stage</p></div>
+    </div>
+  </div>
+
+  <div class="ruling">
+    <div class="l">
+      <p class="t">Best available move</p>
+      <p class="v">Take Fork A. Thursday, 6:30.</p>
+    </div>
+    <p class="r">
+      Claim the seat<br>
+      <b>luma.com/na6vswhb</b>
+    </p>
+  </div>
+
+  <div class="foot">
+    <div>
+      <b>Connor O&rsquo;Dea pitches Juricratic on Thursday</b><br>
+      First exit at 24. Compounding systems over copyable features.
+    </div>
+    <div class="r">
+      <b>AI Demo Night #12</b><br>
+      Sept 10 &middot; Apprentice, 101 Hudson St, JC
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; lineup card for Canva</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Lineup card, transparent surround, for dropping into the AIDN Canva layout.
+     Render: bash scripts/render-post-graphic.sh demo-night-lineup-card 1080,700
+     Export with --default-background-color=00000000 to keep the corners clear.
+
+     Rows are lifted verbatim from demo-night-lineup-post-v4.html so the copy
+     cannot drift between the standalone post and the card. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f7f6f2;
+    --ink: #110465;
+    --ink-soft: #4b4470;
+    --pink: #cf5b8d;
+    --rule: #cfc9d9;
+  }
+
+  html, body { width: 1080px; height: 700px; background: transparent; }
+  body {
+    font-family: 'Archivo', system-ui, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 1020px;
+    background: var(--paper);
+    border-radius: 34px;
+    padding: 20px 44px;
+  }
+
+  .lineup { }
+
+  .row {
+    display: flex; align-items: center; gap: 28px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .row:last-child { border-bottom: none; }
+
+  .row .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--pink);
+    width: 26px; flex: none; align-self: flex-start; padding-top: 6px;
+  }
+
+  .row .portraits { width: 238px; flex: none; display: flex; gap: 10px; }
+  .row .portrait {
+    width: 132px; height: 132px; flex: none;
+    background-color: #e6e2ee;
+    background-size: cover; background-position: center center;
+    border: 1px solid var(--rule);
+  }
+
+  .row .who { flex: 1; min-width: 0; }
+  .row .brand { display: flex; align-items: center; gap: 16px; height: 52px; }
+  .row .brand img.wordmark { width: auto; mix-blend-mode: multiply; }
+  .row .brand img.clicr  { max-height: 54px; max-width: 250px; }
+  .row .brand img.mobius { max-height: 44px; max-width: 320px; }
+  .row .brand img.icon { width: 46px; height: 46px; flex: none; }
+  .row .brand .typeset {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 46px; line-height: 1; letter-spacing: -0.005em; color: var(--ink);
+  }
+
+  .row .founders {
+    margin-top: 11px;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .row .line {
+    margin-top: 9px;
+    font-size: 22px; line-height: 1.3; font-weight: 500; color: var(--ink);
+  }
+  .row .line b { color: var(--pink); font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="card">
+<div class="lineup">
+
+    <div class="row">
+      <span class="n">01</span>
+      <div class="portraits">
+        <div class="portrait" style="background-image:url('founder-harrison.jpg')"></div>
+        <div class="portrait" style="background-image:url('founder-lucas.jpg')"></div>
+      </div>
+      <div class="who">
+        <div class="brand"><img class="wordmark clicr" src="clicr-logo-trim.png" alt="CLICR"></div>
+        <div class="founders">Harrison Wilkins &amp; Lucas Martinez &middot; Co-founders</div>
+        <div class="line"><b>1.6 million guests counted.</b> Live crowd data for TikTok
+          events and all 215 events of Atlanta Tech Week. Backed by HCP Ventures.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="n">02</span>
+      <div class="portraits">
+        <div class="portrait" style="background-image:url('founder-caroline.jpg')"></div>
+        <div class="portrait" style="background-image:url('founder-julia.jpg')"></div>
+      </div>
+      <div class="who">
+        <div class="brand"><img class="wordmark mobius" src="mobius-logo-trim.png" alt="mobius"></div>
+        <div class="founders">Caroline Turnbull &amp; Julia Suozzi &middot; Co-founders</div>
+        <div class="line"><b>Live on the App Store.</b> An engineer-athlete and an
+          engineer-trainer building the fitness network where your walk counts as much
+          as someone else&rsquo;s marathon.</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="n">03</span>
+      <div class="portraits">
+        <div class="portrait" style="background-image:url('founder-connor.png')"></div>
+      </div>
+      <div class="who">
+        <div class="brand">
+          <img class="icon" src="juricratic-icon.png" alt="">
+          <span class="typeset">Juricratic</span>
+        </div>
+        <div class="founders">Connor O&rsquo;Dea &middot; Founder, CEO &amp; CTO</div>
+        <div class="line"><b>First exit at 24.</b> Building a new class of legal
+          intelligence infrastructure, where the moat is compounding systems rather
+          than features.</div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</body>
+</html>

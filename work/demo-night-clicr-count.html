@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; clicr live count</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* clicr's post, 1080x1350 (4:5).
+     Render: bash scripts/render-graphic-file.sh demo-night-clicr-count
+     Refresh the numbers first: node scripts/demo-night-seats.mjs
+
+     One of three, where each pitching company's own product does the
+     marketing for the night. clicr sells live crowd data, so their post is a
+     live count of the room they are about to pitch to: real Luma registrations,
+     the real fill curve, and the real gap left to fill. It runs in clicr's own
+     dark-dashboard register rather than the AIDN paper system, on purpose.
+     The three read as a set through the foot strip alone.
+
+     Every number is real and comes from the Luma guest list. Capacity is the
+     stated 100 seats; Luma itself has no cap set on the event. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ground: #0d0a16;
+    --panel: #17122a;
+    --line: #2b2340;
+    --violet: #903cf0;
+    --deep: #300c54;
+    --white: #f4f2fa;
+    --mute: #8b83a8;
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--ground); color: var(--white);
+    font-family: 'Archivo', system-ui, sans-serif; overflow: hidden;
+  }
+  .frame {
+    width: 1080px; height: 1350px; padding: 56px 66px 46px;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(900px 520px at 88% -8%, rgba(144,60,240,0.30), transparent 70%),
+      radial-gradient(700px 460px at -10% 108%, rgba(48,12,84,0.85), transparent 72%);
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .head img { height: 44px; width: auto; display: block; }
+  .head .live {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
+  }
+  .head .dot {
+    width: 10px; height: 10px; border-radius: 50%; background: #38e08a;
+    box-shadow: 0 0 0 5px rgba(56,224,138,0.16);
+  }
+
+  .kicker {
+    margin-top: 54px;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--violet);
+  }
+  h1 {
+    margin-top: 18px;
+    font-size: 92px; line-height: 0.98; font-weight: 800; letter-spacing: -0.032em;
+  }
+  h1 em { font-style: normal; color: var(--violet); }
+
+  /* The count */
+  .stats { margin-top: 40px; display: flex; align-items: flex-end; gap: 54px; }
+  .stat .big {
+    font-size: 158px; line-height: 0.82; font-weight: 800; letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .big s { text-decoration: none; color: var(--mute); font-size: 62px; letter-spacing: -0.02em; }
+  .stat.open .big { color: var(--violet); }
+  .stat .k {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute);
+  }
+  .stat.open .k { color: var(--violet); }
+
+  .bar {
+    margin-top: 30px; height: 16px; border-radius: 8px;
+    background: rgba(255,255,255,0.07); overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .bar span {
+    display: block; height: 100%;
+    background: linear-gradient(90deg, var(--deep), var(--violet));
+  }
+
+  /* Fill curve, plotted from the real guest list */
+  .chart { margin-top: 34px; }
+  .chart .cap {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
+    margin-bottom: 14px;
+  }
+  .chart svg { display: block; width: 948px; height: 392px; }
+
+  .spacer { flex: 1; }
+
+  /* The line that makes the whole thing a compliment rather than a stat */
+  .note {
+    border-top: 1px solid var(--line); padding-top: 22px;
+    font-size: 26px; line-height: 1.32; font-weight: 500; color: var(--white);
+  }
+  .note b { color: var(--violet); font-weight: 700; }
+
+  .foot {
+    margin-top: 24px; border-top: 1px solid var(--line); padding-top: 20px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.65;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+  }
+  .foot b { color: var(--white); font-weight: 700; }
+  .foot .r { text-align: right; }
+  .foot .r .go { color: var(--violet); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="head">
+    <img src="clicr-logo-white.png" alt="clicr">
+    <p class="live"><span class="dot"></span><span id="asof">Live count</span></p>
+  </div>
+
+  <p class="kicker">clicr counts crowds for a living</p>
+  <h1>This is the <em>room</em><br>they&rsquo;re pitching to.</h1>
+
+  <div class="stats">
+    <div class="stat">
+      <p class="big"><span id="taken">54</span><s>/100</s></p>
+      <p class="k">Seats counted</p>
+    </div>
+    <div class="stat open">
+      <p class="big" id="open">46</p>
+      <p class="k">Still uncounted</p>
+    </div>
+  </div>
+
+  <div class="bar"><span id="fill" style="width:54%"></span></div>
+
+  <div class="chart">
+    <div class="cap">
+      <span>Seats claimed, by day</span>
+      <span id="range">28 Aug &rarr; 10 Sept</span>
+    </div>
+    <svg id="plot" viewBox="0 0 948 392" preserveAspectRatio="none"></svg>
+  </div>
+
+  <div class="spacer"></div>
+
+  <p class="note">We counted this by hand off the guest list. <b>clicr does it in real time.</b> Thursday, they&rsquo;ll show you how.</p>
+
+  <div class="foot">
+    <div>
+      <b>AI Demo Night #12</b><br>
+      Thu Sept 10 &middot; Doors 6:30 &middot; Apprentice.IO, Jersey City
+    </div>
+    <div class="r">
+      Take one of the 46<br>
+      <span class="go">luma.com/na6vswhb</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Real registrations off the Luma guest list for evt-pVWyWzOBf0BBUZB.
+  // Regenerate with: node scripts/demo-night-seats.mjs
+  var DATA = {
+    asOf: "2026-09-08",
+    seats: 100,
+    // cumulative registrations at end of each day
+    days: [
+      ["2026-08-28", 1],
+      ["2026-08-29", 1],
+      ["2026-08-30", 1],
+      ["2026-08-31", 18],
+      ["2026-09-01", 33],
+      ["2026-09-02", 44],
+      ["2026-09-03", 46],
+      ["2026-09-04", 48],
+      ["2026-09-05", 50],
+      ["2026-09-06", 50],
+      ["2026-09-07", 50],
+      ["2026-09-08", 54]
+    ],
+    // days the curve has not reached yet, drawn as the gap to close
+    ahead: ["2026-09-09", "2026-09-10"],
+    marks: [["2026-08-31", "Lineup announced"]]
+  };
+
+  var taken = DATA.days[DATA.days.length - 1][1];
+  var open = DATA.seats - taken;
+  document.getElementById("taken").textContent = taken;
+  document.getElementById("open").textContent = open;
+  document.getElementById("fill").style.width = (taken / DATA.seats * 100) + "%";
+
+  var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+  function label(iso) {
+    var p = iso.split("-");
+    return parseInt(p[2], 10) + " " + MON[parseInt(p[1], 10) - 1];
+  }
+  document.getElementById("asof").textContent = "Counted " + label(DATA.asOf) + " 2026";
+  var all = DATA.days.map(function (d) { return d[0]; }).concat(DATA.ahead);
+  document.getElementById("range").textContent = label(all[0]) + " → " + label(all[all.length - 1]);
+
+  // Plot. The ceiling is the stated 100 seats, so the empty space above the
+  // curve is the actual ask: it is drawn, labelled and left open.
+  var W = 948, H = 392, L = 0, R = 96, T = 30, B = 42;
+  var x = function (i) { return L + i * ((W - L - R) / (all.length - 1)); };
+  var y = function (v) { return T + (1 - v / DATA.seats) * (H - T - B); };
+
+  var svg = [];
+  // grid
+  [0, 25, 50, 75, 100].forEach(function (v) {
+    svg.push('<line x1="0" y1="' + y(v) + '" x2="' + (W - R) + '" y2="' + y(v) +
+      '" stroke="' + (v === 100 ? "#903cf0" : "#2b2340") + '" stroke-width="' + (v === 100 ? 2 : 1) +
+      '"' + (v === 100 ? ' stroke-dasharray="7 6"' : "") + ' />');
+    svg.push('<text x="' + (W - R + 14) + '" y="' + (y(v) + 5) +
+      '" fill="' + (v === 100 ? "#903cf0" : "#8b83a8") + '" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">' + v + '</text>');
+  });
+  svg.push('<text x="' + (W - R + 14) + '" y="' + (y(100) - 16) +
+    '" fill="#903cf0" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" letter-spacing="1.6">SEATS</text>');
+
+  // area + line over the days that have happened
+  var pts = DATA.days.map(function (d, i) { return [x(i), y(d[1])]; });
+  var line = pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+  svg.push('<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">' +
+    '<stop offset="0" stop-color="#903cf0" stop-opacity="0.55"/>' +
+    '<stop offset="1" stop-color="#903cf0" stop-opacity="0.02"/></linearGradient></defs>');
+  svg.push('<path d="' + line + " L" + pts[pts.length - 1][0].toFixed(1) + " " + y(0) + " L" + pts[0][0].toFixed(1) + " " + y(0) + ' Z" fill="url(#g)"/>');
+  svg.push('<path d="' + line + '" fill="none" stroke="#903cf0" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>');
+
+  // the two days left, dashed and open
+  var last = pts[pts.length - 1];
+  svg.push('<path d="M' + last[0].toFixed(1) + " " + last[1].toFixed(1) + " L" + x(all.length - 1) + " " + y(DATA.seats) +
+    '" fill="none" stroke="#903cf0" stroke-width="3" stroke-dasharray="6 8" opacity="0.5"/>');
+  svg.push('<circle cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="9" fill="#0d0a16" stroke="#903cf0" stroke-width="4"/>');
+  svg.push('<text x="' + (last[0] - 10).toFixed(1) + '" y="' + (last[1] - 22).toFixed(1) +
+    '" text-anchor="end" fill="#f4f2fa" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">' + taken + ' TODAY</text>');
+
+  // the gap, named
+  svg.push('<text x="' + (x(all.length - 1) - 6) + '" y="' + (y(DATA.seats) + 34) +
+    '" text-anchor="end" fill="#903cf0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">' + open + ' TO GO</text>');
+
+  // the announcement spike, since it is the honest shape of the curve
+  DATA.marks.forEach(function (m) {
+    var i = all.indexOf(m[0]); if (i < 0) return;
+    svg.push('<line x1="' + x(i) + '" y1="' + T + '" x2="' + x(i) + '" y2="' + y(0) + '" stroke="#2b2340" stroke-width="1"/>');
+    svg.push('<text x="' + (x(i) + 10) + '" y="' + (T + 46) +
+      '" fill="#8b83a8" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" letter-spacing="1.2">' + m[1].toUpperCase() + '</text>');
+  });
+
+  // x axis: first, the announcement, today, and the night itself
+  svg.push('<line x1="0" y1="' + y(0) + '" x2="' + (W - R) + '" y2="' + y(0) + '" stroke="#2b2340" stroke-width="1"/>');
+  [[0, label(all[0])], [all.length - 1, "Demo Night"]].forEach(function (t) {
+    var anchor = t[0] === 0 ? "start" : t[0] === all.length - 1 ? "end" : "middle";
+    svg.push('<text x="' + x(t[0]) + '" y="' + (y(0) + 26) + '" text-anchor="' + anchor +
+      '" fill="' + (t[0] === all.length - 1 ? "#f4f2fa" : "#8b83a8") + '" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" letter-spacing="1.2">' +
+      t[1].toUpperCase() + '</text>');
+  });
+
+  document.getElementById("plot").innerHTML = svg.join("");
+</script>
+</body>
+</html>

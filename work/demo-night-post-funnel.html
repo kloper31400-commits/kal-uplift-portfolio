@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; the funnel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Concept C, 1080x1350. Render: bash scripts/render-post-graphic.sh demo-night-post-funnel
+
+     No picture at all, just three numbers falling down the page: a hundred
+     hands, three spots, one night. The drop from 100 to 3 does the work, and
+     the last number lands on the room. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #f7f6f2; --ink: #110465; --ink-soft: #4b4470;
+    --pink: #cf5b8d; --rule: #cfc9d9;
+  }
+  html, body { width: 1080px; height: 1350px; }
+  body { background: var(--paper); color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif; overflow: hidden; }
+  .frame { width: 1080px; height: 1350px; padding: 62px 74px 54px;
+    display: flex; flex-direction: column; }
+
+  .top-rule { height: 5px; background: var(--ink); }
+  .masthead { display: flex; justify-content: space-between; padding-top: 15px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+
+  .kicker { margin-top: 50px;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--pink); }
+
+  .steps { margin-top: 30px; }
+  .step { display: flex; align-items: center; gap: 44px;
+    padding: 34px 0; border-bottom: 1px solid var(--rule); }
+  .step:first-child { border-top: 1px solid var(--rule); }
+  .step .n {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 176px; line-height: 0.82; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums; width: 340px; flex: none; }
+  .step .t .lead {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 52px; line-height: 1.02; text-transform: uppercase;
+    letter-spacing: 0.005em; }
+  .step .t .sub { margin-top: 13px; font-size: 24px; font-weight: 500;
+    line-height: 1.35; color: var(--ink-soft); }
+  .step.hit .n, .step.hit .t .lead { color: var(--pink); }
+
+  .spacer { flex: 1; }
+
+  .close { border-top: 5px solid var(--ink); padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; }
+  .close .ask { font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 82px; line-height: 0.9; text-transform: uppercase; }
+  .close .ask em { font-style: normal; color: var(--pink); }
+  .close .det { text-align: right; font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; line-height: 1.85; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--ink-soft); padding-top: 8px; }
+  .close .det b { color: var(--ink); font-weight: 700; }
+
+  .foot { margin-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .logo { width: 246px; height: 80px;
+    background: url("techunited-logo.png") left bottom / contain no-repeat; }
+  .foot .right { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="top-rule"></div>
+  <div class="masthead">
+    <span>TechUnited:NJ &middot; AI Demo Night</span>
+    <span>Sept 10 &middot; Jersey City</span>
+  </div>
+
+  <p class="kicker">The call went out. 24 hours later&hellip;</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="n">100</div>
+      <div class="t">
+        <div class="lead">Companies<br>raised their hand</div>
+        <div class="sub">In under 24 hours</div>
+      </div>
+    </div>
+    <div class="step hit">
+      <div class="n">3</div>
+      <div class="t">
+        <div class="lead">Spots<br>on the stage</div>
+        <div class="sub">5 minutes to pitch, 5 for live Q&amp;A</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="n">1</div>
+      <div class="t">
+        <div class="lead">Night<br>to see them</div>
+        <div class="sub">Sept 10 at Apprentice.IO, Jersey City</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="close">
+    <div class="ask">Will you<br><em>be there?</em></div>
+    <div class="det">
+      100 in the room<br>
+      Founders, operators<br>
+      <b>A handful of investors</b>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="logo"></div>
+    <div class="right">Tickets in the comments</div>
+  </div>
+</div>
+</body>
+</html>

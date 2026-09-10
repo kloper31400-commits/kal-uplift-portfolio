@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; the hundred square</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Concept A, 1080x1350. Render: bash scripts/render-post-graphic.sh demo-night-post-wall
+
+     The argument is the picture: a literal hundred-square, one cell per company
+     that put a hand up, three of them lit. Nobody has to be told the odds. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #110465; --paper: #f7f6f2; --pink: #cf5b8d;
+    --dim: rgba(247,246,242,0.15); --soft: rgba(247,246,242,0.6);
+  }
+  html, body { width: 1080px; height: 1350px; }
+  body { background: var(--ink); color: var(--paper);
+    font-family: 'Archivo', system-ui, sans-serif; overflow: hidden; }
+  .frame { width: 1080px; height: 1350px; padding: 62px 74px 54px;
+    display: flex; flex-direction: column; }
+
+  .top-rule { height: 5px; background: var(--pink); }
+  .masthead { display: flex; justify-content: space-between; padding-top: 15px;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--soft); }
+
+  .kicker { margin-top: 50px;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--pink); }
+
+  h1 { margin-top: 22px;
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 104px; line-height: 0.87; letter-spacing: -0.015em;
+    text-transform: uppercase; }
+  h1 span { display: block; }
+  h1 .accent { color: var(--pink); }
+
+  /* Grid left, the ask right */
+  .main { margin-top: 52px; display: flex; gap: 38px; align-items: stretch; }
+
+  .grid { width: 584px; flex: none; display: grid; gap: 8px;
+    grid-template-columns: repeat(10, 1fr); }
+  .cell { aspect-ratio: 1; background: var(--dim); }
+  .cell.pick { background: var(--pink); position: relative; }
+  .cell.pick span { position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 700;
+    color: var(--ink); }
+
+  .side { flex: 1; display: flex; flex-direction: column;
+    border-left: 1px solid rgba(247,246,242,0.22); padding-left: 34px; }
+  .legend { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.13em; text-transform: uppercase; color: var(--soft); line-height: 2.1; }
+  .legend i { display: inline-block; width: 13px; height: 13px; margin-right: 11px;
+    background: var(--dim); vertical-align: -1px; }
+  .legend .p i { background: var(--pink); }
+  .legend .p { color: var(--pink); font-weight: 700; }
+
+  .side .gap { flex: 1; }
+  .ask { font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 58px; line-height: 0.92; text-transform: uppercase; }
+  .ask em { font-style: normal; color: var(--pink); }
+  .det { margin-top: 26px; font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; line-height: 1.85; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--soft); }
+  .det b { color: var(--paper); font-weight: 700; }
+
+  .spacer { flex: 1; }
+
+  .foot { border-top: 1px solid rgba(247,246,242,0.22); padding-top: 26px;
+    display: flex; justify-content: space-between; align-items: center; }
+  .logo { width: 250px; height: 82px; background: var(--paper); padding: 12px 16px; }
+  .logo i { display: block; width: 100%; height: 100%;
+    background: url("techunited-logo.png") center / contain no-repeat; }
+  .foot .right { font-family: 'JetBrains Mono', monospace; font-size: 15px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="top-rule"></div>
+  <div class="masthead">
+    <span>TechUnited:NJ &middot; AI Demo Night</span>
+    <span>Sept 10 &middot; Jersey City</span>
+  </div>
+
+  <p class="kicker">The call went out. 24 hours later&hellip;</p>
+
+  <h1>
+    <span>100 companies</span>
+    <span>raised their hand</span>
+    <span class="accent">for these 3 spots.</span>
+  </h1>
+
+  <div class="main">
+    <div class="grid">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell pick"><span>01</span></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell pick"><span>02</span></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell pick"><span>03</span></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="side">
+      <div class="legend">
+        <div><i></i>Raised a hand</div>
+        <div class="p"><i></i>Getting the stage</div>
+      </div>
+      <div class="gap"></div>
+      <div class="ask">Will you<br><em>be there?</em></div>
+      <div class="det">
+        <b>Sept 10</b> &middot; Jersey City<br>
+        Hosted at <b>Apprentice.IO</b><br>
+        5 to pitch, 5 for Q&amp;A
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="foot">
+    <div class="logo"><i></i></div>
+    <div class="right">Tickets in the comments</div>
+  </div>
+</div>
+</body>
+</html>

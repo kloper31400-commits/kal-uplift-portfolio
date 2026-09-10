@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; mobius poster</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+  /* Per-company pitch poster, 1080x1350 (4:5).
+     Render: bash scripts/render-post-graphic.sh demo-night-mobius-poster
+
+     Swiss-poster treatment: one oversized condensed headline carrying the
+     company's own tagline, a four-column data band tucked under its descenders,
+     and the founders bleeding off the bottom edge. Monochrome apart from the
+     company logo, so three very different brands sit in one series.
+
+     Logos run under mix-blend-mode: multiply. Neither clicr nor mobius ships an
+     alpha version, and multiply drops their white plates into the warm ground. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ground: #e7e5e0;
+    --ink: #17162a;
+    --ink-soft: #5d5b70;
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .frame {
+    position: relative;
+    width: 1080px; height: 1350px;
+    display: flex; flex-direction: column;
+  }
+
+  .top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 44px 56px 0;
+  }
+  .top .brand img.wordmark { width: auto; display: block; mix-blend-mode: multiply; }
+  .top .brand img.clicr  { max-height: 42px; }
+  .top .brand img.mobius { max-height: 34px; }
+  .top .brand .lockup { display: flex; align-items: center; gap: 13px; }
+  .top .brand .lockup img.icon { width: 38px; height: 38px; border-radius: 7px; }
+  .top .brand .lockup .typeset {
+    font-weight: 700; font-size: 38px; line-height: 1; letter-spacing: -0.02em;
+  }
+  .top .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.9;
+  }
+  .top .meta .s { color: var(--ink-soft); font-weight: 500; }
+
+  h1 {
+    margin-top: 18px; padding: 0 46px 0 52px;
+    font-family: 'Anton', 'Archivo Narrow', sans-serif; font-weight: 400;
+    font-size: 178px; line-height: 0.80;
+    letter-spacing: -0.005em; text-transform: none;
+    color: var(--ink);
+  }
+  h1 span { display: block; }
+
+  /* Data band, set to slot under the headline's descenders like the reference */
+  .band {
+    margin-top: 4px; padding: 0 56px;
+    display: flex; gap: 26px;
+  }
+  .band div { flex: 1; }
+  .band .k {
+    font-size: 15px; font-weight: 700; color: var(--ink-soft);
+    margin-bottom: 3px;
+  }
+  .band .v { font-size: 17px; font-weight: 700; line-height: 1.28; color: var(--ink); }
+
+  .spacer { flex: 1; }
+
+  /* Founders bleeding off the bottom edge */
+  .photos { display: flex; gap: 0; height: 712px; }
+  .photos .cell {
+    flex: 1; min-width: 0;
+    background-color: #d3d0ca;
+    background-size: cover; background-position: center 22%;
+  }
+  .photos .cell.block {
+    background: #e8213f;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photos .cell.block img { width: 132px; height: 132px; border-radius: 22px; }
+
+  .credit {
+    position: absolute; left: 56px; bottom: 0; right: 56px;
+    padding: 14px 0 18px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #fff;
+    text-shadow: 0 1px 14px rgba(0,0,0,0.55);
+  }
+  .credit .r { font-weight: 500; opacity: 0.85; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="top">
+    <div class="brand"><img class="wordmark mobius" src="mobius-logo-trim.png" alt="mobius"></div>
+    <div class="meta">
+      AI Demo Night<br>
+      <span class="s">Sept 10 &middot; Jersey City</span><br>
+      <span class="s">Demo 02 of 3</span>
+    </div>
+  </div>
+
+  <h1><span>All movement</span><span>counts.</span></h1>
+
+  <div class="band">
+    <div>
+      <p class="k">Founders:</p>
+      <p class="v">Caroline Turnbull<br>Julia Suozzi</p>
+    </div>
+    <div>
+      <p class="k">Pitching:</p>
+      <p class="v">10. September<br>2026</p>
+    </div>
+    <div>
+      <p class="k">What they built:</p>
+      <p class="v">The fitness social<br>network built on<br>community</p>
+    </div>
+    <div>
+      <p class="k">The proof:</p>
+      <p class="v">Live on the App Store.<br>An engineer-athlete<br>and a trainer</p>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="photos"><div class="cell" style="background-image:url('founder-lg-caroline.jpg')"></div><div class="cell" style="background-image:url('founder-lg-julia.jpg')"></div></div>
+
+  <div class="credit">
+    <span>TechUnited:NJ &middot; Apprentice.IO</span>
+    <span class="r">5 min pitch &middot; 5 min live Q&amp;A</span>
+  </div>
+
+</div>
+</body>
+</html>

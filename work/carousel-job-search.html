@@ -1,0 +1,1010 @@
+<title>How I'd Apply For A Job Today</title>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:     #17110C;
+  --pink:    #EC3B8B;
+  --rose:    #FF6FB0;
+  --orange:  #F76A1C;
+  --sherbet: #FFA34D;
+  --yellow:  #FFC93C;
+  --cream:   #FFF6EC;
+  --paper:   #FFEFE0;
+  --mint:    #AEE7C7;
+  --aqua:    #7FDBCB;
+  --teal:    #12796A;
+  --mid:     #5A4740;
+  --soft:    #7E675E;
+}
+
+body {
+  background: #1E1712;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  padding: 40px 20px 80px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════ SCREEN SHELL ═══════════ */
+.shell { max-width: 660px; margin: 0 auto; }
+
+.shell-head {
+  color: var(--paper);
+  text-align: center;
+  margin-bottom: 32px;
+}
+.shell-head h1 {
+  font-family: Impact, "Arial Narrow", "Franklin Gothic Medium", Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  letter-spacing: .02em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.shell-head p {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,239,224,.5);
+  line-height: 1.7;
+}
+.shell-head strong { color: var(--yellow); font-weight: normal; }
+
+.deck { display: flex; flex-direction: column; gap: 22px; }
+
+/* ═══════════ SLIDE FRAME ═══════════ */
+.slide {
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 1080 / 1350;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+}
+
+/* halftone dot field */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--dot, rgba(0,0,0,.14)) 1px, transparent 1px);
+  background-size: 1.1cqw 1.1cqw;
+  pointer-events: none;
+  z-index: 4;
+}
+.slide > * { position: relative; z-index: 2; }
+
+/* radial action lines, dark panels only */
+.slide.dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-conic-gradient(from 0deg at 76% 46%,
+    transparent 0deg 5.5deg, rgba(247,106,28,.11) 5.5deg 6.5deg);
+  pointer-events: none;
+}
+
+/* ── grounds ── */
+.slide.dark   { background: var(--ink);   --dot: rgba(247,106,28,.26); }
+.slide.siren  { background: var(--pink);   --dot: rgba(255,255,255,.22); }
+.slide.press  { background: var(--orange);  --dot: rgba(255,255,255,.18); }
+.slide.beacon { background: var(--yellow);--dot: rgba(0,0,0,.13); }
+.slide.paper  { background: var(--paper); --dot: rgba(0,0,0,.11); }
+.slide.mint   { background: var(--mint);  --dot: rgba(23,17,12,.13); }
+.slide.aqua   { background: var(--aqua);  --dot: rgba(23,17,12,.13); }
+
+/* ═══════════ TYPE ═══════════ */
+h1, h2, h3, .num, .kicker {
+  font-family: Impact, "Arial Narrow", "Franklin Gothic Medium", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .015em;
+  line-height: .9;
+}
+
+.mono {
+  font-family: 'Courier New', monospace;
+  font-size: 1.45cqw;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+/* ═══════════ SLIDE BODY ═══════════ */
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 6.2cqw 6.5cqw 5.2cqw;
+  min-height: 0;
+}
+
+/* ── numbered header row ── */
+.head { display: flex; align-items: flex-start; gap: 3.4cqw; margin-bottom: 4cqw; }
+
+.badge {
+  flex-shrink: 0;
+  width: 12.5cqw; height: 12.5cqw;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.badge::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--yellow);
+  clip-path: polygon(50% 0%, 56% 30%, 93% 8%, 70% 36%, 100% 50%, 70% 64%,
+    93% 92%, 56% 70%, 50% 100%, 44% 70%, 7% 92%, 30% 64%,
+    0% 50%, 30% 36%, 7% 8%, 44% 30%);
+}
+.badge .num {
+  position: relative;
+  font-size: 5.6cqw;
+  color: var(--ink);
+}
+.siren .badge::before, .beacon .badge::before { background: var(--cream); }
+
+.head-txt { flex: 1; padding-top: .7cqw; }
+.eyebrow { display: block; margin-bottom: 1.4cqw; }
+
+h2 {
+  font-size: 8.2cqw;
+  text-wrap: balance;
+}
+h2.tight { font-size: 6.9cqw; }
+h2.tighter { font-size: 5.9cqw; }
+h2 em { font-style: normal; color: var(--pink); }
+
+.lede {
+  font-size: 2.55cqw;
+  line-height: 1.55;
+  max-width: 34ch;
+  margin-bottom: 3.6cqw;
+}
+
+/* ── colour bindings per ground ── */
+.paper .eyebrow, .cream .eyebrow { color: var(--pink); }
+.paper h2, .cream h2 { color: var(--ink); }
+.paper .lede, .cream .lede { color: var(--mid); }
+
+.dark .eyebrow { color: var(--sherbet); }
+.dark h2 { color: var(--cream); text-shadow: .55cqw .55cqw 0 var(--pink); }
+.dark h2 em { color: var(--sherbet); }
+.dark .lede { color: rgba(255,246,236,.62); }
+
+.siren .eyebrow { color: rgba(255,255,255,.62); }
+.siren h2 { color: #fff; text-shadow: .35cqw .35cqw 0 rgba(0,0,0,.28); }
+.siren h2 em { color: var(--yellow); }
+.siren .lede { color: rgba(255,255,255,.8); }
+
+.press .eyebrow { color: rgba(255,255,255,.6); }
+.press h2 { color: #fff; text-shadow: .35cqw .35cqw 0 rgba(0,0,0,.3); }
+.press h2 em { color: var(--cream); }
+.press .lede { color: rgba(255,255,255,.8); }
+
+.beacon .eyebrow { color: var(--pink); }
+.beacon h2 { color: var(--ink); }
+.beacon .lede { color: #4A2A14; }
+
+.mint .eyebrow, .aqua .eyebrow { color: var(--pink); }
+.mint h2, .aqua h2 { color: var(--ink); }
+.mint .lede, .aqua .lede { color: #1E4A42; }
+
+/* ═══════════ CARD (the white comic panel) ═══════════ */
+.card {
+  background: #fff;
+  border: 3px solid var(--ink);
+  box-shadow: 1.1cqw 1.1cqw 0 var(--ink);
+  padding: 3.3cqw 3.6cqw 3.6cqw;
+}
+.card + .card { margin-top: 2.4cqw; }
+.card.on-yellow { background: var(--yellow); }
+.card.on-ink { background: var(--ink); border-color: var(--ink); box-shadow: 1.1cqw 1.1cqw 0 var(--pink); }
+.card.rule-top { border-top: .9cqw solid var(--orange); }
+.card.rule-alt { border-top: .9cqw solid var(--aqua); }
+.card.roomy .item { padding: 2.2cqw 0; }
+.card.roomy { padding: 4cqw 3.6cqw 4.2cqw; }
+.card.roomier .item { padding: 4.2cqw 0; }
+.card.roomier { padding: 5cqw 3.6cqw 5.2cqw; }
+
+.card h3 {
+  font-size: 3.3cqw;
+  margin-bottom: 1.6cqw;
+}
+.card-sub {
+  font-size: 2.1cqw;
+  color: var(--soft);
+  line-height: 1.55;
+  margin-bottom: 2.2cqw;
+}
+.on-ink h3 { color: var(--cream); }
+.on-ink .card-sub { color: rgba(255,246,236,.5); }
+
+/* ── bullet list ── */
+.list { display: flex; flex-direction: column; }
+.item {
+  display: flex; gap: 1.9cqw; align-items: baseline;
+  padding: 1.4cqw 0;
+  border-bottom: 2px solid rgba(23,17,12,.1);
+  font-size: 2.4cqw;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.item:first-child { padding-top: 0; }
+.item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.sym {
+  flex-shrink: 0;
+  font-family: Impact, Arial, sans-serif;
+  font-size: 2.6cqw;
+  line-height: 1.4;
+  color: var(--orange);
+}
+.sym.b { color: var(--teal); }
+.sym.r { color: var(--pink); }
+.on-ink .item { color: rgba(255,246,236,.8); border-bottom-color: rgba(255,255,255,.12); }
+.on-yellow .item { border-bottom-color: rgba(23,17,12,.16); }
+
+/* ── side-by-side comparison ── */
+.duo { display: flex; gap: 2.4cqw; }
+.duo .card { flex: 1; min-width: 0; }
+.duo .card h3 { font-size: 2.8cqw; }
+
+/* a wrong-way example: struck through and drained of colour */
+.item.no { color: #A99B92; text-decoration: line-through; text-decoration-color: #D8CFC8; }
+.item.no .sym { color: #C9BDB4; text-decoration: none; }
+
+/* ── pull quote / punchline ── */
+.punch {
+  margin-top: auto;
+  padding-top: 2.7cqw;
+  font-size: 3.05cqw;
+  line-height: 1.28;
+  font-family: Impact, "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .015em;
+  text-wrap: balance;
+}
+.paper .punch, .cream .punch, .beacon .punch,
+.mint .punch, .aqua .punch { color: var(--ink); }
+.dark .punch { color: var(--cream); }
+.siren .punch, .press .punch { color: #fff; }
+.punch em { font-style: normal; color: var(--pink); }
+.dark .punch em, .siren .punch em { color: var(--yellow); }
+.press .punch em { color: var(--cream); }
+
+/* tape-style highlight */
+.tape {
+  display: inline-block;
+  align-self: flex-start;
+  max-width: 26ch;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  box-shadow: .8cqw .8cqw 0 var(--orange);
+  padding: .5em .85em;
+  transform: rotate(-1.4deg);
+  font-size: 2.9cqw;
+  font-family: Impact, "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+/* mono chip row (email formats) */
+.chips { display: flex; flex-wrap: wrap; gap: 1.2cqw; }
+.chip {
+  font-family: 'Courier New', monospace;
+  font-size: 2.15cqw;
+  letter-spacing: .01em;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  padding: .55em .8em;
+  color: var(--ink);
+}
+
+/* ═══════════ FOOTER STRIP ═══════════ */
+.foot {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2cqw;
+  padding: 2.4cqw 6.5cqw;
+  border-top: 3px solid var(--ink);
+  background: var(--cream);
+}
+.dark .foot, .press .foot, .siren .foot { background: var(--ink); border-top-color: var(--rose); }
+.foot .mono { color: var(--mid); }
+.dark .foot .mono, .press .foot .mono, .siren .foot .mono { color: rgba(255,246,236,.62); }
+
+.swipe { display: flex; align-items: center; gap: 1.1cqw; }
+.swipe .mono { letter-spacing: .22em; }
+.arrow { width: 2.6cqw; height: auto; display: block; color: var(--pink); }
+.dark .arrow { color: var(--sherbet); }
+.siren .arrow, .press .arrow { color: var(--cream); }
+.beacon .arrow, .mint .arrow, .aqua .arrow { color: var(--pink); }
+
+/* ═══════════ COVER ═══════════ */
+.cover .body { justify-content: center; padding: 8cqw 6.5cqw; }
+.cover .hero-label {
+  align-self: flex-start;
+  background: var(--pink);
+  color: #fff;
+  font-family: Impact, Arial, sans-serif;
+  font-size: 1.75cqw;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  padding: .45em 1em;
+  border: 2px solid rgba(255,255,255,.22);
+  margin-bottom: 3.4cqw;
+}
+.cover h1 {
+  font-size: 13.4cqw;
+  line-height: .85;
+  color: #fff;
+  text-shadow: .6cqw .6cqw 0 var(--pink), 1cqw 1cqw 0 rgba(0,0,0,.45);
+  margin-bottom: 3.6cqw;
+  max-width: 15ch;
+}
+.cover h1 span { color: var(--sherbet); text-shadow: .5cqw .5cqw 0 var(--pink); }
+.cover .cover-sub {
+  font-size: 2.5cqw;
+  line-height: 1.55;
+  color: rgba(255,246,236,.6);
+  max-width: 36ch;
+  margin-bottom: 4.2cqw;
+}
+
+/* ═══════════ PHOTO PANELS ═══════════ */
+.photo {
+  border: 3px solid var(--ink);
+  box-shadow: 1.1cqw 1.1cqw 0 var(--ink);
+  background: var(--mint);
+  overflow: hidden;
+  position: relative;
+}
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; color: transparent; }
+.photo-hero img { object-position: 56% 22%; }
+/* visible, labelled state if the file has not been dropped in yet */
+.photo::before {
+  content: 'DROP IMAGE HERE';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 1.5cqw; letter-spacing: .2em;
+  color: var(--teal);
+  z-index: 0;
+}
+.photo img { position: relative; z-index: 1; }
+
+.photo-hero {
+  position: absolute;
+  right: 5cqw; bottom: 11cqw;
+  width: 32cqw; aspect-ratio: 4 / 5;
+  transform: rotate(2.2deg);
+  z-index: 3;
+  box-shadow: 1.3cqw 1.3cqw 0 var(--pink);
+}
+.closer .photo-hero { right: 5cqw; bottom: 12cqw; width: 30cqw; aspect-ratio: 4 / 5; transform: rotate(-2.4deg); box-shadow: 1.3cqw 1.3cqw 0 var(--orange); }
+
+/* lede beside its panel, so a near-square image is never cropped to fit */
+.split {
+  display: flex;
+  align-items: flex-start;
+  gap: 3.4cqw;
+  margin-bottom: 3.4cqw;
+}
+.split .lede { flex: 1; margin-bottom: 0; max-width: none; }
+.photo-inline {
+  flex-shrink: 0;
+  width: 36cqw;
+  margin-bottom: 0;
+  transform: rotate(-1.4deg);
+  box-shadow: 1.1cqw 1.1cqw 0 var(--pink);
+}
+.photo-inline.r { transform: rotate(1.2deg); box-shadow: 1.1cqw 1.1cqw 0 var(--orange); }
+
+/* panels run past the text column to the slide edge, and lap over the card below */
+.split .photo-inline { margin-right: -4cqw; margin-bottom: -3cqw; z-index: 3; }
+/* closing text and a panel sharing the foot of the slide */
+.split-bottom { margin-top: 5.5cqw; margin-bottom: 0; align-items: flex-end; gap: 3cqw; }
+.split-bottom .col { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 2.6cqw; }
+.split-bottom .punch { margin-top: 0; padding-top: 0; }
+.split-bottom .photo-inline { margin-right: -4cqw; margin-bottom: 0; }
+.photo-row { display: flex; gap: 2.6cqw; align-items: flex-start; margin-bottom: 0; margin-right: -4cqw; }
+.photo-row .photo-inline { margin-bottom: -3cqw; z-index: 3; }
+.card { position: relative; z-index: 1; }
+
+
+/* ═══════════ THESIS SLIDE ═══════════ */
+.thesis .body { justify-content: center; }
+.thesis .stack { display: flex; flex-direction: column; gap: 3cqw; }
+.thesis .line {
+  font-family: Impact, "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .015em;
+  line-height: .96;
+  font-size: 6.4cqw;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.thesis .line.quiet { color: rgba(23,17,12,.32); }
+.thesis .line em { font-style: normal; color: var(--pink); }
+.thesis .divider { height: 3px; background: var(--ink); opacity: .18; }
+
+/* ═══════════ CLOSER ═══════════ */
+.closer .body { justify-content: center; padding: 8cqw 6.5cqw; }
+.closer .flame-on {
+  align-self: flex-start;
+  font-family: Impact, Arial, sans-serif;
+  font-size: 1.75cqw;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 2px solid var(--rose);
+  padding: .45em 1em;
+  margin-bottom: 3.4cqw;
+}
+.closer h2 {
+  font-size: 10.4cqw;
+  line-height: .87;
+  color: #fff;
+  text-shadow: .6cqw .6cqw 0 var(--pink), 1cqw 1cqw 0 rgba(0,0,0,.35);
+  margin-bottom: 3.4cqw;
+  max-width: 17ch;
+}
+.closer h2 em { font-style: normal; color: var(--rose); }
+.closer .chain {
+  display: flex; flex-direction: column; gap: 1.3cqw;
+  margin-bottom: 4cqw;
+  max-width: 32ch;
+}
+.closer .chain-row {
+  display: flex; align-items: baseline; gap: 1.6cqw;
+  font-size: 2.4cqw; line-height: 1.4;
+  color: rgba(255,246,236,.72);
+}
+.closer .chain-row .sym { color: var(--sherbet); }
+
+/* ═══════════ PRINT → PDF FOR LINKEDIN ═══════════ */
+@page { size: 1080px 1350px; margin: 0; }
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .shell { max-width: none; }
+  .shell-head { display: none; }
+  .deck { display: block; gap: 0; }
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    aspect-ratio: auto;
+    border: none;
+    break-after: page;
+    page-break-after: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+}
+</style>
+
+<div class="shell">
+
+  <div class="shell-head">
+    <h1>How I'd Apply For A Job Today</h1>
+    <p>16 slides &middot; 1080 &times; 1350 &middot; ready to post<br>
+    <strong>Print &rarr; Save as PDF</strong> &middot; upload to LinkedIn as a document</p>
+  </div>
+
+  <div class="deck">
+
+    <!-- ══ 01 · COVER ══ -->
+    <section class="slide dark cover">
+      <div class="photo photo-hero"><img src="carousel-img/bird-worm.webp" alt="A bird with a worm in its beak"></div>
+
+      <div class="body">        <span class="hero-label">Field Notes</span>
+        <h1>How I'd Apply<br>For A Job <span>Today</span></h1>
+        <p class="cover-sub">A founder at last night's meetup asked me how I'd go about it. Turns out I have a framework. It's not foolproof, but it works.</p>
+        <span class="tape">12 steps to an advocate</span>
+      </div>
+
+      <div class="foot">
+        <span class="mono">Kennedy Loper</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 02 · THESIS ══ -->
+    <section class="slide paper thesis">
+      <div class="body">
+        <span class="mono eyebrow">Start here</span>
+        <div class="stack">
+          <p class="line quiet">The interview process is where companies decide whether to hire you.</p>
+          <div class="divider"></div>
+          <p class="line">Before that, they have to decide whether you're <em>worth talking to.</em></p>
+        </div>
+        <p class="punch" style="margin-top:6cqw">Here's how I'd get that first conversation.</p>
+      </div>
+      <div class="foot">
+        <span class="mono">01 / The setup</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 03 · FIND AN ADVOCATE ══ -->
+    <section class="slide siren">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">1</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step one</span>
+            <h2>Find an advocate</h2>
+          </div>
+        </div>
+        <div class="split">
+          <p class="lede">Hiring managers get a sh*t ton of email. Trust me. Look for multiple ways to be seen.</p>
+          <div class="photo photo-inline" style="aspect-ratio: 350 / 298; width: 34cqw"><img src="carousel-img/email-avalanche.png" alt="A person buried under an avalanche of paper"></div>
+        </div>
+        <div class="card">
+          <div class="list">
+            <div class="item"><span class="sym">&#9656;</span><span>Someone senior enough to forward your email</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Someone on the team with a similar background, or whose career path resembles yours</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Even the general inbox, if it raises the odds someone passes it on</span></div>
+          </div>
+        </div>
+        <div class="card on-yellow">
+          <h3>Email formats are predictable</h3>
+          <p class="card-sub">Most companies use one of three, all on @company.com</p>
+          <div class="chips">
+            <span class="chip">firstname</span>
+            <span class="chip">firstname.lastname</span>
+            <span class="chip">flastname</span>
+          </div>
+        </div>
+        <p class="punch">One inbox is not a strategy. <em>Build twenty doors.</em></p>
+      </div>
+      <div class="foot">
+        <span class="mono">02 / Find an advocate</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 04 · FAMILIAR NAME ══ -->
+    <section class="slide mint">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">2</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step two</span>
+            <h2>Become a familiar name</h2>
+          </div>
+        </div>
+        <div class="split">
+          <p class="lede">Follow the company. Pay attention to what they're building. Engage when you genuinely have something to add.</p>
+          <div class="photo photo-inline r" style="aspect-ratio: 1 / 1"><img src="carousel-img/know-who-i-am.png" alt="A man saying 'I suspect you know who I am?'"></div>
+        </div>
+        <div class="card rule-top roomy">
+          <h3>The quiet advantage</h3>
+          <p class="card-sub">Company pages get far less engagement than personal profiles, so your comment actually gets noticed there.</p>
+          <div class="list">
+            <div class="item"><span class="sym">&#9656;</span><span>It's a weird psychological thing: if I've seen your name before, it already feels like a little alignment</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>You're no longer a complete stranger</span></div>
+          </div>
+        </div>
+        <p class="punch">Show up before you ask for anything.</p>
+      </div>
+      <div class="foot">
+        <span class="mono">03 / Become a familiar name</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 05 · MAKE ME FEEL YOU CARE ══ -->
+    <section class="slide press">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">3</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step three</span>
+            <h2 class="tight">Make me feel like you care</h2>
+          </div>
+        </div>
+        <div class="split">
+          <p class="lede">Spray and pray is the going strategy. I get it, it's partly a numbers game. But if I'm spending my time advocating for you, I want to believe you actually care.</p>
+          <div class="photo photo-inline r" style="aspect-ratio: 332 / 200; width: 36cqw"><img src="carousel-img/pick-me.png" alt="So pick me. Choose me. Love me."></div>
+        </div>
+        <div class="card">
+          <h3>Reference something specific</h3>
+          <p class="card-sub">I don't need this to be your dream company. I do need to believe you cared enough to understand what we're building.</p>
+          <div class="list">
+            <div class="item"><span class="sym b">&#9656;</span><span>A recent launch</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>A product</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>A customer</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>Something the person recently shared</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>A problem you think we're trying to solve</span></div>
+          </div>
+        </div>
+        <p class="punch">One specific sentence beats <em>four polished paragraphs</em> that could have gone to anyone.</p>
+      </div>
+      <div class="foot">
+        <span class="mono">04 / Make me feel like you care</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 06 · BUILD THE JOB ══ -->
+    <section class="slide beacon">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">4</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step four</span>
+            <h2>Build the job you want</h2>
+          </div>
+        </div>
+        <p class="lede" style="max-width:54ch">Don't make me guess where you fit. Tell me.</p>
+        <div class="photo-row">
+          <div class="photo photo-inline" style="aspect-ratio: 765 / 574; width: 34cqw"><img src="carousel-img/potato-head.webp" alt="Mr. Potato Head, assembled from his own parts"></div>
+          <div class="photo photo-inline r" style="aspect-ratio: 409 / 488; width: 21.4cqw"><img src="carousel-img/frankenstein-tea.png" alt="Frankenstein's monster having tea, built from parts and perfectly at home"></div>
+        </div>
+        <div class="card roomy">
+          <div class="list">
+            <div class="item"><span class="sym r">&#9656;</span><span>What you're exceptionally good at</span></div>
+            <div class="item"><span class="sym r">&#9656;</span><span>The problem you think you can help solve</span></div>
+            <div class="item"><span class="sym r">&#9656;</span><span>The value you believe you could create</span></div>
+            <div class="item"><span class="sym r">&#9656;</span><span>What that ROI might look like</span></div>
+          </div>
+        </div>
+        <p class="punch">The best roles aren't always found. Sometimes they're <em>built</em> around someone who makes their value obvious.</p>
+      </div>
+      <div class="foot">
+        <span class="mono">05 / Build the job you want</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 07 · FORWARDABLE ══ -->
+    <section class="slide dark">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">5</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step five</span>
+            <h2 class="tight">Make your email forwardable</h2>
+          </div>
+        </div>
+        <p class="lede">If someone likes your message, there's a good chance they'll forward it. Write it so it still makes sense without you there.</p>
+        <div class="card">
+          <h3>Five questions it must answer</h3>
+          <p class="card-sub">I don't want to write three paragraphs of context to pass you along.</p>
+          <div class="list">
+            <div class="item"><span class="sym">&#9656;</span><span>Who are you?</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Why this company?</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>What are you good at?</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Why are you reaching out?</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>What are you asking for?</span></div>
+          </div>
+        </div>
+        <p class="punch">Attach the r&eacute;sum&eacute;. Include the LinkedIn. <em>Build the full picture.</em></p>
+        <div style="margin-top:2.4cqw"><span class="tape">But don't overload me. Being concise is a skill too.</span></div>
+      </div>
+      <div class="foot">
+        <span class="mono">06 / Make your email forwardable</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ ASIDE · TONE ══ -->
+    <section class="slide paper">
+      <div class="body">
+        <span class="mono eyebrow">A note on tone</span>
+        <h2 class="tight">Don't over-polish it</h2>
+        <div class="split">
+          <p class="lede">Over-polished reads as green. Corporate lingo makes everyone a little nauseous.</p>
+          <div class="photo photo-inline r" style="aspect-ratio: 436 / 452; width: 22cqw"><img src="carousel-img/corporate-robot.png" alt="Corporate America in 2026"></div>
+        </div>
+        <div class="duo">
+          <div class="card rule-alt">
+            <h3>Too casual</h3>
+            <div class="list">
+              <div class="item no"><span class="sym">&#10007;</span><span>"Sup, you guys hiring?"</span></div>
+              <div class="item no"><span class="sym">&#10007;</span><span>"Just wanted to pick your brain"</span></div>
+            </div>
+          </div>
+          <div class="card rule-top">
+            <h3>Too corporate</h3>
+            <div class="list">
+              <div class="item no"><span class="sym">&#10007;</span><span>"Hope this finds you well"</span></div>
+              <div class="item no"><span class="sym">&#10007;</span><span>"Looking forward to connecting"</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card on-yellow" style="margin-top:2.4cqw">
+          <h3>About right</h3>
+          <div class="list">
+            <div class="item"><span class="sym r">&#10003;</span><span>"Hey Kennedy" is fine. Start like a human.</span></div>
+            <div class="item"><span class="sym r">&#10003;</span><span>"Saw you shipped X. I built the same thing at Y."</span></div>
+            <div class="item"><span class="sym r">&#10003;</span><span>"I can help with Z, and here's the reason."</span></div>
+            <div class="item"><span class="sym r">&#10003;</span><span>"Here's an event you'd like." Or an article you actually read.</span></div>
+          </div>
+        </div>
+        <p class="punch">Write like you'd talk to a colleague you respect. <em>Then say the actual thing.</em></p>
+      </div>
+      <div class="foot">
+        <span class="mono">07 / A note on tone</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 08 · 15 SECONDS ══ -->
+    <section class="slide aqua">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">6</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step six</span>
+            <h2 class="tighter">Optimize your r&eacute;sum&eacute; for the first 15 seconds</h2>
+          </div>
+        </div>
+        <p class="lede">When I open your PDF, I'm not reading. I'm scanning for signals.</p>
+        <div class="card rule-top">
+          <div class="list">
+            <div class="item"><span class="sym">&#9656;</span><span>Titles</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Skills</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Career progression</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Results, or anything that immediately stands out</span></div>
+          </div>
+        </div>
+        <div class="card on-yellow" style="margin-top:2.4cqw">
+          <h3>Then hand it over properly</h3>
+          <div class="list">
+            <div class="item"><span class="sym r">&#10003;</span><span>One page. Clear formatting. No treasure hunt.</span></div>
+            <div class="item"><span class="sym r">&#10003;</span><span>A PDF, not a Doc. Name it like a person would:</span></div>
+          </div>
+          <div class="chips" style="margin-top:1.8cqw">
+            <span class="chip">firstname-lastname-resume.pdf</span>
+          </div>
+        </div>
+        <p class="punch">Your r&eacute;sum&eacute; isn't trying to tell your whole story. It's trying to earn <em>another 15 seconds.</em></p>
+      </div>
+      <div class="foot">
+        <span class="mono">08 / Your r&eacute;sum&eacute; in 15 seconds</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 09 · LINKEDIN ══ -->
+    <section class="slide press">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">7</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step seven</span>
+            <h2 class="tight">Treat LinkedIn like part of the application</h2>
+          </div>
+        </div>
+        <p class="lede">If your r&eacute;sum&eacute; catches my attention, I'm almost always clicking your profile next. That's where I get context a r&eacute;sum&eacute; can't give me.</p>
+        <div class="card rule-alt roomy">
+          <h3>What I'm actually looking for</h3>
+          <div class="list">
+            <div class="item"><span class="sym b">&#9656;</span><span>What you're interested in</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>What kinds of problems you think about</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>What you've built</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>How you communicate</span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>What you're curious about</span></div>
+          </div>
+        </div>
+        <p class="punch">Your r&eacute;sum&eacute; says what you've done. <em>Your profile says how you think.</em></p>
+      </div>
+      <div class="foot">
+        <span class="mono">09 / LinkedIn is the application</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 10 · MEMORABLE ══ -->
+    <section class="slide siren">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">8</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step eight</span>
+            <h2 class="tight">Give people something to remember</h2>
+          </div>
+        </div>
+        <div class="split">
+          <p class="lede">I usually include one or two human details in my own outreach. Maybe you&hellip;</p>
+          <div class="photo photo-inline r" style="aspect-ratio: 572 / 640; width: 22cqw"><img src="carousel-img/unforgettable.png" alt="Unforgettable, that's what you are"></div>
+        </div>
+        <div class="card">
+          <div class="list">
+            <div class="item"><span class="sym">&#9656;</span><span>Lived abroad</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Host monthly dinners</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Coach a team</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Built something weird out of curiosity</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Have an unexpected hobby</span></div>
+          </div>
+        </div>
+        <p class="punch">Save the personality for your outreach and your LinkedIn. <em>Keep the r&eacute;sum&eacute; on competence.</em></p>
+        <div style="margin-top:2.4cqw"><span class="tape">I don't want your CV reading like your MySpace page.</span></div>
+      </div>
+      <div class="foot">
+        <span class="mono">10 / Be memorable</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 11 · REDUCE RISK ══ -->
+    <section class="slide beacon">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">9</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step nine</span>
+            <h2>Reduce risk</h2>
+          </div>
+        </div>
+        <p class="lede">Every part of your application is answering the same question:</p>
+        <div class="card" style="padding:8.5cqw 3.6cqw">
+          <p class="punch" style="padding-top:0;margin:0;font-size:3.5cqw">"Would I feel comfortable putting my <em>reputation</em> behind this person?"</p>
+        </div>
+        <div class="split split-bottom">
+          <div class="col">
+            <p class="punch">That's what hiring really is. You're asking someone inside the company to spend a little of their social capital on you.</p>
+            <span class="tape">The easier you make that call, the better your odds.</span>
+          </div>
+          <div class="photo photo-inline r" style="aspect-ratio: 1 / 1; width: 46cqw"><img src="carousel-img/taylor-rain.webp" alt="Taylor Swift performing in the rain"></div>
+        </div>
+      </div>
+      <div class="foot">
+        <span class="mono">11 / Reduce risk</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 12 · EASY TO SAY YES ══ -->
+    <section class="slide dark">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">10</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step ten</span>
+            <h2 class="tight">Make it ridiculously easy to say yes</h2>
+          </div>
+        </div>
+        <div class="card on-ink" style="box-shadow:1.1cqw 1.1cqw 0 var(--rose)">
+          <h3>Everything below is friction</h3>
+          <div class="list">
+            <div class="item"><span class="sym r">&#10007;</span><span>Every extra click</span></div>
+            <div class="item"><span class="sym r">&#10007;</span><span>Every missing link</span></div>
+            <div class="item"><span class="sym r">&#10007;</span><span>Every unanswered question</span></div>
+            <div class="item"><span class="sym r">&#10007;</span><span>Every vague sentence</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>So remove it</h3>
+          <div class="list">
+            <div class="item"><span class="sym">&#10003;</span><span>Attach the r&eacute;sum&eacute;</span></div>
+            <div class="item"><span class="sym">&#10003;</span><span>Include your LinkedIn</span></div>
+            <div class="item"><span class="sym">&#10003;</span><span>Spell out the value you bring</span></div>
+            <div class="item"><span class="sym">&#10003;</span><span>Suggest a clear next step</span></div>
+          </div>
+        </div>
+        <p class="punch">People rarely say no because something is impossible. They say no because it takes <em>a little too much effort.</em></p>
+      </div>
+      <div class="foot">
+        <span class="mono">12 / Easy to say yes</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 13 · PERSISTENT ══ -->
+    <section class="slide mint">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">11</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step eleven</span>
+            <h2 class="tight">Be respectfully persistent</h2>
+          </div>
+        </div>
+        <p class="lede">Most people send one email, then disappear. But persistence isn't more check-ins. It's progress.</p>
+        <div class="card rule-top">
+          <h3>Follow up with progress, not pings</h3>
+          <p class="card-sub">One "just checking in" is plenty. After that, only come back when you have something you actually want to share.</p>
+          <div class="list">
+            <div class="item"><span class="sym">&#9656;</span><span>You shipped something. Learned something. Hit a number. Built the thing you said you'd build.</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Change up the format too: a comment on their post, a DM, something you published, a demo link</span></div>
+            <div class="item"><span class="sym">&#9656;</span><span>Every touch should give them something, not ask them for something</span></div>
+          </div>
+        </div>
+        <p class="punch">Persistence isn't annoying. <em>Lack of self-awareness is.</em> There's a difference.</p>
+        <div style="margin-top:2.6cqw"><span class="tape">Don't confuse silence with rejection.</span></div>
+      </div>
+      <div class="foot">
+        <span class="mono">13 / Be respectfully persistent</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 14 · WHAT YOU'RE ACTUALLY DOING ══ -->
+    <section class="slide aqua">
+      <div class="body">
+        <div class="head">
+          <span class="badge"><span class="num">12</span></span>
+          <div class="head-txt">
+            <span class="mono eyebrow">Step twelve</span>
+            <h2 class="tight">Remember what you're actually trying to do</h2>
+          </div>
+        </div>
+        <p class="lede">The goal isn't to get hired. The goal is to get someone inside the company excited enough to bet a little of their reputation on you.</p>
+        <div class="card roomier">
+          <h3>Nothing here gets you the job</h3>
+          <div class="list">
+            <div class="item"><span class="sym b">&#9656;</span><span>All of it gets you an <strong>advocate</strong></span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>An advocate gets you the <strong>conversation</strong></span></div>
+            <div class="item"><span class="sym b">&#9656;</span><span>The conversation gets you the <strong>opportunity</strong></span></div>
+          </div>
+        </div>
+        <p class="punch">Because before anyone decides whether to hire you, someone has to decide you're <em>worth introducing.</em></p>
+      </div>
+      <div class="foot">
+        <span class="mono">14 / What you're actually doing</span>
+        <span class="swipe"><span class="mono">Swipe</span>
+          <svg class="arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18M14 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- ══ 15 · CLOSER ══ -->
+    <section class="slide dark closer">
+      <div class="photo photo-hero"><img src="carousel-img/bird-worm.webp" alt="The same bird, worm caught"></div>
+
+      <div class="body">
+        <span class="flame-on">The one idea</span>
+        <h2>The relentlessly helpful bird gets the <em>worm.</em></h2>
+        <div class="chain">
+          <div class="chain-row"><span class="sym">&#9656;</span><span>None of this gets you the job. It gets you an advocate.</span></div>
+          <div class="chain-row"><span class="sym">&#9656;</span><span>Every step above just makes their decision easier.</span></div>
+        </div>
+        <span class="tape">Which of these would you add?</span>
+      </div>
+
+      <div class="foot">
+        <span class="mono">Kennedy Loper</span>      </div>
+    </section>
+
+  </div>
+</div>

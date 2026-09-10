@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; square</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* 1080x1080 square.
+     Render: bash scripts/render-post-graphic.sh demo-night-square 1080,1080
+
+     Dark, tight, one accent. The accent is the TechUnited logo gradient used
+     as a text fill, which is the only ornament on the page. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0233;
+    --paper: #f7f6f2;
+    --soft: rgba(247,246,242,0.52);
+    --hair: rgba(247,246,242,0.16);
+  }
+  html, body { width: 1080px; height: 1080px; }
+  body {
+    background: var(--bg); color: var(--paper);
+    font-family: 'Archivo', system-ui, sans-serif; overflow: hidden;
+  }
+
+  /* a slow bloom behind the type so the field is not flat */
+  .glow {
+    position: absolute; width: 1100px; height: 1100px;
+    left: -180px; top: -300px; pointer-events: none;
+    background: radial-gradient(circle at 40% 40%,
+      rgba(209,99,161,0.30) 0%, rgba(120,119,184,0.16) 38%, rgba(10,2,51,0) 68%);
+  }
+  .glow.two {
+    left: auto; right: -320px; top: auto; bottom: -420px;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(57,196,229,0.20) 0%, rgba(94,143,202,0.10) 40%, rgba(10,2,51,0) 70%);
+  }
+
+  .frame {
+    position: relative; width: 1080px; height: 1080px;
+    padding: 72px 76px 68px;
+    display: flex; flex-direction: column;
+  }
+
+  .top { position: relative; z-index: 1;
+    display: flex; justify-content: space-between; align-items: center; }
+  .plate { background: var(--paper); padding: 10px 14px; }
+  .plate i { display: block; width: 168px; height: 54px;
+    background: url("techunited-logo.png") center / contain no-repeat; }
+  .top .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--soft);
+  }
+
+  .mid { position: relative; z-index: 1; flex: 1;
+    display: flex; flex-direction: column; justify-content: center; }
+
+  h1 {
+    font-size: 76px; font-weight: 700; line-height: 1.02;
+    letter-spacing: -0.032em;
+  }
+  h1 span { display: block; }
+  .grad {
+    background: linear-gradient(96deg,
+      #39c4e5 0%, #5f8fca 16%, #7877b8 30%, #9e70b1 44%,
+      #d163a1 60%, #e86987 74%, #f37b7c 86%, #fab374 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .ask {
+    margin-top: 40px; font-size: 66px; font-weight: 700; line-height: 1.02;
+    letter-spacing: -0.032em;
+  }
+
+  .bot {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--hair); padding-top: 30px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 30px;
+  }
+  .bot .big {
+    font-size: 46px; font-weight: 700; letter-spacing: -0.028em; line-height: 1.05;
+  }
+  .bot .sub {
+    margin-top: 11px; font-family: 'JetBrains Mono', monospace; font-size: 15px;
+    font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; color: var(--soft);
+  }
+  .bot .rsvp { text-align: right; }
+  .bot .rsvp .big { color: #f9a1c0; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="glow"></div>
+  <div class="glow two"></div>
+
+  <div class="top">
+    <span class="plate"><i></i></span>
+    <span class="tag">AI Demo Night</span>
+  </div>
+
+  <div class="mid">
+    <h1>
+      <span>100 companies raised</span>
+      <span>their hand for 3 spots</span>
+      <span>at AI Demo Night,</span>
+      <span>September 10.</span>
+    </h1>
+    <p class="ask grad">Will you be there for them?</p>
+  </div>
+
+  <div class="bot">
+    <div>
+      <div class="big">Apprentice.IO</div>
+      <div class="sub">Jersey City</div>
+    </div>
+    <div class="rsvp">
+      <div class="big">RSVP</div>
+      <div class="sub">Link in the comments</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

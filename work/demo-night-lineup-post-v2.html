@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; lineup reveal, bold treatment</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Lineup reveal, bold treatment, 1080x1350 (4:5).
+     Render: bash scripts/render-post-graphic.sh demo-night-lineup-post-v2
+
+     Louder sibling of demo-night-lineup-post.html. The event name is the
+     headline instead of a status line, the ground flips to Uplift navy, and
+     the TechUnited logo gradient runs through the type and the card spines.
+
+     Every company sits on a paper card. That is a brand requirement, not a
+     style choice: the TechUnited gradient glyph overlaps the "united" letters,
+     so the mark can never be knocked out to white, and the same holds for the
+     clicr and mobius wordmarks, which ship on white plates with no alpha. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #110465;
+    --navy-deep: #0a0340;
+    --paper: #f7f6f2;
+    --ink: #110465;
+    --ink-soft: #4b4470;
+    --pink: #d86697;
+    --on-navy-soft: #9b95c9;
+    --grad: linear-gradient(90deg,
+      #39c4e5 0%, #5f8fca 14%, #7877b8 28%, #9e70b1 42%,
+      #d163a1 60%, #e86987 74%, #f37b7c 87%, #fab374 100%);
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--navy); color: var(--paper);
+    font-family: 'Archivo', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .frame {
+    width: 1080px; height: 1350px;
+    padding: 54px 66px 48px;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(900px 520px at 78% -6%, rgba(209,99,161,0.28), transparent 68%),
+      radial-gradient(760px 460px at -8% 22%, rgba(57,196,229,0.20), transparent 66%),
+      var(--navy);
+  }
+
+  .top-rule { height: 6px; background: var(--grad); }
+
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 15px 0 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-navy-soft);
+  }
+  .masthead b { color: var(--paper); font-weight: 700; }
+
+  h1 {
+    margin-top: 30px;
+    font-family: 'Archivo Narrow', 'Archivo', sans-serif;
+    font-weight: 700; font-size: 152px; line-height: 0.82;
+    letter-spacing: -0.02em; text-transform: uppercase;
+  }
+  h1 span { display: block; }
+  h1 .grad {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  .kicker {
+    margin-top: 24px; padding-bottom: 22px;
+    border-bottom: 1px solid rgba(247,246,242,0.22);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700;
+    letter-spacing: 0.17em; text-transform: uppercase; color: var(--paper);
+  }
+  .kicker .r { color: var(--on-navy-soft); font-weight: 500; letter-spacing: 0.12em; }
+
+  /* Company cards */
+  .lineup-label {
+    margin-top: 22px; padding-bottom: 11px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--pink);
+  }
+  .lineup-label .r { color: var(--on-navy-soft); font-weight: 500; letter-spacing: 0.12em; }
+
+  .cards { display: flex; flex-direction: column; gap: 16px; }
+
+  .card {
+    background: var(--paper); color: var(--ink);
+    display: flex; align-items: stretch;
+  }
+  .card .spine { width: 8px; flex: none; background: var(--grad); }
+  .card .inner {
+    flex: 1; display: flex; align-items: center; gap: 20px;
+    padding: 22px 24px;
+  }
+
+  .card .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--pink);
+    width: 24px; flex: none; align-self: flex-start; padding-top: 4px;
+  }
+
+  /* Fixed bay so every logo starts at the same x, one founder or two */
+  .card .portraits { width: 248px; flex: none; display: flex; gap: 8px; }
+  .card .portrait {
+    width: 120px; height: 120px; flex: none;
+    background-color: #e6e2ee;
+    background-size: cover; background-position: center center;
+  }
+
+  .card .who { flex: 1; min-width: 0; }
+  .card .brand { display: flex; align-items: center; gap: 14px; height: 44px; }
+  .card .brand img.wordmark { width: auto; }
+  .card .brand img.clicr  { max-height: 46px; max-width: 210px; }
+  .card .brand img.mobius { max-height: 38px; max-width: 280px; }
+  .card .brand img.icon { width: 40px; height: 40px; flex: none; }
+  .card .brand .typeset {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 40px; line-height: 1; letter-spacing: -0.005em; color: var(--ink);
+  }
+
+  .card .founders {
+    margin-top: 9px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .card .line {
+    margin-top: 7px;
+    font-size: 22px; line-height: 1.26; font-weight: 600; color: var(--ink);
+  }
+
+  .spacer { flex: 1; }
+
+  .sub { display: flex; gap: 0; border-top: 1px solid rgba(247,246,242,0.22); }
+  .sub div {
+    flex: 1; padding: 17px 22px 0 0;
+    border-right: 1px solid rgba(247,246,242,0.22);
+  }
+  .sub div:last-child { border-right: none; padding-right: 0; padding-left: 22px; }
+  .sub .k {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink);
+    margin-bottom: 7px;
+  }
+  .sub .v { font-size: 23px; font-weight: 600; line-height: 1.22; color: var(--paper); }
+  .sub .v em { font-style: normal; color: var(--on-navy-soft); font-weight: 500; }
+
+  .foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    border-top: 6px solid transparent;
+    border-image: var(--grad) 1;
+    padding-top: 18px; margin-top: 22px;
+  }
+  /* Full-colour mark on a white plate: it must never be inverted */
+  .plate { background: #fff; padding: 12px 18px; }
+  .logo { width: 214px; height: 68px; background: url("techunited-logo.png") left center / contain no-repeat; }
+  .foot .right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.6;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-navy-soft);
+  }
+  .foot .right b { color: var(--pink); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="top-rule"></div>
+  <div class="masthead">
+    <span><b>TechUnited:NJ</b></span>
+    <span>Sept 10 &middot; Apprentice.IO &middot; Jersey City</span>
+  </div>
+
+  <h1>
+    <span>AI Demo</span>
+    <span class="grad">Night.</span>
+  </h1>
+
+  <div class="kicker">
+    <span>100+ applied in 24 hours</span>
+    <span class="r">Three are pitching</span>
+  </div>
+
+  <div class="lineup-label">
+    <span>The lineup</span>
+    <span class="r">Three of more than a hundred</span>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="spine"></div>
+      <div class="inner">
+        <span class="n">01</span>
+        <div class="portraits">
+          <div class="portrait" style="background-image:url('founder-harrison.jpg')"></div>
+          <div class="portrait" style="background-image:url('founder-lucas.jpg')"></div>
+        </div>
+        <div class="who">
+          <div class="brand"><img class="wordmark clicr" src="clicr-logo-trim.png" alt="clicr"></div>
+          <div class="founders">Harrison Wilkins &amp; Lucas Martinez &middot; Co-founders</div>
+          <div class="line">Crowd intelligence for the people who run the room.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="spine"></div>
+      <div class="inner">
+        <span class="n">02</span>
+        <div class="portraits">
+          <div class="portrait" style="background-image:url('founder-caroline.jpg')"></div>
+          <div class="portrait" style="background-image:url('founder-julia.jpg')"></div>
+        </div>
+        <div class="who">
+          <div class="brand"><img class="wordmark mobius" src="mobius-logo-trim.png" alt="mobius"></div>
+          <div class="founders">Caroline Turnbull &amp; Julia Suozzi &middot; Co-founders</div>
+          <div class="line">The fitness social network where all movement counts.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="spine"></div>
+      <div class="inner">
+        <span class="n">03</span>
+        <div class="portraits">
+          <div class="portrait" style="background-image:url('founder-connor.png')"></div>
+        </div>
+        <div class="who">
+          <div class="brand">
+            <img class="icon" src="juricratic-icon.png" alt="">
+            <span class="typeset">Juricratic</span>
+          </div>
+          <div class="founders">Connor O&rsquo;Dea &middot; Founder, CEO &amp; CTO</div>
+          <div class="line">Rehearse the lawsuit before you live it.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="sub">
+    <div>
+      <p class="k">The night</p>
+      <p class="v">Sept 10<br><em>Doors 6:30, pitches 7:00</em></p>
+    </div>
+    <div>
+      <p class="k">The format</p>
+      <p class="v">5 min pitch<br><em>Plus 5 min live Q&amp;A</em></p>
+    </div>
+    <div>
+      <p class="k">The room</p>
+      <p class="v">80 people<br><em>Founders, operators, investors</em></p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="plate"><div class="logo"></div></div>
+    <div class="right">
+      <b>Tickets in the comments</b><br>
+      kennedy@techunited.co
+    </div>
+  </div>
+</div>
+</body>
+</html>

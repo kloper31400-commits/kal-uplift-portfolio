@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; the shortlist, 100 to 3</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wdth,wght@62..125,400..800&family=Archivo+Narrow:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* The shortlist, 1080x1350 (4:5).
+     Render: bash scripts/render-graphic-file.sh demo-night-shortlist-post
+
+     Fifth in the AIDN series after demo-night-post (the call),
+     demo-night-mobius-post (first pitch confirmed), demo-night-lineup-post-v4
+     (the full lineup) and the three per-company posters. Same paper ground,
+     masthead, label between hairlines and 5px foot rule, so it reads as one run.
+
+     What is new here is the only part of the story the series has never shown:
+     the selection itself. A hundred squares, one per company that applied,
+     three of them lit. The headline is also the key to the diagram, so the
+     grid needs no separate caption.
+
+     Logos run under mix-blend-mode: multiply. Neither clicr nor mobius ships an
+     alpha version, and multiply drops their white plates into the paper.
+     Juricratic has no wordmark, only a square app icon, so its name is
+     typeset beside the mark. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f7f6f2;
+    --ink: #110465;
+    --ink-soft: #4b4470;
+    --pink: #cf5b8d;
+    --rule: #cfc9d9;
+    --rule-strong: #110465;
+    --cell: #ebe9f1;
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .frame {
+    width: 1080px; height: 1350px;
+    padding: 58px 74px 50px;
+    display: flex; flex-direction: column;
+  }
+
+  .top-rule { height: 5px; background: var(--rule-strong); }
+  .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 15px 0 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  .label {
+    margin-top: 30px;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 13px 0;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--pink);
+  }
+  .label .r { color: var(--ink-soft); letter-spacing: 0.14em; font-weight: 500; }
+
+  h1 {
+    margin-top: 28px;
+    font-family: 'Anton', 'Archivo Narrow', sans-serif; font-weight: 400;
+    font-size: 88px; line-height: 0.98; letter-spacing: -0.01em;
+  }
+  h1 > span { display: block; white-space: nowrap; }
+  h1 .hit { display: inline; }
+  h1 .hit { color: var(--pink); }
+
+  /* One square per company that applied. Twenty across, five down, so the
+     hundred is countable rather than asserted. */
+  .grid {
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(20, 1fr);
+    gap: 9px;
+  }
+  .grid i {
+    aspect-ratio: 1; display: block;
+    background: var(--cell); border: 1px solid var(--rule);
+  }
+  .grid i.on {
+    background: var(--pink); border-color: var(--pink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--paper);
+  }
+
+  /* The three, numbered to match the lit squares above */
+  .lineup { margin-top: 34px; border-top: 2px solid var(--rule-strong); }
+  .row {
+    display: flex; align-items: flex-start; gap: 26px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .row:last-child { border-bottom: none; }
+  .row .n {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--pink);
+    width: 30px; flex: none; padding-top: 8px;
+  }
+  /* Fixed brand bay so every company line starts at the same x */
+  .row .brand { width: 268px; flex: none; display: flex; align-items: center; gap: 14px; height: 52px; }
+  .row .brand img.wordmark { width: auto; mix-blend-mode: multiply; }
+  .row .brand img.clicr  { max-height: 50px; max-width: 232px; }
+  .row .brand img.mobius { max-height: 42px; max-width: 268px; }
+  .row .brand img.icon { width: 44px; height: 44px; flex: none; }
+  .row .brand .typeset {
+    font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 42px; line-height: 1; letter-spacing: -0.005em;
+  }
+  .row .who { flex: 1; min-width: 0; padding-top: 2px; }
+  .row .founders {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .row .line {
+    margin-top: 8px;
+    font-size: 20px; line-height: 1.3; font-weight: 500;
+  }
+  .row .line b { color: var(--pink); font-weight: 700; }
+
+  .spacer { flex: 1; }
+
+  .sub { margin-top: 24px; display: flex; border-top: 1px solid var(--rule); }
+  .sub div { flex: 1; padding: 16px 22px 0 0; border-right: 1px solid var(--rule); }
+  .sub div:last-child { border-right: none; padding-right: 0; padding-left: 22px; }
+  .sub .k {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink);
+    margin-bottom: 7px;
+  }
+  .sub .v { font-size: 22px; font-weight: 600; line-height: 1.24; }
+  .sub .v em { font-style: normal; color: var(--ink-soft); font-weight: 500; }
+
+  .foot {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    border-top: 5px solid var(--rule-strong); padding-top: 16px; margin-top: 24px;
+  }
+  .logo { width: 232px; height: 74px; background: url("techunited-logo.png") left bottom / contain no-repeat; }
+  .foot .right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.6;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .foot .right b { color: var(--pink); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="top-rule"></div>
+  <div class="masthead">
+    <span>TechUnited:NJ &middot; AI Demo Night</span>
+    <span>Sept 10 &middot; Jersey City</span>
+  </div>
+
+  <div class="label">
+    <span>The shortlist</span>
+    <span class="r">100+ applied in under 24 hours</span>
+  </div>
+
+  <h1><span>Every square applied.</span><span><span class="hit">Three</span> are pitching.</span></h1>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="lineup">
+    <div class="row">
+      <p class="n">01</p>
+      <div class="brand"><img class="wordmark clicr" src="clicr-logo-trim.png" alt="clicr"></div>
+      <div class="who">
+        <p class="founders">Harrison Wilkins &middot; Lucas Martinez</p>
+        <p class="line">Venues still count crowds with clickers. <b>1.6 million guests counted</b>, and all 215 events of Atlanta Tech Week.</p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="n">02</p>
+      <div class="brand"><img class="wordmark mobius" src="mobius-logo-trim.png" alt="mobius"></div>
+      <div class="who">
+        <p class="founders">Caroline Turnbull &middot; Julia Suozzi</p>
+        <p class="line">The fitness network where <b>your walk counts</b> as much as someone else&rsquo;s marathon. Live on the App Store.</p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="n">03</p>
+      <div class="brand"><span class="icon-lockup" style="display:flex;align-items:center;gap:14px"><img class="icon" src="juricratic-icon.png" alt=""><span class="typeset">Juricratic</span></span></div>
+      <div class="who">
+        <p class="founders">Connor O&rsquo;Dea</p>
+        <p class="line"><b>First exit at 24.</b> Now building a new class of legal intelligence infrastructure.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="sub">
+    <div>
+      <p class="k">When</p>
+      <p class="v">Thursday, Sept 10<br><em>Doors 6:30, pitches 7:00</em></p>
+    </div>
+    <div>
+      <p class="k">Where</p>
+      <p class="v">Apprentice.IO<br><em>Jersey City</em></p>
+    </div>
+    <div>
+      <p class="k">The format</p>
+      <p class="v">5 min pitch, 5 min live Q&amp;A<br><em>The room picks the winner</em></p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="logo"></div>
+    <div class="right">
+      <b>Register &middot; luma.com/na6vswhb</b><br>
+      Powered by TechUnited:NJ and Better Future Labs
+    </div>
+  </div>
+</div>
+
+<script>
+  // A hundred squares, three lit. Positions are fixed so the graphic renders
+  // identically every time, and run in reading order so 01, 02 and 03 match
+  // the index rows below.
+  var HITS = { 5: "01", 53: "02", 82: "03" };
+  var g = document.getElementById("grid"), html = "";
+  for (var i = 0; i < 100; i++) {
+    html += HITS[i] ? '<i class="on">' + HITS[i] + "</i>" : "<i></i>";
+  }
+  g.innerHTML = html;
+</script>
+</body>
+</html>

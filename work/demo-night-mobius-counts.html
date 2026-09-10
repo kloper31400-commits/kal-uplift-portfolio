@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Demo Night &middot; mobius, all movement counts</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* mobius's post, 1080x1350 (4:5).
+     Render: bash scripts/render-graphic-file.sh demo-night-mobius-counts
+
+     Two of three, where each pitching company's product does the marketing.
+     mobius's whole promise is that a walk counts as much as someone else's
+     marathon, so the post is a mobius-style activity feed with the two set
+     side by side and the same pill on both. The night itself is the last
+     entry, which is where the CTA lives.
+
+     Runs in mobius red on paper, their register, not the AIDN paper system.
+     The founders are credited exactly as they pitch: Caroline presenting,
+     Julia co-founder and CTO alongside her. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #fbf8f8;
+    --card: #ffffff;
+    --ink: #1a1218;
+    --mute: #7d7480;
+    --red: #e41830;
+    --rule: #eae4e6;
+  }
+
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif; overflow: hidden;
+  }
+  .frame { width: 1080px; height: 1350px; padding: 54px 62px 44px; display: flex; flex-direction: column; }
+
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .head img { height: 42px; width: auto; display: block; }
+  .head .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+  }
+
+  h1 {
+    margin-top: 40px;
+    font-size: 76px; line-height: 1.0; font-weight: 800; letter-spacing: -0.034em;
+  }
+  h1 em { font-style: normal; color: var(--red); }
+
+  /* The feed */
+  .feed { margin-top: 50px; display: flex; flex-direction: column; gap: 14px; }
+
+  .act {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 22px;
+    padding: 27px 26px; display: flex; align-items: center; gap: 22px;
+  }
+  .act .mark {
+    width: 66px; height: 66px; flex: none; border-radius: 50%;
+    background: #fdeef0; display: flex; align-items: center; justify-content: center;
+  }
+  .act .mark svg { width: 34px; height: 34px; }
+  .act .who { flex: 1; min-width: 0; }
+  .act .t {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
+  }
+  .act .v { margin-top: 7px; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+  .act .m { margin-top: 4px; font-size: 19px; font-weight: 500; color: var(--mute); }
+  .act .pill {
+    flex: none; padding: 11px 20px; border-radius: 100px;
+    background: #fdeef0; color: var(--red);
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+
+  /* The night itself, the one entry that carries the ask */
+  .act.go { background: var(--red); border-color: var(--red); color: #fff; }
+  .act.go .mark { background: rgba(255,255,255,0.18); }
+  .act.go .t { color: rgba(255,255,255,0.72); }
+  .act.go .m { color: rgba(255,255,255,0.84); }
+  .act.go .pill { background: #fff; color: var(--red); }
+
+  .spacer { flex: 1; }
+
+  .foot {
+    border-top: 1px solid var(--rule); padding-top: 22px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 22px;
+  }
+  .foot .l { font-size: 23px; line-height: 1.34; font-weight: 500; max-width: 620px; }
+  .foot .l b { font-weight: 700; }
+  .foot .r {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+  }
+  .foot .r b { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="head">
+    <img src="mobius-logo-trim.png" alt="mobius">
+    <p class="tag">All movement counts</p>
+  </div>
+
+  <h1>Your walk counts as much<br>as someone else&rsquo;s <em>marathon.</em></h1>
+
+  <div class="feed">
+
+    <div class="act">
+      <div class="mark"><svg viewBox="0 0 32 32" fill="none" stroke="#e41830" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 25c6 0 6-8 12-8s6-8 10-8"/><circle cx="5" cy="25" r="2.6" fill="#e41830" stroke="none"/><path d="M24 5.5h5v5"/></svg></div>
+      <div class="who">
+        <p class="t">Marathon</p>
+        <p class="v">26.2 miles</p>
+        <p class="m">Somebody&rsquo;s Sunday morning</p>
+      </div>
+      <span class="pill">Counts</span>
+    </div>
+
+    <div class="act">
+      <div class="mark"><svg viewBox="0 0 32 32" fill="none" stroke="#e41830" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.4"/><circle cx="22" cy="17" r="3.4"/><circle cx="13" cy="25" r="3.4"/></svg></div>
+      <div class="who">
+        <p class="t">Walk</p>
+        <p class="v">0.4 miles</p>
+        <p class="m">Grove Street PATH to the door</p>
+      </div>
+      <span class="pill">Counts</span>
+    </div>
+
+    <div class="act">
+      <div class="mark"><svg viewBox="0 0 32 32" fill="none" stroke="#e41830" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="3" width="8" height="14" rx="4"/><path d="M8 15a8 8 0 0 0 16 0M16 23v6M11 29h10"/></svg></div>
+      <div class="who">
+        <p class="t">Pitch</p>
+        <p class="v">5 minutes</p>
+        <p class="m">Plus 5 of live Q&amp;A, on a stage in Jersey City</p>
+      </div>
+      <span class="pill">Counts</span>
+    </div>
+
+    <div class="act">
+      <div class="mark"><svg viewBox="0 0 32 32" fill="none" stroke="#e41830" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M27 25c-6 0-6-8-12-8S9 9 5 9"/><circle cx="27" cy="25" r="2.6" fill="#e41830" stroke="none"/><path d="M8 5.5H3v5"/></svg></div>
+      <div class="who">
+        <p class="t">Walk back</p>
+        <p class="v">0.4 miles</p>
+        <p class="m">Arguing about which one should have won</p>
+      </div>
+      <span class="pill">Counts</span>
+    </div>
+
+    <div class="act go">
+      <div class="mark"><svg viewBox="0 0 32 32" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 28V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v22M23 16h5v12M17 16h.01"/></svg></div>
+      <div class="who">
+        <p class="t">Showing up</p>
+        <p class="v">Thursday, 6:30 PM</p>
+        <p class="m">AI Demo Night #12 &middot; Apprentice.IO, Jersey City</p>
+      </div>
+      <span class="pill">Counts most</span>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="foot">
+    <p class="l"><b>Caroline Turnbull and Julia Suozzi</b> pitch mobius on Thursday. An engineer-athlete and an engineer-trainer, live on the App Store.</p>
+    <p class="r">
+      Log this one<br>
+      <b>luma.com/na6vswhb</b>
+    </p>
+  </div>
+</div>
+</body>
+</html>

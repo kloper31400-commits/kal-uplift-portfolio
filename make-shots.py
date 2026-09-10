@@ -17,6 +17,16 @@ SRC = pathlib.Path("/Users/kennedy/uplift-app/build/demo/shots")
 DST = pathlib.Path(__file__).parent / "shots"
 DST.mkdir(parents=True, exist_ok=True)
 
+# The speaker-system captures live in a separate folder. Only the published
+# Luma event is taken from it: the application card and the slot board show
+# real speakers' private submissions and internal chase states ("wants a new
+# date", "no reply"), so those two screens are rebuilt in HTML with invented
+# speakers instead of captured.
+EXTRA = {
+    "speaker-luma": pathlib.Path(
+        "/Users/kennedy/uplift-app/build/speaker-system/kenneth-jones/04-luma.png"),
+}
+
 FRAMES = """
 a02-today a03-deadlines a04-overview a05-roster a05c-roster-profile
 a06-mentorapps a06f-founder-apps a06g-founder-review

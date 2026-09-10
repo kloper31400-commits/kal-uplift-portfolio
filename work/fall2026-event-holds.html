@@ -1,0 +1,763 @@
+<title>Fall 2026 Dates to Know</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --paper:      #f5f6f0;
+    --surface:    #fffffb;
+    --ink:        #1a231d;
+    --ink-soft:   #5b665e;
+    --ink-faint:  #8a948b;
+    --rule:       #dde0d6;
+    --rule-soft:  #e9ebe3;
+    --marker:     rgba(150, 208, 74, 0.55);
+    --accent:     #316b2c;
+    --flag:       #90540e;
+    --flag-bg:    rgba(214, 160, 74, 0.16);
+
+    --step--1: 0.8125rem;
+    --step-0:  1rem;
+    --step-1:  1.1875rem;
+    --step-2:  1.5rem;
+    --step-3:  2.125rem;
+    --step-4:  3rem;
+
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body:    "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #111510;
+      --surface:   #1a1e19;
+      --ink:       #e9ece4;
+      --ink-soft:  #9ba496;
+      --ink-faint: #6f7a6c;
+      --rule:      #2d332c;
+      --rule-soft: #23281f;
+      --marker:    rgba(150, 208, 74, 0.26);
+      --accent:    #a9d96d;
+      --flag:      #dda75a;
+      --flag-bg:   rgba(214, 160, 74, 0.12);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:     #111510;
+    --surface:   #1a1e19;
+    --ink:       #e9ece4;
+    --ink-soft:  #9ba496;
+    --ink-faint: #6f7a6c;
+    --rule:      #2d332c;
+    --rule-soft: #23281f;
+    --marker:    rgba(150, 208, 74, 0.26);
+    --accent:    #a9d96d;
+    --flag:      #dda75a;
+    --flag-bg:   rgba(214, 160, 74, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: var(--step-0);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) clamp(1.1rem, 5vw, 2.5rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.25rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: var(--step-4);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    margin: 0;
+    max-width: 34rem;
+    color: var(--ink-soft);
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .tally {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 1px;
+    margin-top: 0.75rem;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .tally div {
+    background: var(--surface);
+    padding: 0.85rem 1rem 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .tally b {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: var(--step-2);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tally span {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- sections ---------- */
+
+  section { display: flex; flex-direction: column; gap: 1.35rem; }
+
+  .section-head { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .section-head h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: var(--step-2);
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .section-head p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 36rem;
+  }
+
+  /* ---------- the hold list ---------- */
+
+  .month {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin: 1.25rem 0 0;
+  }
+
+  .month:first-of-type { margin-top: 0; }
+
+  .holds { display: flex; flex-direction: column; }
+
+  .hold {
+    display: grid;
+    grid-template-columns: 6.25rem 1fr;
+    gap: 0 1.35rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: start;
+  }
+
+  .when {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.35;
+    padding-top: 0.15rem;
+  }
+
+  .when b { display: block; font-weight: 600; letter-spacing: 0.02em; }
+  .when span { display: block; color: var(--ink-faint); font-size: 0.75rem; letter-spacing: 0.08em; }
+
+  .what { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .what h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: var(--step-1);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .what h3 em {
+    font-style: normal;
+    background: linear-gradient(var(--marker), var(--marker)) 0 0.12em / 100% 0.82em no-repeat;
+    padding: 0 0.15em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .where {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .note {
+    margin: 0.25rem 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    max-width: 30rem;
+  }
+
+  .flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: start;
+    margin-top: 0.35rem;
+    padding: 0.25rem 0.55rem 0.3rem;
+    background: var(--flag-bg);
+    color: var(--flag);
+    border-radius: 2px;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .flag::before {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ---------- agenda ---------- */
+
+  .day {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin: 1.5rem 0 0;
+  }
+
+  .day:first-of-type { margin-top: 0; }
+  .day em { font-style: normal; letter-spacing: 0.06em; text-transform: none; color: var(--ink-faint); font-weight: 400; }
+
+  .pair {
+    border-left: 3px solid var(--flag);
+    background: var(--flag-bg);
+    padding: 0.1rem 1.1rem 0.1rem 1.1rem;
+    margin: 0.5rem 0 1.1rem;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .pair .hold { border-bottom: 1px solid var(--rule); }
+  .pair .hold:last-child { border-bottom: none; }
+
+  .pair-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    margin: 1.4rem 0 0;
+    padding: 0.55rem 1.1rem 0.5rem;
+    background: var(--flag);
+    color: var(--paper);
+    border-radius: 3px 3px 0 0;
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pair-label + .pair { margin-top: 0; border-radius: 0 0 3px 3px; }
+
+  .pair-label b { font-weight: 600; }
+  .pair-label i { font-style: normal; opacity: 0.75; letter-spacing: 0.06em; text-transform: none; }
+
+  .decisions {
+    counter-reset: d;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .decisions li {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: 0.8rem;
+    align-items: baseline;
+  }
+
+  .decisions li::before {
+    counter-increment: d;
+    content: counter(d);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--flag);
+    border: 1px solid var(--flag);
+    border-radius: 50%;
+    width: 1.55rem; height: 1.55rem;
+    display: grid;
+    place-items: center;
+    align-self: start;
+  }
+
+  .decisions b { font-weight: 600; }
+  .decisions span { color: var(--ink-soft); }
+
+  /* ---------- event blocks ---------- */
+
+  .ev {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .ev:first-of-type { padding-top: 0; border-top: none; }
+
+  .ev-head { display: flex; flex-direction: column; gap: 0.45rem; }
+
+  .ev-head h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: var(--step-1);
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .place, .dates {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.5rem 0.26rem;
+    border-radius: 2px;
+  }
+
+  .place { background: var(--accent); color: var(--paper); }
+  .place.away { background: var(--ink); }
+  .dates { border: 1px solid var(--rule); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+  .ev > .note { max-width: 34rem; }
+
+  .by {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  .runsheet {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0.7rem 0 0.75rem 0.9rem;
+    border-left: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+    font-size: var(--step--1);
+  }
+
+  .runsheet li {
+    display: grid;
+    grid-template-columns: 4.4rem 1fr;
+    gap: 0.6rem;
+    color: var(--ink-soft);
+  }
+
+  .runsheet b {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-faint);
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .runsheet li.peak { color: var(--ink); }
+  .runsheet li.peak b { color: var(--accent); font-weight: 600; }
+
+  .src {
+    font-family: var(--mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.12rem 0.4rem 0.16rem;
+    align-self: start;
+    margin-top: 0.2rem;
+  }
+
+  /* ---------- secondary list ---------- */
+
+  .maybe {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .maybe li {
+    display: grid;
+    grid-template-columns: 6.25rem 1fr;
+    gap: 0 1.35rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .maybe .title { font-weight: 500; }
+  .maybe .sub { display: block; font-size: var(--step--1); color: var(--ink-soft); }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--flag);
+    border-radius: 2px;
+    padding: 1.35rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .callout h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: var(--step-1);
+    margin: 0;
+  }
+
+  .callout p { margin: 0; color: var(--ink-soft); }
+
+  a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---------- colophon ---------- */
+
+  .colophon {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    max-width: 36rem;
+  }
+
+  .colophon p { margin: 0; }
+  .colophon strong { color: var(--ink-soft); font-weight: 600; }
+
+  @media (max-width: 34rem) {
+    .hold, .maybe li { grid-template-columns: 1fr; gap: 0.5rem; }
+    .when { padding-top: 0; }
+    .when b { display: inline; }
+    .when span { display: inline; margin-left: 0.5rem; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <p class="eyebrow">Fall 2026 &middot; New York</p>
+    <h1>Fall 2026 Dates to Know</h1>
+    <p class="standfirst">Sixteen events across three places. The Summit sessions are yours now, Zeev&rsquo;s dates stand, and everything is expected of you. Three moments collide, and those are the only real decisions.</p>
+    <div class="tally">
+      <div><b>16</b><span>Events</span></div>
+      <div><b>3</b><span>You must choose</span></div>
+      <div><b>3</b><span>Places</span></div>
+      <div><b>12</b><span>Days</span></div>
+    </div>
+  </header>
+
+  <section class="callout">
+    <h2>The three you cannot do both of</h2>
+    <ul class="decisions">
+      <li><span><b>Wednesday morning.</b> Board Matchmaking and the ServiceNow breakfast overlap by ninety minutes. Both midtown, so a split is at least possible.</span></li>
+      <li><span><b>Wednesday afternoon into the night.</b> Future of Impact at the stadium against either midtown dinner. The ballpark takes the whole evening.</span></li>
+      <li><span><b>Thursday, November 12.</b> Creative &amp; Brand against Cloud &amp; AI. Two New York dinners, one night, and nothing about the timing separates them.</span></li>
+    </ul>
+    <p>Everything else in the fall runs clean.</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Social Innovation Summit @ UNGA</h2>
+      <p>Eight sessions over three days, two venues. Green marks the ones Zeev highlighted in his own note.</p>
+    </div>
+
+    <div class="holds">
+
+      <p class="day">Tue 22 <em>breakfast, the Bronx, back for dinner</em></p>
+
+      <article class="hold">
+        <div class="when"><b>9:30 AM</b><span>&ndash;11:30 AM</span></div>
+        <div class="what">
+          <h3>VIP Salon: Corporate Leadership Strategies to Drive Change on Domestic Violence</h3>
+          <p class="where">Midtown &middot; breakfast</p>
+          <p class="by">Vodafone Americas Foundation &middot; Allstate Foundation &middot; National Domestic Violence Hotline</p>
+        </div>
+      </article>
+
+      <article class="hold">
+        <div class="when"><b>Midday on</b><span>Time TBC</span></div>
+        <div class="what">
+          <h3><em>SMART Summit</em></h3>
+          <p class="where">Yankee Stadium, the Bronx &middot; Zeev&rsquo;s list</p>
+          <p class="note">You head up after the breakfast wraps. Still no start time from Zeev, and now what matters more is when it ends.</p>
+        </div>
+      </article>
+
+      <article class="hold">
+        <div class="when"><b>6:00 PM</b><span>&ndash;9:00 PM</span></div>
+        <div class="what">
+          <h3>VIP Dinner: Human Skills in an AI-Enabled World</h3>
+          <p class="where">Midtown</p>
+          <p class="by">PwC US</p>
+          <p class="note">Forty minutes back from the stadium, so you need to be leaving the Bronx by five.</p>
+        </div>
+      </article>
+
+      <p class="day">Wed 23 <em>two forks, both midtown or the Bronx</em></p>
+
+      <p class="pair-label"><b>Choose one</b> <i>or split them, both midtown</i></p>
+      <div class="pair">
+        <article class="hold">
+          <div class="when"><b>8:00 AM</b><span>&ndash;10:00 AM</span></div>
+          <div class="what">
+            <h3>Board Matchmaking Experience</h3>
+            <p class="by">Apollo Opportunity Foundation</p>
+          </div>
+        </article>
+        <article class="hold">
+          <div class="when"><b>8:30 AM</b><span>&ndash;10:30 AM</span></div>
+          <div class="what">
+            <h3>VIP Breakfast: Scaling Impact &amp; Strengthening Resilience Through Technology</h3>
+            <p class="by">ServiceNow.org &middot; CARE</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="pair-label"><b>Choose one of three</b> <i>the stadium eats the evening</i></p>
+      <div class="pair">
+        <article class="hold">
+          <div class="when"><b>2:30 PM</b><span>&ndash;late</span></div>
+          <div class="what">
+            <h3>SIS Salon: Future of Impact</h3>
+            <p class="where">Yankee Stadium, the Bronx</p>
+            <p class="note">The Summit listing says 3:00 to 6:00. The event&rsquo;s own site says otherwise:</p>
+            <ul class="runsheet">
+              <li><b>2:30 PM</b><span>Arrival</span></li>
+              <li><b>3:00 PM</b><span>Private behind-the-scenes stadium tour</span></li>
+              <li class="peak"><b>4:00 PM</b><span>Visionary conversations, executive roundtables, curated networking</span></li>
+              <li><b>6:30 PM</b><span>Happy hour in the VIP luxury suite</span></li>
+              <li><b>7:05 PM</b><span>Yankees vs. Tampa Bay Rays</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="hold">
+          <div class="when"><b>6:00 PM</b><span>&ndash;9:00 PM</span></div>
+          <div class="what">
+            <h3>VIP Dinner: Sustainability&rsquo;s Role in Business Resilience &amp; Growth</h3>
+            <p class="where">Midtown</p>
+            <p class="by">PwC US</p>
+          </div>
+        </article>
+        <article class="hold">
+          <div class="when"><b>6:00 PM</b><span>&ndash;9:00 PM</span></div>
+          <div class="what">
+            <h3>VIP Dinner: In Motion, a Leadership Dinner on Mental Health &amp; Wellbeing</h3>
+            <p class="where">Midtown</p>
+            <p class="by">lululemon &middot; with Cody Rigsby</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="day">Thu 24 <em>midtown</em></p>
+
+      <article class="hold">
+        <div class="when"><b>9:00 AM</b><span>&ndash;11:00 AM</span></div>
+        <div class="what">
+          <h3>VIP Breakfast: Building Resilient Food Systems</h3>
+          <p class="by">CARE &middot; Cargill</p>
+          <p class="note">Zeev&rsquo;s note stops at the 23rd. This is a fourth day he does not know about.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>The rest of the fall</h2>
+      <p>Zeev&rsquo;s dates, in order. He gave no times for any of them.</p>
+    </div>
+
+    <div class="holds">
+
+      <div class="ev">
+        <div class="ev-head">
+          <h3><em>Cybersecurity Executive Dinner</em></h3>
+          <div class="meta"><span class="place">Midtown, presumed</span><span class="dates">Tue Sep 29 &middot; PM</span></div>
+        </div>
+        <p class="note">A Marketing Leadership dinner runs in New York the same night, unhighlighted and not yours.</p>
+      </div>
+
+      <div class="ev">
+        <div class="ev-head">
+          <h3><em>Revenue Leadership Executive Dinner</em></h3>
+          <div class="meta"><span class="place">Midtown, presumed</span><span class="dates">Thu Oct 1 &middot; PM</span></div>
+        </div>
+        <p class="note">An Executive Leadership Activation sits on the same date with no city given. Possibly the daytime half of this one.</p>
+      </div>
+
+      <div class="ev">
+        <div class="ev-head">
+          <h3><em>Northwell / TCF: Technology &amp; Innovation Conference</em></h3>
+          <div class="meta"><span class="place">New York</span><span class="dates">Wed&ndash;Thu Oct 21&ndash;22 &middot; all day</span></div>
+        </div>
+        <p class="note">Two full working days, and the only daytime commitment in October.</p>
+      </div>
+
+      <div class="ev">
+        <div class="ev-head">
+          <h3><em>Marketing Leadership Dinner</em></h3>
+          <div class="meta"><span class="place">Midtown, presumed</span><span class="dates">Tue Oct 27 &middot; PM</span></div>
+        </div>
+      </div>
+
+      <p class="pair-label"><b>Choose one</b> <i>same night, same city</i></p>
+      <div class="pair">
+        <div class="ev">
+          <div class="ev-head">
+            <h3><em>Creative &amp; Brand Leadership Dinner</em></h3>
+            <div class="meta"><span class="place">Midtown, presumed</span><span class="dates">Thu Nov 12 &middot; PM</span></div>
+          </div>
+          <p class="note">The one Zeev highlighted, so the default unless you say otherwise.</p>
+        </div>
+        <div class="ev">
+          <div class="ev-head">
+            <h3>Cloud &amp; AI Executive Dinner</h3>
+            <div class="meta"><span class="place">Midtown, presumed</span><span class="dates">Thu Nov 12 &middot; PM</span></div>
+          </div>
+          <p class="note">Not highlighted, but it is a New York dinner on a night you are already out. Timing is not what rules it out, only Zeev&rsquo;s pen.</p>
+        </div>
+      </div>
+
+      <div class="ev">
+        <div class="ev-head">
+          <h3><em>Landmark 25th Annual Celebration / Retreat</em></h3>
+          <div class="meta"><span class="place away">Tarrytown, Westchester</span><span class="dates">Wed&ndash;Fri Nov 18&ndash;20</span></div>
+        </div>
+        <p class="note">The only one outside the city. Three days upstate, so it takes a room, a car, and the end of that week.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>The three places</h2>
+    </div>
+    <div class="holds">
+      <div class="ev">
+        <div class="ev-head">
+          <h3>Midtown Manhattan</h3>
+          <div class="meta"><span class="dates">12 events</span></div>
+        </div>
+        <p class="note">Seven Summit sessions plus every dinner. Walkable, so back-to-back works here.</p>
+      </div>
+      <div class="ev">
+        <div class="ev-head">
+          <h3>Yankee Stadium, the Bronx</h3>
+          <div class="meta"><span class="dates">2 events &middot; Sep 22 and 23</span></div>
+        </div>
+        <p class="note">Tuesday you slot it between the breakfast and the dinner. Wednesday you cannot, because Future of Impact runs to first pitch. Roughly forty minutes each way from midtown.</p>
+      </div>
+      <div class="ev">
+        <div class="ev-head">
+          <h3>Tarrytown, Westchester</h3>
+          <div class="meta"><span class="dates">1 event &middot; Nov 18&ndash;20</span></div>
+        </div>
+        <p class="note">The only overnight. About an hour north, so plan on driving or Metro-North.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <p><strong>Sources.</strong> Zeev's "Upcoming Calendar &ndash; Fall 2026" email for the holds, green highlights read from his screenshot. Summit sessions and times from unga.socialinnovation.com and futureofimpact.socialinnovation.com, read Sep 1.</p>
+    <p><strong>Venues.</strong> The Summit lists only &ldquo;Midtown, NYC&rdquo; for its sessions and Zeev gave no venues at all, so exact addresses are still open. &ldquo;Midtown, presumed&rdquo; means exactly that.</p>
+    <p><strong>Also true.</strong> He asked to find time to connect this week.</p>
+  </footer>
+
+</div>

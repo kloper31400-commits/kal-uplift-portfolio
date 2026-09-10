@@ -43,7 +43,7 @@
     ["The comms board",       P + "demo/comms.html",         "receipt vs reconstruction"],
     ["The peer rooms",        P + "demo/cohorts.html",       "four-factor grouping"],
     ["The mentor guide",      P + "demo/mentor.html",        "one ungated page"],
-    ["Everything I made",     P + "work/library.html",       "95 deliverables"],
+    ["Everything I made",     P + "work/library.html",       "70 deliverables"],
   ];
 
   const css = `

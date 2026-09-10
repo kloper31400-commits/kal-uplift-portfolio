@@ -79,8 +79,15 @@ for p in files:
 # Keep the declared order, then Other last.
 order = [t for t, _ in RULES if t in groups] + (["Other"] if "Other" in groups else [])
 
+# The certificate is a credential. It is shown blurred on the portfolio and is
+# deliberately not indexed here, because a listing is a link and a link is a
+# clean copy anyone could fill in with their own name.
+WITHHOLD = {"certificate"}
+
+
 # An HTML file and its PDF twin collapse into one row with two links.
 def rows(items):
+    items = [p for p in items if p.stem not in WITHHOLD]
     seen, out = set(), []
     by_stem = {}
     for p in items:

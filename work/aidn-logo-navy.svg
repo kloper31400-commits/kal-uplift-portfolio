@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 74" width="250" height="74">
+  <!-- AI Demo Nights mark, navy-on-paper version for light grounds.
+       Same lockup as the yellow-on-dark mark, recoloured to the Uplift navy and
+       pink used across the print collateral. Yellow does not hold on paper. -->
+  <g font-family="'Archivo', 'Arial Black', Arial, sans-serif">
+    <text x="3" y="61" font-size="64" font-weight="800" letter-spacing="-3" fill="#cf5b8d" opacity="0.85">AI</text>
+    <text x="0" y="58" font-size="64" font-weight="800" letter-spacing="-3" fill="#110465">AI</text>
+    <text x="103" y="33" font-size="23" font-weight="700" letter-spacing="0.5" fill="#110465">DEMO</text>
+    <text x="103" y="60" font-size="23" font-weight="700" letter-spacing="0.5" fill="#110465">NIGHTS</text>
+  </g>
+</svg>

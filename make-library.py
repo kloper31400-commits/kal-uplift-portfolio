@@ -114,7 +114,7 @@ for g in order:
 page = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Everything I Made · Uplift</title>
+<title>Everything I Made · Kennedy Loper</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{{--indigo:#5c4eb5;--deep:#3d2f8a;--night:#1a0e4f;--light:#9b8fcf;--line:#e8e4f5;

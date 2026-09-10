@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peer Rooms &amp; Session Formats · Uplift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css">
+<style>
+  body { background:#fff; }
+  .wrap { max-width: 1080px; }
+  .hdr-in, .foot-in { max-width: 1080px; }
+
+  .sec { padding-top: 54px; scroll-margin-top: 60px; }
+  .sec > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+              color:var(--indigo-light); margin-bottom:7px; }
+  .sec > h2 { font-size:27px; font-weight:850; letter-spacing:-.7px; line-height:1.16; }
+  .sec > .intro { font-size:15px; color:var(--muted); line-height:1.68; margin-top:12px; max-width:68ch; }
+  .sec > .intro + .intro { margin-top:11px; }
+  .sec > .intro strong { color:var(--ink); font-weight:650; }
+
+  .factors { margin-top:24px; display:grid; gap:11px; }
+  .fac { display:grid; grid-template-columns:56px 1fr 96px; gap:16px; align-items:start;
+         border:1px solid var(--line); border-radius:12px; padding:17px 19px; background:#fff;
+         box-shadow:var(--shadow); }
+  .fac .rank { width:40px; height:40px; border-radius:11px; background:var(--indigo); color:#fff;
+               font-size:16px; font-weight:800; display:grid; place-items:center; }
+  .fac h3 { font-size:15.5px; font-weight:750; margin-bottom:5px; }
+  .fac p { font-size:13.5px; color:var(--muted); line-height:1.62; }
+  .fac .w { text-align:right; }
+  .fac .w b { display:block; font-size:22px; font-weight:850; color:var(--indigo-deep); letter-spacing:-.5px; }
+  .fac .w span { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+  .fac.hard { border-color:#bfe6d1; background:#f6fdf9; }
+
+  .rooms { display:grid; gap:11px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); margin-top:22px; }
+  .room { border:1px solid var(--line); border-radius:12px; padding:15px 17px; background:#fff; box-shadow:var(--shadow); }
+  .room .rn { font-size:16px; font-weight:800; color:var(--indigo-deep); }
+  .room .rw { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+              color:var(--ok-fg); background:var(--ok-bg); border-radius:20px; padding:2px 9px;
+              display:inline-block; margin-top:6px; }
+  .room .rs { font-size:12.5px; color:var(--muted); margin-top:8px; line-height:1.5; }
+
+  .fmt { border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:var(--shadow);
+         overflow:hidden; margin-top:20px; }
+  .fmt .fh { background:linear-gradient(135deg,var(--indigo-night),var(--indigo-deep) 65%,var(--indigo));
+             color:#fff; padding:22px 24px; }
+  .fmt .fh .ft { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; opacity:.8; }
+  .fmt .fh h3 { font-size:23px; font-weight:850; letter-spacing:-.5px; margin:4px 0 8px; }
+  .fmt .fh .tag { font-size:14.5px; opacity:.9; line-height:1.55; font-style:italic; }
+  .fmt .fm { display:flex; gap:8px; flex-wrap:wrap; margin-top:13px; }
+  .fmt .fm span { background:rgba(255,255,255,.16); border-radius:20px; padding:3px 11px; font-size:11.5px; font-weight:650; }
+  .fmt .fb { padding:20px 24px; }
+  .fmt .fb p.about { font-size:14px; line-height:1.7; color:var(--muted); }
+  .fmt h4 { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+            color:var(--indigo-light); margin:20px 0 9px; }
+  .fmt ul { padding-left:19px; }
+  .fmt li { font-size:13.5px; line-height:1.68; margin-bottom:5px; color:var(--muted); }
+  .fmt li strong { color:var(--ink); }
+  .rules { border:1px solid var(--indigo-pale); background:var(--surface); border-radius:10px; padding:14px 17px; }
+  .rules div { font-size:13.5px; font-weight:600; padding:6px 0; border-top:1px solid var(--indigo-pale); }
+  .rules div:first-child { border-top:0; }
+  .swap { background:#fffaf0; border:1px solid #e3c9a0; border-radius:10px; padding:13px 16px;
+          font-size:13px; color:#6b5a33; line-height:1.62; margin-top:14px; }
+
+  .callout { border-left:3px solid var(--indigo); padding:3px 0 3px 20px; margin-top:24px;
+             font-size:16px; line-height:1.66; }
+  .callout span { display:block; font-size:13px; color:var(--muted); margin-top:9px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>How the peer side works</strong> · The grouping logic, and the two formats Uplift
+    runs itself</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <img class="logo" src="../work/uplift-logo-white.png" alt="Uplift">
+    <div class="kicker">Uplift · Peer Rooms</div>
+    <h1>The other half of the programme</h1>
+    <div class="sub">A mentor gives a founder expertise. A peer room gives them company.</div>
+    <div class="sub-2">Those are different goods, and they fail for different reasons.</div>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabs-in" id="nav"></div></nav>
+
+<main class="wrap">
+
+<!-- ══ WHY ══════════════════════════════════════════════════════ -->
+<section class="sec" id="s-why">
+  <div class="k">The premise</div>
+  <h2>What makes a peer room work</h2>
+  <p class="intro">A peer room works when the problems in it rhyme, when the people in it can
+    actually all show up, and when somebody present has already solved what somebody else is stuck
+    on.</p>
+  <p class="intro">It fails when it is nine people at nine different altitudes, when half of them
+    cannot make the time, or when it is nine founders who all need the same thing and none of them
+    can give it.</p>
+</section>
+
+<!-- ══ FACTORS ══════════════════════════════════════════════════ -->
+<section class="sec" id="s-factors">
+  <div class="k">The grouping</div>
+  <h2>Four factors, weighted in order</h2>
+  <p class="intro">The weights are ordered rather than tuned to three decimal places. A room that
+    cannot meet is worse than a room with a wide stage spread, which is worse than a room short on
+    reciprocity, which is worse than one heavy on a single industry.</p>
+
+  <div class="factors">
+    <div class="fac hard">
+      <div class="rank">1</div>
+      <div>
+        <h3>Can they meet?</h3>
+        <p>Founders state availability as morning, afternoon, evening or weekend, and "flexible"
+          counts as all four. The score is the fraction of the room that shares its single best
+          window. <strong>A group with no common window never convenes, and then nothing else about
+          it matters</strong>, which is why this one is hard-weighted above everything else.</p>
+      </div>
+      <div class="w"><b>40</b><span>hard weight</span></div>
+    </div>
+
+    <div class="fac">
+      <div class="rank">2</div>
+      <div>
+        <h3>Stage proximity</h3>
+        <p>Peer value comes from facing comparable problems at the same time. An idea-stage founder
+          and a growth-stage founder produce mentoring, not peer exchange. Rooms should span one
+          stage, not four. Founders whose stage is unknown float freely rather than dragging a
+          room's spread.</p>
+      </div>
+      <div class="w"><b>14</b><span>per extra stage</span></div>
+    </div>
+
+    <div class="fac">
+      <div class="rank">3</div>
+      <div>
+        <h3>Reciprocity</h3>
+        <p>What each founder has demonstrably already done, against what another says they are
+          trying to do. Measured as density rather than coverage: <strong>one person who has raised,
+          in a room of nine, is not the same as four.</strong></p>
+      </div>
+      <div class="w"><b>10</b><span>density</span></div>
+    </div>
+
+    <div class="fac">
+      <div class="rank">4</div>
+      <div>
+        <h3>Spread of industry and need</h3>
+        <p>Fresh perspective, and it keeps direct competitors out of the same room. Pairs are good,
+          because they share context. Three or more of anything is not. "Other" is treated as an
+          absence of information rather than as an industry eleven founders share.</p>
+      </div>
+      <div class="w"><b>4 / 3</b><span>per duplicate</span></div>
+    </div>
+
+    <div class="fac">
+      <div class="rank">5</div>
+      <div>
+        <h3>And a tiebreak: split the siblings</h3>
+        <p>Two founders who share a mentor learn more in different rooms. They already have one
+          another's context; a second room doubles it.</p>
+      </div>
+      <div class="w"><b>8</b><span>per pair</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    Deliberately not region. The fall sessions are virtual, a third of the county fields are blank,
+    and grouping by geography would fight stage for no gain.
+    <span>Geography would only earn its place if these rooms met in person.</span>
+  </div>
+</section>
+
+<!-- ══ THE FIELD THAT WAS WRONG ═════════════════════════════════ -->
+<section class="sec" id="s-wrong">
+  <div class="k">The mistake worth keeping</div>
+  <h2>Reciprocity was built on the wrong field first</h2>
+  <p class="intro">The first version read the "what will you bring to the mentorship" free text. That
+    question is about the mentor relationship, so founders answered about their own coachability:
+    <em>a sponge-like willingness to learn, energy and curiosity, openness to candid feedback.</em>
+    Real answers to a different question.</p>
+  <p class="intro">Matching keywords across them produced <strong>a reciprocity score of 78% on a
+    room whose evidence column was empty</strong>, which is worse than having no number at all. A
+    confident wrong number gets trusted; a missing one gets checked.</p>
+  <p class="intro">So reciprocity was rebuilt on what a founder has already done, against what
+    another says they are trying to do. Both are facts in the application rather than sentiments
+    about it, and the result explains itself in a sentence: somebody who has raised outside capital,
+    in a room with somebody trying to.</p>
+</section>
+
+<!-- ══ ROOMS ════════════════════════════════════════════════════ -->
+<section class="sec" id="s-rooms">
+  <div class="k">The result</div>
+  <h2>Five rooms</h2>
+  <p class="intro">Named for the onboarding slots, in the same order, so a founder's room is the one
+    they already turned up to.</p>
+  <div class="rooms">
+    <div class="room"><div class="rn">Edison</div><div class="rw">Evening</div>
+      <div class="rs">MVP to early traction</div></div>
+    <div class="room"><div class="rn">Hopper</div><div class="rw">Afternoon</div>
+      <div class="rs">Early traction</div></div>
+    <div class="room"><div class="rn">Bardeen</div><div class="rw">Morning</div>
+      <div class="rs">Idea to MVP</div></div>
+    <div class="room"><div class="rn">Lawrence</div><div class="rw">Evening</div>
+      <div class="rs">Revenue-generating</div></div>
+    <div class="room"><div class="rn">Morrison</div><div class="rw">Weekend</div>
+      <div class="rs">Mixed, flexible availability</div></div>
+  </div>
+  <p class="intro" style="margin-top:16px">The score breakdown for every room is rendered in the
+    admin console, <strong>so the trade each room is making is visible rather than asserted.</strong>
+    A room carrying a wide stage spread because it was the only way everyone could meet says so.</p>
+</section>
+
+<!-- ══ HOT SEAT ═════════════════════════════════════════════════ -->
+<section class="sec" id="s-hotseat">
+  <div class="k">Session 17 · what we run ourselves</div>
+  <h2>Hot Seat</h2>
+  <p class="intro">Some sessions have no guest speaker and never will, because the format is the
+    programming. Counting those as "still needs a speaker" overstates the work left and makes an
+    empty-looking calendar out of a planned one.</p>
+
+  <div class="fmt">
+    <div class="fh">
+      <div class="ft">Working session · small-group breakouts · 30 minutes</div>
+      <h3>Hot Seat</h3>
+      <div class="tag">"Some breakthroughs only happen when you say it out loud."</div>
+      <div class="fm"><span>Peer format</span><span>Small groups</span><span>Facilitator guide</span></div>
+    </div>
+    <div class="fb">
+      <p class="about">One person brings a real, pressing challenge. The group gets curious rather
+        than advisory, and the goal is to find the problem underneath the problem. Five minutes on
+        the format, then you break into small groups: decide who takes the hot seat, they set the
+        scene without cleaning it up, and the rest of the group digs in with questions before
+        anyone reaches for a fix.</p>
+
+      <h4>What you leave with</h4>
+      <ul>
+        <li>A problem you have been circling, finally said out loud to people who have been there</li>
+        <li>Questions that get under the problem, rather than advice you did not ask for</li>
+        <li>One concrete next step, and somebody checking in on whether you took it</li>
+      </ul>
+
+      <h4>Rules of engagement</h4>
+      <div class="rules">
+        <div>Ask good questions. Do not jump to solutions.</div>
+        <div>Talk from the trenches. Lived experience beats a newsletter.</div>
+        <div>Be alternative. The weird thing that worked is often the useful answer.</div>
+        <div>Follow through. If you commit to something in the room, do it.</div>
+      </div>
+
+      <h4>Who it is for</h4>
+      <ul>
+        <li>Any founder in the cohort. <strong>Bring something specific enough that the group can
+          actually help:</strong> "I cannot close customers outside my direct network" gets you
+          somewhere, "I need more leads" does not.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PITCH ════════════════════════════════════════════════════ -->
+<section class="sec" id="s-pitch">
+  <div class="k">Session 1 · what we run ourselves</div>
+  <h2>Pitch Without a Deck</h2>
+
+  <div class="fmt">
+    <div class="fh">
+      <div class="ft">Peer workshop · groups of three · 30 minutes</div>
+      <h3>Pitch Without a Deck</h3>
+      <div class="tag">"The best founders can explain what they do in 60 seconds, no slides, no
+        props, just words. Can you?"</div>
+      <div class="fm"><span>Peer format</span><span>Groups of three</span><span>Cold audience</span></div>
+    </div>
+    <div class="fb">
+      <p class="about">Whether you are still shaping your idea or refining the pitch you have given a
+        hundred times, this session is built to sharpen the one thing that matters most: clarity.
+        Clarity on the problem you are solving, on who you are building for, and on why it matters.
+        Working in small groups of three, you pitch for 3 minutes to fellow founders who know nothing
+        about your company, the closest thing to a cold audience you will find. Then you get direct,
+        structured feedback from people who were actually listening.</p>
+
+      <h4>What you leave with</h4>
+      <ul>
+        <li>Three minutes in front of a genuinely cold audience, and what they did and did not understand</li>
+        <li>Structured feedback from founders who were listening rather than waiting to talk</li>
+        <li>A clearer answer to the problem, the who, and the why it matters</li>
+      </ul>
+
+      <h4>The rules</h4>
+      <div class="rules">
+        <div>No slides. No deck. No camera. Just your voice and your story.</div>
+        <div>Three minutes each, in groups of three.</div>
+        <div>Feedback is structured, and it comes from people who were actually listening.</div>
+      </div>
+
+      <div class="swap"><strong>Said out loud rather than quietly swapped.</strong> This slot was
+        originally scheduled as an Ask Me Anything. Founders were told that, so the change is
+        announced on the event page itself: a later peer discussion becomes the AMA with a special
+        guest, covering their business, the programme, and navigating New Jersey's innovation
+        ecosystem.</div>
+
+      <div class="swap" style="background:var(--surface);border-color:var(--indigo-pale);color:var(--muted)">
+        <strong>One more thing the calendar has to know.</strong> A guest speaker also proposed a
+        talk called "Pitch without a deck". Hers is a speaker session, this is the peer workshop, and
+        they must not both end up on the calendar under the same name.</div>
+    </div>
+  </div>
+</section>
+
+<div style="border-top:1px solid var(--line);padding-top:32px;margin-top:52px">
+  <div style="display:flex;gap:9px;flex-wrap:wrap">
+    <a class="btn pri" href="book.html" style="text-decoration:none">The screenshot book →</a>
+    <a class="btn" href="speaker-loop.html" style="text-decoration:none">The speaker loop</a>
+    <a class="btn" href="../work/library.html" style="text-decoration:none">Everything I made</a>
+    <a class="btn" href="../index.html" style="text-decoration:none">Back to portfolio</a>
+  </div>
+</div>
+
+</main>
+
+<footer class="foot"><div class="foot-in">
+  The Uplift peer grouping logic and the two formats the programme runs itself.
+  Designed and built by Kennedy Loper.
+</div></footer>
+
+<script>
+const NAV = [["s-why","Why"],["s-factors","The four factors"],["s-wrong","The wrong field"],
+             ["s-rooms","Five rooms"],["s-hotseat","Hot Seat"],["s-pitch","Pitch Without a Deck"]];
+const nav = document.getElementById("nav");
+NAV.forEach(([id,label]) => {
+  const b = document.createElement("button");
+  b.className = "tab"; b.textContent = label;
+  b.onclick = () => document.getElementById(id).scrollIntoView({behavior:"smooth", block:"start"});
+  nav.appendChild(b);
+});
+</script>
+</body>
+</html>

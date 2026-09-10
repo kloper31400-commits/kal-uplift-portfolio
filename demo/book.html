@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css?v=5">
+<link rel="stylesheet" href="../assets/portal.css?v=7">
 <style>
   body { background:#fff; }
   .wrap { max-width: 1180px; }
@@ -23,21 +23,31 @@
   .grp > p.lead { font-size:14.5px; color:var(--muted); line-height:1.66; margin-top:11px; max-width:70ch; }
   .grp > p.lead strong { color:var(--ink); font-weight:650; }
 
-  .plates { margin-top:24px; display:grid; gap:22px; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); }
-  .plate { }
-  .plate .pn {
-    display:flex; align-items:baseline; gap:8px; margin-bottom:7px; flex-wrap:wrap;
-  }
+  /* Tiny squares. Fixed narrow columns rather than stretching ones, so the
+     embedded documents can be scaled to a known width and every plate is the
+     same size: the point of the grid is taking the whole set in at a glance. */
+  .plates { margin-top:22px; display:grid; gap:16px 14px;
+            grid-template-columns:repeat(auto-fill, 220px); justify-content:space-between; }
+  /* Image first, caption under it. With the caption on top every plate started
+     its picture at a different height, because a one-line note and a five-line
+     note push the frame down differently, and a grid whose images do not line
+     up cannot be scanned. */
+  .plate { display:flex; flex-direction:column; }
+  .plate .fr   { order:1; margin-bottom:8px; }
+  .plate .pn   { order:2; }
+  .plate .sub  { order:3; margin-bottom:0; }
+  .plate .open { order:4; }
+  .plate .pn { display:flex; align-items:baseline; gap:6px; margin-bottom:4px; flex-wrap:wrap; }
   .plate .idx {
-    font-size:10.5px; font-weight:800; letter-spacing:.06em; color:#fff;
-    background:var(--indigo-light); border-radius:4px; padding:2px 6px;
+    font-size:9.5px; font-weight:800; letter-spacing:.05em; color:#fff;
+    background:var(--indigo-light); border-radius:3px; padding:1px 5px;
   }
-  .plate .ttl { font-size:14px; font-weight:750; }
-  .plate .sub { font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:9px; }
+  .plate .ttl { font-size:12.5px; font-weight:750; line-height:1.25; }
+  .plate .sub { font-size:11px; color:var(--muted); line-height:1.45; margin-bottom:7px; }
   .plate .fr {
     border:1px solid var(--line); border-radius:10px; background:var(--surface);
     box-shadow:0 1px 3px rgba(26,23,51,.06), 0 10px 26px rgba(26,23,51,.07);
-    max-height:340px; min-height:200px; overflow-y:auto; cursor:zoom-in;
+    max-height:190px; min-height:150px; overflow-y:auto; cursor:zoom-in;
   }
   .plate .fr img { display:block; width:100%; height:auto; background:var(--surface); }
 
@@ -47,15 +57,15 @@
      screenshotted: a miniature of the live page, scrolling in place, and
      the real thing when you open it. */
   .doc .fr { padding:0; background:#fff; }
-  .doc .fr .mini { width:1000px; height:2600px; border:0; transform:scale(.33);
+  .doc .fr .mini { width:1000px; height:2600px; border:0; transform:scale(.22);
                    transform-origin:top left; display:block; }
-  .doc .fr .cage { width:330px; height:858px; overflow:hidden; }
-  .doc .open { display:inline-block; margin-top:7px; font-size:11.5px; font-weight:800;
+  .doc .fr .cage { width:220px; height:572px; overflow:hidden; }
+  .doc .open { display:inline-block; margin-top:6px; font-size:10.5px; font-weight:800;
                color:var(--indigo); text-decoration:none; }
   .doc .open:hover { text-decoration:underline; }
 
   .plate.wide { grid-column: 1 / -1; }
-  .plate.wide .fr { max-height: 620px; }
+  .plate.wide .fr { max-height: 420px; }
 
 </style>
 </head>
@@ -105,7 +115,7 @@
     the roster, which is why an 86-page document could be reissued whenever the cohort changed.</p>
 
   <div class="plates">
-    <div class="plate wide"><div class="pn"><span class="idx">01</span><span class="ttl">Cover</span></div>
+    <div class="plate"><div class="pn"><span class="idx">01</span><span class="ttl">Cover</span></div>
       <div class="sub">The photo wall: 68 founders, one grid.</div>
       <div class="fr"><img src="../shots/a25-lookbook.jpg" alt="Lookbook cover" loading="lazy"></div></div>
     <div class="plate"><div class="pn"><span class="idx">02</span><span class="ttl">Contents</span></div>

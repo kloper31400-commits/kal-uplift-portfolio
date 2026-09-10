@@ -103,16 +103,29 @@
   }
 
   function scan() {
-    document.querySelectorAll(".fr, .shot.tall").forEach(register);
+    document.querySelectorAll(".fr, .shot.tall").forEach(el => {
+      register(el);
+      // A heavy embedded document can finish well after the last timed scan,
+      // and one of these decks is a megabyte. Rather than guessing at a delay,
+      // each iframe is asked to say when it is ready.
+      const f = el.querySelector("iframe");
+      if (f && !el.dataset.pan && !f.dataset.waiting) {
+        f.dataset.waiting = "1";
+        f.addEventListener("load", () => { delete f.dataset.waiting; register(el); });
+      }
+    });
   }
 
-  // Plates are built after the manifest loads and iframes settle later still,
+  // Plates are built after the manifest loads and images settle later still,
   // so this re-scans rather than assuming everything exists at load.
   window.addEventListener("load", () => {
     scan();
     setTimeout(scan, 1200);
     setTimeout(scan, 3000);
     setTimeout(scan, 6000);
+    // A slow connection can still be filling the grid after that.
+    const late = setInterval(scan, 4000);
+    setTimeout(() => clearInterval(late), 40000);
     requestAnimationFrame(frame);
   });
 })();

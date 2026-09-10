@@ -14,7 +14,7 @@
 
   .hero {
     background: var(--indigo-night);
-    color: #fff; padding: 64px 24px 76px; position: relative; overflow: hidden;
+    color: #fff; padding: 112px 24px 120px; position: relative; overflow: hidden;
   }
   .hero::after {
     content:""; position:absolute; right:-140px; top:-140px; width:460px; height:460px;
@@ -27,8 +27,20 @@
   }
   .hero h1 {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(38px, 6.4vw, 62px); font-weight: 400; letter-spacing: -1px;
-    line-height: 1.02; margin-bottom: 22px;
+    font-size: clamp(48px, 8.2vw, 86px); font-weight: 400; letter-spacing: -1.5px;
+    line-height: 1; margin: 0;
+  }
+  /* A title page, so the hierarchy is name, then what the thing is, then when.
+     The rule is there to stop the year floating loose under the subtitle. */
+  .hero .h-sub {
+    margin-top: 22px; font-size: clamp(12.5px, 1.5vw, 14.5px); font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase; color: #cfc4ff;
+  }
+  .hero .h-rule { margin-top: 34px; width: 96px; height: 1px;
+                  background: rgba(255,255,255,.34); }
+  .hero .h-year {
+    margin-top: 26px; font-size: 13px; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,.62);
   }
   .hero .lede { font-size: clamp(16px, 2.2vw, 19.5px); line-height: 1.6; opacity: .9; max-width: 65ch; }
   .hero .lede + .lede { margin-top: 15px; }
@@ -149,14 +161,10 @@
 
 <section class="hero">
   <div class="hero-in">
-    <div class="eyebrow">Kennedy Loper · Summer 2026 Work Portfolio</div>
-    <h1>What I built this summer.</h1>
-    <p class="lede">I am not selling anything here. I put this together so the work would exist
-      somewhere after the summer ended, and to share what I learned making it. Every screen below
-      is the real thing. If any of it is useful to you, take it.</p>
-    <div class="meta">
-      <span>949 commits in 15 weeks</span>
-    </div>
+    <h1>Kennedy Loper</h1>
+    <div class="h-sub">Programme Work Portfolio</div>
+    <div class="h-rule"></div>
+    <div class="h-year">Summer 2026</div>
   </div>
 </section>
 

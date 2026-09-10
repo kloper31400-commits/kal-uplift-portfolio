@@ -19,8 +19,8 @@
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const SPEED = 16;        // pixels per second
-  const HOLD_TOP = 2000;   // ms paused at the start
+  const SPEED = 24;        // pixels per second; frames are 190px, so a full pass is ~8s
+  const HOLD_TOP = 1500;   // ms paused at the start
   const HOLD_END = 1500;   // ms paused at the far end
   const RESUME = 4000;     // ms after a hand-scroll before resuming
 

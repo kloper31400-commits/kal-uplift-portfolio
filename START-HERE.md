@@ -7,19 +7,16 @@ before the next one.
 
 ---
 
-# Part 1 · Make the screenshots (2 minutes)
+# Part 1 · Already done
 
-The portfolio shows real screenshots of your console and portal. They are
-currently 135 MB of retina captures, far too big for a website. This shrinks
-them.
+The screenshots are generated. **96 frames, 17 MB, sitting in `shots/`.** You do
+not need to run anything.
+
+If you ever re-capture frames in `uplift-app` and want them picked up:
 
 ```
 python3 /Users/kennedy/uplift-portfolio/make-shots.py
 ```
-
-**You should see:** `converted 41 of 41 frames` and a size around 15 MB.
-
-If you instead see `source frames not found`, stop and tell Claude.
 
 ---
 
@@ -35,8 +32,11 @@ Your browser opens the portfolio. Click every link. You are checking for:
 - Any name you recognise as a **real** founder, mentor or speaker
 - Anything that reads wrong to you
 
-**The speaker loop is the page you said matters most.** It is the fourth card
-under "Walk through the real thing". Read it end to end.
+**Two pages to read properly:**
+
+- **The screenshot book** — all 96 screens, linked just under the three cards.
+  The Founder Lookbook is the first section.
+- **The speaker loop** — the fourth card under "Walk through the real thing".
 
 If something is wrong, tell Claude now, before Part 3. Once it is on the
 internet it has been on the internet.

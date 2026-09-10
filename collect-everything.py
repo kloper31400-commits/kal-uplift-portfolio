@@ -64,11 +64,32 @@ ALWAYS_PRIVATE_DIRS = ["one-on-one-logs", "public/certificates"]
 
 SKIP = {"README.md", "DEPLOY.md", "CLAUDE.md"}
 
+# Internal operating documents. Not participant data, but not portfolio pieces
+# either: they describe how to run and administer the live system.
+ALWAYS_PRIVATE_FILES = {
+    "TRANSFER-AND-ADMIN-GUIDE.md",
+    "fall2026-launch-guide.html",
+    "demo-night-investor-tag-list.md",
+}
+
 TEXT_EXT = {".html", ".md", ".txt", ".svg"}
+
+SLUGS = {n: n.lower().replace(" ", "-").replace("'", "").replace(".", "") for n in REAL}
 
 
 def classify(p: pathlib.Path):
     """Return 'private' or 'work'."""
+    if p.name in ALWAYS_PRIVATE_FILES:
+        return "private"
+
+    # A real name in the FILENAME counts, whatever the file type. Checking only
+    # the body missed fall-mentor-acceptance-email-example-jeanne-mcphillips,
+    # whose subject is named in the filename and nowhere else.
+    stem = p.stem.lower().replace("_", "-")
+    for slug in SLUGS.values():
+        if slug and slug in stem:
+            return "private"
+
     if p.suffix.lower() in TEXT_EXT:
         try:
             body = p.read_text(errors="ignore")
@@ -78,12 +99,7 @@ def classify(p: pathlib.Path):
             if n in body:
                 return "private"
         return "work"
-    # Binary: match the filename against the roster, slugified.
-    stem = p.stem.lower().replace("_", "-")
-    for n in REAL:
-        slug = n.lower().replace(" ", "-").replace("'", "").replace(".", "")
-        if slug and slug in stem:
-            return "private"
+
     # A PDF built from an HTML sibling inherits that sibling's verdict.
     sib = p.with_suffix(".html")
     if sib.exists():

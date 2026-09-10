@@ -200,22 +200,28 @@
         <div class="go">Walk through it →</div>
       </div>
     </a>
-    <a class="demo" href="demo/mentor.html">
-      <div class="shot">🤝</div>
+    <a class="demo" href="demo/speaker-loop.html">
+      <div class="shot">🎤</div>
       <div class="db">
-        <h3>The mentor guide</h3>
-        <p>One ungated page: the eight-week arc, the three meetings and what each is for, and the
-           matched founder's full application. Rebuilt here rather than captured.</p>
-        <div class="go">Open it →</div>
+        <h3>The speaker loop</h3>
+        <p>One system end to end: a date in a source file becomes a form choice, an application, a
+           booking, a printed brief and a published event. Plus the string that holds it together.</p>
+        <div class="go">Follow the loop →</div>
       </div>
     </a>
   </div>
+
+  <p class="intro" style="margin-top:18px">
+    There is also <a href="demo/mentor.html" style="color:var(--indigo);font-weight:650">the mentor
+    guide</a>, the single ungated page a mentor gets: the eight-week arc, the three meetings and what
+    each is for, and their matched founder's application. Rebuilt rather than captured.
+  </p>
 </section>
 
 <!-- ══ CASES ════════════════════════════════════════════════════ -->
 <section class="sec" id="systems">
   <div class="k">What I actually built</div>
-  <h2>Six systems, and the problem each one solves</h2>
+  <h2>Seven systems, and the problem each one solves</h2>
   <p class="intro">Every one of these started as a spreadsheet, a shared inbox, or someone's memory.
     The interesting part of the work was usually not the code. It was working out what the real
     problem was before building anything.</p>
@@ -286,6 +292,34 @@
       <div class="links">
         <a class="pri" href="work/uplift-matching-logic-one-pager.html">How we match, published</a>
         <a href="demo/console.html">See the fairness dial</a>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="tag">Integration · five systems, one date</div>
+      <h3>The speaker loop</h3>
+      <p>Twenty-two educational sessions a cohort, each needing a speaker, a title, a published event
+        page and a printed brief. A single source file holds the dates. A script generates the
+        application form from it. Applications are read live, booked against slots, turned into
+        briefs, and published as events. Attendance comes back the other way into the founder's
+        three-session requirement.</p>
+      <p><strong>The part worth reading:</strong> Typeform stores a dropdown answer as the literal
+        text of the choice, so the date label is the join key between the app and every response
+        already submitted. Reformat it, even harmlessly, and every historical response stops
+        resolving to a slot. Nothing throws. Speakers simply appear to have picked no date, and the
+        slots they were holding come free.</p>
+      <p><strong>And the part the design got wrong:</strong> the form was the plan, but an invite
+        email went to eighteen mentors and several replied straight to my inbox. They never touched
+        the form, so the tab built to track speakers could not see the eighteen likeliest ones. The
+        fix is a hand-maintained roster file that says at the top exactly what it is, so the next
+        person inherits the compromise rather than discovering it.</p>
+      <div class="did">
+        <span>Typeform API</span><span>Luma API</span><span>Google Sheets</span>
+        <span>Generated forms</span><span>PDF briefs</span><span>State reconciliation</span>
+      </div>
+      <div class="links">
+        <a class="pri" href="demo/speaker-loop.html">Follow the loop</a>
+        <a href="work/uplift-speaker-system-post.html">Written up</a>
       </div>
     </div>
 
@@ -381,16 +415,14 @@
       <div class="lib-grid">
         <a href="work/portal-guide-fall2026.html">Portal User Guide
           <div class="d">Your portal, explained</div></a>
-        <a href="work/onboarding-deck.html">Onboarding Deck
-          <div class="d">The full welcome session deck</div></a>
         <a href="work/uplift-onboarding-quiz-fall2026.html">Onboarding Quiz
           <div class="d">Ten questions gating the mentor reveal</div></a>
-        <a href="work/uplift-fall-speaker-runbook.html">Speaker Runbook
-          <div class="d">Booking 22 speakers without a spreadsheet in your lap</div></a>
         <a href="work/leader-welcome-packet.html">Leader Member Welcome Packet
           <div class="d">TechUnited NJ membership onboarding</div></a>
-        <a href="work/uplift-speak.html">Share Your Expertise
-          <div class="d">The public call for session speakers</div></a>
+        <a href="work/uplift-exit-survey-mentee.md">Exit Survey · Founders
+          <div class="d">The instrument the retrospective was built from</div></a>
+        <a href="work/uplift-exit-survey-mentor.md">Exit Survey · Mentors
+          <div class="d">The other half of the same picture</div></a>
       </div>
     </div>
 
@@ -401,33 +433,63 @@
           <div class="d">A 19-page visual essay on what the programme is</div></a>
         <a href="work/uplift-retrospective-carousel.pdf">Retrospective Carousel <span class="ext">PDF</span>
           <div class="d">The summer cohort, in numbers and lessons</div></a>
-        <a href="work/uplift-fall2026-linkedin.pdf">Fall Cohort Lookbook <span class="ext">PDF</span>
-          <div class="d">Applicant-edition teaser carousel</div></a>
         <a href="work/uplift-share-your-expertise.pdf">Share Your Expertise <span class="ext">PDF</span>
-          <div class="d">Print edition of the speaker call</div></a>
+          <div class="d">The call for session speakers, print edition</div></a>
+        <a href="work/uplift-retrospective-linkedin-post.md">Retrospective Post
+          <div class="d">The public write-up of the summer cohort</div></a>
+        <a href="work/speaker-system-post.md">The Speaker System, Written Up
+          <div class="d">How the booking loop works, for a general audience</div></a>
+        <a href="work/uplift-expert-sessions-post.html">Expert Sessions Announcement
+          <div class="d">The campaign that filled the speaker pipeline</div></a>
+      </div>
+    </div>
+
+    <div class="lib-grp">
+      <h4>Email systems</h4>
+      <div class="lib-grid">
+        <a href="work/fall-acceptance-email.html">Founder Acceptance
+          <div class="d">Generated per founder from the roster</div></a>
+        <a href="work/fall-mentor-acceptance-email.html">Mentor Acceptance
+          <div class="d">Two hand-written lines per mentor, the rest generated</div></a>
+        <a href="work/fall-acceptance-email-example-kennedy.html">Acceptance, Rendered
+          <div class="d">A worked example of the template filled in</div></a>
       </div>
     </div>
 
     <div class="lib-grp">
       <h4>Events &amp; print</h4>
       <div class="lib-grid">
-        <a href="work/uplift-summit-run-of-show.html">Summit Run of Show
-          <div class="d">Minute-by-minute event plan</div></a>
         <a href="work/demo-night-run-of-show.html">Demo Night Run of Show
           <div class="d">Presenter order, timings, AV</div></a>
-        <a href="work/uplift-certificate.html">Completion Certificate
-          <div class="d">Generated per founder, print-ready</div></a>
         <a href="work/uplift-brand-posters-24x36.html">Brand Posters 24×36
           <div class="d">Large-format event signage</div></a>
-        <a href="work/uplift-summit-posters-24x36.html">Summit Posters 24×36
-          <div class="d">Directional and station signage</div></a>
+        <a href="work/uplift-summit-posters-24x36.pdf">Summit Posters 24×36 <span class="ext">PDF</span>
+          <div class="d">Print-ready large format</div></a>
+        <a href="work/uplift-summit-directional-signs.html">Summit Directional Signs
+          <div class="d">Wayfinding for a multi-room event</div></a>
         <a href="work/uplift-name-tags.html">Name Tags
           <div class="d">Per-attendee, generated from the roster</div></a>
         <a href="work/uplift-coasters.html">Coasters
           <div class="d">Print collateral for the summit</div></a>
         <a href="work/uplift-pitch-challenge-signage.html">Pitch Challenge Signage
           <div class="d">Event wayfinding and staging</div></a>
+        <a href="work/techunited-camera-wrap.html">Camera Wrap
+          <div class="d">Branded surround for recorded sessions</div></a>
       </div>
+    </div>
+
+    <div class="lib-grp">
+      <h4>Compliance</h4>
+      <div class="lib-grid">
+        <a href="work/njeda-exhibit-a-requisition.html">NJEDA Exhibit A · Requisition
+          <div class="d">Generated from live milestone data</div></a>
+        <a href="work/njeda-exhibit-e-summit.html">NJEDA Exhibit E · Summit Report
+          <div class="d">Event attendance pulled from the platform</div></a>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.6">
+        The remaining exhibits, the per-cohort completion reports and the per-participant
+        verification forms all name real founders, so they are not published here.
+      </p>
     </div>
 
   </div>

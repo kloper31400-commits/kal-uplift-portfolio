@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Speaker Loop · Uplift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css">
+<style>
+  body { background:#fff; }
+  .wrap { max-width: 1120px; }
+  .hdr-in, .foot-in { max-width: 1120px; }
+
+  .sec { padding-top: 54px; }
+  .sec > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+              color:var(--indigo-light); margin-bottom:7px; }
+  .sec > h2 { font-size:27px; font-weight:850; letter-spacing:-.7px; line-height:1.16; }
+  .sec > .intro { font-size:15px; color:var(--muted); line-height:1.68; margin-top:12px; max-width:68ch; }
+  .sec > .intro + .intro { margin-top:11px; }
+  .sec > .intro strong { color:var(--ink); font-weight:650; }
+
+  /* ── the chain ─────────────────────────────────────────────── */
+  .chain { margin-top: 26px; display: grid; gap: 10px; }
+  .link {
+    display: grid; grid-template-columns: 40px 1fr; gap: 15px; align-items: start;
+    border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px;
+    background: #fff; box-shadow: var(--shadow); position: relative;
+  }
+  .link .num {
+    width: 30px; height: 30px; border-radius: 9px; background: var(--indigo);
+    color: #fff; font-size: 13px; font-weight: 800; display: grid; place-items: center;
+  }
+  .link h3 { font-size: 15.5px; font-weight: 750; margin-bottom: 5px; }
+  .link p { font-size: 13.5px; color: var(--muted); line-height: 1.62; }
+  .link code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
+    background: var(--surface); border: 1px solid var(--indigo-pale);
+    border-radius: 5px; padding: 1px 6px; color: var(--indigo-deep);
+  }
+  .link .who {
+    display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.07em;
+    text-transform:uppercase; border-radius:5px; padding:3px 8px; margin-bottom:7px;
+  }
+  .who.sys { background:var(--surface-2); color:var(--indigo-deep); }
+  .who.human { background:#fdf0c8; color:#8a6a10; }
+  .who.ext { background:#e8f0ff; color:#1a4fa8; }
+  .arrow { text-align:center; color:var(--indigo-light); font-size:17px; line-height:1; margin:-4px 0; }
+
+  /* ── slot board ────────────────────────────────────────────── */
+  .board {
+    border:1px solid var(--line); border-radius:14px; background:var(--surface);
+    padding:20px; box-shadow:var(--shadow); margin-top:20px;
+  }
+  .board > .bt { font-size:11.5px; font-weight:800; letter-spacing:.09em;
+                 text-transform:uppercase; color:var(--indigo-deep); margin-bottom:7px; }
+  .board > .bl { font-size:12.5px; color:var(--muted); line-height:1.55; margin-bottom:15px; max-width:80ch; }
+  .slots { display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); }
+  .slot {
+    background:#fff; border:1px solid var(--line); border-radius:10px; padding:11px 13px; min-height:96px;
+  }
+  .slot.booked { background:#f2fbf6; border-color:#bfe6d1; }
+  .slot.house  { background:#fffaf0; border:1.5px dashed #e0b86a; }
+  .slot .sn { font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--indigo-light); }
+  .slot .sd { font-size:13px; font-weight:750; color:var(--indigo-deep); margin-top:1px; }
+  .slot .sp { font-size:13px; font-weight:700; color:var(--ok-fg); margin-top:5px; }
+  .slot .sp.h { color:#a3700e; }
+  .slot .st { font-size:12px; color:var(--muted); margin-top:2px; line-height:1.4; }
+  .slot .so { font-size:12.5px; color:var(--indigo-light); font-weight:600; margin-top:5px; }
+  .tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
+  .tg { font-size:10px; font-weight:800; letter-spacing:.03em; border-radius:4px; padding:2px 6px; }
+  .tg.ok   { background:#e8f8f0; color:#1a6e42; }
+  .tg.warn { background:#fff3e0; color:#b35c00; }
+  .tg.bad  { background:#fdecec; color:#c0392b; }
+  .tg.off  { background:#f0eef8; color:#6b6480; }
+
+  /* ── application card ──────────────────────────────────────── */
+  .appcard { border:1px solid var(--line); border-radius:13px; background:#fff;
+             box-shadow:var(--shadow); overflow:hidden; margin-top:20px; }
+  .appcard .ah { padding:16px 20px; border-bottom:1px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .appcard .ab { padding:18px 20px; display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); }
+  .fld .q { font-size:10.5px; font-weight:800; letter-spacing:.07em; text-transform:uppercase;
+            color:var(--indigo-light); margin-bottom:5px; }
+  .fld .a { font-size:13px; line-height:1.62; }
+  .appcard .af { padding:14px 20px; border-top:1px solid var(--line); background:var(--surface);
+                 display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .rank { display:flex; gap:6px; flex-wrap:wrap; margin-top:5px; }
+  .rank span { font-size:11.5px; font-weight:700; border-radius:6px; padding:3px 9px; background:var(--surface-2); color:var(--indigo-deep); }
+  .rank span.taken { background:#f2f1f7; color:#a8a3bb; text-decoration:line-through; }
+  .rank span.pick  { background:#e8f8f0; color:#1a6e42; }
+
+  /* ── the trap ──────────────────────────────────────────────── */
+  .trap { border:1px solid #e3c9a0; background:#fffaf0; border-radius:13px; padding:22px 24px; margin-top:22px; }
+  .trap h3 { font-size:17px; font-weight:800; margin-bottom:10px; color:#7a5c00; }
+  .trap p { font-size:14px; color:#6b5a33; line-height:1.68; }
+  .trap p + p { margin-top: 10px; }
+  .trap code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px;
+               background:#fff; border:1px solid #e3c9a0; border-radius:5px; padding:1px 6px; color:#7a5c00; }
+
+  pre.code {
+    background:#1a1733; color:#ded8ff; border-radius:11px; padding:16px 18px;
+    overflow-x:auto; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:12.5px; line-height:1.65; margin-top:14px;
+  }
+  pre.code .cm, pre.code .str, pre.code .kw { display: inline; }
+  pre.code .cm  { color:#8b83b8; }
+  pre.code .str { color:#a8e6c0; }
+  pre.code .kw  { color:#c7bcff; }
+
+  .shot { border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:18px;
+          box-shadow:0 2px 6px rgba(26,23,51,.07), 0 18px 44px rgba(26,23,51,.09); background:var(--surface); }
+  .shot img { display:block; width:100%; height:auto; }
+  .shot .missing { padding:40px 24px; text-align:center; font-size:13.5px; color:var(--muted); }
+  .shot .missing code { background:#fff; border:1px solid var(--line); border-radius:6px; padding:2px 7px; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>MOCK DATA</strong> · The real system, invented speakers. The two internal screens
+    below are rebuilt rather than captured, because the real ones show private applications.</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <img class="logo" src="../work/uplift-logo-white.png" alt="Uplift">
+    <div class="kicker">Uplift · The Speaker Loop</div>
+    <h1>22 sessions, booked without a spreadsheet</h1>
+    <div class="sub">One source of truth, a generated application form, and a board that knows
+      whether the calendar invite was accepted.</div>
+    <div class="sub-2">The clearest end-to-end loop in the system: a date in a source file becomes
+      a form choice, an application, a booking, a printed brief and a published event.</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ══ THE PROBLEM ══════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">The problem</div>
+  <h2>Twenty-two dates, and nobody to fill them</h2>
+  <p class="intro">The programme promises founders a session roughly twice a week for eight weeks.
+    Twenty-two slots, each needing a speaker, a title, a description, a published event page and a
+    one-pager brief. Applicants were promised an answer within one business day.</p>
+  <p class="intro">Done by hand that is a spreadsheet of dates, a second spreadsheet of people, an
+    inbox, a calendar, and a running fear that two speakers have been offered the same Friday.
+    <strong>The interesting part is not the booking. It is keeping five systems agreeing about what
+    a date is.</strong></p>
+</section>
+
+<!-- ══ THE CHAIN ════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">End to end</div>
+  <h2>The loop, in seven links</h2>
+
+  <div class="chain">
+
+    <div class="link">
+      <div class="num">1</div>
+      <div>
+        <span class="who sys">Source of truth</span>
+        <h3><code>lib/edu-sessions.js</code></h3>
+        <p>Twenty-two sessions, each a number, a day, a time and a Luma slug. Everything downstream
+          reads this file. Sessions 17 and 18 are both Tue Oct 20 at 5:30 on purpose, two rooms in
+          the same hour, and the file says so in a comment so nobody helpfully deletes the duplicate.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="link">
+      <div class="num">2</div>
+      <div>
+        <span class="who sys">Generated, not hand-built</span>
+        <h3><code>scripts/create-speaker-form.mjs</code></h3>
+        <p>Builds the "Speak at Uplift" Typeform over the API, turning each session into a dropdown
+          choice via <code>sessionLabel()</code>. Re-run it with the form id and a schedule change
+          pushes into the live form. Nobody edits twenty-two dates by hand in a form builder.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="link">
+      <div class="num">3</div>
+      <div>
+        <span class="who ext">Outside the system</span>
+        <h3>The applicant picks three ranked dates</h3>
+        <p>Plus a title, what they would cover, three takeaways, a bio, who it is aimed at, and
+          whether they are open to running a series. There is also an "any of these work" option,
+          which turns out to be the most useful answer anyone gives.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="link">
+      <div class="num">4</div>
+      <div>
+        <span class="who sys">Read live</span>
+        <h3><code>pages/api/admin/speaker-applications.js</code></h3>
+        <p>Fetches the form <em>definition</em> and the responses together. Typeform keys answers by
+          field id, so the definition is what turns them back into named fields. Chosen date labels
+          go through <code>sessionNumberFromLabel()</code> to become slot numbers, then decisions
+          from the <code>FallSpeakers</code> sheet tab are overlaid. Sixty-second cache,
+          <code>?fresh=1</code> to bypass.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="link">
+      <div class="num">5</div>
+      <div>
+        <span class="who human">Human decision</span>
+        <h3>The slot board, and <code>speaker-decide.js</code></h3>
+        <p>Four decisions: approved, pending, rejected, clear. <strong>Pending holds the slot exactly
+          like an approval does</strong>, so a date offered to someone awaiting reply cannot be
+          offered to anyone else. The sheet is append-only and the latest row per applicant wins,
+          so a reversal is a new row rather than an edit.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="link">
+      <div class="num">6</div>
+      <div>
+        <span class="who sys">Generated artefact</span>
+        <h3>The one-pager brief</h3>
+        <p>One page per speaker, anchored by slug, rendered from HTML to PDF. It is what the speaker
+          gets, what the host reads before introducing them, and what goes out with the event.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+
+    <div class="link">
+      <div class="num">7</div>
+      <div>
+        <span class="who ext">Published</span>
+        <h3>The Luma event</h3>
+        <p>Title and description land on the event page founders register through. Attendance comes
+          back the other way, into the milestone that says a founder completed three educational
+          sessions. <strong>The loop closes.</strong></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ THE TRAP ═════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">The interesting bit</div>
+  <h2>A string is the join key between two systems</h2>
+
+  <div class="trap">
+    <h3>Change the date format and approved speakers silently stop mapping to slots</h3>
+    <p>The date a speaker picked is stored by Typeform as the <em>text of the choice they clicked</em>.
+      Not an id. Text. So <code>sessionLabel()</code> is not a display helper, it is the contract
+      between the app and every response already sitting in the form.</p>
+    <p>Reformat it, even harmlessly, and <code>sessionNumberFromLabel()</code> starts returning
+      <code>null</code> for every historical response. Nothing throws. The board just quietly shows
+      speakers as having picked no date, and the slots they were holding come free.</p>
+    <p>You cannot fix it forward either, because the responses are already submitted. The file carries
+      the warning in a comment above the function, which is the only enforcement a two-system string
+      contract really gets.</p>
+  </div>
+
+<pre class="code"><span class="cm">// sessionLabel() must keep producing the exact strings used as date choices in
+// the live speaker Typeform (uUjnsoDm), or approved speakers stop mapping to
+// slots. Re-run the form script after changing it.</span>
+
+<span class="kw">export const</span> sessionLabel = (s) =&gt; `Session ${s.n} · ${s.day} · ${s.time} ET`;
+
+<span class="cm">// "Session 7 · Fri Sept 25 · 12:30 PM ET" -&gt; 7. Returns null for the
+// "Any of these work" choice and for anything unrecognized.</span>
+<span class="kw">export function</span> sessionNumberFromLabel(label) {
+  <span class="kw">const</span> m = /^Session (\d+)\b/.exec((label || <span class="str">""</span>).trim());
+  <span class="kw">if</span> (!m) <span class="kw">return null</span>;
+  <span class="kw">const</span> n = parseInt(m[<span class="str">1</span>], <span class="str">10</span>);
+  <span class="kw">return</span> EDU_SESSIONS.some(s =&gt; s.n === n) ? n : <span class="kw">null</span>;
+}</pre>
+</section>
+
+<!-- ══ SLOT BOARD ═══════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">The screen that answers "are we done?"</div>
+  <h2>The slot board</h2>
+  <p class="intro">All twenty-two at once. Not just whether a slot has a speaker, but whether the
+    confirmation email actually went out, whether a calendar invite was sent, and what the speaker
+    did with it. <strong>Booked and told are different states, and conflating them is how a speaker
+    turns up to nothing.</strong></p>
+
+  <div class="board">
+    <div class="bt">Slot board · 22 sessions</div>
+    <div class="bl">✓ has a speaker and a published title · ◆ our own format, which will move if a
+      speaker wants the date · open means it still needs one. The tags say whether the confirmation
+      email and the calendar invite actually went out, and what the speaker did with the invite.</div>
+
+    <div class="slots">
+      <div class="slot house"><div class="sn">Session 1</div><div class="sd">Fri Sept 11 · 12:30 PM</div>
+        <div class="sp h">◆ Pitch Without a Deck</div><div class="st">our format · movable</div></div>
+
+      <div class="slot booked"><div class="sn">Session 2</div><div class="sd">Mon Sept 14 · 12:30 PM</div>
+        <div class="sp">✓ Ingrid Fenwick</div><div class="st">B2B: from idea to funding to failure</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot"><div class="sn">Session 3</div><div class="sd">Tue Sept 15 · 5:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot booked"><div class="sn">Session 4</div><div class="sd">Fri Sept 18 · 12:30 PM</div>
+        <div class="sp">✓ Marcus Adeyemi</div><div class="st">Marketing that maps the customer journey</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot booked"><div class="sn">Session 5</div><div class="sd">Mon Sept 21 · 12:30 PM</div>
+        <div class="sp">✓ Rosa Lindqvist</div><div class="st">Is venture funding the right capital for your business?</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg warn">wants a new date</span></div></div>
+
+      <div class="slot booked"><div class="sn">Session 6</div><div class="sd">Tue Sept 22 · 5:30 PM</div>
+        <div class="sp">✓ Delphine Okonkwo</div><div class="st">Brand positioning and story-first marketing</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot booked"><div class="sn">Session 7</div><div class="sd">Fri Sept 25 · 12:30 PM</div>
+        <div class="sp">✓ Theo Bhatt</div><div class="st">Vibe coding: what is it and how can it help you?</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot booked"><div class="sn">Session 8</div><div class="sd">Mon Sept 28 · 12:30 PM</div>
+        <div class="sp">✓ Camille Sundqvist</div><div class="st">From startup to dissolution: a post-mortem</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot"><div class="sn">Session 9</div><div class="sd">Tue Sept 29 · 5:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot booked"><div class="sn">Session 10</div><div class="sd">Fri Oct 2 · 12:30 PM</div>
+        <div class="sp">✓ Soren Marchand</div><div class="st">Fundraising AMA</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot"><div class="sn">Session 11</div><div class="sd">Mon Oct 5 · 12:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot booked"><div class="sn">Session 12</div><div class="sd">Tue Oct 6 · 5:30 PM</div>
+        <div class="sp">✓ Priya Vasquez</div><div class="st">Managing engineers</div>
+        <div class="tags"><span class="tg bad">no email</span><span class="tg warn">invite no reply</span></div></div>
+
+      <div class="slot booked"><div class="sn">Session 13</div><div class="sd">Fri Oct 9 · 12:30 PM</div>
+        <div class="sp">✓ Ada Cortland</div><div class="st">Ship AI that actually works: one real workflow, built live</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg ok">invite accepted</span></div></div>
+
+      <div class="slot"><div class="sn">Session 14</div><div class="sd">Mon Oct 12 · 12:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot"><div class="sn">Session 15</div><div class="sd">Fri Oct 16 · 12:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot booked"><div class="sn">Session 16</div><div class="sd">Mon Oct 19 · 12:30 PM</div>
+        <div class="sp">✓ Emil Rutherford</div><div class="st">Fundraising for concept to seed stage companies</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg bad">no reply</span></div></div>
+
+      <div class="slot house"><div class="sn">Session 17</div><div class="sd">Tue Oct 20 · 5:30 PM</div>
+        <div class="sp h">◆ Hot Seat</div><div class="st">our format · movable</div></div>
+
+      <div class="slot"><div class="sn">Session 18</div><div class="sd">Tue Oct 20 · 5:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot booked"><div class="sn">Session 19</div><div class="sd">Wed Oct 21 · 12:30 PM</div>
+        <div class="sp">✓ Naomi Brannigan</div><div class="st">Choose New Jersey</div>
+        <div class="tags"><span class="tg ok">email sent</span><span class="tg bad">no invite</span></div></div>
+
+      <div class="slot"><div class="sn">Session 20</div><div class="sd">Fri Oct 23 · 5:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot"><div class="sn">Session 21</div><div class="sd">Tue Nov 3 · 5:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+
+      <div class="slot"><div class="sn">Session 22</div><div class="sd">Wed Nov 4 · 12:30 PM</div>
+        <div class="so">open · nobody yet</div></div>
+    </div>
+  </div>
+
+  <p class="intro" style="margin-top:18px"><strong>Read the failure states, not the green ones.</strong>
+    Session 12 has a speaker but no confirmation email and an unanswered invite: that is a person who
+    thinks they might be speaking. Session 19 was emailed but never sent a calendar invite. Session 5
+    wants a different date, which frees a Monday somebody else has been waiting for. None of that is
+    visible on a board that only tracks booked or not booked.</p>
+</section>
+
+<!-- ══ APPLICATION ══════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">One applicant</div>
+  <h2>The review card</h2>
+  <p class="intro">Everything they submitted, on one screen, with the booking actions attached.
+    Applicants were promised an answer within one business day, so the review cannot involve opening
+    a form dashboard in another tab.</p>
+
+  <div class="appcard">
+    <div class="ah">
+      <div class="av lg">TB</div>
+      <div class="grow">
+        <div style="font-size:16.5px;font-weight:800;display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+          Theo Bhatt <span class="chip ok">Confirmed · Session 7</span></div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:2px">
+          Alder Labs · applied 2026-09-01 · LinkedIn</div>
+      </div>
+    </div>
+    <div class="ab">
+      <div class="fld"><div class="q">Session title</div>
+        <div class="a">Vibe coding: what is it and how can it help you?</div></div>
+      <div class="fld"><div class="q">What they would cover</div>
+        <div class="a">An introduction to the topic and a walk through of several working
+          applications, then a hands-on session where founders describe their own ideas and get
+          implementation feedback.</div></div>
+      <div class="fld"><div class="q">Three takeaways</div>
+        <div class="a">How to develop business requirements for an application. How AI-assisted
+          building can help their business. How to actually ship one.</div></div>
+      <div class="fld"><div class="q">Why it matters now</div>
+        <div class="a">Founders need to be self-sufficient in building the tools their business
+          runs on rather than waiting on a budget for engineers.</div></div>
+      <div class="fld"><div class="q">Aimed at</div>
+        <div class="a">Any founder in the cohort · idea stage · MVP or early build ·
+          pre-revenue, testing the market</div></div>
+      <div class="fld"><div class="q">Ranked date choices</div>
+        <div class="rank"><span>1. #1 Fri Sept 11</span><span class="pick">2. #7 Fri Sept 25</span>
+          <span class="taken">3. #13 Fri Oct 9</span></div>
+        <div class="a" style="margin-top:7px;color:var(--ok-fg);font-weight:650">Also said any open slot works</div></div>
+    </div>
+    <div class="af">
+      <span class="chip">Working session</span>
+      <span class="chip">Open to a series</span>
+      <span class="chip">Flexible on dates</span>
+      <span style="flex:1"></span>
+      <button class="btn">Email Theo</button>
+      <button class="btn">Luma event →</button>
+      <button class="btn pri">Confirm &amp; book</button>
+    </div>
+  </div>
+
+  <p class="intro" style="margin-top:16px">Their first choice was already taken, their third was
+    taken too, and they said any open slot works. That last answer is what makes the board solvable:
+    it turns a person from a constraint into a filler. <strong>Confirming marks them booked and takes
+    the date off the board for everyone else in the same action</strong>, which is the whole defence
+    against double-offering a Friday.</p>
+</section>
+
+<!-- ══ THE SECOND PATH ══════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">What the design missed</div>
+  <h2>The form was the plan. Email was what happened.</h2>
+  <p class="intro">An invite went out to around eighteen mentors asking them to speak. Several
+    replied straight to my inbox with a bio, a topic, takeaways and their available dates.
+    <strong>They never touched the form, so the admin could not see them at all.</strong></p>
+  <p class="intro">The Speakers tab reads the Typeform. That was the entire design, and it was
+    correct right up to the moment a real person answered an email instead. Eighteen of the most
+    likely speakers in the programme were invisible to the system built to track speakers.</p>
+  <p class="intro">The fix is not clever, and I think that is the point. A roster file carries the
+    people who came in by email, each marked <code>source: "email"</code>, alongside the ones the
+    form knows about. It is hand-maintained, which is a real cost, and the file says so at the top
+    so the next person knows what they are inheriting rather than discovering it.</p>
+
+<pre class="code"><span class="cm">// This exists because the Speakers tab could only ever see the Typeform
+// (uUjnsoDm). The Aug 28 invite email went to ~18 mentors and several replied
+// with bio, topic, takeaways and dates straight back to Kennedy, never touching
+// the form, so they were invisible in the admin. Those people are marked
+// source: "email" below and there is no other record of them in the app.
+//
+// A row here does NOT book the slot. Booking still happens through
+// /api/admin/speaker-decide, which writes the FallSpeakers sheet.</span></pre>
+
+  <p class="intro" style="margin-top:16px">Two intake paths, one board. The comment matters more than
+    the code: it records that the second path is a patch over a design assumption, not a feature, so
+    nobody later mistakes the hand-maintained file for the intended architecture.</p>
+</section>
+
+<!-- ══ PUBLISHED ════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">The far end</div>
+  <h2>What the founder finally sees</h2>
+  <p class="intro">The published event. Title and description come from the application, the date
+    from the source file, and registration comes back as attendance against the founder's
+    three-session requirement.</p>
+  <div class="shot"><img src="../shots/speaker-luma.jpg" alt="The published Luma event page" loading="lazy"></div>
+  <p class="intro" style="margin-top:16px">And the brief that goes with it, one page per speaker,
+    generated from the roster. There is a
+    <a href="../work/uplift-speaker-system-post.html">plain-language write-up of the whole system</a>
+    as well, for whoever runs it next.</p>
+</section>
+
+<div style="border-top:1px solid var(--line);padding-top:32px;margin-top:52px">
+  <div style="display:flex;gap:9px;flex-wrap:wrap">
+    <a class="btn pri" href="console.html" style="text-decoration:none">The programme console →</a>
+    <a class="btn" href="portal.html" style="text-decoration:none">The founder portal</a>
+    <a class="btn" href="../index.html" style="text-decoration:none">Back to portfolio</a>
+  </div>
+</div>
+
+</main>
+
+<footer class="foot"><div class="foot-in">
+  The Uplift speaker booking loop. Internal screens rebuilt with invented speakers.
+  Designed and built by Kennedy Loper.
+</div></footer>
+
+<script>
+document.querySelectorAll(".shot img").forEach(img => {
+  img.addEventListener("error", () => {
+    img.parentElement.innerHTML = '<div class="missing">Screenshot not generated yet. Run ' +
+      '<code>python3 make-shots.py</code> in the repository root.</div>';
+  });
+});
+</script>
+</body>
+</html>

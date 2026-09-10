@@ -1390,7 +1390,7 @@ function build(DIMS) {
   for (const [id, items] of Object.entries(GROUPS)) {
     const host = document.getElementById(id);
     if (!host) continue;
-    items.forEach(([slug, title, sub]) => {
+    items.forEach(([slug, title, sub], iInGroup) => {
       n++;
       const d = DIMS[slug];
       const el = document.createElement("div");
@@ -1404,8 +1404,13 @@ function build(DIMS) {
         '</div>' +
         '<div class="fr"><img src="shots/' + slug + '.jpg" alt="' + title + '"' +
           (d ? ' width="' + d[0] + '" height="' + d[1] + '"' : '') +
-          // The first sixteen load immediately so the top is never blank.
-          (n > 16 ? ' loading="lazy"' : '') + '></div>';
+          // The first sixteen load immediately so the top is never blank, and so
+          // does the opening frame of every section. The old rule counted across
+          // the whole page, which with fourteen sections only ever protected the
+          // first two: jump straight to a section further down and it opened on
+          // a blank rectangle. A one-frame section could miss entirely, which is
+          // exactly what the send-off did.
+          (n > 16 && iInGroup > 0 ? ' loading="lazy"' : '') + '></div>';
       host.appendChild(el);
     });
   }

@@ -703,6 +703,42 @@
   <div class="plates" id="p-public"></div>
 </section>
 
+<!-- ══ THE SEND-OFF ════════════════════════════════════════════ -->
+<section class="grp" id="g-legacy">
+  <div class="k">The send-off</div>
+  <h2>Founder Cards</h2>
+  <p class="lead">A programme ends and everyone goes back to being busy. This was the attempt to
+    leave something behind that people would actually open: <strong>a deck of twenty reflection
+    cards</strong>, drawable and flippable, with a shared wall to post an answer to and a way to
+    thank a mentor by name. Built as a farewell, and it is the one page here that asks the reader
+    to do something rather than read something.</p>
+
+  <div class="plates" id="p-legacy"></div>
+
+  <div class="note" style="margin-top:20px">
+    <strong>The privacy line is the design.</strong> Your answers save to your own browser and
+    stay there. Nothing leaves the page unless you press the button that shares it. That sentence
+    is written on the card itself, because a reflection prompt only works if you believe the
+    answer is yours, and asking someone what they would tell themselves a year ago is not a
+    question people answer honestly into a form they think is being read.
+  </div>
+
+  <div class="note" style="margin-top:16px">
+    <strong>The shout-out box is the part that made it move.</strong> A thank-you page is a thing
+    you read once. Typing a mentor's name and watching it appear on the board is a thing you come
+    back to, and it turns gratitude into something public and cumulative rather than a line in an
+    email nobody else sees. The wall mixes both: reflection answers alongside "Thank you, [name]"
+    cards, so the same surface carries the private thought and the public credit.
+  </div>
+
+  <div class="note" style="margin-top:16px">
+    <strong>Forty-four mentors listed by name, under one sentence: a legacy is never built alone.</strong>
+    The dedication is the actual point of the page. The cards are the reason to arrive, the mentor
+    roll is what is meant to be seen, and the grant that funded the programme is credited underneath
+    it. Ending a cohort well is a design problem like any other, and mostly nobody treats it as one.
+  </div>
+</section>
+
 <!-- ══ THE RESOURCES ═══════════════════════════════════════════ -->
 <section class="grp" id="g-docs">
   <div class="k">Everything written for the programme</div>
@@ -1211,10 +1247,15 @@
   <div class="k">A note on the data</div>
   <h2>What is real here, and what is not</h2>
   <p class="intro">The walkthroughs are captures of the real application running on a generated
-    cohort: invented founders, invented mentors, invented companies, loaded in before capture. No
-    real participant appears anywhere on this site. The collateral is the genuine article with
-    participant records excluded. The production system and its database stay with the organisation
-    that runs the programme, and nothing operational is published here.</p>
+    cohort: invented founders, invented mentors, invented companies, loaded in before capture. The
+    collateral is the genuine article with participant records excluded. The production system and
+    its database stay with the organisation that runs the programme, and nothing operational is
+    published here.</p>
+  <p class="intro" style="margin-top:14px"><strong>One deliberate exception.</strong> The Founder
+    Cards send-off carries forty-four mentors by name, and the reflection wall shows what people
+    posted to it. That page was published publicly and shared with the cohort as a thank-you, and
+    being named on it was the whole point of it. It is reproduced here as it was published.
+    Everywhere else on this site, every person is invented.</p>
 </section>
 
 <div class="cta" id="contact">
@@ -1310,6 +1351,9 @@ const GROUPS = {
     ["u01-ulrike-live","Meet Ulrike, in public","The ungated page. Same code path, visitor mode: the rulebook and nothing else, no live data and no directory."],
     ["u02-ulrike-routes","The suggested questions","What a visitor is offered before they type. The five that answer most of what people email to ask."],
   ],
+  "p-legacy": [
+    ["legacy-cards","Founder Cards, end to end","The whole send-off page: the deck, the reflection wall as people actually filled it, the mentor roll, and the note it closes on."],
+  ],
   "p-states": [
     ["t01-milestones-blank","Milestones · nothing done","Day one"],
     ["t02-milestones-some","Milestones · partly done","Mid-programme"],
@@ -1392,7 +1436,7 @@ const NAV = [
   ["g-lookbook","Lookbook"],["g-reporting","Reporting"],["g-email","Email & comms"],
   ["g-apps","Applications"],["g-portal","Founder portal"],["g-ulrike","Ulrike"],
   ["g-states","States"],
-  ["g-tips","Tooltips"],["g-public","Public"],["g-docs","Resources"]
+  ["g-tips","Tooltips"],["g-public","Public"],["g-legacy","Send-off"],["g-docs","Resources"]
 ];
 const bn = document.getElementById("bnav");
 NAV.forEach(([id,label]) => {

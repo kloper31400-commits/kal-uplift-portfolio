@@ -25,6 +25,7 @@
     ["Applications",                 "#g-apps"],
     ["The founder portal",           "#g-portal"],
     ["Ulrike, the assistant",        "#g-ulrike"],
+    ["Founder Cards, the send-off",  "#g-legacy"],
     ["The resources",                "#g-docs"],
     ["Walk through more",            "#more"],
     ["Six systems",                  "#systems"],

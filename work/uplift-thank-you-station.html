@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplift Summit: Thank You Card Station</title>
+<style>
+  :root {
+    --navy: #110465;
+    --navy-soft: #3a3560;
+    --pink: #d86697;
+    --pink-soft: #f3cfdf;
+    --slate: #5b6472;
+    --paper: #fafafc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Avenir Next', Avenir, Futura, 'Century Gothic', sans-serif;
+    background: #ececf1;
+    color: var(--navy);
+  }
+
+  /* ---------- Screen-only intro ---------- */
+  .intro {
+    max-width: 8.5in;
+    margin: 32px auto 0;
+    padding: 28px 36px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(17,4,101,.12);
+  }
+  .intro img { height: 44px; display: block; margin-bottom: 14px; }
+  .intro h1 { font-size: 22px; font-weight: 600; letter-spacing: .01em; }
+  .intro p { font-size: 14px; line-height: 1.55; color: #444; margin-top: 8px; }
+  .intro .steps { margin-top: 10px; padding-left: 18px; font-size: 14px; color: #444; line-height: 1.65; }
+  @media print { .intro { display: none; } }
+
+  /* ---------- Sheets ---------- */
+  .sheet {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 24px auto;
+    background: white;
+    box-shadow: 0 2px 10px rgba(17,4,101,.15);
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  @media print {
+    body { background: white; }
+    .sheet { margin: 0; box-shadow: none; }
+    @page { size: letter; margin: 0; }
+  }
+
+  .sheet-label {
+    position: absolute;
+    top: 0.18in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8.5pt;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #b0b0b8;
+    z-index: 5;
+  }
+  @media print { .sheet-label { display: none; } }
+
+  /* =========================================================
+     STATION SIGN (8.5 x 11, portrait)
+     ========================================================= */
+  .sign {
+    width: 8.5in;
+    height: 11in;
+    background: white;
+    color: var(--navy);
+    padding: 0.7in 0.65in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .sign::before {
+    content: "";
+    position: absolute;
+    inset: 0.28in;
+    border: 1.5px solid rgba(17,4,101,.15);
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  .sign-eyebrow {
+    font-size: 12pt;
+    font-weight: 700;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-top: 0.15in;
+  }
+
+  .sign-icon { margin: 0.32in 0 0.22in; }
+
+  .sign-title {
+    font-size: 46pt;
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -.01em;
+  }
+  .sign-title em { color: var(--pink); font-style: normal; }
+
+  .sign-rule {
+    width: 60px; height: 3px;
+    background: var(--pink);
+    border-radius: 2px;
+    margin: 0.26in 0;
+  }
+
+  .sign-lede {
+    font-size: 15.5pt;
+    line-height: 1.55;
+    max-width: 5.9in;
+    color: var(--slate);
+  }
+  .sign-lede strong { color: var(--navy); }
+
+  .sign-panels {
+    display: flex;
+    gap: 0.26in;
+    margin-top: 0.34in;
+    width: 100%;
+    max-width: 6.6in;
+  }
+  .sign-panel {
+    flex: 1;
+    background: var(--paper);
+    border: 1px solid rgba(17,4,101,.12);
+    border-radius: 10px;
+    padding: 0.22in 0.2in;
+    text-align: left;
+  }
+  .sign-panel .p-label {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 6px;
+  }
+  .sign-panel p {
+    font-size: 11.5pt;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+
+  .sign-quote {
+    margin-top: 0.36in;
+    max-width: 5.6in;
+    font-size: 13.5pt;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--navy);
+    position: relative;
+    padding: 0 0.1in;
+  }
+  .sign-quote::before,
+  .sign-quote::after {
+    content: '"';
+    color: var(--pink);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .sign-cta {
+    margin-top: auto;
+    padding-top: 0.32in;
+    display: flex;
+    align-items: center;
+    gap: 0.55in;
+  }
+  .cta-step { text-align: center; max-width: 1.5in; }
+  .cta-num {
+    width: 30px; height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 13pt;
+    margin: 0 auto 8px;
+  }
+  .cta-step p { font-size: 10.5pt; color: var(--slate); line-height: 1.4; }
+
+  .sign-footer {
+    margin-top: 0.3in;
+    margin-bottom: 0.22in;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sign-footer img { height: 34px; width: auto; opacity: .95; }
+  .sign-footer .x { color: rgba(17,4,101,.3); font-size: 15px; }
+
+  /* =========================================================
+     INSPIRATION LIST (single 8.5 x 11 sheet)
+     ========================================================= */
+  .prompt-list-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, auto);
+    grid-auto-flow: column;
+    column-gap: 0.55in;
+    width: 100%;
+    max-width: 7in;
+    margin-top: 0.2in;
+    text-align: left;
+  }
+  .prompt-item {
+    padding: 0.1in 0;
+    border-bottom: 1px solid rgba(17,4,101,.15);
+  }
+  .prompt-eyebrow {
+    display: block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 3px;
+  }
+  .prompt-q {
+    font-size: 12pt;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--navy);
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <img src="uplift-logo.png" alt="Uplift">
+  <h1>Thank You Card Station: Signage &amp; Inspiration List</h1>
+  <p>Everything needed for the Summit's Thank You Card Station: a standing sign that explains the station, and a single-page list of prompts to inspire anyone who's stuck on where to start.</p>
+  <ol class="steps">
+    <li><strong>Sign:</strong> print on cardstock and place in a tabletop frame or easel at the station.</li>
+    <li><strong>Inspiration list:</strong> print on cardstock and place flat on the table, or in a second frame beside the sign.</li>
+    <li>Print at 100% scale ("no fit to page") for accurate sizing.</li>
+  </ol>
+</div>
+
+<!-- ============ SHEET 1: STATION SIGN ============ -->
+<div class="sheet">
+  <div class="sheet-label">Station Sign · 8.5" × 11" · print on cardstock</div>
+  <div class="sign">
+    <div class="sign-eyebrow"><img src="uplift-logo.png" alt="Uplift" style="height:0.28in;width:auto;vertical-align:-4px;margin-right:8px;">Uplift Summit 2026</div>
+    <div class="sign-icon">
+      <svg width="46" height="46" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 14C6 11.7909 7.79086 10 10 10H38C40.2091 10 42 11.7909 42 14V34C42 36.2091 40.2091 38 38 38H10C7.79086 38 6 36.2091 6 34V14Z" stroke="#d86697" stroke-width="2.4"/>
+        <path d="M7 13L24 26L41 13" stroke="#d86697" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M31 33L36.5 30.5V37L31 34.5V33Z" fill="#d86697"/>
+        <path d="M17 30H27" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0"/>
+      </svg>
+    </div>
+    <div class="sign-title">Write It<br><em>Forward</em></div>
+    <div class="sign-rule"></div>
+    <p class="sign-lede">Mentorship is at the heart of Uplift, but gratitude extends far beyond the program. <strong>Take a few minutes to write a handwritten thank-you note to someone who made a difference in your journey.</strong></p>
+
+    <div class="sign-panels">
+      <div class="sign-panel">
+        <div class="p-label">If you're a founder</div>
+        <p>Think of a mentor, a fellow founder, a speaker, or someone from this summer's program.</p>
+      </div>
+      <div class="sign-panel">
+        <div class="p-label">If you're a mentor or guest</div>
+        <p>Think of who changed your career's trajectory, opened a door, or believed in you first.</p>
+      </div>
+    </div>
+
+    <p class="sign-quote">Sometimes the most meaningful thing you leave with isn't a new connection. It's the chance to recognize someone who made your journey possible.</p>
+
+    <div class="sign-cta">
+      <div class="cta-step">
+        <div class="cta-num">1</div>
+        <p>Grab a card &amp; pen</p>
+      </div>
+      <div class="cta-step">
+        <div class="cta-num">2</div>
+        <p>Write what you never got to say</p>
+      </div>
+      <div class="cta-step">
+        <div class="cta-num">3</div>
+        <p>Hand it over tonight, or mail it after</p>
+      </div>
+    </div>
+
+    <div class="sign-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+<!-- ============ SHEET 2: INSPIRATION LIST ============ -->
+<div class="sheet">
+  <div class="sheet-label">Inspiration List · 8.5" × 11" · print on cardstock</div>
+  <div class="sign">
+    <div class="sign-eyebrow"><img src="uplift-logo.png" alt="Uplift" style="height:0.28in;width:auto;vertical-align:-4px;margin-right:8px;">Uplift Summit 2026</div>
+    <div class="sign-title">Need a<br><em>Spark?</em></div>
+    <div class="sign-rule"></div>
+    <p class="sign-lede">If you're not sure who to write to, let one of these get you there.</p>
+
+    <div class="prompt-list-grid">
+      <div class="prompt-item"><span class="prompt-eyebrow">01 &middot; Mentorship</span><div class="prompt-q">Who saw something in you before you saw it in yourself?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">02 &middot; Advice</span><div class="prompt-q">Whose advice are you still thinking about?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">03 &middot; Access</span><div class="prompt-q">Who opened a door for you that you couldn't have opened alone?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">04 &middot; Community</span><div class="prompt-q">Which fellow founder helped you solve a problem on a hard day, when they didn't have to?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">05 &middot; Belief</span><div class="prompt-q">Who took a chance on your idea before the traction proved them right?</div></div>
+      <div class="prompt-item" style="border-bottom:none;"><span class="prompt-eyebrow">06 &middot; Perspective</span><div class="prompt-q">Whose question in a session made you rethink your whole approach?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">07 &middot; Connection</span><div class="prompt-q">Who from this program would you want in your corner five years from now?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">08 &middot; Honesty</span><div class="prompt-q">Whose feedback stung a little, but turned out to be exactly right?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">09 &middot; Showing Up</span><div class="prompt-q">Who showed up for you outside of office hours, no agenda attached?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">10 &middot; Overdue</span><div class="prompt-q">Who's the person you haven't thanked yet, but should?</div></div>
+      <div class="prompt-item"><span class="prompt-eyebrow">11 &middot; Reflection</span><div class="prompt-q">Looking back on your founder's journey, who made the biggest difference, and why?</div></div>
+      <div class="prompt-item" style="border-bottom:none;"><span class="prompt-eyebrow">12 &middot; Legacy</span><div class="prompt-q">Who do you hope remembers you the way you remember them?</div></div>
+    </div>
+
+    <div class="sign-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

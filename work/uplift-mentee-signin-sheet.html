@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplift Mentorship — Mentee Sign-In Sheet</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#f3f4f6;font-size:12.5px;line-height:1.5}
+.toolbar{max-width:8.5in;margin:16px auto 0;padding:10px 14px;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:8px;font-size:11.5px;color:#1E3A5F;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.toolbar button{background:#2563EB;color:#fff;border:0;border-radius:6px;padding:8px 16px;font-family:inherit;font-weight:700;font-size:12px;cursor:pointer}
+.sheet{position:relative;width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.5in .6in;box-shadow:0 1px 4px rgba(0,0,0,.12);display:flex;flex-direction:column;page-break-after:always}
+.sheet:last-of-type{page-break-after:auto}
+.hdr{border-bottom:2px solid #191960;padding-bottom:10px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.hdr img{height:38px;display:block}
+.sub{font-size:10.5px;color:#555;margin-top:4px}
+.tag{background:#FDF2F8;color:#BE185D;font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:3px;white-space:nowrap}
+.ftitle{font-size:16px;font-weight:800;letter-spacing:.2px;margin-bottom:10px;color:#191960}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.mbox{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:7px 10px}
+.mbox .l{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#64748B}
+.mbox .v{font-size:12.5px;font-weight:600;margin-top:2px;min-height:16px}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #CBD5E1;padding:0;text-align:left;font-size:10.5px;vertical-align:middle}
+th{background:#191960;color:#fff;font-weight:700;font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;padding:7px 8px}
+td{height:34px;padding:0 8px}
+td.c{text-align:center;font-weight:700;color:#475569;width:32px}
+.foot{margin-top:16px;padding-top:8px;border-top:1px solid #E5E7EB;font-size:9px;color:#9CA3AF;display:flex;justify-content:space-between}
+@media print{body{background:#fff}.toolbar{display:none}.sheet{box-shadow:none;margin:0 auto;width:auto;min-height:0;padding:0}
+@page{size:letter portrait;margin:.5in .6in}}
+</style></head><body>
+<div class="toolbar"><span>Blank numbered sign-in sheet — one page holds 22 rows. Fill in the event details below before printing, then use <b>Print / Save PDF</b>.</span>
+<span style="display:flex;gap:8px;flex-shrink:0"><button onclick="window.print()">Print / Save PDF</button></span></div>
+<div class="sheet">
+<div class="hdr"><div><img src="uplift-logo.png" alt="Uplift"><div class="sub">Uplift Mentorship Program &middot; TechUnited:NJ</div></div>
+<div style="text-align:right"><div class="tag">Sign-In Sheet</div><div class="sub">Mentees</div></div></div>
+<div class="ftitle">Mentee Sign-In Sheet</div>
+<div class="meta">
+<div class="mbox"><div class="l">Event</div><div class="v" contenteditable="true"></div></div>
+<div class="mbox"><div class="l">Date</div><div class="v" contenteditable="true"></div></div>
+</div>
+<table><thead><tr><th style="width:32px">#</th><th style="width:38%">Printed Name</th><th>Signature</th></tr></thead><tbody>
+</tbody></table>
+<div class="foot"><span>TechUnited:NJ &middot; Uplift Mentorship Program</span><span>Mentee Sign-In Sheet</span><span>Kennedy Loper &middot; kennedy@techunited.co</span></div>
+</div>
+<script>
+(function(){
+  const ROWS_PER_PAGE = 22;
+  const TOTAL_ROWS = 44; // two pages
+  const sheets = document.querySelectorAll('.sheet');
+  const firstBody = sheets[0].querySelector('tbody');
+  let n = 1;
+  function addRow(tbody){
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td class="c">'+n+'</td><td contenteditable="true"></td><td></td>';
+    tbody.appendChild(tr);
+    n++;
+  }
+  for(let i=0;i<ROWS_PER_PAGE;i++) addRow(firstBody);
+  let remaining = TOTAL_ROWS - ROWS_PER_PAGE;
+  while(remaining > 0){
+    const clone = sheets[0].cloneNode(true);
+    clone.querySelector('tbody').innerHTML = '';
+    document.body.appendChild(clone);
+    const count = Math.min(ROWS_PER_PAGE, remaining);
+    for(let i=0;i<count;i++) addRow(clone.querySelector('tbody'));
+    remaining -= count;
+  }
+})();
+</script>
+</body></html>

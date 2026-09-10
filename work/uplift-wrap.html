@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Uplift Wrap — Summer 2026</title>
+<style>
+  /* Uplift Wrap: per-founder recap card, 1080 x 1350 (4:5), same canvas as the
+     retrospective carousel. Sample data is the real Gifty Anane / Andrew Jacobs
+     pairing. The batch generator (scripts/build-wraps.mjs) replaces the inner
+     content of every .mk-* marker span. */
+  @font-face{font-family:'Caveat';src:url('fonts/Caveat.ttf') format('truetype');font-weight:400 700}
+  :root{
+    --navy:#110465;
+    --violet:#6b4dc4;
+    --pink:#d86697;
+    --paper:#fafafc;
+    --dim:rgba(255,255,255,.66);
+    --faint:rgba(255,255,255,.38);
+    --hair:rgba(255,255,255,.16);
+    --hand:'Caveat',cursive;
+    --set:'Avenir Next',Avenir,Futura,'Century Gothic',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#e4e4e2;font-family:var(--set);color:#fff}
+  @page{size:1080px 1350px;margin:0}
+  .mono{font-family:'SF Mono',ui-monospace,Menlo,Consolas,monospace}
+
+  .wrap-card{
+    width:1080px;height:1350px;position:relative;overflow:hidden;
+    margin:24px auto;background:var(--navy);
+    padding:96px 100px 88px;
+    display:flex;flex-direction:column;
+    page-break-after:always;break-after:page;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  @media print{.wrap-card{margin:0}body{background:var(--navy)}}
+
+  /* faint oversized mountain mark, echoing the certificate header */
+  .bg-mark{position:absolute;right:-140px;top:-90px;width:560px;opacity:.10;pointer-events:none}
+
+  /* ── top: masthead ── */
+  .mast{display:flex;align-items:center;gap:22px}
+  .mast img{width:64px;display:block}
+  .mast .eyebrow{font-size:22px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--pink)}
+  .mast .season{font-size:22px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);margin-left:auto}
+
+  .kicker{font-family:var(--hand);font-weight:700;font-size:52px;color:var(--pink);margin-top:64px;transform:rotate(-1deg)}
+
+  .name{margin-top:10px;font-size:104px;font-weight:700;letter-spacing:-.02em;line-height:1.04;color:#fff}
+  .name.n-long{font-size:84px}
+  .name.n-xlong{font-size:68px}
+  .venture{margin-top:16px;font-size:33px;font-weight:500;color:var(--dim)}
+
+  .gradbar{
+    margin-top:44px;height:7px;border-radius:4px;
+    background:linear-gradient(90deg,#39c4e5,#5f8fca,#7877b8,#9e70b1,#d163a1,#e86987,#f37b7c,#fab374);
+  }
+
+  /* ── middle: your numbers ── */
+  .numlabel{margin-top:44px;font-size:22px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+  .stats{margin-top:26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 44px}
+  .stat{border-left:5px solid var(--pink);padding:6px 0 10px 28px}
+  .stat .n{font-size:96px;font-weight:700;line-height:1;letter-spacing:-.02em;color:#fff}
+  .stat .n .plus{color:var(--pink)}
+  .stat .k{margin-top:12px;font-size:22px;line-height:1.4;font-weight:500;color:var(--dim)}
+  .stat .k b{color:#fff;font-weight:600}
+
+  /* mentor strip */
+  .mentor{
+    margin-top:52px;display:flex;align-items:center;gap:30px;
+    background:rgba(255,255,255,.07);border-radius:14px;padding:30px 36px;
+  }
+  .mentor .m-label{font-size:20px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+  .mentor .m-name{margin-top:8px;font-size:44px;font-weight:600;letter-spacing:-.01em;color:#fff}
+  .mentor .m-hand{margin-left:auto;font-family:var(--hand);font-weight:700;font-size:40px;color:var(--pink);transform:rotate(-2deg);text-align:right;line-height:1.15}
+
+  /* ── program-wide band ── */
+  .cohortband{margin-top:auto;padding-top:44px}
+  .cohortband .blabel{font-size:22px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+  .bigrow{margin-top:22px;display:flex;align-items:baseline;gap:56px}
+  .big .n{font-size:66px;font-weight:700;line-height:1;letter-spacing:-.02em;color:#fff}
+  .big .n .plus{color:var(--pink)}
+  .big .k{margin-top:10px;font-size:21px;font-weight:500;color:var(--dim);line-height:1.35}
+
+  .finale{margin-top:40px;font-size:29px;line-height:1.5;font-weight:500;color:#fff}
+  .finale b{font-weight:700;color:var(--pink)}
+
+  /* footer */
+  .foot{
+    margin-top:38px;padding-top:26px;border-top:1px solid var(--hair);
+    display:flex;align-items:center;gap:34px;
+    font-size:20px;font-weight:500;letter-spacing:.05em;color:var(--faint);
+  }
+  .foot .id{letter-spacing:.12em;color:var(--dim)}
+  .foot .brand{margin-left:auto;letter-spacing:.14em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="wrap-card">
+  <img class="bg-mark" src="uplift-mountain-mark.png" alt="">
+
+  <div class="mast">
+    <img src="uplift-mountain-mark.png" alt="">
+    <div class="eyebrow">Uplift Wrap</div>
+    <div class="season">Summer 2026</div>
+  </div>
+
+  <div class="kicker">your summer, wrapped</div>
+  <div class="name"><span class="mk-name">Gifty Anane</span></div>
+  <div class="venture"><span class="mk-venture">Founder, Wash Lodge &middot; Edison cohort</span></div>
+
+  <div class="gradbar"></div>
+
+  <div class="numlabel">Your numbers</div>
+  <div class="stats">
+    <div class="stat">
+      <div class="n"><span class="mk-edu">4</span></div>
+      <div class="k"><b>educational sessions</b><br>3 required. You showed up.</div>
+    </div>
+    <div class="stat">
+      <div class="n"><span class="mk-mtg">3</span></div>
+      <div class="k"><b>mentor one-on-ones</b><br>real talk, logged and done</div>
+    </div>
+    <div class="stat">
+      <div class="n">10</div>
+      <div class="k"><b>weeks</b><br>from kickoff to the Summit stage</div>
+    </div>
+  </div>
+
+  <div class="mentor">
+    <div>
+      <div class="m-label">Your executive mentor</div>
+      <div class="m-name"><span class="mk-mentor">Andrew Jacobs</span></div>
+    </div>
+    <div class="m-hand">in your<br>corner all summer</div>
+  </div>
+
+  <div class="cohortband">
+    <div class="blabel">You did it alongside</div>
+    <div class="bigrow">
+      <div class="big">
+        <div class="n">70<span class="plus">+</span></div>
+        <div class="k">founders in<br>five cohorts</div>
+      </div>
+      <div class="big">
+        <div class="n">8,000<span class="plus">+</span></div>
+        <div class="k">minutes of one-on-one<br>mentorship</div>
+      </div>
+      <div class="big">
+        <div class="n">47</div>
+        <div class="k">program<br>completers</div>
+      </div>
+    </div>
+    <div class="finale">Completed <b><span class="mk-date">August 4, 2026</span></b> at the Uplift Summit Pitch Showcase. You are one of 47.</div>
+  </div>
+
+  <div class="foot">
+    <span class="id mono"><span class="mk-certid">UP26-014</span></span>
+    <span>Uplift Mentorship Program</span>
+    <span class="brand">TechUnited:NJ</span>
+  </div>
+</div>
+
+</body>
+</html>

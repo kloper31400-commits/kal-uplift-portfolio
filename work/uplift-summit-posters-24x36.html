@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplift Summit 2026 · 24" × 36" Posters</title>
+<style>
+  :root {
+    --navy: #110465;
+    --navy-soft: #3a3560;
+    --pink: #d86697;
+    --pink-soft: #f3cfdf;
+    --slate: #5b6472;
+    --paper: #fafafc;
+    --gold: #c99a2e;
+
+    /* screen preview scale: 24in -> 7.2in on screen */
+    --s: 0.30;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Avenir Next', Avenir, Futura, 'Century Gothic', sans-serif;
+    background: #e6e6ec;
+    color: var(--navy);
+  }
+
+  /* ---------- Screen-only intro ---------- */
+  .intro {
+    max-width: 8.6in;
+    margin: 36px auto 0;
+    padding: 30px 38px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(17,4,101,.12);
+  }
+  .intro img { height: 44px; display: block; margin-bottom: 14px; }
+  .intro h1 { font-size: 22px; font-weight: 600; letter-spacing: .01em; }
+  .intro p { font-size: 14px; line-height: 1.55; color: #444; margin-top: 8px; }
+  .intro ol { margin-top: 10px; padding-left: 18px; font-size: 14px; color: #444; line-height: 1.7; }
+  .intro .note {
+    margin-top: 14px; padding: 12px 14px;
+    background: var(--paper); border-left: 3px solid var(--pink); border-radius: 4px;
+    font-size: 13.5px; line-height: 1.55; color: #444;
+  }
+  @media print { .intro { display: none; } }
+
+  /* ---------- Stage (screen scaling) ---------- */
+  .stage {
+    width: calc(24in * var(--s));
+    height: calc(36in * var(--s));
+    margin: 40px auto;
+    position: relative;
+    box-shadow: 0 6px 26px rgba(17,4,101,.22);
+    page-break-after: always;
+    break-after: page;
+  }
+  .stage-label {
+    position: absolute;
+    top: -26px; left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #8a8a96;
+  }
+  .poster {
+    width: 24in;
+    height: 36in;
+    transform: scale(var(--s));
+    transform-origin: top left;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @media print {
+    body { background: white; }
+    .stage { width: 24in; height: 36in; margin: 0; box-shadow: none; }
+    .stage-label { display: none; }
+    .poster { transform: none; }
+    @page { size: 24in 36in; margin: 0; }
+  }
+
+  /* ---------- Shared poster furniture ----------
+     Every poster is white / paper stock, matching the station signs,
+     name tags, coasters, and mic flag. Both logos always sit on white. */
+  .frame {
+    position: absolute;
+    inset: 0.85in;
+    border: 4px solid rgba(17,4,101,.16);
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Soft pink washes, shared by all four posters */
+  .band-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 9in;
+    background: linear-gradient(180deg, rgba(216,102,151,.10) 0%, rgba(216,102,151,0) 100%);
+    z-index: 1;
+  }
+  .band-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 7in;
+    background: linear-gradient(0deg, rgba(216,102,151,.09) 0%, rgba(216,102,151,0) 100%);
+    z-index: 1;
+  }
+
+  .body-wrap {
+    position: relative;
+    z-index: 4;
+    height: 100%;
+    padding: 2.0in 2.0in 1.6in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Prominent Uplift wordmark at the head of every poster */
+  .brandmark {
+    width: 8in;
+    height: auto;
+    display: block;
+  }
+
+  .eyebrow {
+    margin-top: 0.4in;
+    font-size: 30pt;
+    font-weight: 700;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--pink);
+  }
+  .eyebrow.ruled { display: flex; align-items: center; gap: 0.42in; }
+  .eyebrow.ruled .rl { width: 1.5in; height: 4px; background: rgba(17,4,101,.22); border-radius: 2px; }
+
+  .rule {
+    width: 3.4in; height: 9px;
+    background: var(--pink);
+    border-radius: 5px;
+    margin: 0.7in 0;
+  }
+
+  h1.title {
+    font-size: 168pt;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -.02em;
+  }
+  h1.title em { color: var(--pink); font-style: normal; }
+
+  .subhead {
+    font-size: 62pt;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0.45in;
+  }
+  .subhead em { color: var(--pink); font-style: normal; }
+
+  .lede {
+    font-size: 42pt;
+    line-height: 1.5;
+    max-width: 16.4in;
+    color: var(--navy-soft);
+    text-wrap: balance;
+  }
+  .lede strong { color: var(--navy); font-weight: 700; }
+
+  /* Footer lockup — both marks on white, TechUnited never inverted */
+  .lockup {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.55in;
+  }
+  .lockup img.upl { height: 1.3in; width: auto; }
+  .lockup img.tu  { height: 1.15in; width: auto; }
+  .lockup .x { font-size: 36pt; color: rgba(17,4,101,.30); }
+
+  /* =========================================================
+     POSTER 1 — UPLIFT SUMMIT (hero)
+     ========================================================= */
+  /* Clears the "Presented by" lockup so the mountain's baseline
+     never runs behind the TechUnited mark. */
+  .hero-mtn {
+    position: absolute;
+    bottom: 4.2in;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15in;
+    opacity: .14;
+    z-index: 1;
+  }
+
+  .hero-wordmark {
+    width: 16in;
+    height: auto;
+  }
+  .hero-summit {
+    margin-top: 0.55in;
+    font-size: 160pt;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--navy);
+  }
+  .hero-year {
+    margin-top: 0.5in;
+    font-size: 52pt;
+    font-weight: 700;
+    letter-spacing: .52em;
+    text-transform: uppercase;
+    color: var(--pink);
+  }
+  .hero-lede {
+    margin-top: 1.3in;
+    font-size: 46pt;
+    line-height: 1.48;
+    max-width: 16.6in;
+    color: var(--navy-soft);
+    text-wrap: balance;
+  }
+  .hero-lede strong { color: var(--navy); font-weight: 700; }
+
+  .hero-agenda {
+    margin-top: 1.6in;
+    display: flex;
+    width: 100%;
+    max-width: 19.2in;
+    border-top: 3px solid rgba(17,4,101,.20);
+    border-bottom: 3px solid rgba(17,4,101,.20);
+  }
+  .hero-agenda .col {
+    flex: 1;
+    padding: 0.75in 0.42in;
+    text-align: center;
+  }
+  .hero-agenda .col + .col { border-left: 3px solid rgba(17,4,101,.16); }
+  .hero-agenda .tm {
+    font-size: 32pt;
+    font-weight: 800;
+    letter-spacing: .10em;
+    color: var(--pink);
+  }
+  .hero-agenda .wt {
+    margin-top: 0.16in;
+    font-size: 27pt;
+    font-weight: 600;
+    line-height: 1.32;
+    color: var(--navy);
+  }
+
+  .hero-quote {
+    margin-top: 1.6in;
+    font-size: 42pt;
+    font-style: italic;
+    line-height: 1.45;
+    max-width: 16in;
+    color: var(--navy-soft);
+    text-wrap: balance;
+  }
+  .hero-quote em { color: var(--pink); font-style: italic; font-weight: 700; }
+
+  .hero-presenter {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.22in;
+  }
+  .hero-presenter .presents {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .hero-presenter img { height: 1.15in; width: auto; }
+
+  /* =========================================================
+     POSTER 2 — THANK YOU CARD STATION
+     ========================================================= */
+  .panels {
+    display: flex;
+    gap: 0.7in;
+    margin-top: 1.1in;
+    width: 100%;
+    max-width: 18.6in;
+  }
+  .panel {
+    flex: 1;
+    background: #fff;
+    border: 3px solid rgba(17,4,101,.12);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(17,4,101,.06);
+    padding: 0.72in 0.66in;
+    text-align: left;
+  }
+  .panel .p-label {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 0.24in;
+  }
+  .panel p { font-size: 31pt; line-height: 1.44; color: var(--navy-soft); }
+
+  .pullquote {
+    margin-top: 1.15in;
+    max-width: 16.4in;
+    font-size: 38pt;
+    font-style: italic;
+    line-height: 1.48;
+    color: var(--navy);
+    text-wrap: balance;
+  }
+  /* Marked with a pink hairline rather than quote glyphs — at poster
+     weights Avenir's quote marks read as stray primes. */
+  .pullquote::before {
+    content: "";
+    display: block;
+    width: 1.6in; height: 5px;
+    background: var(--pink);
+    border-radius: 3px;
+    margin: 0 auto 0.42in;
+    opacity: .55;
+  }
+
+  .steps {
+    margin-top: 1.3in;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5in;
+  }
+  .step { text-align: center; max-width: 4.6in; }
+  .step .num {
+    width: 1.5in; height: 1.5in;
+    line-height: 1.5in;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 54pt;
+    margin: 0 auto 0.32in;
+  }
+  .step p { font-size: 29pt; font-weight: 600; line-height: 1.34; color: var(--navy-soft); }
+
+  /* =========================================================
+     POSTER 3 — 60-SECOND PITCH CHALLENGE
+     ========================================================= */
+  .stopwatch {
+    margin: 0.8in 0 0.75in;
+    width: 6.2in; height: 6.2in;
+    border-radius: 50%;
+    border: 0.32in solid var(--pink);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 10px 34px rgba(17,4,101,.08);
+  }
+  .stopwatch::before {
+    content: "";
+    position: absolute;
+    top: -0.58in; left: 50%; transform: translateX(-50%);
+    width: 1.4in; height: 0.4in;
+    background: var(--pink);
+    border-radius: 0.12in;
+  }
+  .stopwatch .num { font-size: 148pt; font-weight: 800; color: var(--navy); line-height: .92; }
+  .stopwatch .lbl {
+    font-size: 28pt; font-weight: 800; letter-spacing: .26em;
+    color: var(--navy-soft); margin-top: 0.1in;
+  }
+
+  .kicker {
+    font-size: 34pt; font-weight: 800; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--pink);
+  }
+  .brand-sub {
+    margin-top: 0.22in;
+    font-size: 54pt; font-weight: 800; color: var(--navy); line-height: 1.2;
+  }
+  .brand-body {
+    margin-top: 0.6in;
+    font-size: 42pt; line-height: 1.44; color: var(--navy); max-width: 16.2in;
+    text-wrap: balance;
+  }
+  .brand-body em { color: var(--pink); font-style: normal; font-weight: 800; }
+  .reassure {
+    margin-top: 0.55in;
+    font-size: 34pt; line-height: 1.6; font-weight: 600; color: var(--navy-soft);
+  }
+  .tagline {
+    margin-top: 0.9in;
+    font-size: 40pt; font-weight: 800; letter-spacing: .20em;
+    text-transform: uppercase; color: var(--navy);
+  }
+
+  /* =========================================================
+     POSTER 4 — FOUNDER PITCH SHOWCASE
+     ========================================================= */
+  .time-badge {
+    margin-top: 1.3in;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28in;
+    padding: 0.34in 0.9in;
+    border: 4px solid var(--pink);
+    border-radius: 999px;
+    font-size: 48pt;
+    font-weight: 800;
+    letter-spacing: .10em;
+    color: var(--navy);
+  }
+  .time-badge .dot { width: 0.26in; height: 0.26in; border-radius: 50%; background: var(--pink); }
+
+  .three-up {
+    margin-top: 2.1in;
+    display: flex;
+    gap: 0.7in;
+    width: 100%;
+    max-width: 19in;
+  }
+  .three-up .card {
+    flex: 1;
+    background: #fff;
+    border: 3px solid rgba(17,4,101,.12);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(17,4,101,.06);
+    padding: 1.0in 0.7in;
+    text-align: left;
+  }
+  .three-up .card .c-label {
+    font-size: 25pt; font-weight: 800; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--pink); margin-bottom: 0.24in;
+  }
+  .three-up .card p { font-size: 34pt; line-height: 1.4; color: var(--navy-soft); }
+
+  .showcase-note {
+    margin-top: 2.0in;
+    font-size: 40pt;
+    line-height: 1.5;
+    max-width: 18.4in;
+    color: var(--navy-soft);
+    text-wrap: balance;
+  }
+  .showcase-note strong { color: var(--navy); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <img src="uplift-logo.png" alt="Uplift">
+  <h1>Uplift Summit 2026 — four 24&Prime; × 36&Prime; posters</h1>
+  <p>Large-format posters for the Summit. All four are white / paper stock with the Uplift wordmark leading, matching the station signs, directional signs, name tags, coasters, and mic flag.</p>
+  <ol>
+    <li><strong>Poster 1 — Uplift Summit:</strong> the hero brand poster. Entrance, stage flank, or step-and-repeat wall.</li>
+    <li><strong>Poster 2 — Thank You Card Station:</strong> the large-format companion to the tabletop station sign.</li>
+    <li><strong>Poster 3 — Are You Up For the Challenge?:</strong> 60-Second Pitch Challenge, for the TechUnited Pitch Booth.</li>
+    <li><strong>Poster 4 — Founder Pitch Showcase:</strong> the 5:15 program moment.</li>
+  </ol>
+  <div class="note">
+    <strong>Printing:</strong> Print to PDF with paper size set to <strong>24 in × 36 in</strong>, margins <strong>None</strong>, scale <strong>100%</strong>, and background graphics <strong>on</strong>. Each poster is a full-bleed page with a 0.85&Prime; safety frame, so there is room to trim. On screen every poster is shown at 30% of final size.
+  </div>
+</div>
+
+
+<!-- ==================================================================
+     POSTER 1 — UPLIFT SUMMIT (HERO)
+     ================================================================== -->
+<div class="stage">
+  <div class="stage-label">Poster 1 · Uplift Summit · 24&Prime; × 36&Prime;</div>
+  <div class="poster p-hero">
+    <div class="band-top"></div>
+    <div class="band-bottom"></div>
+    <img class="hero-mtn" src="uplift-mountain-mark.png" alt="">
+    <div class="frame"></div>
+    <div class="body-wrap">
+
+      <img class="hero-wordmark" src="uplift-logo.png" alt="Uplift">
+      <div class="hero-summit">Summit</div>
+      <div class="hero-year">2026</div>
+
+      <p class="hero-lede">A summer of mentorship, momentum, and <span style="white-space:nowrap">hard-won</span> progress. <strong>Tonight, we celebrate it together.</strong></p>
+
+      <div class="hero-agenda">
+        <div class="col">
+          <div class="tm">4:00 – 5:15</div>
+          <div class="wt">Arrival, Networking<br>&amp; Interactive Stations</div>
+        </div>
+        <div class="col">
+          <div class="tm">5:15 – 6:30</div>
+          <div class="wt">Founder Pitch Showcase<br>&amp; Celebration</div>
+        </div>
+        <div class="col">
+          <div class="tm">6:30 – 7:00</div>
+          <div class="wt">Wrap-Up<br>&amp; Final Networking</div>
+        </div>
+      </div>
+
+      <p class="hero-quote">Entrepreneurship can be challenging, but it doesn't have to be <em>built alone.</em></p>
+
+      <div class="hero-presenter">
+        <div class="presents">Presented by</div>
+        <img src="techunited-logo.png" alt="TechUnited New Jersey">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================================================================
+     POSTER 2 — THANK YOU CARD STATION
+     ================================================================== -->
+<div class="stage">
+  <div class="stage-label">Poster 2 · Thank You Card Station · 24&Prime; × 36&Prime;</div>
+  <div class="poster p-thanks">
+    <div class="band-top"></div>
+    <div class="band-bottom"></div>
+    <div class="frame"></div>
+    <div class="body-wrap">
+
+      <img class="brandmark" src="uplift-logo.png" alt="Uplift">
+      <div class="eyebrow ruled"><span class="rl"></span>Summit 2026<span class="rl"></span></div>
+
+      <h1 class="title" style="margin-top:0.65in;">Thank You<br><em>Card Station</em></h1>
+      <div class="rule"></div>
+
+      <p class="lede">Mentorship is at the heart of Uplift, but gratitude extends far beyond the program. <strong>Take a few minutes to write a handwritten note to someone who made a difference in your journey.</strong></p>
+
+      <div class="panels">
+        <div class="panel">
+          <div class="p-label">If you're a founder</div>
+          <p>Think of a mentor, a fellow founder, a speaker, or someone from this summer's program.</p>
+        </div>
+        <div class="panel">
+          <div class="p-label">If you're a mentor or guest</div>
+          <p>Think of who changed your career's trajectory, opened a door, or believed in you first.</p>
+        </div>
+      </div>
+
+      <p class="pullquote">Sometimes the most meaningful thing you leave with isn't a new connection. It's the chance to recognize someone who made your journey possible.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <p>Grab a card &amp; pen</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <p>Write what you never got to say</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <p>Hand it over tonight, or mail it after</p>
+        </div>
+      </div>
+
+      <div class="lockup">
+        <img class="upl" src="uplift-logo.png" alt="Uplift">
+        <span class="x">×</span>
+        <img class="tu" src="techunited-logo.png" alt="TechUnited New Jersey">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================================================================
+     POSTER 3 — ARE YOU UP FOR THE CHALLENGE? (60-SECOND PITCH)
+     ================================================================== -->
+<div class="stage">
+  <div class="stage-label">Poster 3 · Are You Up For the Challenge? · 60-Second Pitch · 24&Prime; × 36&Prime;</div>
+  <div class="poster p-pitch">
+    <div class="band-top"></div>
+    <div class="band-bottom"></div>
+    <div class="frame"></div>
+    <div class="body-wrap">
+
+      <img class="brandmark" src="uplift-logo.png" alt="Uplift">
+      <div class="eyebrow ruled"><span class="rl"></span>Founder Studio<span class="rl"></span></div>
+
+      <h1 class="title" style="margin-top:0.6in; font-size:156pt;">Are You Up<br>For the<br><em>Challenge?</em></h1>
+      <div class="subhead"><em>60 Seconds.</em> One Story.</div>
+
+      <div class="stopwatch">
+        <div class="num">60</div>
+        <div class="lbl">SECONDS</div>
+      </div>
+
+      <div class="kicker">Step Up. Press Record.</div>
+      <div class="brand-sub">The 60-Second Pitch Challenge</div>
+
+      <p class="brand-body">Record <em>a branded 60-second video</em> introducing your startup.</p>
+      <p class="reassure">We'll take the time.<br>We'll help guide you.<br>You'll leave with content you can actually use.</p>
+
+      <div class="tagline">One Take. All You.</div>
+
+      <div class="lockup">
+        <img class="upl" src="uplift-logo.png" alt="Uplift">
+        <span class="x">×</span>
+        <img class="tu" src="techunited-logo.png" alt="TechUnited New Jersey">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================================================================
+     POSTER 4 — FOUNDER PITCH SHOWCASE
+     ================================================================== -->
+<div class="stage">
+  <div class="stage-label">Poster 4 · Founder Pitch Showcase · 24&Prime; × 36&Prime;</div>
+  <div class="poster p-showcase">
+    <div class="band-top"></div>
+    <div class="band-bottom"></div>
+    <div class="frame"></div>
+    <div class="body-wrap">
+
+      <img class="brandmark" src="uplift-logo.png" alt="Uplift">
+      <div class="eyebrow ruled"><span class="rl"></span>Summit 2026<span class="rl"></span></div>
+
+      <h1 class="title" style="margin-top:1.2in;">Founder Pitch<br><em>Showcase</em></h1>
+      <div class="time-badge"><span class="dot"></span>5:15 – 6:30</div>
+
+      <div class="rule"></div>
+      <p class="lede" style="font-size:44pt;">Three founders take the stage to share what they built this summer, and what comes next.</p>
+
+      <div class="three-up">
+        <div class="card">
+          <div class="c-label">Remarks</div>
+          <p>NJEDA, Verizon &amp; TechUnited on why this work matters for New Jersey.</p>
+        </div>
+        <div class="card">
+          <div class="c-label">The Pitches</div>
+          <p>Three Uplift founders, live on stage, in front of the room that helped build them.</p>
+        </div>
+        <div class="card">
+          <div class="c-label">Celebration</div>
+          <p>We close out the 2026 Uplift Mentorship Program together.</p>
+        </div>
+      </div>
+
+      <p class="showcase-note"><strong>Find a seat by 5:10.</strong> Doors stay open, but the room fills fast.</p>
+
+      <div class="lockup">
+        <img class="upl" src="uplift-logo.png" alt="Uplift">
+        <span class="x">×</span>
+        <img class="tu" src="techunited-logo.png" alt="TechUnited New Jersey">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

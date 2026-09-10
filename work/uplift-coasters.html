@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplift Summit Coasters — Looking Back / Looking Forward</title>
+<style>
+  :root {
+    --navy: #110465;
+    --pink: #d86697;
+    --pink-soft: #f3cfdf;
+    --paper: #fafafc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Avenir Next', Avenir, Futura, 'Century Gothic', sans-serif;
+    background: #ececf1;
+    color: var(--navy);
+  }
+
+  /* ---------- Screen-only intro ---------- */
+  .intro {
+    max-width: 8.5in;
+    margin: 32px auto 0;
+    padding: 28px 36px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(17,4,101,.12);
+  }
+  .intro img { height: 44px; display: block; margin-bottom: 14px; }
+  .intro h1 { font-size: 22px; font-weight: 600; letter-spacing: .01em; }
+  .intro p { font-size: 14px; line-height: 1.55; color: #444; margin-top: 8px; }
+  .intro .steps { margin-top: 10px; padding-left: 18px; font-size: 14px; color: #444; line-height: 1.65; }
+  @media print { .intro { display: none; } }
+
+  /* ---------- Sheets ---------- */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    margin: 24px auto;
+    background: white;
+    box-shadow: 0 2px 10px rgba(17,4,101,.15);
+    padding: 0.55in 0.25in 0.25in;
+    position: relative;
+    page-break-after: always;
+  }
+  @media print {
+    body { background: white; }
+    .sheet { margin: 0; box-shadow: none; }
+    @page { size: letter; margin: 0; }
+  }
+
+  .sheet-label {
+    position: absolute;
+    top: 0.22in;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8.5pt;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #b0b0b8;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 4in 4in;
+    grid-template-rows: 4in 4in;
+    justify-content: center;
+    align-content: start;
+    row-gap: 0.5in;
+    column-gap: 0.2in;
+  }
+
+  /* ---------- Coaster ---------- */
+  .coaster {
+    width: 4in;
+    height: 4in;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.42in;
+    outline: 1px dashed #c8c8d2;   /* cut guide */
+    outline-offset: 0px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .coaster.empty { outline: none; }
+
+  .back-side  { background: var(--navy); color: white; }
+  .front-side { background: white; color: var(--navy); box-shadow: inset 0 0 0 6px var(--navy); }
+  .front-side.fwd { box-shadow: inset 0 0 0 6px var(--pink); }
+
+  /* navy side = LOOKING BACK */
+  .back-side .eyebrow { color: var(--pink); }
+  .back-side .theme   { color: white; }
+  .back-side .question{ color: #e9e6f7; }
+  .back-side .flip    { color: var(--pink); }
+
+  /* white side = LOOKING FORWARD */
+  .fwd .eyebrow { color: var(--pink); }
+  .fwd .theme   { color: var(--navy); }
+  .fwd .question{ color: #3a3560; }
+
+  .mountain { margin-bottom: 10px; }
+
+  .eyebrow {
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .theme {
+    font-size: 19pt;
+    font-weight: 700;
+    letter-spacing: .015em;
+    margin-bottom: 4px;
+  }
+  .theme-rule {
+    width: 34px; height: 2.5px;
+    background: var(--pink);
+    border-radius: 2px;
+    margin: 0 auto 12px;
+  }
+
+  .question {
+    font-size: 12.5pt;
+    line-height: 1.42;
+    font-weight: 500;
+    max-width: 2.75in;
+  }
+
+  .flip {
+    margin-top: 14px;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .wordmark {
+    margin-top: 14px;
+    font-size: 12pt;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--navy);
+    line-height: 1;
+    border-bottom: 1.5px solid var(--pink);
+    padding: 0 6px 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <img src="uplift-logo.png" alt="Uplift">
+  <h1>Summit Coasters — Looking Back / Looking Forward</h1>
+  <p>Ten double-sided 4″ round coasters. The navy side asks a reflection question (Looking Back); flip it over for the white side (Looking Forward). Sheets are ordered front/back for duplex printing.</p>
+  <ol class="steps">
+    <li>Print on heavy cardstock, <strong>double-sided, flip on long edge</strong>, at 100% scale (no “fit to page”).</li>
+    <li>Cut along the dashed circles — or send this file to a print shop and ask for 4″ round coasters.</li>
+    <li>Back-side positions are already mirrored so each question pairs up with its flip side.</li>
+  </ol>
+</div>
+
+<div id="sheets"></div>
+
+<script>
+const THEMES = [
+  { theme: "Gratitude",         back: "Who changed the direction of your career without realizing it?", fwd: "Who is one person you should thank this month?" },
+  { theme: "Mentorship",        back: "What’s the best piece of advice a mentor ever gave you?",   fwd: "What’s one lesson you’re excited to pass on someday?" },
+  { theme: "Paying It Forward", back: "Who took a chance on you before you felt ready?",                fwd: "Who could you take a chance on?" },
+  { theme: "Community",         back: "What’s one connection that changed everything?",             fwd: "Who in this room should meet each other?" },
+  { theme: "Growth",            back: "What challenge made you a better founder?",                       fwd: "What’s something you’re still trying to figure out?" },
+  { theme: "Momentum",          back: "What’s one win you’re proud of this summer?",           fwd: "What’s one goal you’re chasing next?" },
+  { theme: "Identity",          back: "What kind of founder have you become?",                           fwd: "What kind of mentor do you hope to be?" },
+  { theme: "Courage",           back: "When did you bet on yourself?",                                   fwd: "What would you do if you knew you couldn’t fail?" },
+  { theme: "Perspective",       back: "What’s something you believe now that you didn’t a year ago?", fwd: "What belief do you hope guides you over the next year?" },
+  { theme: "Legacy",            back: "What’s a moment that made you proud of your impact?",        fwd: "What impact do you hope people remember you for?" },
+];
+
+function mountainSVG(color) {
+  return `<svg class="mountain" width="72" height="30" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="${color}" stroke-width="2" stroke-linejoin="round">
+      <path d="M4 46 L20 22 L32 34 L46 6 L62 30 L74 18 L88 34 L100 26 L116 46 Z"/>
+      <path d="M20 22 L32 46 M46 6 L40 46 M46 6 L62 46 M62 30 L74 46 M74 18 L74 46 M88 34 L88 46"/>
+    </g>
+  </svg>`;
+}
+
+function backSide(t) {  // navy — LOOKING BACK
+  return `<div class="coaster back-side">
+    ${mountainSVG('#d86697')}
+    <div class="eyebrow">Looking Back</div>
+    <div class="theme">${t.theme}</div>
+    <div class="theme-rule"></div>
+    <div class="question">${t.back}</div>
+    <div class="flip">Flip me over
+      <svg width="9" height="9" viewBox="0 0 16 16" style="vertical-align:-1px" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 2 a6 6 0 1 1 -5.2 3" fill="none" stroke="#d86697" stroke-width="2" stroke-linecap="round"/>
+        <path d="M2.8 1.5 L2.8 5.4 L6.6 5.4" fill="none" stroke="#d86697" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>`;
+}
+
+function fwdSide(t) {  // white — LOOKING FORWARD
+  return `<div class="coaster front-side fwd">
+    ${mountainSVG('#110465')}
+    <div class="eyebrow">Looking Forward</div>
+    <div class="theme">${t.theme}</div>
+    <div class="theme-rule"></div>
+    <div class="question">${t.fwd}</div>
+    <div class="wordmark">uplift</div>
+  </div>`;
+}
+
+const emptyCell = '<div class="coaster empty"></div>';
+const sheets = document.getElementById('sheets');
+let html = '';
+const perPage = 4;
+const pages = Math.ceil(THEMES.length / perPage);
+
+for (let p = 0; p < pages; p++) {
+  const group = THEMES.slice(p * perPage, (p + 1) * perPage);
+
+  // FRONT sheet (navy, Looking Back) — positions 1,2 / 3,4
+  let frontCells = group.map(backSide);
+  while (frontCells.length < perPage) frontCells.push(emptyCell);
+  html += `<div class="sheet">
+    <div class="sheet-label">Sheet ${p + 1} &middot; Front (Looking Back) &middot; print duplex, flip on long edge</div>
+    <div class="grid">${frontCells.join('')}</div>
+  </div>`;
+
+  // BACK sheet (white, Looking Forward) — mirror columns: 2,1 / 4,3
+  const order = [1, 0, 3, 2];
+  let backCells = order.map(i => group[i] ? fwdSide(group[i]) : emptyCell);
+  html += `<div class="sheet">
+    <div class="sheet-label">Sheet ${p + 1} &middot; Back (Looking Forward) &middot; positions mirrored for duplex</div>
+    <div class="grid">${backCells.join('')}</div>
+  </div>`;
+}
+sheets.innerHTML = html;
+</script>
+
+</body>
+</html>

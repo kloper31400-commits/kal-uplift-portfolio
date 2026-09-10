@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Dashboard (Demo) · Uplift</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css">
+<style>
+  .wrap { max-width: 1280px; }
+  .hdr-in, .tabs-in, .foot-in { max-width: 1280px; }
+  .tab { font-size: 13px; padding: 12px 11px 10px; }
+
+  .q-item { display:flex; gap:13px; align-items:flex-start; padding:13px 17px; border-top:1px solid var(--line); }
+  .q-item:first-child { border-top:0; }
+  .q-item .lvl { flex:0 0 auto; width:9px; height:9px; border-radius:50%; margin-top:6px; }
+  .q-item .age { flex:0 0 auto; font-size:11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+                 padding:3px 8px; border-radius:6px; background:var(--off-bg); color:var(--off-fg); }
+  .q-item .age.hot { background:var(--risk-bg); color:var(--risk-fg); }
+  .q-item .age.warm { background:var(--warn-bg); color:var(--warn-fg); }
+
+  .cov { display:flex; align-items:center; gap:13px; padding:12px 17px; border-top:1px solid var(--line); }
+  .cov:first-child { border-top:0; }
+  .cov .lbl { flex:0 0 220px; font-size:13.5px; font-weight:650; }
+  .cov .track { flex:1; height:9px; border-radius:5px; background:var(--surface-2); overflow:hidden; }
+  .cov .track i { display:block; height:100%; border-radius:5px; }
+  .cov .pct { flex:0 0 96px; text-align:right; font-size:12.5px; font-weight:700; }
+
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .sug { border:1px solid var(--line); border-radius:11px; background:#fff; padding:15px 17px; margin-bottom:11px; box-shadow:var(--shadow); }
+  .sug .score { font-size:22px; font-weight:800; color:var(--indigo-deep); letter-spacing:-.5px; }
+  .why { background:var(--surface); border-radius:8px; padding:10px 12px; font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.55; }
+  .why b { color:var(--ink); }
+
+  .verdict { border-radius:8px; padding:9px 12px; font-size:12.5px; margin-top:9px; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>DEMO</strong> · Admin dashboard · Synthetic cohort. No real founder, mentor or grant data</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <img class="logo" src="../work/uplift-logo-white.png" alt="Uplift">
+    <div class="kicker">Uplift Fall 2026 · Programme Admin</div>
+    <h1>Run the cohort</h1>
+    <div class="sub">66 founders · 45 mentors · 5 peer rooms · week 4 of 8</div>
+    <div class="sub-2">One screen replacing what used to be eleven spreadsheet tabs and a shared inbox</div>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabs-in" id="tabs"></div></nav>
+
+<main class="wrap">
+
+<!-- ══ TODAY ════════════════════════════════════════════════════ -->
+<section class="panel on" id="p-today">
+  <div class="sec-title"><div class="k">The only tab that tells you what to do</div><h2>Today</h2>
+    <p>Computed fresh from live data on every render. The only thing stored is what the data
+       cannot say: when a piece of work first appeared, and whether a human has dealt with it.</p></div>
+
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="stat"><div class="n">6</div><div class="l">Need you today</div></div>
+    <div class="stat"><div class="n" style="color:var(--risk-fg)">2</div><div class="l">At risk</div><div class="h">Founders with no mentor contact</div></div>
+    <div class="stat"><div class="n">11</div><div class="l">Awaiting reply</div><div class="h">Emails sent, nothing back</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Pending verification</div><div class="h">Sessions logged one side only</div></div>
+  </div>
+
+  <div class="rows">
+    <div class="q-item"><span class="lvl" style="background:var(--risk-dot)"></span>
+      <span class="grow"><span class="t">2 founders are at risk</span>
+      <span class="s">No mentor contact 14 days after match. Aleksei Brandt, Ines Wróbel.</span></span>
+      <span class="age hot">6 days</span><button class="btn">Mark handled</button></div>
+
+    <div class="q-item"><span class="lvl" style="background:var(--warn-dot)"></span>
+      <span class="grow"><span class="t">3 sessions logged by the founder, unconfirmed by the mentor</span>
+      <span class="s">Chase the mentor, not the founder. The founder already did their bit.</span></span>
+      <span class="age warm">3 days</span><button class="btn">Mark handled</button></div>
+
+    <div class="q-item"><span class="lvl" style="background:var(--warn-dot)"></span>
+      <span class="grow"><span class="t">Tuesday update not sent</span>
+      <span class="s">45 mentors. Draft is built and rendering clean.</span></span>
+      <span class="age warm">1 day</span><button class="btn pri">Review &amp; send</button></div>
+
+    <div class="q-item"><span class="lvl" style="background:var(--indigo-light)"></span>
+      <span class="grow"><span class="t">4 mentor applications awaiting verification</span>
+      <span class="s">Two corroborated, one partial, one contradicted.</span></span>
+      <span class="age">Today</span><button class="btn">Open</button></div>
+
+    <div class="q-item"><span class="lvl" style="background:var(--indigo-light)"></span>
+      <span class="grow"><span class="t">Meeting 2 deadline is in 3 days for 19 founders</span>
+      <span class="s">11 already scheduled.</span></span>
+      <span class="age">Today</span><button class="btn">Open</button></div>
+  </div>
+
+  <div class="note" style="margin-top:14px">
+    <strong>Why the age badge is the point.</strong> This list used to live in browser
+    <span class="mono">localStorage</span>, so two people each had a private idea of what was
+    outstanding. Worse, items were keyed by the sentence describing them, and rolled-up lines carry
+    their own count. A fourth founder going at risk created a brand-new key, so the age reset to
+    “Today” at precisely the moment things got worse. Items are now keyed by what the work
+    <em>is</em>, and a check-off clears the row only until tomorrow. Something waved away five days
+    running reads as five days overdue, which is the honest description of it.
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ═════════════════════════════════════════════════ -->
+<section class="panel" id="p-overview">
+  <div class="sec-title"><div class="k">Where the cohort is</div><h2>Overview</h2></div>
+
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="stat"><div class="n">66</div><div class="l">Founders</div><div class="h">Accepted and portalled</div></div>
+    <div class="stat"><div class="n">45</div><div class="l">Mentors</div><div class="h">21 taking two founders</div></div>
+    <div class="stat"><div class="n">64</div><div class="l">Matched</div><div class="h">2 in the waiting room</div></div>
+    <div class="stat"><div class="n">8,000+</div><div class="l">Mentor minutes</div><div class="h">Verified both sides</div></div>
+  </div>
+
+  <div class="sec-title"><div class="k">Health</div><h2>Status of every founder</h2></div>
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="stat"><div class="n" style="color:var(--ok-fg)">48</div><div class="l">On track</div></div>
+    <div class="stat"><div class="n" style="color:var(--warn-fg)">13</div><div class="l">Needs attention</div></div>
+    <div class="stat"><div class="n" style="color:var(--risk-fg)">2</div><div class="l">At risk</div></div>
+    <div class="stat"><div class="n" style="color:var(--off-fg)">3</div><div class="l">Churned</div></div>
+  </div>
+
+  <div class="sec-title"><div class="k">Milestone funnel</div><h2>How far the cohort has got</h2></div>
+  <div class="rows">
+    <div class="cov"><span class="lbl">Participation confirmed</span>
+      <span class="track"><i style="width:100%;background:var(--ok-dot)"></i></span><span class="pct">66 / 66</span></div>
+    <div class="cov"><span class="lbl">Attended onboarding</span>
+      <span class="track"><i style="width:95%;background:var(--ok-dot)"></i></span><span class="pct">63 / 66</span></div>
+    <div class="cov"><span class="lbl">Quiz passed 10/10</span>
+      <span class="track"><i style="width:89%;background:var(--ok-dot)"></i></span><span class="pct">59 / 66</span></div>
+    <div class="cov"><span class="lbl">Week 1 gate cleared</span>
+      <span class="track"><i style="width:86%;background:var(--ok-dot)"></i></span><span class="pct">57 / 66</span></div>
+    <div class="cov"><span class="lbl">Meeting 1 · Discover</span>
+      <span class="track"><i style="width:79%;background:var(--warn-dot)"></i></span><span class="pct">52 / 66</span></div>
+    <div class="cov"><span class="lbl">Meeting 2 · Act</span>
+      <span class="track"><i style="width:36%;background:var(--warn-dot)"></i></span><span class="pct">24 / 66</span></div>
+    <div class="cov"><span class="lbl">Meeting 3 · Roadmap</span>
+      <span class="track"><i style="width:6%;background:var(--off-dot)"></i></span><span class="pct">4 / 66</span></div>
+    <div class="cov"><span class="lbl">3 educational sessions</span>
+      <span class="track"><i style="width:44%;background:var(--warn-dot)"></i></span><span class="pct">29 / 66</span></div>
+  </div>
+</section>
+
+<!-- ══ FOUNDERS ═════════════════════════════════════════════════ -->
+<section class="panel" id="p-founders">
+  <div class="sec-title"><div class="k">Every one of them</div><h2>Founders</h2>
+    <p>Sortable, filterable, and every row opens the same portal the founder sees.</p></div>
+
+  <div style="display:flex;gap:8px;margin-bottom:13px;flex-wrap:wrap">
+    <button class="btn pri">All 66</button><button class="btn">On track 48</button>
+    <button class="btn">Needs attention 13</button><button class="btn">At risk 2</button>
+    <button class="btn">Churned 3</button>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Founder</th><th>Company</th><th>Room</th><th>Mentor</th>
+        <th>M1</th><th>M2</th><th>M3</th><th>Edu</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Maya Restrepo</strong><div style="color:var(--muted);font-size:12px">Hudson</div></td>
+          <td>Trellis Health</td><td>Hopper</td><td>D. Okafor</td>
+          <td><span class="chip ok">✓</span></td><td><span class="chip warn">3d</span></td>
+          <td><span class="chip off">—</span></td><td>2/3</td>
+          <td><span class="chip ok"><i class="dot"></i> On track</span></td></tr>
+        <tr><td><strong>Aleksei Brandt</strong><div style="color:var(--muted);font-size:12px">Middlesex</div></td>
+          <td>Coldstart Robotics</td><td>Hopper</td><td>R. Vasquez</td>
+          <td><span class="chip risk">14d</span></td><td><span class="chip off">—</span></td>
+          <td><span class="chip off">—</span></td><td>0/3</td>
+          <td><span class="chip risk"><i class="dot"></i> At risk</span></td></tr>
+        <tr><td><strong>Fiadh Ngata</strong><div style="color:var(--muted);font-size:12px">Essex</div></td>
+          <td>Parcelwise</td><td>Hopper</td><td>S. Achterberg</td>
+          <td><span class="chip ok">✓</span></td><td><span class="chip ok">✓</span></td>
+          <td><span class="chip off">—</span></td><td>3/3</td>
+          <td><span class="chip ok"><i class="dot"></i> On track</span></td></tr>
+        <tr><td><strong>Tomás Saldívar</strong><div style="color:var(--muted);font-size:12px">Bergen</div></td>
+          <td>Ledgerbloom</td><td>Edison</td><td>D. Okafor</td>
+          <td><span class="chip ok">✓</span></td><td><span class="chip ok">✓</span></td>
+          <td><span class="chip warn">Oct 23</span></td><td>2/3</td>
+          <td><span class="chip ok"><i class="dot"></i> On track</span></td></tr>
+        <tr><td><strong>Ines Wróbel</strong><div style="color:var(--muted);font-size:12px">Union</div></td>
+          <td>Grainline</td><td>Bardeen</td><td>—</td>
+          <td><span class="chip off">—</span></td><td><span class="chip off">—</span></td>
+          <td><span class="chip off">—</span></td><td>1/3</td>
+          <td><span class="chip risk"><i class="dot"></i> At risk</span></td></tr>
+        <tr><td><strong>Obi Nwachukwu</strong><div style="color:var(--muted);font-size:12px">Camden</div></td>
+          <td>Standhold</td><td>Lawrence</td><td>P. Lindqvist</td>
+          <td><span class="chip ok">✓</span></td><td><span class="chip warn">6d</span></td>
+          <td><span class="chip off">—</span></td><td>1/3</td>
+          <td><span class="chip warn"><i class="dot"></i> Needs attention</span></td></tr>
+        <tr><td><strong>Hana Delacroix</strong><div style="color:var(--muted);font-size:12px">Morris</div></td>
+          <td>Fernpost</td><td>Morrison</td><td>S. Achterberg</td>
+          <td><span class="chip ok">✓</span></td><td><span class="chip ok">✓</span></td>
+          <td><span class="chip ok">✓</span></td><td>3/3</td>
+          <td><span class="chip ok"><i class="dot"></i> Complete</span></td></tr>
+        <tr style="opacity:.6"><td><strong>Petra Vondráček</strong><div style="color:var(--muted);font-size:12px">Passaic</div></td>
+          <td>Kilnwork</td><td>Edison</td><td>—</td>
+          <td><span class="chip off">—</span></td><td><span class="chip off">—</span></td>
+          <td><span class="chip off">—</span></td><td>0/3</td>
+          <td><span class="chip off"><i class="dot"></i> Churned</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12.5px;color:var(--muted);margin-top:10px">Showing 8 of 66 in this demo.</p>
+</section>
+
+<!-- ══ MATCHING ═════════════════════════════════════════════════ -->
+<section class="panel" id="p-matching">
+  <div class="sec-title"><div class="k">The hard part</div><h2>Matching</h2>
+    <p>Matching is solved as a whole waiting room rather than one founder at a time. Greedy
+       first-come matching gives the early applicants the best mentors and leaves the last
+       fifteen with whoever is left.</p></div>
+
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="stat"><div class="n">64</div><div class="l">Matched</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">Waiting room</div></div>
+    <div class="stat"><div class="n">21</div><div class="l">Mentors at capacity</div><div class="h">Taking two founders</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Dual applicants</div><div class="h">Applied as both mentor and founder</div></div>
+  </div>
+
+  <div class="sec-title"><div class="k">Suggestions</div><h2>Ines Wróbel · Grainline</h2>
+    <p>Food &amp; beverage · early traction · Union County · wants help with retail distribution.</p></div>
+
+  <div class="sug">
+    <div style="display:flex;gap:15px;align-items:center">
+      <div class="av lg">MK</div>
+      <div class="grow">
+        <div style="font-size:15.5px;font-weight:800">Margit Kovács</div>
+        <div style="font-size:13px;color:var(--muted)">VP Retail · Northvale Brands · 1 of 2 slots free</div>
+      </div>
+      <div style="text-align:right"><div class="score">92</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted)">Fit</div></div>
+    </div>
+    <div class="why"><b>Why:</b> Industry exact (food &amp; beverage). Primary focus exact
+      (go-to-market / distribution). Stage adjacent (took two brands from early traction into
+      national grocery). Availability matches, since both said evenings.
+      <b>Against:</b> she is already carrying one founder, so this fills her.</div>
+    <div style="margin-top:11px;display:flex;gap:8px">
+      <button class="btn pri">Approve match</button><button class="btn">See the whole room first</button></div>
+  </div>
+
+  <div class="sug">
+    <div style="display:flex;gap:15px;align-items:center">
+      <div class="av lg">JT</div>
+      <div class="grow">
+        <div style="font-size:15.5px;font-weight:800">Jonas Thibodeaux</div>
+        <div style="font-size:13px;color:var(--muted)">Founder · Aster Foods (exited) · 2 slots free</div>
+      </div>
+      <div style="text-align:right"><div class="score">78</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--muted)">Fit</div></div>
+    </div>
+    <div class="why"><b>Why:</b> Industry exact. Stage exact. <b>Against:</b> his distribution was
+      direct-to-consumer, hers is retail. The focus is the thing she actually asked for and it
+      does not line up. Taking him here would also spend a two-slot mentor on a match a
+      one-slot mentor covers better.</div>
+    <div style="margin-top:11px;display:flex;gap:8px">
+      <button class="btn">Approve match</button></div>
+  </div>
+
+  <div class="note"><strong>Capacity is the real constraint.</strong> Across the fall cohort,
+    stated mentor session capacity came in 139 sessions short of what 66 founders × 3 meetings
+    required. The tab surfaces that as a number rather than letting it turn up in week six as a
+    pile of unmatched founders.</div>
+</section>
+
+<!-- ══ VERIFICATION ═════════════════════════════════════════════ -->
+<section class="panel" id="p-verify">
+  <div class="sec-title"><div class="k">Before anyone is matched</div><h2>Mentor Verification</h2>
+    <p>Founders are handing a stranger their business problems. The standard is published on the
+       public site; the scoring weights are not, because a published threshold is a published way
+       around it.</p></div>
+
+  <div class="card">
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:4px">
+      <div class="av">MK</div>
+      <div class="grow"><strong>Margit Kovács</strong> · VP Retail, Northvale Brands</div>
+      <span class="chip ok">Corroborated</span></div>
+    <div class="verdict" style="background:var(--ok-bg);color:var(--ok-fg)">
+      The web backs up what they wrote. Approve and match.</div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:4px">
+      <div class="av">RV</div>
+      <div class="grow"><strong>Rafael Vasquez</strong> · Advisor, independent</div>
+      <span class="chip warn">Partly corroborated</span></div>
+    <div class="verdict" style="background:var(--warn-bg);color:var(--warn-fg)">
+      Some of it checks out. Ask them about the rest before matching.</div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:4px">
+      <div class="av">LB</div>
+      <div class="grow"><strong>Lars Bjørnstad</strong> · “Former CTO”, unnamed unicorn</div>
+      <span class="chip risk">Contradicted</span></div>
+    <div class="verdict" style="background:var(--risk-bg);color:var(--risk-fg)">
+      The web disagrees with the application. Read the detail before you reply to them.</div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:4px">
+      <div class="av">SA</div>
+      <div class="grow"><strong>Saoirse Achterberg</strong> · Operating Partner</div>
+      <span class="chip warn">Nothing found</span></div>
+    <div class="verdict" style="background:var(--warn-bg);color:var(--warn-fg)">
+      No trace either way. This is not proof of anything, so ask for a reference.</div>
+  </div>
+
+  <div class="note"><strong>“Nothing found” is not “fraud”.</strong> Plenty of excellent operators
+    have no web presence, and a verification tool that treats absence as guilt quietly filters for
+    people who post a lot. The four verdicts are worded to keep that distinction in front of
+    whoever is reading.</div>
+</section>
+
+<!-- ══ COVERAGE ═════════════════════════════════════════════════ -->
+<section class="panel" id="p-coverage">
+  <div class="sec-title"><div class="k">Are we done?</div><h2>Coverage</h2>
+    <p>Every question a programme manager asks at 6pm on a Friday, answered as a percentage.</p></div>
+  <div class="rows">
+    <div class="cov"><span class="lbl">Founders with a portal</span>
+      <span class="track"><i style="width:100%;background:var(--ok-dot)"></i></span><span class="pct">100%</span></div>
+    <div class="cov"><span class="lbl">Mentors with a guide page</span>
+      <span class="track"><i style="width:100%;background:var(--ok-dot)"></i></span><span class="pct">100%</span></div>
+    <div class="cov"><span class="lbl">Founders matched</span>
+      <span class="track"><i style="width:97%;background:var(--ok-dot)"></i></span><span class="pct">97%</span></div>
+    <div class="cov"><span class="lbl">Match emails sent</span>
+      <span class="track"><i style="width:97%;background:var(--ok-dot)"></i></span><span class="pct">97%</span></div>
+    <div class="cov"><span class="lbl">Sessions with a confirmed speaker</span>
+      <span class="track"><i style="width:82%;background:var(--warn-dot)"></i></span><span class="pct">18 / 22</span></div>
+    <div class="cov"><span class="lbl">Speaker one-pagers built</span>
+      <span class="track"><i style="width:82%;background:var(--warn-dot)"></i></span><span class="pct">18 / 22</span></div>
+    <div class="cov"><span class="lbl">Luma events published</span>
+      <span class="track"><i style="width:91%;background:var(--ok-dot)"></i></span><span class="pct">20 / 22</span></div>
+    <div class="cov"><span class="lbl">Grant verification signatures</span>
+      <span class="track"><i style="width:75%;background:var(--warn-dot)"></i></span><span class="pct">6 / 8</span></div>
+  </div>
+  <div class="note" style="margin-top:14px"><strong>Deliberately ungated.</strong> This route has
+    no admin secret on it, because the people who most need to answer “are we done?” are the ones
+    least likely to have the credential, and nothing on it is sensitive.</div>
+</section>
+
+<!-- ══ COMMS ════════════════════════════════════════════════════ -->
+<section class="panel" id="p-comms">
+  <div class="sec-title"><div class="k">Who has been told what</div><h2>Comms</h2>
+    <p>Every participant and every email that has actually reached them.</p></div>
+
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="stat"><div class="n">1,284</div><div class="l">Emails sent</div><div class="h">This cohort</div></div>
+    <div class="stat"><div class="n">11</div><div class="l">Awaiting reply</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Owed a reply by us</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Bounced</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Send</th><th>Audience</th><th>When</th><th>Reach</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Acceptance</strong></td><td>66 founders</td><td>Aug 28</td><td>66 / 66</td><td><span class="chip ok">Complete</span></td></tr>
+        <tr><td><strong>Mentor acceptance</strong></td><td>45 mentors</td><td>Aug 30</td><td>45 / 45</td><td><span class="chip ok">Complete</span></td></tr>
+        <tr><td><strong>Launch week update</strong></td><td>45 mentors</td><td>Sept 8</td><td>45 / 45</td><td><span class="chip ok">Complete</span></td></tr>
+        <tr><td><strong>Match reveal</strong></td><td>64 pairs</td><td>Sept 15</td><td>64 / 64</td><td><span class="chip ok">Complete</span></td></tr>
+        <tr><td><strong>Tuesday update · wk 4</strong></td><td>45 mentors</td><td>—</td><td>0 / 45</td><td><span class="chip warn">Draft ready</span></td></tr>
+        <tr><td><strong>Midpoint nudge</strong></td><td>19 founders</td><td>—</td><td>—</td><td><span class="chip off">Not due</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note" style="margin-top:14px"><strong>What this log does not prove.</strong> It records
+    what the send routes did. It is not evidence that a person was never contacted, because plenty of
+    conversations happen by hand from a mailbox. Read it as “these sends fired”, never as
+    “nobody spoke to them”.</div>
+</section>
+
+<!-- ══ REPORTING ════════════════════════════════════════════════ -->
+<section class="panel" id="p-reporting">
+  <div class="sec-title"><div class="k">Grant compliance</div><h2>Reporting</h2>
+    <p>The programme is state-funded, and funding is released against evidence rather than
+       assertion. Every number below is traceable to a two-sided confirmation.</p></div>
+
+  <div class="grid g3" style="margin-bottom:18px">
+    <div class="stat"><div class="n">8,000+</div><div class="l">Mentor minutes</div><div class="h">Both sides confirmed</div></div>
+    <div class="stat"><div class="n">70</div><div class="l">Founders served</div><div class="h">Across both cohorts</div></div>
+    <div class="stat"><div class="n">150+</div><div class="l">Programme hours</div><div class="h">Sessions and events</div></div>
+  </div>
+
+  <div class="sec-title"><div class="k">Exhibits</div><h2>Generated, not assembled by hand</h2></div>
+  <div class="rows">
+    <div class="row"><span class="grow"><span class="t">Exhibit A · Requisition</span>
+      <span class="s">Built from the live milestone data</span></span><span class="chip ok">Generated</span></div>
+    <div class="row"><span class="grow"><span class="t">Exhibit C · Per-cohort completion (×5)</span>
+      <span class="s">Edison, Hopper, Bardeen, Lawrence, Morrison</span></span><span class="chip ok">Generated</span></div>
+    <div class="row"><span class="grow"><span class="t">Exhibit D · Verification forms</span>
+      <span class="s">One per participant, pre-filled, signature block only</span></span><span class="chip warn">6 of 8 signed</span></div>
+    <div class="row"><span class="grow"><span class="t">Exhibit E · Summit event report</span>
+      <span class="s">Attendance pulled from the event platform</span></span><span class="chip ok">Generated</span></div>
+    <div class="row"><span class="grow"><span class="t">Programme completion report</span>
+      <span class="s">Milestone-by-milestone, per founder</span></span><span class="chip ok">Generated</span></div>
+  </div>
+
+  <div class="note" style="margin-top:14px"><strong>Why generation matters here.</strong> These
+    exhibits were previously rebuilt by hand each reporting period from spreadsheet exports. Every
+    hand-rebuild is a chance for the report and the underlying data to drift apart, and the whole
+    point of a compliance document is that it does not. Generating them from the same source the
+    dashboard reads makes drift structurally impossible.</div>
+</section>
+
+<!-- ══ SIGNALS ══════════════════════════════════════════════════ -->
+<section class="panel" id="p-signals">
+  <div class="sec-title"><div class="k">What the cohort is saying</div><h2>Signals &amp; Themes</h2>
+    <p>Founders write into portal prompts every week. A Friday job clusters those answers and posts
+       the top themes to Slack, which is how the next set of educational sessions gets chosen.</p></div>
+
+  <div class="grid g2">
+    <div class="card"><h3>1 · Procurement and security reviews</h3>
+      <p style="margin-top:5px">Mentioned by 14 founders, up from 6 in week 2. Concentrated in
+        healthcare and fintech.</p>
+      <div style="margin-top:10px"><span class="chip warn">Rising</span>
+        <span class="chip" style="margin-left:5px">Session idea: “Passing a security review without SOC 2”</span></div></div>
+    <div class="card"><h3>2 · Hiring the first non-founder</h3>
+      <p style="margin-top:5px">11 founders. Steady across weeks.</p>
+      <div style="margin-top:10px"><span class="chip off">Flat</span></div></div>
+    <div class="card"><h3>3 · Pricing changes they are scared to make</h3>
+      <p style="margin-top:5px">9 founders. Almost all early traction stage.</p>
+      <div style="margin-top:10px"><span class="chip warn">Rising</span>
+        <span class="chip" style="margin-left:5px">Hot Seat candidate</span></div></div>
+    <div class="card"><h3>4 · Co-founder disagreements</h3>
+      <p style="margin-top:5px">5 founders. Sensitive, so surfaced privately, never in Slack.</p>
+      <div style="margin-top:10px"><span class="chip risk">Handle by hand</span></div></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot"><div class="foot-in">
+  Demo rebuild of the Uplift admin dashboard · designed and built by Kennedy Loper ·
+  <a href="../index.html">back to the portfolio</a>
+</div></footer>
+
+<script>
+const TABS = [["today","Today"],["overview","Overview"],["founders","Founders"],
+  ["matching","Matching"],["verify","Verification"],["coverage","Coverage"],
+  ["comms","Comms"],["reporting","Reporting"],["signals","Signals"]];
+const nav = document.getElementById("tabs");
+TABS.forEach(([id,label],i) => {
+  const b = document.createElement("button");
+  b.className = "tab" + (i===0 ? " on" : ""); b.textContent = label;
+  b.onclick = () => {
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+    b.classList.add("on"); document.getElementById("p-"+id).classList.add("on");
+    window.scrollTo({top:0,behavior:"smooth"});
+  };
+  nav.appendChild(b);
+});
+</script>
+</body>
+</html>

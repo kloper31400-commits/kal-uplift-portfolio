@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechUnited Camera Wrap — Camp Snap</title>
+<style>
+  :root {
+    --ink:        #0b0b12;
+    --ink-soft:   #1a1a26;
+    --navy:       #110465;
+    --pink:       #d86697;
+    --paper:      #fafafc;
+
+    /* TechUnited spectrum — sampled from techunited-logo.png */
+    --tu-cyan:    #39c4e5;
+    --tu-blue:    #5f8fca;
+    --tu-violet:  #7877b8;
+    --tu-purple:  #9e70b1;
+    --tu-magenta: #d163a1;
+    --tu-rose:    #e86987;
+    --tu-coral:   #f37b7c;
+    --tu-orange:  #fab374;
+
+    --spectrum-x: linear-gradient(100deg,
+      var(--tu-cyan) 0%, var(--tu-blue) 15%, var(--tu-violet) 29%,
+      var(--tu-purple) 43%, var(--tu-magenta) 59%, var(--tu-rose) 73%,
+      var(--tu-coral) 86%, var(--tu-orange) 100%);
+    --spectrum-y: linear-gradient(180deg,
+      var(--tu-cyan) 0%, var(--tu-violet) 28%, var(--tu-magenta) 58%,
+      var(--tu-coral) 82%, var(--tu-orange) 100%);
+
+    /* =======================================================
+       CAMERA BODY — Camp Snap (4.5 × 2.5 × 1.0 in)
+       Change these three if you measure something different.
+       ======================================================= */
+    --cam-w: 4.5in;   /* width  — front/back/top/bottom panel length */
+    --cam-h: 2.5in;   /* height — front/back panel height            */
+    --cam-d: 1.0in;   /* depth  — side/top/bottom strip width        */
+
+    /* =======================================================
+       CUTOUT POSITIONS — *** ESTIMATES, VERIFY BEFORE CUTTING ***
+       Camp Snap does not publish a control-position drawing, so
+       these are eyeballed from product photography. Print Sheet 1
+       (Test Fit) FIRST, hold it on the camera, and correct any of
+       the values below before you print on vinyl.
+       Coordinates are the CENTRE of each opening, measured from
+       the TOP-LEFT corner of that panel.
+       ======================================================= */
+    --lens-x: 2.55in;  --lens-y: 1.05in;  --lens-d: 0.72in;   /* front: lens barrel */
+    --flash-x: 0.78in; --flash-y: 0.72in; --flash-d: 0.42in;  /* front: flash        */
+    --vfF-x: 3.72in;   --vfF-y: 0.44in;   --vfF-w: 0.42in; --vfF-h: 0.30in;  /* front: viewfinder window */
+
+    --vfB-x: 0.78in;   --vfB-y: 0.44in;   --vfB-w: 0.34in; --vfB-h: 0.26in;  /* back: eyepiece */
+    --ctr-x: 2.20in;   --ctr-y: 0.70in;   --ctr-w: 0.62in; --ctr-h: 0.40in;  /* back: shot counter */
+
+    --shut-x: 1.15in;  --shut-y: 0.50in;  --shut-d: 0.46in;                  /* top: shutter */
+    --sw-x: 3.10in;    --sw-y: 0.50in;    --sw-w: 0.85in;  --sw-h: 0.34in;   /* top: power/flash slider */
+
+    --usb-x: 0.50in;   --usb-y: 0.62in;   --usb-w: 0.42in; --usb-h: 0.22in;  /* right side: USB-C */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Avenir Next', Avenir, Futura, 'Century Gothic', sans-serif;
+    background: #ececf1;
+    color: var(--navy);
+  }
+
+  /* ================= Screen-only instructions ================= */
+  .intro {
+    max-width: 8.5in;
+    margin: 32px auto 0;
+    padding: 28px 36px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(17,4,101,.12);
+  }
+  .intro > img { height: 34px; display: block; margin-bottom: 16px; }
+  .intro h1 { font-size: 22px; font-weight: 600; letter-spacing: .01em; }
+  .intro h2 {
+    font-size: 11px; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--tu-magenta);
+    margin-top: 22px; padding-top: 14px; border-top: 1px solid #ececf1;
+  }
+  .intro p  { font-size: 14px; line-height: 1.55; color: #444; margin-top: 8px; }
+  .intro ol, .intro ul { margin-top: 8px; padding-left: 20px; font-size: 14px; color: #444; line-height: 1.7; }
+  .intro li + li { margin-top: 3px; }
+  .intro b { color: var(--navy); }
+  .intro code {
+    font-family: ui-monospace, Menlo, monospace; font-size: 12.5px;
+    background: #f2f2f7; padding: 1px 5px; border-radius: 4px; color: var(--navy);
+  }
+  .warn {
+    margin-top: 12px; padding: 13px 16px;
+    background: #fff6f9; border-left: 3px solid var(--tu-magenta);
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px; line-height: 1.6; color: #4a3a44;
+  }
+  .spec {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px;
+    margin-top: 10px; font-size: 13.5px; color: #444;
+  }
+  .spec div { display: flex; justify-content: space-between; gap: 12px;
+              padding: 6px 0; border-bottom: 1px dotted #dcdce4; }
+  .spec span:last-child { font-weight: 600; color: var(--navy); }
+  @media print { .intro { display: none; } }
+
+  /* ================= Sheets ================= */
+  .sheet {
+    width: 8.5in; height: 11in;
+    margin: 24px auto;
+    background: white;
+    box-shadow: 0 2px 10px rgba(17,4,101,.15);
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+    padding: 0.5in 0.4in 0.4in;
+  }
+  @media print {
+    body { background: white; }
+    .sheet { margin: 0; box-shadow: none; }
+    @page { size: letter; margin: 0; }
+  }
+  .sheet-label {
+    position: absolute; top: 0.2in; left: 0.4in; right: 0.4in;
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; color: #a8a8b4;
+  }
+  .sheet-label b { color: var(--navy); font-weight: 600; letter-spacing: .1em; }
+
+  .ruler {
+    position: absolute; bottom: 0.26in; left: 0.4in;
+    display: flex; align-items: center; gap: 7px;
+    font-size: 6.5pt; letter-spacing: .1em; text-transform: uppercase; color: #b0b0bc;
+  }
+  .ruler i {
+    display: block; width: 1in; height: 7px;
+    border: .75pt solid #b0b0bc; border-top: none; position: relative;
+  }
+  .ruler i::after {
+    content: ""; position: absolute; left: 50%; top: 0;
+    width: .75pt; height: 4px; background: #b0b0bc;
+  }
+
+  .stack {
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.42in;
+  }
+  .piece { position: relative; }
+  .piece-cap {
+    font-size: 7pt; letter-spacing: .14em; text-transform: uppercase;
+    color: #a8a8b4; margin-bottom: 5pt;
+  }
+  .piece-cap b { color: var(--navy); font-weight: 600; }
+  .piece-cap em { font-style: normal; color: #b8b8c4; }
+
+  /* ================= Panels ================= */
+  .panel {
+    position: relative; overflow: hidden;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .panel.front, .panel.back { width: var(--cam-w); height: var(--cam-h); }
+  .panel.side              { width: var(--cam-d); height: var(--cam-h); }
+  .panel.tb                { width: var(--cam-w); height: var(--cam-d); }
+
+  /* --- colorway: Spectrum --- */
+  .spectrum .panel                { background: var(--spectrum-x); }
+  .spectrum .panel.side           { background: var(--spectrum-y); }
+  .spectrum .panel.tb             { background: var(--spectrum-x); }
+
+  /* --- colorway: Midnight --- */
+  .midnight .panel      { background: var(--ink); }
+  .midnight .panel::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 0.11in; background: var(--spectrum-x);
+  }
+  .midnight .panel.side::after { height: 0.07in; background: var(--spectrum-y); }
+  /* diagonal spectrum slash across the front */
+  .midnight .panel.front .slash {
+    position: absolute; top: -20%; bottom: -20%; left: 46%; width: 0.34in;
+    background: var(--spectrum-y);
+    transform: rotate(18deg); transform-origin: center;
+    opacity: .95;
+  }
+
+  /* prismatic facet overlay — echoes the low-poly Uplift range.
+     width/height are explicit: an absolutely-positioned <svg> otherwise
+     falls back to its intrinsic 1:1 viewBox ratio and ignores inset. */
+  .facets {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  /* A <use> clone lives in a shadow tree that ordinary selectors cannot reach —
+     styling `.facets polygon` silently does nothing and every facet falls back
+     to solid black, flooding the panel. Colour is therefore driven by `color`,
+     which IS inherited into the clone, and read by fill="currentColor". */
+  .facets .pl { color: #fff; }            /* highlight planes */
+  .facets .ps { color: #000; opacity: .8; } /* shade planes    */
+  .midnight .facets .ps { color: #fff; opacity: .5; }
+
+  /* --- branding lower band: the zone that is clear of hardware --- */
+  .brandband {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 0.78in;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 0.2in 0.06in;
+    z-index: 3;
+  }
+  .midnight .brandband { padding-bottom: 0.15in; }
+  /* The mark is a flattened PNG whose gradient glyph overlaps the "united"
+     letters — inverting it to white merges them into an unreadable blob, so it
+     keeps its real colours and sits on a white plate. */
+  .brandband .logo {
+    background: #fff;
+    border-radius: 3pt;
+    padding: 4.5pt 7pt;
+    box-shadow: 0 0 0 .75pt rgba(0,0,0,.06);
+  }
+  .brandband .logo img { display: block; width: 1.42in; height: auto; }
+  .brandband .season {
+    font-size: 6pt; font-weight: 700; letter-spacing: .26em;
+    text-transform: uppercase; color: rgba(255,255,255,.9);
+    text-align: right; line-height: 1.5; text-indent: .26em;
+  }
+  /* back panel: wordmark only, centred */
+  .panel.back .brandband { justify-content: center; }
+  .panel.back .brandband .logo img { width: 1.72in; }
+
+  /* top strip branding */
+  .panel.tb .striptype {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; align-items: center;
+    padding: 0 0.16in;
+    font-size: 6pt; font-weight: 700; letter-spacing: .3em;
+    text-transform: uppercase; color: rgba(255,255,255,.92);
+  }
+  .panel.tb .striptype span:last-child { margin-left: auto; letter-spacing: .2em; }
+
+  /* side strip branding */
+  .panel.side .sidetype {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .panel.side .sidetype span {
+    font-size: 5.5pt; font-weight: 700; letter-spacing: .28em;
+    text-transform: uppercase; color: rgba(255,255,255,.85);
+    writing-mode: vertical-rl;
+  }
+
+  /* ================= Cutouts ================= */
+  .cut {
+    position: absolute; z-index: 4;
+    border: .9pt dashed rgba(255,255,255,.95);
+    box-shadow: 0 0 0 .9pt rgba(0,0,0,.28);
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .cut.round { border-radius: 50%; }
+  .cut.pill  { border-radius: 999px; }
+  .cut b {
+    position: absolute; top: 100%; margin-top: 1.5pt;
+    font-size: 4.5pt; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(255,255,255,.95);
+    white-space: nowrap; text-shadow: 0 0 2px rgba(0,0,0,.55);
+  }
+  /* test-fit sheet: dark marks on plain paper */
+  .testfit .cut { border-color: #c2185b; box-shadow: none; }
+  .testfit .cut b { color: #c2185b; text-shadow: none; }
+
+  .c-lens  { left: var(--lens-x);  top: var(--lens-y);  width: var(--lens-d);  height: var(--lens-d);  transform: translate(-50%,-50%); }
+  .c-flash { left: var(--flash-x); top: var(--flash-y); width: var(--flash-d); height: var(--flash-d); transform: translate(-50%,-50%); }
+  .c-vfF   { left: var(--vfF-x);   top: var(--vfF-y);   width: var(--vfF-w);   height: var(--vfF-h);   transform: translate(-50%,-50%); }
+  .c-vfB   { left: var(--vfB-x);   top: var(--vfB-y);   width: var(--vfB-w);   height: var(--vfB-h);   transform: translate(-50%,-50%); }
+  .c-ctr   { left: var(--ctr-x);   top: var(--ctr-y);   width: var(--ctr-w);   height: var(--ctr-h);   transform: translate(-50%,-50%); }
+  .c-shut  { left: var(--shut-x);  top: var(--shut-y);  width: var(--shut-d);  height: var(--shut-d);  transform: translate(-50%,-50%); }
+  .c-sw    { left: var(--sw-x);    top: var(--sw-y);    width: var(--sw-w);    height: var(--sw-h);    transform: translate(-50%,-50%); }
+  .c-usb   { left: var(--usb-x);   top: var(--usb-y);   width: var(--usb-w);   height: var(--usb-h);   transform: translate(-50%,-50%); }
+
+  /* ================= Wrap piece A (side + front + side) ================= */
+  .band { display: flex; align-items: stretch; }
+  .band .fold {
+    flex: none; width: 0;
+    border-left: .75pt dashed rgba(255,255,255,.75);
+    margin-left: -.375pt; margin-right: -.375pt;
+    position: relative; z-index: 6;
+  }
+  .testfit .band .fold { border-left-color: #8a8a9a; }
+  .band .panel { flex: none; }
+
+  /* ================= Test-fit sheet ================= */
+  .testfit .panel {
+    background: white !important;
+    border: .9pt solid #6c6c80;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(17,4,101,.11) 0 .4pt, transparent .4pt 0.25in),
+      repeating-linear-gradient(90deg, rgba(17,4,101,.11) 0 .4pt, transparent .4pt 0.25in) !important;
+  }
+  .testfit .panel::after { display: none; }
+  .testfit .brandband, .testfit .striptype, .testfit .sidetype, .testfit .facets, .testfit .slash { display: none; }
+  .testfit .panel-name {
+    position: absolute; left: 0.1in; top: 0.07in; z-index: 5;
+    font-size: 7pt; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: #b8b8c4;
+  }
+  /* Sheet 1 carries four pieces plus a note — tighter rhythm so the
+     column stays inside the 10.1in printable stack. */
+  .testfit .stack { gap: 0.2in; justify-content: flex-start; }
+
+  .testfit-note {
+    width: 6.9in; margin: 0.04in auto 0;
+    font-size: 8pt; line-height: 1.5; color: #44445a;
+  }
+  .testfit-note h3 {
+    font-size: 8pt; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 5pt;
+  }
+  .testfit-note ol { padding-left: 15pt; }
+  .testfit-note li + li { margin-top: 2.5pt; }
+  .testfit-note code {
+    font-family: ui-monospace, Menlo, monospace; font-size: 7.5pt;
+    background: #f2f2f7; padding: 0 3pt; border-radius: 3px;
+  }
+
+  .legend {
+    position: absolute; bottom: 0.26in; right: 0.4in;
+    display: flex; gap: 0.3in;
+    font-size: 6.5pt; letter-spacing: .06em; color: #85859a;
+  }
+  .legend div { display: flex; align-items: center; gap: 5px; white-space: nowrap; flex: none; }
+  .legend i { display: block; width: 0.22in; height: 0; flex: none; }
+  .legend i.cut  { border-top: 1pt solid #6c6c80; }
+  .legend i.fold { border-top: 1pt dashed #9a9aa8; }
+  .legend i.open { border-top: 1pt dashed #c2185b; }
+</style>
+</head>
+<body>
+
+<!-- ==================== SCREEN-ONLY INSTRUCTIONS ==================== -->
+<div class="intro">
+  <img src="techunited-logo.png" alt="TechUnited New Jersey">
+  <h1>Camera Wrap — Camp Snap</h1>
+  <p>
+    A four-piece skin for the Camp&nbsp;Snap screen-free camera, built on the brand
+    spectrum sampled straight out of the TechUnited mark. Two colorways, plus a
+    test-fit sheet to check the openings against your actual camera before you
+    commit to vinyl.
+  </p>
+
+  <div class="warn">
+    <b>Print Sheet 1 first.</b> Camp Snap doesn't publish a control-position drawing, so
+    the lens, flash, viewfinder, counter, shutter and USB openings are estimated from
+    product photography. Sheet&nbsp;1 is an unprinted outline with a ¼&nbsp;in grid — hold it
+    on the camera, mark where the real openings fall, then correct the
+    <code>--lens-x</code>&nbsp;/&nbsp;<code>--lens-y</code>-style variables in the
+    <code>CUTOUT POSITIONS</code> block at the top of this file. Everything re-flows
+    automatically.
+  </div>
+
+  <h2>Why the branding sits low</h2>
+  <p>
+    All the hardware on a camera this shape lives in the upper two-thirds of the front
+    and back. The wordmark is parked in the bottom <b>0.78&nbsp;in</b> band on purpose — so
+    even if your opening positions differ from the estimates above, the cuts land in
+    open gradient and never through the logo.
+  </p>
+
+  <h2>The four pieces</h2>
+  <div class="spec">
+    <div><span>A — side + front + side</span><span>6.5 × 2.5 in</span></div>
+    <div><span>B — back</span><span>4.5 × 2.5 in</span></div>
+    <div><span>C — top</span><span>4.5 × 1.0 in</span></div>
+    <div><span>D — bottom</span><span>4.5 × 1.0 in</span></div>
+  </div>
+  <p style="margin-top:10px">
+    Piece&nbsp;A wraps around the front and both ends in one continuous run, so the two
+    seams land on the <b>rear corners</b> where nobody looks, and the front face has no
+    seam at all.
+  </p>
+
+  <h2>Colorways</h2>
+  <ul>
+    <li><b>Sheet 2 — Spectrum.</b> Full cyan→orange gradient field, white mark, prismatic
+      facet overlay. Loud, photographs well, reads instantly across a room.</li>
+    <li><b>Sheet 3 — Midnight.</b> Near-black body with a single spectrum slash and a
+      gradient base edge. Subtler, and cheaper if you're printing on a laser.</li>
+  </ul>
+
+  <h2>Production</h2>
+  <ol>
+    <li>Print at <b>100%</b> scale — "Fit to page" off. Verify with the <code>1 INCH</code> bar.</li>
+    <li>Best result: matte print-and-cut vinyl with a laminate. Any sign shop takes this
+      file directly. Ask for <b>permanent adhesive, matte laminate</b>.</li>
+    <li>DIY: full-sheet sticker paper, cut with a craft knife and a metal ruler, then
+      clear packing tape over the top as a laminate.</li>
+    <li>Cut the openings <b>slightly undersize</b> and trim outward until the control moves
+      freely. Round every inside corner — square corners are where a vinyl skin starts
+      to peel.</li>
+    <li>Clean the body with isopropyl and let it dry. Apply piece&nbsp;A front-face first,
+      squeegee out from the centre, then wrap the ends. B, C, D after.</li>
+    <li>Leave the lens and flash openings a touch generous — vinyl overhanging a lens
+      barrel will flare your shots.</li>
+  </ol>
+</div>
+
+<!-- prismatic facet overlay, reused -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Split into highlight and shade groups so each can be recoloured from
+         outside the shadow tree via currentColor. Opacity baked per facet. -->
+    <g id="prism-lite" fill="currentColor">
+      <polygon opacity=".14" points="0,0 46,0 0,64"/>
+      <polygon opacity=".07" points="46,0 100,0 100,22 0,100 0,64"/>
+      <polygon opacity=".10" points="100,54 100,78 62,100 34,100"/>
+      <polygon opacity=".06" points="12,0 46,0 0,50 0,14"/>
+    </g>
+    <g id="prism-shade" fill="currentColor">
+      <polygon opacity=".09" points="100,22 100,54 34,100 0,100"/>
+      <polygon opacity=".06" points="100,78 100,100 62,100"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ==================== SHEET 1 — TEST FIT ==================== -->
+<div class="sheet testfit">
+  <div class="sheet-label"><span>Sheet 1 · <b>Test fit</b> — check before printing artwork</span><span>¼ in grid · Camp Snap 4.5 × 2.5 × 1.0 in</span></div>
+  <div class="stack">
+
+    <div class="piece">
+      <div class="piece-cap">Piece A — <b>side + front + side</b> <em>6.5 × 2.5 in</em></div>
+      <div class="band">
+        <div class="panel side"><div class="panel-name">L</div></div>
+        <div class="fold"></div>
+        <div class="panel front">
+          <div class="panel-name">Front</div>
+          <div class="cut round c-lens"><b>Lens 0.72&quot;</b></div>
+          <div class="cut round c-flash"><b>Flash 0.42&quot;</b></div>
+          <div class="cut c-vfF"><b>Viewfinder</b></div>
+        </div>
+        <div class="fold"></div>
+        <div class="panel side">
+          <div class="panel-name">R</div>
+          <div class="cut pill c-usb"><b>USB-C</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece B — <b>back</b> <em>4.5 × 2.5 in</em></div>
+      <div class="panel back">
+        <div class="panel-name">Back</div>
+        <div class="cut c-vfB"><b>Eyepiece</b></div>
+        <div class="cut c-ctr"><b>Counter</b></div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece C — <b>top</b> <em>4.5 × 1.0 in</em></div>
+      <div class="panel tb">
+        <div class="panel-name">Top</div>
+        <div class="cut round c-shut"><b>Shutter</b></div>
+        <div class="cut pill c-sw"><b>Power / flash</b></div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece D — <b>bottom</b> <em>4.5 × 1.0 in</em></div>
+      <div class="panel tb"><div class="panel-name">Bottom</div></div>
+    </div>
+
+    <div class="testfit-note">
+      <h3>How to use this sheet</h3>
+      <ol>
+        <li>Confirm scale with the <code>1 INCH</code> bar below first.</li>
+        <li>Cut out piece&nbsp;A, hold it on the camera, and mark the true centre of every
+          opening. Count grid squares (¼&nbsp;in) from the panel's top-left corner.</li>
+        <li>Edit the <code>CUTOUT POSITIONS</code> block in this file — a lens 2⅜&nbsp;in across
+          and 1⅛&nbsp;in down becomes <code>--lens-x: 2.375in; --lens-y: 1.125in;</code></li>
+        <li>Reload, re-check, then print Sheet&nbsp;2 or&nbsp;3.</li>
+      </ol>
+    </div>
+
+  </div>
+  <div class="legend">
+    <div><i class="cut"></i>Cut edge</div>
+    <div><i class="fold"></i>Wrap corner</div>
+    <div><i class="open"></i>Opening</div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+<!-- ==================== SHEET 2 — SPECTRUM ==================== -->
+<div class="sheet spectrum">
+  <div class="sheet-label"><span>Sheet 2 · Camera wrap — <b>Spectrum</b></span><span>Print 100% · matte vinyl + laminate</span></div>
+  <div class="stack">
+
+    <div class="piece">
+      <div class="piece-cap">Piece A — <b>side + front + side</b> <em>6.5 × 2.5 in</em></div>
+      <div class="band">
+        <div class="panel side">
+          <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+          <div class="sidetype"><span>TechUnited</span></div>
+        </div>
+        <div class="fold"></div>
+        <div class="panel front">
+          <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+          <div class="cut round c-lens"><b>Lens 0.72&quot;</b></div>
+          <div class="cut round c-flash"><b>Flash 0.42&quot;</b></div>
+          <div class="cut c-vfF"><b>Viewfinder</b></div>
+          <div class="brandband">
+            <div class="logo"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+            <div class="season">Summer<br>2026</div>
+          </div>
+        </div>
+        <div class="fold"></div>
+        <div class="panel side">
+          <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+          <div class="cut pill c-usb"><b>USB-C</b></div>
+          <div class="sidetype"><span>New Jersey</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece B — <b>back</b> <em>4.5 × 2.5 in</em></div>
+      <div class="panel back">
+        <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+        <div class="cut c-vfB"><b>Eyepiece</b></div>
+        <div class="cut c-ctr"><b>Counter</b></div>
+        <div class="brandband">
+          <div class="logo"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece C — <b>top</b> <em>4.5 × 1.0 in</em></div>
+      <div class="panel tb">
+        <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+        <div class="cut round c-shut"><b>Shutter</b></div>
+        <div class="cut pill c-sw"><b>Power / flash</b></div>
+        <div class="striptype"><span>TechUnited</span><span>Summer 2026</span></div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece D — <b>bottom</b> <em>4.5 × 1.0 in</em></div>
+      <div class="panel tb">
+        <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+        <div class="striptype"><span>New Jersey</span><span>techunitednj.org</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="legend">
+    <div><i class="cut"></i>Cut edge</div>
+    <div><i class="fold"></i>Wrap corner</div>
+    <div><i class="open"></i>Opening</div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+<!-- ==================== SHEET 3 — MIDNIGHT ==================== -->
+<div class="sheet midnight">
+  <div class="sheet-label"><span>Sheet 3 · Camera wrap — <b>Midnight</b></span><span>Alternate colorway · print 100%</span></div>
+  <div class="stack">
+
+    <div class="piece">
+      <div class="piece-cap">Piece A — <b>side + front + side</b> <em>6.5 × 2.5 in</em></div>
+      <div class="band">
+        <div class="panel side">
+          <div class="sidetype"><span>TechUnited</span></div>
+        </div>
+        <div class="fold"></div>
+        <div class="panel front">
+          <div class="slash"></div>
+          <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+          <div class="cut round c-lens"><b>Lens 0.72&quot;</b></div>
+          <div class="cut round c-flash"><b>Flash 0.42&quot;</b></div>
+          <div class="cut c-vfF"><b>Viewfinder</b></div>
+          <div class="brandband">
+            <div class="logo"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+            <div class="season">Summer<br>2026</div>
+          </div>
+        </div>
+        <div class="fold"></div>
+        <div class="panel side">
+          <div class="cut pill c-usb"><b>USB-C</b></div>
+          <div class="sidetype"><span>New Jersey</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece B — <b>back</b> <em>4.5 × 2.5 in</em></div>
+      <div class="panel back">
+        <svg class="facets" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#prism-lite" class="pl"/><use href="#prism-shade" class="ps"/></svg>
+        <div class="cut c-vfB"><b>Eyepiece</b></div>
+        <div class="cut c-ctr"><b>Counter</b></div>
+        <div class="brandband">
+          <div class="logo"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece C — <b>top</b> <em>4.5 × 1.0 in</em></div>
+      <div class="panel tb">
+        <div class="cut round c-shut"><b>Shutter</b></div>
+        <div class="cut pill c-sw"><b>Power / flash</b></div>
+        <div class="striptype"><span>TechUnited</span><span>Summer 2026</span></div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-cap">Piece D — <b>bottom</b> <em>4.5 × 1.0 in</em></div>
+      <div class="panel tb">
+        <div class="striptype"><span>New Jersey</span><span>techunitednj.org</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="legend">
+    <div><i class="cut"></i>Cut edge</div>
+    <div><i class="fold"></i>Wrap corner</div>
+    <div><i class="open"></i>Opening</div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+</body>
+</html>

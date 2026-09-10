@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplift Summit: Directional &amp; Floor Signage</title>
+<style>
+  :root {
+    --navy: #110465;
+    --pink: #d86697;
+    --slate: #5b6472;
+    --paper: #fafafc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Avenir Next', Avenir, Futura, 'Century Gothic', sans-serif;
+    background: #ececf1;
+    color: var(--navy);
+  }
+
+  /* ---------- Screen-only intro ---------- */
+  .intro {
+    max-width: 8.5in;
+    margin: 32px auto 0;
+    padding: 28px 36px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(17,4,101,.12);
+  }
+  .intro img { height: 44px; display: block; margin-bottom: 14px; }
+  .intro h1 { font-size: 22px; font-weight: 600; letter-spacing: .01em; }
+  .intro p { font-size: 14px; line-height: 1.55; color: #444; margin-top: 8px; }
+  .intro ol { margin-top: 10px; padding-left: 18px; font-size: 14px; color: #444; line-height: 1.65; }
+  @media print { .intro { display: none; } }
+
+  /* ---------- Sheets ---------- */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    margin: 24px auto;
+    background: white;
+    box-shadow: 0 2px 10px rgba(17,4,101,.15);
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  @media print {
+    body { background: white; }
+    .sheet { margin: 0; box-shadow: none; }
+    @page { size: letter; margin: 0; }
+  }
+
+  .sheet-label {
+    position: absolute;
+    top: 0.16in; left: 0; right: 0;
+    text-align: center;
+    font-size: 8.5pt;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #b0b0b8;
+    z-index: 5;
+  }
+  @media print { .sheet-label { display: none; } }
+
+  /* ---------- Directional sign shell (white background) ---------- */
+  .dsign {
+    width: 8.5in;
+    height: 11in;
+    background: white;
+    color: var(--navy);
+    padding: 0.55in 0.4in 0.5in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .dsign::before {
+    content: "";
+    position: absolute;
+    inset: 0.22in;
+    border: 1.5px solid rgba(17,4,101,.15);
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  .d-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12pt;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--pink);
+  }
+  .d-eyebrow img { height: 0.3in; width: auto; flex-shrink: 0; }
+
+  .d-floor-tag {
+    margin-top: 0.16in;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.08in 0.26in;
+    border-radius: 999px;
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 13pt;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .d-floor-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
+
+  .d-arrow-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2in 0;
+  }
+
+  .d-thisway {
+    font-size: 58pt;
+    font-weight: 800;
+    letter-spacing: .01em;
+    line-height: 1;
+  }
+  .d-thisway em { color: var(--pink); font-style: normal; }
+
+  .d-sub {
+    margin-top: 0.16in;
+    font-size: 14pt;
+    color: var(--slate);
+    letter-spacing: .02em;
+  }
+
+  .d-footer {
+    margin-top: 0.3in;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .d-footer img { height: 22px; width: auto; opacity: .95; }
+  .d-footer .x { color: rgba(17,4,101,.3); font-size: 12px; }
+
+  /* ---------- Floor directory sign ---------- */
+  .floor-sign { justify-content: center; }
+  .floor-logo { height: 0.6in; width: auto; margin-bottom: 0.16in; }
+  .floor-num {
+    font-size: 150pt;
+    font-weight: 800;
+    line-height: .85;
+    color: var(--navy);
+    position: relative;
+  }
+  .floor-num sup {
+    font-size: 42pt;
+    font-weight: 800;
+    color: var(--pink);
+    top: -0.55in;
+    margin-left: 4px;
+  }
+  .floor-word {
+    margin-top: 0.05in;
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--pink);
+  }
+  .floor-caption {
+    margin-top: 0.32in;
+    font-size: 16pt;
+    color: var(--slate);
+    max-width: 5.2in;
+    line-height: 1.5;
+  }
+  .floor-caption strong { color: var(--navy); }
+
+  /* ---------- Check-in sign ---------- */
+  .checkin-sign { justify-content: center; }
+  .checkin-badge {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 0.26in;
+    border-bottom: 1.5px solid rgba(17,4,101,.15);
+  }
+  .checkin-badge img { height: 0.5in; width: auto; }
+  .checkin-badge .x { color: rgba(17,4,101,.3); font-size: 20px; }
+  .checkin-eyebrow {
+    margin-top: 0.4in;
+    font-size: 12pt; font-weight: 700; letter-spacing: .32em;
+    text-transform: uppercase; color: var(--pink);
+  }
+  .checkin-title {
+    margin-top: 0.14in;
+    font-size: 62pt; font-weight: 800; letter-spacing: -.01em; color: var(--navy); line-height: 1;
+  }
+  .checkin-rule { width: 60px; height: 3px; background: var(--pink); border-radius: 2px; margin: 0.28in 0; }
+  .checkin-lede {
+    font-size: 15pt; line-height: 1.55; max-width: 5.6in; color: var(--slate);
+  }
+  .checkin-who {
+    margin-top: 0.34in;
+    display: flex; gap: 0.2in;
+  }
+  .checkin-who span {
+    padding: 0.1in 0.24in; border-radius: 999px;
+    border: 1.5px solid var(--navy); color: var(--navy);
+    font-weight: 700; font-size: 11.5pt; letter-spacing: .06em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <img src="uplift-logo.png" alt="Uplift">
+  <h1>Directional &amp; Floor Signage: 5th Floor</h1>
+  <p>Wayfinding signs to guide guests from the lobby / elevators to the Summit on the 5th floor. Tape to walls, doors, and elevator landings along the route.</p>
+  <ol>
+    <li><strong>5th Floor:</strong> place at the elevator landing or lobby directory to confirm guests are headed to the right floor.</li>
+    <li><strong>This Way →</strong> / <strong>←</strong> / <strong>↑</strong>: place at hallway turns and doorways; the arrow does the work from a distance.</li>
+    <li><strong>Check-In This Way →</strong>: place near the entrance to point guests straight to the registration table.</li>
+    <li><strong>Check-In:</strong> place at the registration table so it's the first thing guests see when they walk in.</li>
+    <li>Print on cardstock at 100% scale. For visibility from further away, consider scaling up to 11×17 at a print shop.</li>
+  </ol>
+</div>
+
+<!-- ============ SIGN 1: 5TH FLOOR ============ -->
+<div class="sheet">
+  <div class="sheet-label">Floor Sign · 8.5" × 11" · elevator landing / lobby</div>
+  <div class="dsign floor-sign">
+    <img class="floor-logo" src="uplift-logo.png" alt="Uplift">
+    <div class="floor-num">5<sup>th</sup></div>
+    <div class="floor-word">Floor</div>
+    <div class="floor-caption"><strong>Uplift Summit 2026</strong> is this way. Follow the signs from here.</div>
+    <div class="d-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIGN 2: THIS WAY (RIGHT) ============ -->
+<div class="sheet">
+  <div class="sheet-label">Directional Sign · 8.5" × 11" · hallway / turn · arrow RIGHT</div>
+  <div class="dsign">
+    <div class="d-eyebrow">
+      <img src="uplift-logo.png" alt="Uplift">
+      Summit 2026
+    </div>
+    <div class="d-floor-tag"><span class="dot"></span>5th Floor</div>
+    <div class="d-arrow-wrap">
+      <svg width="380" height="260" viewBox="0 0 380 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 130H300" stroke="#d86697" stroke-width="34" stroke-linecap="round"/>
+        <path d="M220 40L340 130L220 220" stroke="#d86697" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="d-thisway">This <em>Way</em></div>
+    <div class="d-sub">Uplift Summit &middot; Founder Pitch Showcase &amp; Graduation</div>
+    <div class="d-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIGN 3: THIS WAY (LEFT) ============ -->
+<div class="sheet">
+  <div class="sheet-label">Directional Sign · 8.5" × 11" · hallway / turn · arrow LEFT</div>
+  <div class="dsign">
+    <div class="d-eyebrow">
+      <img src="uplift-logo.png" alt="Uplift">
+      Summit 2026
+    </div>
+    <div class="d-floor-tag"><span class="dot"></span>5th Floor</div>
+    <div class="d-arrow-wrap">
+      <svg width="380" height="260" viewBox="0 0 380 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M80 130H360" stroke="#d86697" stroke-width="34" stroke-linecap="round"/>
+        <path d="M160 40L40 130L160 220" stroke="#d86697" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="d-thisway">This <em>Way</em></div>
+    <div class="d-sub">Uplift Summit &middot; Founder Pitch Showcase &amp; Graduation</div>
+    <div class="d-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIGN 4: THIS WAY (STRAIGHT AHEAD) ============ -->
+<div class="sheet">
+  <div class="sheet-label">Directional Sign · 8.5" × 11" · hallway · arrow STRAIGHT AHEAD</div>
+  <div class="dsign">
+    <div class="d-eyebrow">
+      <img src="uplift-logo.png" alt="Uplift">
+      Summit 2026
+    </div>
+    <div class="d-floor-tag"><span class="dot"></span>5th Floor</div>
+    <div class="d-arrow-wrap">
+      <svg width="260" height="300" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M130 280V60" stroke="#d86697" stroke-width="34" stroke-linecap="round"/>
+        <path d="M40 150L130 20L220 150" stroke="#d86697" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="d-thisway">This <em>Way</em></div>
+    <div class="d-sub">Uplift Summit &middot; Founder Pitch Showcase &amp; Graduation</div>
+    <div class="d-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIGN 5: CHECK-IN THIS WAY (ARROW) ============ -->
+<div class="sheet">
+  <div class="sheet-label">Directional Sign · 8.5" × 11" · hallway / turn · arrow to CHECK-IN</div>
+  <div class="dsign">
+    <div class="d-eyebrow">
+      <img src="uplift-logo.png" alt="Uplift">
+      Summit 2026
+    </div>
+    <div class="d-floor-tag"><span class="dot"></span>5th Floor</div>
+    <div class="d-arrow-wrap">
+      <svg width="380" height="260" viewBox="0 0 380 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 130H300" stroke="#d86697" stroke-width="34" stroke-linecap="round"/>
+        <path d="M220 40L340 130L220 220" stroke="#d86697" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="d-thisway">Check-In<br><em>This Way</em></div>
+    <div class="d-sub">Uplift Summit 2026 &middot; Registration</div>
+    <div class="d-footer">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIGN 6: CHECK-IN ============ -->
+<div class="sheet">
+  <div class="sheet-label">Check-In Sign · 8.5" × 11" · registration table</div>
+  <div class="dsign checkin-sign">
+    <div class="checkin-badge">
+      <img src="uplift-logo.png" alt="Uplift">
+      <span class="x">×</span>
+      <img src="techunited-logo.png" alt="TechUnited">
+    </div>
+    <div class="checkin-eyebrow">Uplift Summit 2026</div>
+    <div class="checkin-title">Check-In</div>
+    <div class="checkin-rule"></div>
+    <p class="checkin-lede">Welcome! Give us your name and we'll get you sorted, then grab a slice, find your name tag, and make yourself at home.</p>
+    <div class="checkin-who">
+      <span>Founders</span>
+      <span>Mentors</span>
+      <span>Guests</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

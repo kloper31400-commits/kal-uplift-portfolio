@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplift Mentorship Program — Microphone Flag Wrap</title>
+<style>
+  :root {
+    --navy:       #110465;
+    --navy-deep:  #0a0240;
+    --navy-soft:  #3a3560;
+    --pink:       #d86697;
+    --pink-soft:  #f3cfdf;
+    --paper:      #fafafc;
+
+    /* TechUnited spectrum — sampled from techunited-logo.png */
+    --tu-cyan:    #39c4e5;
+    --tu-blue:    #5f8fca;
+    --tu-violet:  #7877b8;
+    --tu-purple:  #9e70b1;
+    --tu-magenta: #d163a1;
+    --tu-rose:    #e86987;
+    --tu-coral:   #f37b7c;
+    --tu-orange:  #fab374;
+
+    --spectrum: linear-gradient(90deg,
+      var(--tu-cyan) 0%, var(--tu-blue) 16%, var(--tu-violet) 30%,
+      var(--tu-purple) 44%, var(--tu-magenta) 60%, var(--tu-rose) 74%,
+      var(--tu-coral) 87%, var(--tu-orange) 100%);
+
+    /* ---- Mic flag geometry ---- */
+    --face-w: 3.0in;    /* face width  — square cross-section side */
+    --face-h: 3.5in;    /* face height */
+    --tab-w:  0.45in;   /* glue tab */
+    --hole-top: 1.00in; /* top collar opening  (rests below the grille) */
+    --hole-bot: 1.15in; /* bottom collar opening (clears the handle) */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Avenir Next', Avenir, Futura, 'Century Gothic', sans-serif;
+    background: #ececf1;
+    color: var(--navy);
+  }
+
+  /* ============ Screen-only instructions ============ */
+  .intro {
+    max-width: 8.5in;
+    margin: 32px auto 0;
+    padding: 28px 36px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(17,4,101,.12);
+  }
+  .intro > img { height: 44px; display: block; margin-bottom: 14px; }
+  .intro h1 { font-size: 22px; font-weight: 600; letter-spacing: .01em; }
+  .intro h2 {
+    font-size: 11px; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--pink);
+    margin-top: 22px; padding-top: 14px; border-top: 1px solid #ececf1;
+  }
+  .intro p  { font-size: 14px; line-height: 1.55; color: #444; margin-top: 8px; }
+  .intro ol, .intro ul { margin-top: 8px; padding-left: 20px; font-size: 14px; color: #444; line-height: 1.7; }
+  .intro li + li { margin-top: 3px; }
+  .intro b { color: var(--navy); }
+  .intro code {
+    font-family: ui-monospace, Menlo, monospace; font-size: 12.5px;
+    background: #f2f2f7; padding: 1px 5px; border-radius: 4px; color: var(--navy);
+  }
+  .spec {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px;
+    margin-top: 10px; font-size: 13.5px; color: #444;
+  }
+  .spec div { display: flex; justify-content: space-between; gap: 12px;
+              padding: 6px 0; border-bottom: 1px dotted #dcdce4; }
+  .spec span:last-child { font-weight: 600; color: var(--navy); }
+  @media print { .intro { display: none; } }
+
+  /* ============ Sheets ============ */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    margin: 24px auto;
+    background: white;
+    box-shadow: 0 2px 10px rgba(17,4,101,.15);
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+    padding: 0.5in 0.4in 0.35in;
+  }
+  @media print {
+    body { background: white; }
+    .sheet { margin: 0; box-shadow: none; }
+    @page { size: letter; margin: 0; }
+  }
+
+  .sheet-label {
+    position: absolute;
+    top: 0.2in; left: 0.4in; right: 0.4in;
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-size: 8pt; letter-spacing: .14em; text-transform: uppercase;
+    color: #a8a8b4;
+  }
+  .sheet-label b { color: var(--navy); font-weight: 600; letter-spacing: .1em; }
+
+  /* 1-inch scale check — verify the print came out at true size */
+  .ruler {
+    position: absolute; bottom: 0.28in; left: 0.4in;
+    display: flex; align-items: center; gap: 7px;
+    font-size: 6.5pt; letter-spacing: .1em; text-transform: uppercase; color: #b0b0bc;
+  }
+  .ruler i {
+    display: block; width: 1in; height: 7px;
+    border: .75pt solid #b0b0bc; border-top: none;
+    position: relative;
+  }
+  .ruler i::after {
+    content: ""; position: absolute; left: 50%; top: 0; width: .75pt; height: 4px;
+    background: #b0b0bc;
+  }
+
+  /* ============ Face ============ */
+  .face {
+    width: var(--face-w);
+    height: var(--face-h);
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  /* colorways */
+  .face.navy  { background: var(--navy-deep); color: white; }
+  .face.light { background: var(--paper);     color: var(--navy); }
+
+  /* spectrum hairlines top + bottom */
+  .face .edge {
+    position: absolute; left: 0; right: 0; height: 0.055in;
+    background: var(--spectrum);
+  }
+  .face .edge.t { top: 0; }
+  .face .edge.b { bottom: 0; }
+
+  /* faceted range, bleeds off the bottom */
+  /* Sits under the presenter lockup as texture, not linework — tall enough to
+     read as a range, quiet enough that it never competes with the TechUnited
+     mark sitting on top of it. */
+  .range {
+    position: absolute; left: -6%; right: -6%; bottom: 0;
+    width: 112%; height: 1.18in;
+    pointer-events: none;
+  }
+  /* A <use> clone lives in a shadow tree that ordinary selectors cannot reach —
+     styling `.range polygon` silently does nothing and the facets fall back to
+     solid black. Colour is therefore driven by `color`, which IS inherited into
+     the clone, and picked up by fill/stroke="currentColor" inside the defs. */
+  .range .rf { color: var(--pink); opacity: .62; }
+  .range .rl { color: var(--pink); opacity: .34; }
+  .light .range .rf { color: var(--navy); opacity: .26; }
+  .light .range .rl { color: var(--pink); opacity: .42; }
+
+  /* ---- content stack ---- */
+  .face .inner {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    padding: 0.24in 0.2in 0.2in;
+    display: flex; flex-direction: column; align-items: center;
+  }
+
+  .prog {
+    font-size: 8.5pt; font-weight: 700; line-height: 1.32;
+    letter-spacing: .17em; text-transform: uppercase;
+    color: #fff;
+  }
+  .light .prog { color: var(--navy); }
+
+  .season {
+    margin-top: 3.5pt;
+    font-size: 7.5pt; font-weight: 600;
+    letter-spacing: .34em; text-transform: uppercase;
+    color: var(--pink);
+    text-indent: .34em;   /* optical centering for the tracking */
+  }
+
+  .hair {
+    width: 0.62in; height: 1.6pt; border-radius: 1pt;
+    background: var(--spectrum);
+    margin: 0.13in 0 0;
+  }
+
+  /* primary mark */
+  .mark { margin-top: auto; margin-bottom: auto; padding: 0.04in 0; }
+  .mark img { display: block; width: 2.16in; height: auto; }
+
+  /* presenter lockup */
+  .by {
+    font-size: 6pt; font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: rgba(255,255,255,.62);
+    text-indent: .3em;
+  }
+  .light .by { color: #8b8b99; }
+
+  /* The TechUnited mark is a flattened PNG whose gradient glyph overlaps the
+     "united" letters. Inverting it to white merges the two into an unreadable
+     blob, so the mark keeps its real colours and sits on a white plate instead.
+     The plate also masks the range linework passing behind it. */
+  .tu {
+    margin-top: 5pt;
+    background: #fff;
+    border-radius: 2.5pt;
+    padding: 4pt 6.5pt;
+    box-shadow: 0 0 0 .75pt rgba(17,4,101,.08);
+  }
+  .tu img { display: block; width: 1.16in; height: auto; }
+
+  /* ============ Sheet 1 & 2 — insert cards ============ */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, var(--face-w));
+    grid-auto-rows: var(--face-h);
+    justify-content: center;
+    align-content: center;
+    gap: 0.5in 0.6in;
+    height: 100%;
+  }
+  .card { position: relative; }
+  /* crop marks */
+  .card::before, .card::after {
+    content: ""; position: absolute; pointer-events: none;
+    width: calc(100% + 0.3in); height: calc(100% + 0.3in);
+    left: -0.15in; top: -0.15in;
+  }
+  .card::before {
+    background:
+      linear-gradient(#b8b8c4,#b8b8c4) left  0.15in / 0.11in .75pt no-repeat,
+      linear-gradient(#b8b8c4,#b8b8c4) right 0.15in / 0.11in .75pt no-repeat,
+      linear-gradient(#b8b8c4,#b8b8c4) left  calc(100% - 0.15in) / 0.11in .75pt no-repeat,
+      linear-gradient(#b8b8c4,#b8b8c4) right calc(100% - 0.15in) / 0.11in .75pt no-repeat;
+  }
+  .card::after {
+    background:
+      linear-gradient(#b8b8c4,#b8b8c4) 0.15in top    / .75pt 0.11in no-repeat,
+      linear-gradient(#b8b8c4,#b8b8c4) 0.15in bottom / .75pt 0.11in no-repeat,
+      linear-gradient(#b8b8c4,#b8b8c4) calc(100% - 0.15in) top    / .75pt 0.11in no-repeat,
+      linear-gradient(#b8b8c4,#b8b8c4) calc(100% - 0.15in) bottom / .75pt 0.11in no-repeat;
+  }
+
+  /* ============ Sheet 3 — fold-up wrap strips ============ */
+  .strips {
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.6in;
+  }
+  .strip {
+    display: flex; align-items: stretch;
+    position: relative;
+  }
+  .strip .face { flex: none; }
+  /* fold score between faces */
+  .strip .fold {
+    flex: none; width: 0;
+    border-left: .75pt dashed rgba(255,255,255,.55);
+    margin-left: -.375pt; margin-right: -.375pt;
+    position: relative; z-index: 4;
+  }
+  .tab {
+    flex: none;
+    width: var(--tab-w);
+    height: var(--face-h);
+    background: repeating-linear-gradient(45deg,
+      #f4f4f8 0 4px, #eaeaf1 4px 8px);
+    border-left: .75pt dashed #9a9aa8;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .tab span {
+    font-size: 5.5pt; letter-spacing: .18em; text-transform: uppercase;
+    color: #85859a; writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+  .strip-cap {
+    position: absolute; left: 0; top: -0.2in;
+    font-size: 7pt; letter-spacing: .14em; text-transform: uppercase; color: #a8a8b4;
+  }
+
+  /* ============ Sheet 4 — collars ============ */
+  .collars {
+    height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.42in;
+  }
+  .collar-row { display: flex; align-items: flex-start; gap: 0.55in; }
+  .collar-unit { position: relative; }
+  .collar-cap {
+    font-size: 7pt; letter-spacing: .14em; text-transform: uppercase;
+    color: #a8a8b4; margin-bottom: 5pt; text-align: center;
+  }
+  .collar-cap b { color: var(--navy); font-weight: 600; }
+  .collar {
+    width: var(--face-w); height: var(--face-w);
+    position: relative;
+    border: .75pt dashed #9a9aa8;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .collar .hole {
+    border: .75pt dashed var(--pink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6pt; letter-spacing: .08em; color: var(--pink); text-align: center;
+  }
+  .collar.top .hole { width: var(--hole-top); height: var(--hole-top); }
+  .collar.bot .hole { width: var(--hole-bot); height: var(--hole-bot); }
+  /* glue flaps around the collar */
+  .flap {
+    position: absolute;
+    background: repeating-linear-gradient(45deg,#f4f4f8 0 4px,#eaeaf1 4px 8px);
+    border: .75pt dashed #9a9aa8;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .flap.n { left: 0; right: 0; top: -0.4in;  height: 0.4in; border-bottom: none; }
+  .flap.s { left: 0; right: 0; bottom: -0.4in; height: 0.4in; border-top: none; }
+  .flap.w { top: 0; bottom: 0; left: -0.4in;  width: 0.4in;  border-right: none; }
+  .flap.e { top: 0; bottom: 0; right: -0.4in; width: 0.4in;  border-left: none; }
+
+  .legend {
+    margin-top: 0.1in;
+    display: flex; gap: 0.34in; justify-content: center;
+    font-size: 7pt; letter-spacing: .06em; color: #85859a;
+  }
+  .legend div { display: flex; align-items: center; gap: 6px; white-space: nowrap; flex: none; }
+  .legend i { display: block; width: 0.26in; height: 0; flex: none; }
+  .legend i.cut  { border-top: 1pt solid #6c6c80; }
+  .legend i.fold { border-top: 1pt dashed #9a9aa8; }
+  .legend i.hole { border-top: 1pt dashed var(--pink); }
+
+  .assembly {
+    width: 6.6in; margin: 0.1in auto 0;
+    font-size: 8.5pt; line-height: 1.6; color: #44445a;
+  }
+  .assembly h3 {
+    font-size: 8pt; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 5pt;
+  }
+  .assembly ol { padding-left: 15pt; }
+  .assembly li + li { margin-top: 2.5pt; }
+</style>
+</head>
+<body>
+
+<!-- ==================== SCREEN-ONLY INSTRUCTIONS ==================== -->
+<div class="intro">
+  <img src="uplift-logo.png" alt="Uplift">
+  <h1>Microphone Flag Wrap — Uplift&nbsp;×&nbsp;TechUnited</h1>
+  <p>
+    A four-sided mic flag so both marks read on camera from any angle. Every face
+    carries the same lockup: <b>Uplift Mentorship Program / Summer 2026</b> at the top,
+    the Uplift mark at center, and TechUnited New Jersey as presenter at the base.
+  </p>
+
+  <h2>Two ways to build it</h2>
+  <ol>
+    <li><b>Insert cards (recommended)</b> — Sheets&nbsp;1 or&nbsp;2. Print, trim to the crop
+      marks, and slide into a blank 3&nbsp;×&nbsp;3.5&nbsp;in acrylic mic flag. Cleanest result,
+      reusable shell, survives a full day of handling.</li>
+    <li><b>Fold-up paper flag</b> — Sheets&nbsp;3&nbsp;+&nbsp;4. No shell needed. Print both on
+      heavy cardstock, score the folds, glue the tab, then add the top and bottom
+      collars so it grips the mic instead of sliding down.</li>
+  </ol>
+
+  <h2>Print settings</h2>
+  <ul>
+    <li>Scale: <b>100%</b> — turn <i>off</i> "Fit to page" / "Shrink oversized pages".</li>
+    <li>Paper: Letter. Background graphics: <b>on</b>.</li>
+    <li>Stock: 80–110&nbsp;lb cover for inserts, 110&nbsp;lb for the fold-up version.</li>
+    <li>Check the <code>1 INCH</code> bar at the bottom of each sheet with a ruler before cutting.</li>
+  </ul>
+
+  <h2>Colorways</h2>
+  <ul>
+    <li><b>Sheet 1 — Midnight.</b> Navy field, white Uplift mark, spectrum edges. Highest
+      contrast under stage light and on camera. Use this one by default.</li>
+    <li><b>Sheet 2 — Paper.</b> Off-white field, full-colour TechUnited mark. Better in
+      daylight and for photos against dark backdrops.</li>
+  </ul>
+
+  <h2>Geometry</h2>
+  <div class="spec">
+    <div><span>Face</span><span>3.0 × 3.5 in</span></div>
+    <div><span>Cross-section</span><span>3.0 in square</span></div>
+    <div><span>Faces</span><span>4</span></div>
+    <div><span>Glue tab</span><span>0.45 in</span></div>
+    <div><span>Top collar hole</span><span>1.00 in ⌀</span></div>
+    <div><span>Bottom collar hole</span><span>1.15 in ⌀</span></div>
+  </div>
+  <p style="margin-top:12px">
+    Collar holes are cut for a standard handheld (Shure&nbsp;SM58 / SM63 class, ~0.98&nbsp;in
+    handle). Cut them <b>a hair small and file outward</b> — a snug collar is what keeps
+    the flag from sliding. Change <code>--hole-top</code> / <code>--hole-bot</code> at the top
+    of this file for a different mic.
+  </p>
+</div>
+
+<!-- Reusable faceted range -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Fills and strokes use currentColor so the clone can be recoloured
+         per colourway from outside the shadow tree. Opacity is baked per
+         facet to give the range depth. -->
+    <!-- One dominant summit with subordinate ridges, triangulated with sparse
+         diagonals. A vertical dropped from every vertex reads as a picket fence
+         at this size, so only the two main peaks carry one. -->
+    <g id="range-fill" fill="currentColor">
+      <polygon opacity=".16" points="0,200 62,158 128,200"/>
+      <polygon opacity=".08" points="128,178 196,104 250,200 128,200"/>
+      <polygon opacity=".16" points="250,132 312,52 376,200 250,200"/>
+      <polygon opacity=".08" points="376,118 430,92 498,200 376,200"/>
+      <polygon opacity=".16" points="498,148 552,132 600,200 498,200"/>
+    </g>
+    <g id="range-line" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round">
+      <path d="M0 200 L62 158 L128 178 L196 104 L250 132 L312 52 L376 118 L430 92 L498 148 L552 132 L600 200"/>
+      <path d="M196 104 V200 M312 52 V200"/>
+      <path d="M62 158 L128 200 M196 104 L128 200 M196 104 L250 200
+               M312 52 L250 200 M312 52 L376 200 M430 92 L498 200"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ==================== SHEET 1 — MIDNIGHT INSERTS ==================== -->
+<div class="sheet">
+  <div class="sheet-label"><span>Sheet 1 · Mic flag inserts — <b>Midnight</b></span><span>Trim to crop marks · 3.0 × 3.5 in × 4</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+<!-- ==================== SHEET 2 — PAPER INSERTS ==================== -->
+<div class="sheet">
+  <div class="sheet-label"><span>Sheet 2 · Mic flag inserts — <b>Paper</b></span><span>Alternate colorway · 3.0 × 3.5 in × 4</span></div>
+  <div class="cards">
+    <div class="card">
+      <div class="face light">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face light">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face light">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face light">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+<!-- ==================== SHEET 3 — FOLD-UP WRAP STRIPS ==================== -->
+<div class="sheet">
+  <div class="sheet-label"><span>Sheet 3 · Fold-up wrap — <b>body</b></span><span>Two strips of 2 faces · score dashed lines</span></div>
+  <div class="strips">
+
+    <div class="strip">
+      <div class="strip-cap">Strip A — faces 1 &amp; 2</div>
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+      <div class="fold"></div>
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+      <div class="tab"><span>Glue under strip B</span></div>
+    </div>
+
+    <div class="strip">
+      <div class="strip-cap">Strip B — faces 3 &amp; 4</div>
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+      <div class="fold"></div>
+      <div class="face navy">
+        <div class="edge t"></div>
+        <svg class="range" viewBox="0 0 600 200" preserveAspectRatio="none"><use href="#range-fill" class="rf"/><use href="#range-line" class="rl"/></svg>
+        <div class="inner">
+          <div class="prog">Uplift Mentorship<br>Program</div>
+          <div class="season">Summer 2026</div>
+          <div class="hair"></div>
+          <div class="mark"><img src="uplift-logo-white.png" alt="Uplift"></div>
+          <div class="by">Presented by</div>
+          <div class="tu"><img src="techunited-logo.png" alt="TechUnited New Jersey"></div>
+        </div>
+        <div class="edge b"></div>
+      </div>
+      <div class="tab"><span>Glue under strip A</span></div>
+    </div>
+
+  </div>
+  <div class="legend">
+    <div><i class="cut"></i>Cut</div>
+    <div><i class="fold"></i>Score &amp; fold</div>
+    <div><i class="hole"></i>Cut opening</div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+<!-- ==================== SHEET 4 — COLLARS + ASSEMBLY ==================== -->
+<div class="sheet">
+  <div class="sheet-label"><span>Sheet 4 · Fold-up wrap — <b>collars</b></span><span>Grips the mic · cut holes undersize</span></div>
+  <div class="collars">
+
+    <div class="collar-row">
+      <div class="collar-unit">
+        <div class="collar-cap">Top collar — <b>1.00 in ⌀</b></div>
+        <div class="collar top">
+          <div class="flap n"></div><div class="flap s"></div>
+          <div class="flap w"></div><div class="flap e"></div>
+          <div class="hole">1.00&quot;</div>
+        </div>
+      </div>
+      <div class="collar-unit">
+        <div class="collar-cap">Bottom collar — <b>1.15 in ⌀</b></div>
+        <div class="collar bot">
+          <div class="flap n"></div><div class="flap s"></div>
+          <div class="flap w"></div><div class="flap e"></div>
+          <div class="hole">1.15&quot;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="assembly">
+      <h3>Assembly</h3>
+      <ol>
+        <li>Cut out both strips from Sheet&nbsp;3 and both collars above, flaps included.</li>
+        <li>Score every dashed line with a bone folder or the back of a butter knife, then
+          fold each one to 90°.</li>
+        <li>Cut the two collar holes <b>slightly undersize</b> and open them up with a round
+          file until the mic passes through with friction. That friction is the whole
+          mechanism — a loose hole means the flag slides down the handle.</li>
+        <li>Glue strip&nbsp;A's tab under strip&nbsp;B's first face, then strip&nbsp;B's tab under
+          strip&nbsp;A's first face, forming a 3&nbsp;in square tube. Let it set.</li>
+        <li>Fold the collar flaps inward and glue them to the inside walls of the tube —
+          top collar 0.25&nbsp;in below the top edge, bottom collar flush with the bottom.</li>
+        <li>Slide the finished flag up the mic handle from the base until the top collar
+          seats under the grille.</li>
+      </ol>
+    </div>
+
+  </div>
+  <div class="legend">
+    <div><i class="cut"></i>Cut</div>
+    <div><i class="fold"></i>Score &amp; fold</div>
+    <div><i class="hole"></i>Cut opening</div>
+  </div>
+  <div class="ruler"><i></i><span>1 inch — verify scale</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Participant records. These stay on disk and never get pushed.
+# The repo is public, so anything naming a real founder, mentor or
+# grant participant lives here and only here.
+private/
+
+.DS_Store
+*.log

@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kennedy Loper · Uplift</title>
+<meta name="description" content="Design and engineering portfolio: the founder portal, admin system, matching engine and programme collateral built for Uplift at TechUnited NJ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portal.css">
+<style>
+  body { background: #fff; }
+
+  .hero {
+    background: linear-gradient(150deg, var(--indigo-night) 0%, var(--indigo-deep) 55%, var(--indigo) 100%);
+    color: #fff; padding: 76px 24px 82px; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content:""; position:absolute; right:-140px; top:-140px; width:460px; height:460px;
+    border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,.11), transparent 68%);
+  }
+  .hero-in { max-width: 940px; margin: 0 auto; position: relative; z-index: 2; }
+  .hero .eyebrow {
+    font-size: 11.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+    color: #b6a9ff; margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 55px); font-weight: 900; letter-spacing: -1.6px;
+    line-height: 1.05; margin-bottom: 20px;
+  }
+  .hero .lede { font-size: clamp(16px, 2.2vw, 19.5px); line-height: 1.6; opacity: .9; max-width: 65ch; }
+  .hero .lede + .lede { margin-top: 15px; }
+  .hero .meta { margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero .meta span {
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.16);
+    border-radius: 22px; padding: 6px 15px; font-size: 12.5px; font-weight: 600;
+  }
+
+  .band { background: var(--indigo-night); color:#fff; padding: 30px 24px; }
+  .band-in { max-width: 940px; margin: 0 auto; display: grid; gap: 22px;
+             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .band .n { font-size: 31px; font-weight: 900; letter-spacing: -1.2px; line-height: 1; }
+  .band .l { font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+             color: #b6a9ff; margin-top: 6px; }
+
+  main { max-width: 940px; margin: 0 auto; padding: 0 24px 90px; }
+
+  .sec { padding-top: 62px; }
+  .sec > .k {
+    font-size: 11.5px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--indigo-light); margin-bottom: 9px;
+  }
+  .sec > h2 { font-size: clamp(25px, 3.6vw, 33px); font-weight: 850; letter-spacing: -.9px; line-height: 1.15; }
+  .sec > .intro { font-size: 15.5px; color: var(--muted); line-height: 1.65; margin-top: 13px; max-width: 66ch; }
+
+  .cases { margin-top: 30px; display: grid; gap: 16px; }
+  .case {
+    border: 1px solid var(--line); border-radius: 15px; padding: 26px 27px;
+    background: #fff; box-shadow: var(--shadow);
+  }
+  .case .tag {
+    display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--indigo); background: var(--surface-2);
+    border-radius: 6px; padding: 4px 9px; margin-bottom: 12px;
+  }
+  .case h3 { font-size: 20.5px; font-weight: 800; letter-spacing: -.4px; margin-bottom: 10px; }
+  .case p { font-size: 14.5px; color: var(--muted); line-height: 1.68; margin-bottom: 11px; }
+  .case p:last-of-type { margin-bottom: 0; }
+  .case p strong { color: var(--ink); font-weight: 650; }
+  .case .did {
+    margin-top: 16px; padding-top: 15px; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 7px;
+  }
+  .case .did span {
+    font-size: 11.5px; font-weight: 650; background: var(--surface);
+    border: 1px solid var(--indigo-pale); border-radius: 20px; padding: 4px 11px; color: var(--indigo-deep);
+  }
+  .case .links { margin-top: 17px; display: flex; gap: 9px; flex-wrap: wrap; }
+  .case .links a {
+    font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 9px;
+    padding: 9px 15px; border: 1px solid var(--line); color: var(--indigo-deep); background: #fff;
+  }
+  .case .links a.pri { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .case .links a:hover { filter: brightness(.96); }
+
+  .demos { margin-top: 30px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); }
+  .demo {
+    border: 1px solid var(--line); border-radius: 15px; overflow: hidden;
+    background: #fff; box-shadow: var(--shadow); text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+  }
+  .demo:hover { border-color: var(--indigo-light); }
+  .demo .shot {
+    height: 122px; background: linear-gradient(135deg, var(--indigo-night), var(--indigo-deep) 60%, var(--indigo));
+    display: grid; place-items: center; color: #fff; font-size: 34px;
+  }
+  .demo .db { padding: 18px 20px 20px; flex: 1; }
+  .demo h3 { font-size: 16.5px; font-weight: 800; margin-bottom: 6px; }
+  .demo p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  .demo .go { margin-top: 12px; font-size: 12.5px; font-weight: 800; color: var(--indigo); }
+
+  .lib { margin-top: 26px; }
+  .lib-grp { margin-bottom: 26px; }
+  .lib-grp h4 {
+    font-size: 12px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 11px; padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+  .lib-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); }
+  .lib-grid a {
+    display: block; text-decoration: none; color: inherit; font-size: 13.5px;
+    padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff;
+    line-height: 1.45;
+  }
+  .lib-grid a:hover { background: var(--surface); border-color: var(--indigo-light); }
+  .lib-grid a .d { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .lib-grid a .ext { font-size: 10px; font-weight: 800; color: var(--indigo-light); letter-spacing: .06em; }
+
+  .stack { margin-top: 26px; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); }
+  .stack div { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--surface); }
+  .stack h4 { font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--indigo); margin-bottom: 7px; }
+  .stack p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+  .quote {
+    margin-top: 28px; border-left: 3px solid var(--indigo); padding: 4px 0 4px 22px;
+    font-size: 16.5px; line-height: 1.65; color: var(--ink);
+  }
+  .quote .src { display: block; font-size: 13px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+  .cta {
+    margin-top: 62px; border-radius: 16px; padding: 38px 34px; text-align: center;
+    background: linear-gradient(135deg, var(--indigo-night), var(--indigo-deep) 60%, var(--indigo)); color: #fff;
+  }
+  .cta h2 { font-size: 25px; font-weight: 850; letter-spacing: -.6px; margin-bottom: 10px; }
+  .cta p { font-size: 15px; opacity: .88; max-width: 52ch; margin: 0 auto 20px; line-height: 1.6; }
+  .cta a {
+    display: inline-block; background: #fff; color: var(--indigo-deep); text-decoration: none;
+    font-weight: 800; font-size: 14.5px; border-radius: 10px; padding: 12px 26px;
+  }
+
+  footer.pf { border-top: 1px solid var(--line); padding: 26px 24px 52px; }
+  footer.pf div { max-width: 940px; margin: 0 auto; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">Programme design &amp; engineering · 2026</div>
+    <h1>I built the system that ran Uplift.</h1>
+    <p class="lede">Uplift is TechUnited NJ's founder mentorship programme. Over two cohorts it
+      matched 70 New Jersey founders with experienced operators and investors, and delivered more
+      than 8,000 verified minutes of one-to-one mentorship against a state grant.</p>
+    <p class="lede">I designed and built the software it ran on: the founder portal, the mentor
+      guide, the admin dashboard, the matching engine, the grant reporting pipeline, and roughly
+      a hundred pieces of programme collateral. This page is the record of that work.</p>
+    <div class="meta">
+      <span>Next.js · React</span><span>Google Sheets as the database</span>
+      <span>Luma · Typeform · Customer.io · Slack</span><span>963 commits in 15 weeks</span>
+    </div>
+  </div>
+</section>
+
+<div class="band"><div class="band-in">
+  <div><div class="n">70</div><div class="l">Founders served</div></div>
+  <div><div class="n">8,000+</div><div class="l">Verified mentor minutes</div></div>
+  <div><div class="n">~200</div><div class="l">API routes</div></div>
+  <div><div class="n">105</div><div class="l">Design deliverables</div></div>
+  <div><div class="n">963</div><div class="l">Commits</div></div>
+</div></div>
+
+<main>
+
+<!-- ══ DEMOS ════════════════════════════════════════════════════ -->
+<section class="sec" id="demos">
+  <div class="k">See it working</div>
+  <h2>Three live demos</h2>
+  <p class="intro">The production system runs on a private database of real founders, so it cannot
+    be published. These are faithful rebuilds of the three surfaces, running on invented people
+    and companies. Same design system, same information architecture, same interactions.</p>
+
+  <div class="demos">
+    <a class="demo" href="demo/founder.html">
+      <div class="shot">🌱</div>
+      <div class="db">
+        <h3>Founder portal</h3>
+        <p>Nine tabs, week-by-week unlocking, the mentor reveal, session logging, and a portal
+           assistant. The screen 66 founders used every week.</p>
+        <div class="go">Open the demo →</div>
+      </div>
+    </a>
+    <a class="demo" href="demo/mentor.html">
+      <div class="shot">🤝</div>
+      <div class="db">
+        <h3>Mentor guide</h3>
+        <p>One ungated page. The eight-week arc, the three meetings and what each is for, and
+           the matched founder's full application.</p>
+        <div class="go">Open the demo →</div>
+      </div>
+    </a>
+    <a class="demo" href="demo/admin.html">
+      <div class="shot">📊</div>
+      <div class="db">
+        <h3>Admin dashboard</h3>
+        <p>Today's queue, cohort health, matching suggestions, mentor verification, coverage,
+           comms and grant reporting. Nine of the twenty-two tabs.</p>
+        <div class="go">Open the demo →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ CASES ════════════════════════════════════════════════════ -->
+<section class="sec" id="systems">
+  <div class="k">What I actually built</div>
+  <h2>Six systems, and the problem each one solves</h2>
+  <p class="intro">Every one of these started as a spreadsheet, a shared inbox, or someone's memory.
+    The interesting part of the work was usually not the code. It was working out what the real
+    problem was before building anything.</p>
+
+  <div class="cases">
+
+    <div class="case">
+      <div class="tag">Product · the thing founders touch</div>
+      <h3>The founder portal</h3>
+      <p>A private, slug-addressed portal for every founder in the cohort. It opens week by week
+        rather than showing eight weeks of homework on day one, tracks eleven milestones, collects
+        written reflection prompts, and logs mentor sessions.</p>
+      <p><strong>The design decision I care most about:</strong> the mentor match is gated behind a
+        Week 1 gate of three completed steps. Founders who clear the gate before meeting anyone
+        show up to the first meeting having already thought about what they want. There were four
+        separate surfaces that leaked the mentor's identity early, and closing them needed a
+        structural test rather than a fix, because the leak kept coming back in new places.</p>
+      <p>Everything a founder writes collects into a single Goals and Reflections tab, so by week
+        eight the Week 1 answer and the Week 6 answer to the same question sit next to each other.</p>
+      <div class="did">
+        <span>Information architecture</span><span>Progressive disclosure</span>
+        <span>React / Next.js</span><span>Offline-tolerant saves</span><span>Auth gating</span>
+      </div>
+      <div class="links">
+        <a class="pri" href="demo/founder.html">Open the demo</a>
+        <a href="work/portal-guide-fall2026.html">Portal user guide</a>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="tag">Operations · the thing the team touches</div>
+      <h3>The admin dashboard</h3>
+      <p>Twenty-two tabs replacing what had been eleven spreadsheet tabs, a shared inbox, and a
+        recurring calendar reminder. It answers the questions a programme manager actually asks:
+        who is at risk, what is overdue, who has been told what, and are we done.</p>
+      <p><strong>The bug worth telling:</strong> the Today queue tracks how long a piece of work has
+        been sitting there. It was keyed by the sentence describing the work, and rolled-up rows
+        carry their own count. So a fourth founder going at risk created a brand-new key and reset
+        the age badge to "Today" at precisely the moment things got worse. The one signal the
+        screen exists to give was destroying itself under load. Re-keying by what the work is,
+        rather than by how it reads, fixed it.</p>
+      <p>State also moved out of browser storage, because two people each having a private idea of
+        what was outstanding is not a shared queue.</p>
+      <div class="did">
+        <span>Dashboard design</span><span>Live data modelling</span>
+        <span>~200 API routes</span><span>Google Sheets as a datastore</span>
+      </div>
+      <div class="links"><a class="pri" href="demo/admin.html">Open the demo</a></div>
+    </div>
+
+    <div class="case">
+      <div class="tag">Algorithm · the hardest judgement call</div>
+      <h3>The matching engine</h3>
+      <p>Matching 66 founders to 45 mentors on industry, stage, focus area, availability and
+        method, with mentor capacity as a hard constraint.</p>
+      <p><strong>Why it solves the whole room at once:</strong> greedy first-come matching hands the
+        best mentors to whoever applied first and leaves the last fifteen founders with whoever is
+        left over. Solving the waiting room as a whole costs more compute and produces a fairer
+        cohort. The tab also surfaced that stated mentor capacity was 139 sessions short of what
+        the cohort required, in week one rather than week six.</p>
+      <p>The method is published to founders and mentors rather than kept internal, because a
+        founder who can read why they got their mentor arrives at the first meeting differently
+        from one who was just assigned a name.</p>
+      <div class="did">
+        <span>Constraint solving</span><span>Fairness modelling</span>
+        <span>Explainable output</span><span>Capacity planning</span>
+      </div>
+      <div class="links">
+        <a class="pri" href="work/uplift-matching-logic-one-pager.html">How we match, published</a>
+        <a href="demo/admin.html">See it in the dashboard</a>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="tag">Trust &amp; safety</div>
+      <h3>Mentor verification</h3>
+      <p>Founders hand a stranger their business problems, so mentors are checked before they are
+        matched. Every application gets one of four verdicts: corroborated, partly corroborated,
+        nothing found, or contradicted.</p>
+      <p><strong>The wording is the design.</strong> "Nothing found" is deliberately not "suspicious".
+        Plenty of excellent operators have no web presence, and a verification tool that treats
+        absence as guilt quietly filters for people who post a lot. Each verdict carries a plain
+        sentence saying what to do next.</p>
+      <p>The standard is published on the public site. The scoring weights and flag names are not,
+        because a published threshold is a published way around it.</p>
+      <div class="did"><span>Policy design</span><span>Risk framing</span><span>Public / internal split</span></div>
+      <div class="links"><a class="pri" href="demo/admin.html">See the four verdicts</a></div>
+    </div>
+
+    <div class="case">
+      <div class="tag">Compliance · where the money comes from</div>
+      <h3>Grant reporting</h3>
+      <p>The programme is state-funded through NJEDA, and funding is released against evidence
+        rather than assertion. Every exhibit is generated from the same live data the dashboard
+        reads: requisitions, per-cohort completion reports, per-participant verification forms,
+        event attendance reports.</p>
+      <p><strong>Why generation rather than assembly:</strong> these were previously rebuilt by hand
+        each reporting period from spreadsheet exports, and every hand-rebuild is a chance for the
+        report and the underlying data to drift apart. The entire point of a compliance document is
+        that it does not drift. Generating from source makes that structurally impossible.</p>
+      <p>Mentor hours only count once both the founder and the mentor have confirmed the session
+        happened. Two-sided confirmation is what makes 8,000 minutes defensible to an auditor, and
+        it costs a mentor about four seconds.</p>
+      <div class="did">
+        <span>Compliance reporting</span><span>Document generation</span>
+        <span>Audit trails</span><span>PDF pipeline</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="tag">Communications · the loops</div>
+      <h3>The recurring loops</h3>
+      <p>The programme runs on scheduled jobs rather than on someone remembering. A daily recap
+        posts cohort status to Slack. A Friday job clusters what founders wrote in their portal
+        prompts that week, ranks the themes, and posts them with session ideas, which is how the
+        next set of educational sessions gets chosen. A nightly sync pushes participant state into
+        Customer.io so lifecycle email knows where everyone is.</p>
+      <p>On top of that sit the batch sends: acceptance emails, match reveals, the weekly Tuesday
+        mentor update, midpoint nudges. Each one is previewable before it fires and logged after.</p>
+      <p><strong>What the log does not prove:</strong> it records what the send routes did. It is not
+        evidence that a person was never contacted, because plenty of conversations happen by hand
+        from a mailbox. Getting that distinction into the interface mattered more than the feature.</p>
+      <div class="did">
+        <span>Cron / scheduled jobs</span><span>Slack integration</span>
+        <span>Customer.io lifecycle</span><span>Email templating</span><span>Theme clustering</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ DESIGN ═══════════════════════════════════════════════════ -->
+<section class="sec" id="collateral">
+  <div class="k">The other half of the job</div>
+  <h2>Programme collateral</h2>
+  <p class="intro">Around a hundred pieces of design and writing: one-pagers, guides, decks,
+    signage, certificates, run-of-shows, print collateral. All of it built as code and rendered to
+    PDF, which is why the whole set could be regenerated when the fall dates changed. Everything
+    below is the real file.</p>
+
+  <div class="lib">
+
+    <div class="lib-grp">
+      <h4>How the programme works</h4>
+      <div class="lib-grid">
+        <a href="work/uplift-matching-logic-one-pager.html">How We Match Founders &amp; Mentors
+          <div class="d">The whole matching method, published to participants</div></a>
+        <a href="work/uplift-three-meetings-one-pager.html">Your Three Mentor Meetings
+          <div class="d">Discover, Act, Roadmap, and what each is for</div></a>
+        <a href="work/uplift-goal-loop.html">The Uplift Goal Loop
+          <div class="d">A goal, followed all the way through</div></a>
+        <a href="work/uplift-how-we-decided.html">How We Decided
+          <div class="d">Admissions transparency for the fall cohort</div></a>
+        <a href="work/program-requirements-fall2026.html">Programme Requirements
+          <div class="d">What completion actually takes</div></a>
+        <a href="work/fall2026-improvements-onepager.html">What We Improved
+          <div class="d">Everything changed between summer and fall</div></a>
+      </div>
+    </div>
+
+    <div class="lib-grp">
+      <h4>Guides &amp; onboarding</h4>
+      <div class="lib-grid">
+        <a href="work/portal-guide-fall2026.html">Portal User Guide
+          <div class="d">Your portal, explained</div></a>
+        <a href="work/onboarding-deck.html">Onboarding Deck
+          <div class="d">The full welcome session deck</div></a>
+        <a href="work/uplift-onboarding-quiz-fall2026.html">Onboarding Quiz
+          <div class="d">Ten questions gating the mentor reveal</div></a>
+        <a href="work/uplift-fall-speaker-runbook.html">Speaker Runbook
+          <div class="d">Booking 22 speakers without a spreadsheet in your lap</div></a>
+        <a href="work/leader-welcome-packet.html">Leader Member Welcome Packet
+          <div class="d">TechUnited NJ membership onboarding</div></a>
+        <a href="work/uplift-speak.html">Share Your Expertise
+          <div class="d">The public call for session speakers</div></a>
+      </div>
+    </div>
+
+    <div class="lib-grp">
+      <h4>Writing</h4>
+      <div class="lib-grid">
+        <a href="work/uplift-diner-essay.pdf">We're Building a Diner <span class="ext">PDF</span>
+          <div class="d">A 19-page visual essay on what the programme is</div></a>
+        <a href="work/uplift-retrospective-carousel.pdf">Retrospective Carousel <span class="ext">PDF</span>
+          <div class="d">The summer cohort, in numbers and lessons</div></a>
+        <a href="work/uplift-fall2026-linkedin.pdf">Fall Cohort Lookbook <span class="ext">PDF</span>
+          <div class="d">Applicant-edition teaser carousel</div></a>
+        <a href="work/uplift-share-your-expertise.pdf">Share Your Expertise <span class="ext">PDF</span>
+          <div class="d">Print edition of the speaker call</div></a>
+      </div>
+    </div>
+
+    <div class="lib-grp">
+      <h4>Events &amp; print</h4>
+      <div class="lib-grid">
+        <a href="work/uplift-summit-run-of-show.html">Summit Run of Show
+          <div class="d">Minute-by-minute event plan</div></a>
+        <a href="work/demo-night-run-of-show.html">Demo Night Run of Show
+          <div class="d">Presenter order, timings, AV</div></a>
+        <a href="work/uplift-certificate.html">Completion Certificate
+          <div class="d">Generated per founder, print-ready</div></a>
+        <a href="work/uplift-brand-posters-24x36.html">Brand Posters 24×36
+          <div class="d">Large-format event signage</div></a>
+        <a href="work/uplift-summit-posters-24x36.html">Summit Posters 24×36
+          <div class="d">Directional and station signage</div></a>
+        <a href="work/uplift-name-tags.html">Name Tags
+          <div class="d">Per-attendee, generated from the roster</div></a>
+        <a href="work/uplift-coasters.html">Coasters
+          <div class="d">Print collateral for the summit</div></a>
+        <a href="work/uplift-pitch-challenge-signage.html">Pitch Challenge Signage
+          <div class="d">Event wayfinding and staging</div></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ HOW ══════════════════════════════════════════════════════ -->
+<section class="sec" id="how">
+  <div class="k">How it was made</div>
+  <h2>Stack, and the constraints that shaped it</h2>
+
+  <div class="stack">
+    <div><h4>Application</h4><p>Next.js and React, deployed on Vercel. Server-rendered pages
+      addressed by private slug, roughly 200 API routes, and Vercel cron for the scheduled loops.</p></div>
+    <div><h4>Data</h4><p>Google Sheets as the primary datastore. Not the choice I would make with a
+      free hand, and the right one here: the programme team could read and correct data without me
+      in the loop.</p></div>
+    <div><h4>Integrations</h4><p>Luma for events and attendance, Typeform for applications,
+      Customer.io for lifecycle email, Slack for team loops, Google Drive for signed documents.</p></div>
+    <div><h4>Documents</h4><p>Every PDF is HTML rendered through a headless browser, so collateral
+      is version-controlled, diffable, and regenerable when dates change.</p></div>
+  </div>
+
+  <div class="quote">
+    The constraint that shaped almost everything: I was the only engineer, and the people who
+    depended on this were not technical. Anything that needed me to run it was a thing that would
+    break the moment I was busy, so it had to be generated, scheduled, or readable by someone else.
+    <span class="src">The reason the grant exhibits generate themselves, and the reason the data lives in a spreadsheet.</span>
+  </div>
+</section>
+
+<!-- ══ NOTE ═════════════════════════════════════════════════════ -->
+<section class="sec" id="note">
+  <div class="k">A note on the data</div>
+  <h2>What is real here, and what is not</h2>
+  <p class="intro">The three demos run entirely on invented founders, mentors and companies. No real
+    participant appears anywhere on this site. The collateral is the genuine article with participant
+    records excluded, and the aggregate numbers are the real ones. The production system, the
+    application database and the grant filings stay with TechUnited NJ.</p>
+</section>
+
+<div class="cta">
+  <h2>Kennedy Loper</h2>
+  <p>Programme design and engineering. I build the operational system a programme needs to run,
+    and the collateral it needs to be understood.</p>
+  <a href="mailto:kennedy@techunited.co">Get in touch</a>
+</div>
+
+</main>
+
+<footer class="pf"><div>
+  Built for Uplift at TechUnited NJ, 2026. Design, engineering and writing by Kennedy Loper.<br>
+  Demos use synthetic data. Uplift and TechUnited NJ marks belong to TechUnited NJ.
+</div></footer>
+
+</body>
+</html>

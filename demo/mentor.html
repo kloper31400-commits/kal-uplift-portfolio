@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentor Portal (Demo) · Uplift</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css">
+<style>
+  .tl { border-left: 2px solid var(--indigo-pale); padding-left: 20px; margin-left: 7px; }
+  .tl-i { position: relative; padding-bottom: 20px; }
+  .tl-i:last-child { padding-bottom: 0; }
+  .tl-i::before { content:""; position:absolute; left:-27px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--indigo-light); border:2.5px solid #fff; box-shadow:0 0 0 2px var(--indigo-pale); }
+  .tl-i.done::before { background:var(--ok-dot); }
+  .tl-i.now::before  { background:var(--warn-dot); }
+  .tl-i .d { font-size:11.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--indigo-light); }
+  .tl-i .l { font-size:14.5px; font-weight:700; margin-top:1px; }
+  .tl-i .n { font-size:12.5px; color:var(--muted); margin-top:2px; }
+
+  .meet-card { border-radius:12px; padding:17px 19px; color:#fff; }
+  .meet-card .mn { font-size:17px; font-weight:800; }
+  .meet-card .mt { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; opacity:.85; }
+  .meet-card p { font-size:13px; opacity:.92; margin-top:7px; line-height:1.55; color:#fff; }
+
+  .founder { border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow); overflow:hidden; margin-bottom:16px; }
+  .founder .fh { background:var(--surface); padding:17px 20px; border-bottom:1px solid var(--line); display:flex; gap:14px; align-items:center; }
+  .founder .fb { padding:18px 20px; }
+  .qa { padding:13px 0; border-top:1px solid var(--line); }
+  .qa:first-child { border-top:0; padding-top:0; }
+  .qa .q { font-size:11.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--indigo-light); margin-bottom:4px; }
+  .qa .a { font-size:13.5px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>DEMO</strong> · Mentor portal · Every person and company below is invented</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <img class="logo" src="../work/uplift-logo-white.png" alt="Uplift">
+    <div class="kicker">Uplift Fall 2026 · Mentor Guide</div>
+    <h1>Daniel Okafor</h1>
+    <div class="sub">Partner · Meridian Labs · Newark, NJ</div>
+    <div class="sub-2">You committed to three sessions · evenings · video call</div>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabs-in" id="tabs"></div></nav>
+
+<main class="wrap">
+
+<!-- ══ ARC ══════════════════════════════════════════════════════ -->
+<section class="panel on" id="p-arc">
+  <div class="note" style="background:#fff;border-left-color:var(--indigo)">
+    <strong>One screen, no login.</strong> Mentors are volunteers giving three hours. Asking them
+    to remember a password to find out who they were matched with loses people, so the whole
+    mentor guide is a single ungated page addressed by a private slug.
+  </div>
+
+  <div class="sec-title"><div class="k">The plot</div><h2>Eight weeks, and where you come in</h2></div>
+  <div class="card">
+    <div class="tl">
+      <div class="tl-i done"><div class="d">Sept 9</div><div class="l">Programme starts</div>
+        <div class="n">Founders onboard Sept 9–11</div></div>
+      <div class="tl-i done"><div class="d">Week of Sept 14</div><div class="l">You're matched</div>
+        <div class="n">Your founder reaches out within 72 hours. That is their commitment, not yours</div></div>
+      <div class="tl-i done"><div class="d">Within 7 days of match</div><div class="l">Meeting 1 · Discover</div>
+        <div class="n">Held Sept 19</div></div>
+      <div class="tl-i now"><div class="d">Within 10 days of Discover</div><div class="l">Meeting 2 · Act</div>
+        <div class="n">Due Oct 8, not yet scheduled</div></div>
+      <div class="tl-i"><div class="d">By Oct 23</div><div class="l">Meeting 3 · Roadmap</div>
+        <div class="n">Hard deadline</div></div>
+      <div class="tl-i"><div class="d">Nov 6</div><div class="l">Programme ends</div>
+        <div class="n">Wrap-up and exit survey</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MEETINGS ═════════════════════════════════════════════════ -->
+<section class="panel" id="p-meetings">
+  <div class="sec-title"><div class="k">How to structure it</div><h2>Three meetings, each with a job</h2>
+    <p>Mentors kept asking “so what do we actually talk about?” This is the answer, given up front
+       rather than left to the pair to invent.</p></div>
+
+  <div class="grid g3">
+    <div class="meet-card" style="background:linear-gradient(135deg,#14503a,#1a6e50)">
+      <div class="mt">Meeting 1 · within 7 days</div>
+      <div class="mn">Discover</div>
+      <p>Get to know each other. Their company, their goals for the eight weeks, and where they
+         are stuck. Leave with one clear priority to work on together.</p>
+    </div>
+    <div class="meet-card" style="background:linear-gradient(135deg,#7a4d00,#9a6200)">
+      <div class="mt">Meeting 2 · within 10 days of Discover</div>
+      <div class="mn">Act</div>
+      <p>Work the problem. Dig into the priority from Discover: pressure-test the plan, share what
+         you have seen work, and agree on concrete next steps.</p>
+    </div>
+    <div class="meet-card" style="background:linear-gradient(135deg,#8f0050,#c0006e)">
+      <div class="mt">Meeting 3 · by October 23</div>
+      <div class="mn">Roadmap</div>
+      <p>Zoom out. Help them leave with a plan for what comes after the programme: what to do,
+         what to avoid, and where you can still open doors.</p>
+    </div>
+  </div>
+
+  <div class="sec-title"><div class="k">Logging</div><h2>What you have to do afterwards</h2></div>
+  <div class="rows">
+    <div class="row"><span class="chip ok"><i class="dot"></i></span>
+      <span class="grow"><span class="t">Meeting 1 · Discover</span>
+      <span class="s">Sept 19 · 62 minutes · confirmed by both sides</span></span>
+      <span class="chip ok">Verified</span></div>
+    <div class="row"><span class="chip warn"><i class="dot"></i></span>
+      <span class="grow"><span class="t">Meeting 2 · Act</span>
+      <span class="s">Due Oct 8</span></span>
+      <button class="btn pri">Confirm this happened</button></div>
+    <div class="row"><span class="chip off"><i class="dot"></i></span>
+      <span class="grow"><span class="t">Meeting 3 · Roadmap</span>
+      <span class="s">By Oct 23</span></span><span class="chip off">Not due</span></div>
+  </div>
+  <div class="note" style="margin-top:12px">
+    <strong>One click, not a form.</strong> The founder logs the session with notes. You get an
+    email asking only whether it happened. Two-sided confirmation is what makes the hours
+    defensible for grant reporting, and it costs a mentor about four seconds.
+  </div>
+</section>
+
+<!-- ══ FOUNDER ══════════════════════════════════════════════════ -->
+<section class="panel" id="p-founder">
+  <div class="sec-title"><div class="k">Your match</div><h2>Maya Restrepo · Trellis Health</h2>
+    <p>Everything she wrote on her application, so you walk into Discover already knowing
+       the shape of the problem.</p></div>
+
+  <div class="founder">
+    <div class="fh">
+      <div class="av lg">MR</div>
+      <div class="grow">
+        <div style="font-size:17px;font-weight:800">Maya Restrepo</div>
+        <div style="font-size:13px;color:var(--muted)">Founder &amp; CEO · Trellis Health · Hudson County</div>
+      </div>
+      <span class="chip">Early traction</span>
+    </div>
+    <div class="fb">
+      <div class="qa"><div class="q">What the company does</div>
+        <div class="a">Scheduling and hand-off software for outpatient care coordinators. Cuts
+          about four hours a week of phone tag per coordinator at the pilot site.</div></div>
+      <div class="qa"><div class="q">Primary focus for the programme</div>
+        <div class="a">Go-to-market &amp; customer acquisition</div></div>
+      <div class="qa"><div class="q">Secondary</div>
+        <div class="a">Fundraising strategy &amp; investor readiness</div></div>
+      <div class="qa"><div class="q">Where she is stuck, in her words</div>
+        <div class="a">“Every deal is a favour. I can get a meeting anywhere someone knows me,
+          and nowhere else. And every clinic wants a security review I cannot pass yet.”</div></div>
+      <div class="qa"><div class="q">What she asked for in a mentor</div>
+        <div class="a">Someone who has sold software into healthcare systems and can tell her
+          which parts of procurement are real and which are theatre.</div></div>
+      <div class="qa"><div class="q">Why we matched you</div>
+        <div class="a">Six years selling clinical software into hospital systems before moving
+          to the investing side. Her blocker is the exact wall you spent those years climbing.
+          Sector, stage and focus all line up; the deciding factor was the procurement experience.</div></div>
+    </div>
+  </div>
+
+  <div class="note"><strong>Why the founder profile is here at all.</strong> The first version of
+    this page just gave the mentor a name and an email. Discover meetings were being spent on
+    “so tell me about your company”, which the founder had already written down twice. Publishing
+    the application to the matched mentor bought back most of the first meeting.</div>
+</section>
+
+<!-- ══ COMMITMENT ═══════════════════════════════════════════════ -->
+<section class="panel" id="p-you">
+  <div class="sec-title"><div class="k">On file</div><h2>What you said you would give, and get</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What you offered</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+        <span class="chip">Go-to-market</span><span class="chip">Enterprise sales</span>
+        <span class="chip">Healthcare</span><span class="chip">Fundraising readiness</span>
+        <span class="chip">Board &amp; investor prep</span>
+      </div>
+      <p style="margin-top:12px">Three sessions · evenings · video call · one founder</p>
+    </div>
+    <div class="card">
+      <h3>What you said you wanted out of it</h3>
+      <p style="margin-top:8px">“Honestly, deal flow. But mostly I remember how alone it felt
+        doing this in 2014 and there was nobody to ask about procurement.”</p>
+    </div>
+  </div>
+
+  <div class="sec-title"><div class="k">If you need it</div><h2>Mentor resources</h2></div>
+  <div class="grid g2">
+    <a class="card" href="../work/uplift-three-meetings-one-pager.html" style="text-decoration:none;color:inherit">
+      <h3>🤝 Your Three Mentor Meetings</h3><p>The one-pager version of this page.</p></a>
+    <a class="card" href="../work/uplift-matching-logic-one-pager.html" style="text-decoration:none;color:inherit">
+      <h3>🔗 How We Match Founders &amp; Mentors</h3><p>Why you got this founder.</p></a>
+    <a class="card" href="../work/uplift-goal-loop.html" style="text-decoration:none;color:inherit">
+      <h3>🎯 The Uplift Goal Loop</h3><p>A goal, followed all the way through.</p></a>
+    <a class="card" href="../work/uplift-speak.html" style="text-decoration:none;color:inherit">
+      <h3>🎤 Share Your Expertise</h3><p>Run a session for the whole cohort.</p></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot"><div class="foot-in">
+  Demo rebuild of the Uplift mentor guide · designed and built by Kennedy Loper ·
+  <a href="../index.html">back to the portfolio</a>
+</div></footer>
+
+<script>
+const TABS = [["arc","The 8-week arc"],["meetings","Your three meetings"],
+              ["founder","Your founder"],["you","Your commitment"]];
+const nav = document.getElementById("tabs");
+TABS.forEach(([id,label],i) => {
+  const b = document.createElement("button");
+  b.className = "tab" + (i===0 ? " on" : ""); b.textContent = label;
+  b.onclick = () => {
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+    b.classList.add("on"); document.getElementById("p-"+id).classList.add("on");
+    window.scrollTo({top:0,behavior:"smooth"});
+  };
+  nav.appendChild(b);
+});
+</script>
+</body>
+</html>

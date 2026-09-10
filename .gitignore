@@ -5,3 +5,6 @@ private/
 
 .DS_Store
 *.log
+
+# Contact sheets used to audit frames for real names. Working artefacts.
+.audit/

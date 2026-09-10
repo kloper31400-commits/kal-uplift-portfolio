@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why These Two · Kennedy Loper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css?v=3">
+<style>
+  body { background:#fff; }
+  .wrap { max-width: 1080px; }
+  .hdr-in, .foot-in { max-width: 1080px; }
+
+  .sec { padding-top: 54px; scroll-margin-top: 60px; }
+  .sec > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+              color:var(--indigo-light); margin-bottom:7px; }
+  .sec > h2 { font-size:27px; font-weight:850; letter-spacing:-.7px; line-height:1.16; }
+  .sec > .intro { font-size:15px; color:var(--muted); line-height:1.68; margin-top:12px; max-width:68ch; }
+  .sec > .intro + .intro { margin-top:11px; }
+  .sec > .intro strong { color:var(--ink); font-weight:650; }
+  .sec > .intro em { color:var(--ink); font-style:italic; }
+
+  .pair { border:1px solid var(--line); border-radius:13px; background:#fff; box-shadow:var(--shadow);
+          overflow:hidden; margin-top:22px; }
+  .pair .ph { background:var(--surface); padding:14px 20px; border-bottom:1px solid var(--line);
+              font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--indigo-deep); }
+  .pair .pb { padding:6px 20px 16px; }
+  .rsn { display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:14px 0; border-top:1px solid var(--line); }
+  .rsn:first-child { border-top:0; }
+  .rsn .claim { font-size:14px; font-weight:700; }
+  .rsn .conf { font-size:14px; color:var(--muted); line-height:1.55; }
+  @media(max-width:640px){ .rsn{grid-template-columns:1fr;gap:5px} }
+
+  table.dist { width:100%; border-collapse:collapse; margin-top:20px; font-size:14px;
+               border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow); }
+  table.dist th { text-align:left; font-size:10.5px; font-weight:800; letter-spacing:.08em;
+                  text-transform:uppercase; color:var(--muted); background:var(--surface);
+                  padding:12px 15px; border-bottom:1px solid var(--line); }
+  table.dist th.n, table.dist td.n { text-align:right; white-space:nowrap; }
+  table.dist td { padding:13px 15px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  table.dist tr:last-child td { border-bottom:0; }
+  table.dist td.n b { font-size:18px; font-weight:850; color:var(--indigo-deep); }
+  .barcell { width:34%; }
+  .minibar { height:8px; border-radius:5px; background:var(--surface-2); overflow:hidden; }
+  .minibar i { display:block; height:100%; border-radius:5px; background:var(--indigo); }
+
+  pre.code { background:#1a1733; color:#ded8ff; border-radius:11px; padding:16px 18px; overflow-x:auto;
+             font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; line-height:1.65; margin-top:16px; }
+  pre.code .cm, pre.code .str, pre.code .kw { display:inline; }
+  pre.code .cm { color:#8b83b8; } pre.code .str { color:#a8e6c0; } pre.code .kw { color:#c7bcff; }
+
+  .trap { border:1px solid #e3c9a0; background:#fffaf0; border-radius:13px; padding:22px 24px; margin-top:22px; }
+  .trap h3 { font-size:17px; font-weight:800; margin-bottom:10px; color:#7a5c00; }
+  .trap p { font-size:14px; color:#6b5a33; line-height:1.68; }
+  .trap p + p { margin-top:10px; }
+  .trap code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px;
+               background:#fff; border:1px solid #e3c9a0; border-radius:5px; padding:1px 6px; color:#7a5c00; }
+
+  .quote { border-left:3px solid var(--indigo); padding:3px 0 3px 20px; margin-top:22px;
+           font-size:16px; line-height:1.66; }
+  .quote span { display:block; font-size:13px; color:var(--muted); margin-top:9px; font-weight:600; }
+
+  .steps { display:grid; gap:10px; margin-top:22px; }
+  .stp { display:grid; grid-template-columns:38px 1fr; gap:15px; border:1px solid var(--line);
+         border-radius:12px; padding:16px 18px; background:#fff; box-shadow:var(--shadow); }
+  .stp .n2 { width:30px; height:30px; border-radius:9px; background:var(--indigo); color:#fff;
+             font-size:13px; font-weight:800; display:grid; place-items:center; }
+  .stp h3 { font-size:15px; font-weight:750; margin-bottom:4px; }
+  .stp p { font-size:13.5px; color:var(--muted); line-height:1.62; }
+  .stp code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px;
+              background:var(--surface); border:1px solid var(--indigo-pale); border-radius:5px;
+              padding:1px 6px; color:var(--indigo-deep); }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>REAL NUMBERS</strong> · Computed from the 62 match emails actually generated for the
+    fall cohort. The worked example uses invented people.</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="wordmark" href="../index.html" style="text-decoration:none">
+      <div class="nm">Kennedy Loper</div>
+      <div class="rl">Summer 2026 Work Portfolio</div>
+    </a>
+    <div class="kicker">Uplift · Match Reasoning</div>
+    <h1>Why these two</h1>
+    <div class="sub">Every match email states its own reasoning, and every line is checkable against
+      the founder's own application.</div>
+    <div class="sub-2">No invented affinity. No "we thought you'd get on".</div>
+  </div>
+</header>
+
+<nav class="tabs"><div class="tabs-in" id="nav"></div></nav>
+
+<main class="wrap">
+
+<!-- ══ PRINCIPLE ════════════════════════════════════════════════ -->
+<section class="sec" id="s-why">
+  <div class="k">The rule</div>
+  <h2>Every line has to be verifiable</h2>
+  <p class="intro">A founder is being handed a stranger and told this is the right one. The
+    difference between believing that and humouring it is whether the reasons can be checked.</p>
+  <div class="quote">
+    Every line has to be something the founder can check against their own application. No invented
+    affinity, no "we thought you'd get on": the whole point of showing the reasoning is that it is
+    verifiable.
+    <span>The comment above the reason builder, and the constraint the rest of it follows from.</span>
+  </div>
+  <p class="intro"><strong>The consequence is that the email cannot say anything warmer than the data
+    supports.</strong> "Investor or fundraising advisor" is a request a mentor either answers or does
+    not, and saying so plainly is stronger than any claim about chemistry.</p>
+</section>
+
+<!-- ══ WORKED ═══════════════════════════════════════════════════ -->
+<section class="sec" id="s-example">
+  <div class="k">One email</div>
+  <h2>What a founder actually reads</h2>
+  <p class="intro">Four reasons, best first, each a claim and its confirmation. This is the real
+    layout with invented people in it.</p>
+
+  <div class="pair">
+    <div class="ph">Why these two &middot; Ines Wróbel and Margit Kovács</div>
+    <div class="pb">
+      <div class="rsn"><div class="claim">Ines asked for an operator with scaling experience</div>
+        <div class="conf">Margit is one.</div></div>
+      <div class="rsn"><div class="claim">Ines asked for help with go-to-market &amp; customer acquisition</div>
+        <div class="conf">That is one of the areas Margit mentors in.</div></div>
+      <div class="rsn"><div class="claim">Margit chose to work with early traction companies</div>
+        <div class="conf">Which is exactly where Ines is.</div></div>
+      <div class="rsn"><div class="claim">You both signed up for 4-6 sessions</div>
+        <div class="conf">The same commitment on both sides, which is rarer than it sounds.</div></div>
+    </div>
+  </div>
+
+  <p class="intro" style="margin-top:16px">Read the grammar of it. <strong>The first half of each
+    pair is something one of them wrote down; the second half is something the other one wrote
+    down.</strong> Nothing in the middle is ours.</p>
+</section>
+
+<!-- ══ THE SEVEN ════════════════════════════════════════════════ -->
+<section class="sec" id="s-templates">
+  <div class="k">The vocabulary</div>
+  <h2>Seven reasons, and nothing else</h2>
+  <p class="intro">The builder can produce exactly seven kinds of claim. If none of them fires, the
+    email carries fewer reasons rather than a softer one.</p>
+
+<pre class="code"><span class="cm">// What the founder asked for on the form, against what the mentor actually
+// is. "Investor or fundraising advisor" is a request a mentor either answers
+// or does not, and saying so is stronger than any inference about chemistry.</span>
+<span class="kw">const</span> MENTOR_TYPES = [
+  [/investor|fundrais/i,        /fundrais|investor|capital|venture/i, <span class="str">"an investor or fundraising advisor"</span>],
+  [/operator with scaling/i,    /scal|operations|growth/i,            <span class="str">"an operator with scaling experience"</span>],
+  [/technical or product/i,     /product|technical|engineering/i,     <span class="str">"a technical or product leader"</span>],
+  [/built a similar company/i,  /founder|co-founder|ceo/i,            <span class="str">"a founder who has built a company"</span>],
+  [/industry-specific/i,        <span class="kw">null</span>,                                 <span class="str">"an industry expert"</span>],
+];</pre>
+
+  <p class="intro" style="margin-top:16px">The other six: a focus area the mentor listed on their own
+    form, the stage the mentor chose to work with, session commitment on both sides, shared industry,
+    close enough geographically to meet in person, and an overlapping meeting window.</p>
+</section>
+
+<!-- ══ DISTRIBUTION ═════════════════════════════════════════════ -->
+<section class="sec" id="s-dist">
+  <div class="k">Across the cohort</div>
+  <h2>Which reasons actually fired</h2>
+  <p class="intro">Counted from the 62 emails generated for the fall cohort. Each email carries up to
+    four, best first.</p>
+
+  <table class="dist">
+    <thead><tr><th>Reason</th><th class="barcell"></th><th class="n">Emails carrying it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Session commitment matches on both sides</strong></td>
+        <td class="barcell"><div class="minibar"><i style="width:100%"></i></div></td>
+        <td class="n"><b>62</b> / 62</td></tr>
+      <tr><td><strong>A focus area the mentor actually mentors in</strong></td>
+        <td class="barcell"><div class="minibar"><i style="width:84%"></i></div></td>
+        <td class="n"><b>52</b> / 62</td></tr>
+      <tr><td><strong>Mentor named the founder's stage on their own form</strong></td>
+        <td class="barcell"><div class="minibar"><i style="width:66%"></i></div></td>
+        <td class="n"><b>41</b> / 62</td></tr>
+      <tr><td><strong>The kind of mentor they asked for, answered</strong></td>
+        <td class="barcell"><div class="minibar"><i style="width:63%"></i></div></td>
+        <td class="n"><b>39</b> / 62</td></tr>
+      <tr><td><strong>Overlapping meeting windows</strong></td>
+        <td class="barcell"><div class="minibar"><i style="width:45%"></i></div></td>
+        <td class="n"><b>28</b> / 62</td></tr>
+      <tr><td><strong>Close enough to meet in person</strong></td>
+        <td class="barcell"><div class="minibar"><i style="width:26%"></i></div></td>
+        <td class="n"><b>16</b> / 62</td></tr>
+      <tr><td><strong>Founder's own Deep Work, quoted</strong>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:3px">A section rather than a
+          reason: the eleven who had finished it by send time</div></td>
+        <td class="barcell"><div class="minibar"><i style="width:18%;background:var(--indigo-light)"></i></div></td>
+        <td class="n"><b>11</b> / 62</td></tr>
+    </tbody>
+  </table>
+
+  <p class="intro" style="margin-top:18px"><strong>54 of the 62 carry the full four.</strong> Six
+    carry three, two carry two, none carries one. Average 3.8.</p>
+  <p class="intro">The shape is the interesting part. Session commitment fires every time because the
+    solver treats capacity as a hard constraint, so a pairing that failed it would not exist to write
+    about. Geography fires least because the programme is virtual and it is a bonus rather than a
+    criterion.</p>
+</section>
+
+<!-- ══ SAME SCORER ══════════════════════════════════════════════ -->
+<section class="sec" id="s-same">
+  <div class="k">The part that makes it honest</div>
+  <h2>The email is scored by the same function that made the match</h2>
+  <p class="intro">It would be easy, and completely invisible, to write a second scorer for the
+    email: something that reads a finished pairing and produces flattering reasons for it. The
+    reasons would look identical and mean nothing.</p>
+
+  <div class="quote">
+    The mentor form is read here and scored with the same <em>scoreMentor</em> the solver used, which
+    means the email states the reasoning the match was actually made on rather than a second guess
+    at it.
+    <span>Which is why the reason distribution above is also a description of how matching behaved.</span>
+  </div>
+
+  <div class="trap">
+    <h3>And a failure that would have been silent</h3>
+    <p>The roster keeps three derived tags per mentor. Their <em>application</em> holds the raw focus
+      areas, the stage they prefer, when they can meet and why they are here, and "why these two" is
+      only as good as what it can draw on. So the builder reads the mentor form live rather than
+      trusting the tags.</p>
+    <p>The obvious way to do that is to import the app's own applications module. That module imports
+      its neighbours without file extensions, which Next resolves and plain node does not, so
+      importing it from a script fails at runtime. <strong>Wrapped in a try, that failure costs about
+      half the match reasons and says nothing.</strong> The emails still send. They are just thinner,
+      and nobody can tell by looking.</p>
+    <p>So the read is done directly against five known fields, and a missing
+      <code>TYPEFORM_TOKEN</code> prints a warning that says exactly what the output will be missing
+      rather than degrading in silence.</p>
+  </div>
+</section>
+
+<!-- ══ AFTER ONBOARDING ═════════════════════════════════════════ -->
+<section class="sec" id="s-after">
+  <div class="k">The sequencing</div>
+  <h2>Why the match lands after onboarding, not before</h2>
+  <p class="intro">The introduction does not go out when the pairing is decided. It goes out after
+    the founder has attended onboarding and finished the Week 1 Deep Work, and the ordering is the
+    point.</p>
+
+  <div class="steps">
+    <div class="stp"><div class="n2">1</div><div>
+      <h3>The pairing is computed</h3>
+      <p>The solver runs across the whole waiting room, scoring every founder against every mentor
+        with capacity. The result is held, not sent.</p></div></div>
+    <div class="stp"><div class="n2">2</div><div>
+      <h3>The founder clears the Week 1 gate</h3>
+      <p>Onboarding attended, quiz passed 10 out of 10, Deep Work written. Until all three land, the
+        mentor is not shipped from the milestones API at all.</p></div></div>
+    <div class="stp"><div class="n2">3</div><div>
+      <h3>The email is built at send time, not at match time</h3>
+      <p>Which is why the Deep Work section can exist. <strong>Where the founder has written it, the
+        email stops describing them in our words and starts quoting theirs.</strong> Where it does
+        not exist yet, the section is simply absent, never a placeholder and never a guess.</p></div></div>
+    <div class="stp"><div class="n2">4</div><div>
+      <h3>Both sides get the same reasoning</h3>
+      <p>The mentor's copy carries the founder's application and the same four reasons. Neither of
+        them is reading a version written for them.</p></div></div>
+  </div>
+
+  <p class="intro" style="margin-top:18px">That is what the eleven Deep Work sections represent: not
+    a feature that half-worked, but <strong>the eleven founders who had finished writing before their
+    introduction went out.</strong> The rest pick it up automatically on the next generation.</p>
+  <p class="intro">The line the mentor reads is deliberately flat about it:
+    <em>"Ines attended onboarding and finished the Week 1 Deep Work before this introduction went
+    out. Every founder in the cohort does. What follows is Ines's own writing, untouched."</em></p>
+</section>
+
+<!-- ══ ELSEWHERE ════════════════════════════════════════════════ -->
+<section class="sec" id="s-elsewhere">
+  <div class="k">The same shape, elsewhere</div>
+  <h2>Where else this pattern shows up</h2>
+  <p class="intro">Stating the reasoning, in the participant's own words, next to the decision it
+    produced. Once it worked for matching it went everywhere a decision gets communicated.</p>
+
+  <div class="steps">
+    <div class="stp"><div class="n2">→</div><div>
+      <h3>Speaker booking</h3>
+      <p>The slot board says not just that a session has a speaker but whether the confirmation email
+        went, whether a calendar invite was sent, and what the speaker did with it.
+        <a href="speaker-loop.html">Follow the speaker loop →</a></p></div></div>
+    <div class="stp"><div class="n2">→</div><div>
+      <h3>Peer rooms</h3>
+      <p>The score breakdown for every room is rendered in the console, so the trade each room is
+        making is visible rather than asserted.
+        <a href="cohorts.html">The four grouping factors →</a></p></div></div>
+    <div class="stp"><div class="n2">→</div><div>
+      <h3>Mentor verification</h3>
+      <p>Four verdicts, each carrying a plain sentence about what to do next. "Nothing found" is
+        deliberately not "suspicious". <a href="console.html">In the console →</a></p></div></div>
+    <div class="stp"><div class="n2">→</div><div>
+      <h3>Admissions</h3>
+      <p>How We Decided was published to applicants rather than kept internal.
+        <a href="../work/uplift-how-we-decided.html">Read it →</a></p></div></div>
+  </div>
+</section>
+
+<div style="border-top:1px solid var(--line);padding-top:32px;margin-top:52px">
+  <div style="display:flex;gap:9px;flex-wrap:wrap">
+    <a class="btn pri" href="../work/onboarding-deck-fall2026.html" style="text-decoration:none">The onboarding deck →</a>
+    <a class="btn" href="speaker-loop.html" style="text-decoration:none">The speaker loop</a>
+    <a class="btn" href="cohorts.html" style="text-decoration:none">Peer rooms</a>
+    <a class="btn" href="../index.html" style="text-decoration:none">Back to portfolio</a>
+  </div>
+</div>
+
+</main>
+
+<footer class="foot"><div class="foot-in">
+  Reason distribution computed from the 62 match emails generated for the fall cohort.
+  Designed and built by Kennedy Loper.
+</div></footer>
+
+<script>
+const NAV = [["s-why","The rule"],["s-example","One email"],["s-templates","Seven reasons"],
+             ["s-dist","What fired"],["s-same","Same scorer"],["s-after","After onboarding"],
+             ["s-elsewhere","Elsewhere"]];
+const nav = document.getElementById("nav");
+NAV.forEach(([id,label]) => {
+  const b=document.createElement("button"); b.className="tab"; b.textContent=label;
+  b.onclick=()=>document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"});
+  nav.appendChild(b);
+});
+</script>
+<script src="../assets/lightbox.js?v=3"></script>
+</body>
+</html>

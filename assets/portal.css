@@ -278,3 +278,16 @@ html.lbx-locked, html.lbx-locked body { overflow: hidden; }
   display: block; width: 100%; max-width: 1180px; height: auto;
   margin: 0 auto; border-radius: 10px; background: #fff;
 }
+
+/* ── Portfolio wordmark ─────────────────────────────────────────
+   These pages are Kennedy's portfolio, not Uplift's product, so the header
+   carries his name. Uplift and TechUnited marks stay in the attribution
+   line at the foot of each page, where crediting the client belongs. */
+.wordmark { display: block; margin-bottom: 15px; }
+.wordmark .nm {
+  font-size: 15px; font-weight: 800; letter-spacing: -.2px; color: #fff;
+}
+.wordmark .rl {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: #b6a9ff; margin-top: 2px;
+}

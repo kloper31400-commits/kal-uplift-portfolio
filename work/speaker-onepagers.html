@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Uplift Expert Sessions · Session briefs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,founder@example.com,400..800&family=Archivo+Narrow:wght@600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: 8.5in 11in; margin: 0; }
+  :root { --ink: #110465; --body: #35324f; --soft: #6f6a8c; --pink: #cf5b8d; --rule: #d7d2e3; --wash: #f7f6f2; }
+  body { background: #fff; color: var(--body); font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 8.9pt; line-height: 1.38; }
+  .page { width: 8.5in; height: 10.96in; overflow: hidden; padding: 0.4in 0.66in 0.26in;
+    display: flex; flex-direction: column; break-after: page; page-break-after: always; }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+
+  .mast { display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 3px solid var(--ink); padding-bottom: 8px; }
+  .mast .logo { width: 1.4in; height: 0.46in; background: url("uplift-logo.png") left bottom / contain no-repeat; }
+  .mast .r { font-family: 'JetBrains Mono', monospace; font-size: 8pt; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--soft); }
+
+  h1 { font-family: 'Archivo Narrow', sans-serif; font-weight: 700; font-size: 20pt;
+    text-transform: uppercase; color: var(--ink); line-height: 1.0; margin-top: 15px; }
+  .role { margin-top: 4px; font-size: 10.5pt; color: var(--body); }
+  .contact { margin-top: 5px; font-family: 'JetBrains Mono', monospace; font-size: 8pt;
+    letter-spacing: 0.04em; color: var(--soft); }
+  .contact b { color: var(--ink); font-weight: 700; }
+  .strip { margin-top: 10px; display: grid; grid-template-columns: 1.15fr 1.35fr 0.9fr;
+    border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .strip div { padding: 7px 14px 7px 0; border-right: 1px solid var(--rule); }
+  .strip div:last-child { border-right: none; padding-left: 14px; padding-right: 0; }
+  .strip div:nth-child(2) { padding-left: 14px; }
+  .strip .lab { font-family: 'JetBrains Mono', monospace; font-size: 7pt; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--soft); }
+  .strip .val { margin-top: 3px; font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 12.5pt; color: var(--ink); text-transform: uppercase; line-height: 1.12; }
+
+  h2 { font-family: 'JetBrains Mono', monospace; font-size: 8pt; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); margin-top: 11px; }
+  .mast .gate { background: var(--ink); color: #fff; padding: 4px 9px;
+    font-family: 'JetBrains Mono', monospace; font-size: 7.6pt; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; display: inline-block; margin-bottom: 4px; }
+  .titles { margin-top: 11px; display: grid; grid-template-columns: 1.25fr 1fr; gap: 14px; }
+  .titles.solo { grid-template-columns: 1fr; }
+  .tcell { border-top: 2px solid var(--ink); padding-top: 7px; }
+  .tcell.sug { border-top-color: var(--pink); }
+  .tcell .lab { font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--soft); }
+  .tcell.sug .lab { color: var(--pink); }
+  .tcell .val { margin-top: 4px; font-family: 'Archivo Narrow', sans-serif; font-weight: 700;
+    font-size: 15pt; color: var(--ink); line-height: 1.14; }
+  .tcell.sug .val { font-family: 'Archivo', sans-serif; font-weight: 500; font-size: 10pt;
+    line-height: 1.4; color: var(--body); }
+  p.txt { margin-top: 6px; }
+  ul.aways { margin: 9px 0 0 0; list-style: none; }
+  ul.aways li { position: relative; padding-left: 17px; margin-bottom: 3px; }
+  ul.aways li:before { content: "\2014"; position: absolute; left: 0; color: var(--pink); font-weight: 700; }
+
+  .need { margin-top: 8px; }
+  .need .row { display: flex; gap: 14px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+  .need .row:first-child { border-top: 1px solid var(--rule); }
+  .need .lab { flex: 0 0 1.7in; font-weight: 600; color: var(--ink); }
+  a { color: var(--pink); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
+  .copyband { margin-top: 11px; border-top: 3px solid var(--ink); padding-top: 9px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .copyband .l { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
+  .copyband .n { font-size: 9pt; color: var(--soft); text-align: right; }
+  .copyblock { border-left: 3px solid var(--pink); padding-left: 16px; margin-top: 4px; }
+  .copyblock h2:first-child { margin-top: 9px; }
+  /* Straight from the application, so a reviewer can see the source and the
+     speaker can see what we captured. */
+  .appl { margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px 18px; font-size: 7.9pt; line-height: 1.28; }
+  .appl .lab { font-family: 'JetBrains Mono', monospace; font-size: 6.8pt; font-weight: 700;
+    letter-spacing: 0.13em; text-transform: uppercase; color: var(--pink); }
+  .appl .v { margin-top: 2px; }
+  .appl .wide { grid-column: 1 / -1; }
+  .fn { margin-top: 4px; font-size: 7.8pt; color: var(--soft); font-style: italic; }
+  .settle { margin-top: 6px; background: var(--wash); padding: 8px 12px; }
+  .settle ul { margin: 0 0 0 16px; }
+  .settle li { margin-bottom: 2px; }
+
+  /* A few briefs carry more than the others: a date that had to be explained,
+     a series to lay out, a 60-minute session cut to 30. Rather than reflow the
+     pages already signed off, those pages tighten their own body copy. Every
+     page is verified at 1052 of 1052 before the PDF is cut. */
+  .page.tight { font-size: 8.4pt; line-height: 1.31; }
+  .page.tight .copyblock p, .page.tight ul.aways li { line-height: 1.31; }
+
+  .spacer { flex: 1; }
+  .foot { border-top: 1px solid var(--rule); margin-top: 7px; padding-top: 5px;
+    font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 0.08em;
+    color: var(--soft); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body><div style="background:#1a1733;color:#fff;font:500 12.5px/1.5 Inter,system-ui,sans-serif;padding:9px 20px;text-align:center"><strong style="color:#c7bcff">SANITISED</strong> &middot; The real deliverable, with every participant replaced by an invented one. Design, structure and writing are untouched. <a href="../index.html" style="color:#c7bcff">back to the portfolio</a></div>
+
+<div class="page" id="eric-schmalzbauer">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Mira Marchand</h1>
+  <p class="role">Former co-founder &amp; CEO, Northvale Robotics</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 2<br>Mon, Sept 14 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Fireside chat<br>moderated, then questions</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">B2B: from idea &gt; funding &gt; failure</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Founders hear success stories constantly and almost never a first-hand account of the other outcome. Mira Marchand walks the whole arc of his venture-backed B2B startup as a first-time founder: the idea, the fundraising, building the team, and when and why to close up shop, then what he will change for his next business and what he will do more of. Whatever stage you are at the same problems show up, raising money, building a team, getting to market, managing investors. Expect a candid conversation rather than a polished talk.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>Tangible examples of what worked and what did not inside a venture-backed startup</li>
+    <li>As a founder, you always have to be selling, in some form</li>
+    <li>Honest acknowledgement that the job is very lonely</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Any founder in the cohort. Whatever stage you are at, the same problems show up: raising money, building a team, getting to market, and managing investors.</p>
+
+    <h2>About Mira</h2>
+    <p class="txt">Mira Marchand is a technology executive, founder, and venture partner across product strategy, data platforms, and go-to-market execution. He is the now former co-Founder and CEO of Northvale Robotics, the team behind the open-source Perspective project, building high-performance tools for interactive data analytics. Mira previously held senior leadership roles across financial market infrastructure and enterprise technology. As a Venture Partner at REFASHIOND Ventures, he advises early-stage founders on product-market fit, fundraising, and scaling.</p>
+
+    <h2>A resource Mira recommends</h2>
+    <p class="txt">The Workbench Ventures GTM Weekly newsletter, workbench.substack.com/s/gtm-weekly</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Calendar hold</span><span>For the educational session only. Lands as soon as you confirm the date.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>A 20 to 25 minute moderated conversation, then questions from founders at the end. We hold the clock.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Aug 31 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="steve-cummins">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Dario Brannigan</h1>
+  <p class="role">Principal / Chief Marketer, Bramble Robotics</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 4<br>Fri, Sept 18 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Presentation*<br>with slides, then Q&amp;A</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Marketing that Maps the Customer Journey</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Every founder is told to do marketing, and everyone they ask has a different opinion. Dario Brannigan, a fractional CMO with more than 20 years in B2B marketing, starts from the classic marketing funnel and shows which tactics belong at which stage, then makes the case that the customer journey is no longer linear and needs a more nuanced read. The session closes on the one or two things worth doing well rather than covering every base.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>Define the goal of your marketing, then match tactics to each stage</li>
+    <li>What has to be in place before you spend: a clear message, a defined reachable audience</li>
+    <li>Do one or two things well rather than covering every base</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Founders who are pre-revenue and testing the market, already generating revenue, or raising. Useful to anyone who knows they should be marketing and has neither the time nor the budget to do all of it.</p>
+
+    <h2>About Dario</h2>
+    <p class="txt">Dario helps growing businesses punch above their weight, working with companies who are ready to take marketing seriously but are not ready for a full time CMO. That means developing the right message, reaching a broader audience, and executing a marketing plan tailored for their business. Dario has an engineering background and more than 20 years experience in global B2B marketing with name-brand companies and feisty start-ups. He also coaches and mentors marketers and teams of one.</p>
+
+    <h2>A resource Dario recommends</h2>
+    <p class="txt">A one-pager built for this session, plus an 8-page eBook, Building a Realistic Marketing Strategy.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Calendar hold</span><span>For the educational session only. Lands as soon as you confirm the date.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>Roughly 20 minutes of content, then questions. We hold the clock.</span></div>
+  </div>
+
+    <p class="fn">* Slides only. If you are presenting, the final deck is due 72 hours before the session.</p>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Aug 28 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page tight" id="sheilisa-mcneal">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Saoirse Panetta</h1>
+  <p class="role">Founder &amp; CEO, Verdigris Ventures</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 5<br>Mon, Sept 21 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Presentation*<br>with slides, then Q&amp;A</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Is venture funding the right capital for your business?</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Venture capital gets treated as the default answer to how you fund a company, and plenty of founders read their first term sheet only once it is in front of them. Saoirse Panetta works the decision itself: whether your model, growth goals and exit expectations fit venture, or whether grants, revenue, loans, partnerships or angel money fit better. Then what you exchange for the money, and the provisions that quietly decide how much of the company you still steer afterwards.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>Assess venture fit: whether your model, growth goals and exit expectations suit venture, or grants, revenue, loans, partnerships or angels</li>
+    <li>Know the tradeoffs: equity, dilution, board influence, investor rights, pressure for rapid growth</li>
+    <li>Read a term sheet before you sign: valuation, liquidation preferences, voting rights, board seats, pro rata, option pools, exclusivity</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Founders raising or about to raise, founders already generating revenue, and anyone who wants to understand how investors think.</p>
+
+    <h2>About Saoirse</h2>
+    <p class="txt">Saoirse Panetta is an inventor and the Founder and CEO of Verdigris Ventures, a health-tech company developing wearable cooling accessories for vasomotor discomfort. Guided by the belief that problems just require solutions, she turned cooling jewels from an idea into an IP-protected, revenue-generating startup recognized by the NSF SBIR program and the New Jersey Commission on Science, Innovation and Technology. She also brings deep experience in communications and marketing strategy, including service as an adjunct lecturer at NYU's School of Professional Studies.</p>
+
+    <h2>A resource Saoirse recommends</h2>
+    <p class="txt">A plain-language glossary of the terms in a term sheet, from valuation and dilution through liquidation preference, option pools, pro rata rights, SAFEs and no-shop provisions.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">The three-part version</span><span>You offered to run this across funding fit, tradeoffs and term-sheet readiness. We want it. We will hold dates two and three on the sync call.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>Roughly 20 minutes of content, then questions. We hold the clock.</span></div>
+  </div>
+
+    <p class="fn">* Slides only. If you are presenting, the final deck is due 72 hours before the session.</p>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Sept 3 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page tight" id="jeanne-mcphillips">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Dario Sundqvist</h1>
+  <p class="role">Professor of Business Innovation, SCAD &nbsp;·&nbsp; Founder, Parcelwise Robotics</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 6<br>Tue, Sept 22 · 5:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Working session<br>you bring work, coached live</p></div>
+    <div><p class="lab">Length</p><p class="val">60 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Brand Positioning &amp; Story-First Marketing: Building a Brand People Remember (Without a Big Budget)</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Most early-stage founders think of marketing as something to tackle once the product is built and the funding is secured, which is exactly when the visibility they needed a year ago would have paid. Dario Sundqvist runs this as a working session on a practical framework: define a clear, differentiated brand position, turn your founder story into a repeatable marketing and PR asset, and build a lean content and earned-media strategy that creates visibility before there is a budget for it. Founders leave with something written down rather than a set of principles. This one runs a full hour.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>A brand framework you can reuse</li>
+    <li>A positioning statement, written in the room</li>
+    <li>A 90-day content and PR plan you can start on Monday</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Any founder in the cohort. Built for people who need visibility now and have no marketing budget to buy it.</p>
+
+    <h2>About Dario</h2>
+    <p class="txt">Dario Sundqvist is a fractional CMO and brand strategist who helps founders turn a raw idea into a brand people remember. She founded Parcelwise Robotics and created Bold Future Leadership, a cohort program for women creative leaders, and teaches the marketing and business curriculum at SCAD. She hosts the podcast Pink Balls and wrote Be Your Own Hero. She is also a mentor in this fall's Uplift cohort.</p>
+
+    <h2>A resource Dario recommends</h2>
+    <p class="txt">Three things founders keep: a brand framework, a positioning statement template, and a content plan.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">You get the full hour</span><span>You said this works best at 60 minutes with breakouts. Two of the three dates you picked were Tuesday evenings, and those are the ones we can run long, so we moved you to Tue Sept 22 at 5:30 and gave you the whole hour. Nothing needs cutting.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 60 minutes</span><span>Room for the framework, the live positioning exercise and the breakouts as you designed them. We have your Canva deck; if it changes, the final version is due 72 hours before. We hold the clock.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Sept 1 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page tight" id="kenneth-jones">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Theo Adeyemi</h1>
+  <p class="role">Standhold Labs builder &nbsp;·&nbsp; Meridian Studio</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 7<br>Fri, Sept 25 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Working session<br>you bring work, coached live</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Vibe coding: what is this and how can it help you?</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Founders keep hitting the same wall: the tool the business needs does not exist, and paying someone to build it is out of reach. Theo Adeyemi opens with what AI-assisted vibe coding actually is and walks the working applications he has built on Replit, live. Founders leave with homework: write the requirements for something your own business needs. That becomes the raw material for parts two and three.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>How to write business requirements for an application</li>
+    <li>Where AI and vibe coding realistically help a business, and where they do not</li>
+    <li>How to get running in Replit, including the options, costs and setup</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Any founder in the cohort, idea stage through raising. No coding background assumed.</p>
+
+    <h2>About Theo</h2>
+    <p class="txt">Theo Adeyemi has spent his career in technology management, with a long-running interest in applications development, business and economic news, and artificial intelligence. He now builds and ships his own AI-assisted applications, with more in the pipeline. He is a former college professor and conference education co-chair, a TiE mentor, and mentored two Uplift founders in Summer 2026.</p>
+
+    <h2>A resource Theo recommends</h2>
+    <p class="txt">His Replit hub at kenjonesnj.com, with links to every application he has built. Those are the teaching examples for the series.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">About this date</span><span>This was your second pick. You mentioned a Friday engagement might be landing, so if it does, tell us and we will move you to a Monday.</span></div>
+    <div class="row"><span class="lab">The series</span><span>You proposed three sessions two weeks apart: intro and demos, then a working session on founders' ideas, then founder demos. We want all three. Sessions 7, 14 and 20 hold that spacing: Sept 25, Oct 12, Oct 23.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>Roughly 20 minutes of content and live demo, then questions. We hold the clock and set the homework at the end.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Sept 1 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="julia-kahky">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Dario Achterberg</h1>
+  <p class="role">VP Operations, Ledgerbloom Labs</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 8<br>Mon, Sept 28 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Presentation*<br>with slides, then Q&amp;A</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">From startup to dissolution: a post-mortem</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Everything online talks about how companies succeed, when founders learn far more from avoiding the mistakes of companies that failed. Dario Achterberg walks the post-mortem of a startup that closed, specifically what she learned trying to sell software to enterprise customers and into highly regulated markets: what worked, what did not, the problems worth avoiding early, and how long sales cycles really take.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>Problems to avoid early on</li>
+    <li>Product-market fit</li>
+    <li>Sales cycles</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Founders at any stage, from idea through raising, and anyone selling into enterprise or regulated buyers where cycles are long and requirements arrive late.</p>
+
+    <h2>About Lina</h2>
+    <p class="txt">Dario Achterberg is VP of Operations at a software company in the aviation industry, with prior experience as a chief of staff and in financial technology and operations in sports media. She started her career in finance and has worked across Fortune 15 companies, 500-person companies, and startups, with experience spanning finance, operations, marketing, revenue operations, and HR.</p>
+
+    <h2>A resource Lina recommends</h2>
+    <p class="txt">The Atrium, a founder community, plus a working list of AI tools, tips and tricks.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Calendar hold</span><span>For the educational session only. Lands as soon as you confirm the date.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>Roughly 20 minutes of content, then questions. We hold the clock.</span></div>
+  </div>
+
+    <p class="fn">* Slides only. If you are presenting, the final deck is due 72 hours before the session.</p>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Aug 28 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="ashley-ryder">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Maja Panetta</h1>
+  <p class="role">Partner, Verdigris Industries</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 10<br>Fri, Oct 2 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Fireside chat<br>moderated, then questions</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Fundraising AMA</p>
+    </div>
+    <div class="tcell sug">
+      <p class="lab">Our suggestion</p>
+      <p class="val">So founders know what they are walking into: <b>Fundraising AMA: ask an early-stage VC anything</b>. Moderated, and open book, so nothing is off the table.</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Fundraising is a black hole. Founders guess at what investors want, and the people who could tell them straight are the same people they are pitching. Maja Panetta, a Partner at the early-stage fund Verdigris Industries, gives the cohort the reverse: a session that is nothing but questions, on preparing to raise, on building a strategy rather than a list of intros, and on the question sitting underneath both, whether venture dollars are the right money for your company at all. Bring the question you have not been able to get answered anywhere else.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>What to have in place before you start raising</li>
+    <li>How to build a fundraising strategy rather than a list of intros</li>
+    <li>A straight read on whether you should take VC dollars</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Any founder in the cohort. Most useful if you are raising, about to raise, or still deciding whether to.</p>
+
+    <h2>About Maja</h2>
+    <p class="txt">Maja Panetta is a Partner at Verdigris Industries, an early-stage fund investing in diverse teams across healthcare, fintech, future of work and sustainability, where she has led deals including Fundamental Research Labs, Clarity Pediatrics and Handspring Health. She began her career at Morgan Stanley in capital markets, moved into operating roles at a Y Combinator startup and Fortune 500 companies, and has invested at Brand Foundry Ventures, Founders Factory and Dorm Room Fund. She is driven by the conviction that investing in overlooked founders is financially astute as well as socially imperative. She holds a B.A. from Oyelaran and an MBA from MIT Sloan.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">About this date</span><span>Your first choice, Session 1, falls this Friday, too close now to give the event page a proper run-up. Friday Oct 2 at 12:30 was your second choice.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>An AMA, so we open the floor early rather than at the end. We will seed the first questions, collect more from founders beforehand, moderate, and hold the clock. Nothing for you to prepare.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Sept 1 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="jaron-rubenstein">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Elif Ivanova</h1>
+  <p class="role">Technical CEO &amp; Fractional CTO, Coldstart Systems</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile</p>
+  <div class="strip">
+    <div><p class="lab">When · booked</p><p class="val">Session 12<br>Tue, Oct 6 · 5:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Presentation*<br>with slides, then Q&amp;A</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Managing engineers</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Most founders leading an engineering team have never been engineers themselves. Elif Ivanova calls that the number one internal challenge facing the non-technical founders he works with, and one that can easily be the difference between a startup succeeding and failing. He covers the most important things a non-technical founder should know when managing and growing an engineering team: how to communicate with the engineers you have, what to look for in the ones you hire next, and how to use AI to get more technical output with less frustration on both sides.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>How to better communicate with your engineering team</li>
+    <li>What to look for when recruiting and hiring engineers</li>
+    <li>Using AI to maximize your technical output and minimize engineering frustration</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Any founder in the cohort, and non-technical founders above all: anyone who is managing, hiring or about to hire engineers.</p>
+
+    <h2>About Elif</h2>
+    <p class="txt">Elif Ivanova is a digital marketing technology innovator, strategist, software engineer and business leader, with deep operational, marketing and data security expertise in professional services organizations. He is the founder and former CEO of RubyLaw, a legal marketing technology SaaS platform, where he set the strategic vision, led the technology strategy, and grew the company to a 20% market share of the Am Law 200 before leading an M&amp;A process that culminated in an acquisition in 2023. As a fractional CTO he now guides startups and teams designing and building the next generation of AI-centered software. Elif is also a Founder Coach with the Robin Hood Foundation's Blue Ridge Labs venture studio, mentoring tech-driven founders tackling the most pressing social issues for underserved NYC communities.</p>
+
+    <h2>What Elif will hand the cohort</h2>
+    <p class="txt">Details, tips, tricks, and actual AI prompts and workflows to use.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Your date</span><span>Tuesday Oct 6 at 5:30, one of the three you picked. Monday Oct 19 had gone before your application reached us.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>Roughly 20 to 25 minutes of slides, then questions from founders. We hold the clock.</span></div>
+  </div>
+
+    <p class="fn">* Slides only. If you are presenting, the final deck is due 72 hours before the session.</p>
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Applied Sept 8 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="shikha-soneji">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Anton Adeyemi</h1>
+  <p class="role">CEO &amp; Founder, Trellis Collective</p>
+  <p class="contact">founder@example.com</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 13<br>Fri, Oct 9 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Working session<br>you bring work, built live</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Ship AI that actually works: one real workflow, built live</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Default event copy</span>
+    <span class="n">This is what we will publish on the event page.<br>If you would like it adjusted, send us the revisions.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Every founder has been told to put AI in the business, and most of the advice stops at the demo. Anton Adeyemi runs this as a working session: founders bring a repetitive task from their own company, drafting proposals, triaging leads, answering the same customer questions, and she turns one of them into a reliable AI workflow live in the room. The part most sessions skip gets the time here, which is where the workflow will break and how you catch that before a customer does.</p>
+
+    <h2>Takeaways</h2>
+    <ul class="aways">
+    <li>How to pick the one task in your business worth automating first, and the ones to leave alone</li>
+    <li>A simple prompt plus verification pattern that keeps AI output trustworthy enough to put in front of customers</li>
+    <li>Where the workflow will break, and how to catch it before a customer does</li>
+    </ul>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Any founder in the cohort. Bring a real task from your own business, not a hypothetical. No engineering background needed.</p>
+
+    <h2>About Anton</h2>
+    <p class="txt">Anton Adeyemi is the CEO and founder of Trellis Collective, an AI-native compliance platform for data center operators, covering privacy, environmental and AI regulation for facilities that carry heavy compliance burdens without the legal infrastructure to match. She was named one of the Top 26 Founders of 2026. She holds a PhD in Informatics from Penn State, where her research combined privacy law, machine learning and explainable AI and earned her an award for AI for Social Impact. Before founding Trellis Collective she spent five and a half years as a data scientist at ADP, working on RAG systems, agentic AI and knowledge management. She was selected for the FoundersBoost NYC Spring 2026 cohort and mentors through WIT TCCP.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Your other two topics</span><span>You sent three and a slot only holds one, so this one is <b>Ship AI that actually works</b>. We want <b>Defining your ICP</b> and <b>Pitch without a deck</b> as their own dates. We will pick them on the call.</span></div>
+    <div class="row"><span class="lab">About this date</span><span>All three dates you picked fell in the first three weeks, and all three have gone. Friday Oct 9 at 12:30 is the same slot shape, with room to promote it properly and to line up founders with real work for you to build. If a different date suits you better, say so.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>A short setup, then one founder's real task built end to end while the room watches. We will line up two volunteers in advance so it does not stall. We hold the clock.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Replied Aug 31 by email · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="jonathan-hakakian">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Rosa Lindqvist</h1>
+  <p class="role">Managing Director &amp; Co-founder, Juniper Labs</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; soundboardventurefund.com/jonathan-hakakian</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 16<br>Mon, Oct 19 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Fireside chat<br>moderated, then questions</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles solo">
+    <div class="tcell">
+      <p class="lab">Your topic</p>
+      <p class="val">Fundraising for concept to seed stage companies</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">Draft event copy</span>
+    <span class="n">Written from your reply, not yet approved by you.<br>Correct anything wrong and send it back.</span>
+  </div>
+  <div class="copyblock">
+    <h2>About this session</h2>
+    <p class="txt">Most fundraising advice on the internet is written for companies further along than the ones hearing it. Rosa Lindqvist invests at exactly the stage this cohort is at, concept to seed, and has run diligence on a portfolio of forty companies from outside the major city centers. A conversation about what actually gets an early company funded when it does not have the traction, the network or the zip code the playbook assumes.</p>
+
+    <h2>Takeaways</h2>
+    <p class="txt">Still to come from you. Three things a founder walks away able to do or decide, one line each. We can draft them from the conversation above if you would rather react to something than write from scratch.</p>
+
+    <h2>Who it is for</h2>
+    <p class="txt">Founders raising or about to raise, and anyone deciding whether outside capital fits the company they are building.</p>
+
+    <h2>About Rosa</h2>
+    <p class="txt">In 2012 Rosa co-founded Juniper Labs with Richard Magid to build a community of experienced entrepreneurs to formally invest in early-stage companies outside the major city centers. He has raised capital for the fund, directed the diligence process into a growing portfolio of 40 companies, and coached many of the portfolio's entrepreneurs on their journeys. Rosa is a fellow with the Kauffman Fellows Program, Class 19, where he focused his studies on being an innovative venture investor. He is an advisory board member for Miracle Corners of the World, judges entrepreneurship competitions, and received the NJBIZ 40 Under 40 award in the Entrepreneur category in 2018.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Your date</span><span>We are holding Monday Oct 19 at 12:30 pending your reply. If another suits you better, these are open: Fri Sept 11 at 12:30 PM, Tue Sept 15 at 5:30 PM, Tue Sept 29 at 5:30 PM, Mon Oct 5 at 12:30 PM and 7 more. All Eastern.</span></div>
+    <div class="row"><span class="lab">Sync call</span><span>Book a prep call for the week before, whatever time works for you: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>A 20 to 25 minute moderated conversation, then questions from founders at the end. Nothing to prepare and no deck. We hold the clock.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Replied Aug 30 by email · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+<div class="page" id="bill-noonan">
+  <div class="mast">
+    <div class="logo"></div>
+    <div class="r"><span class="gate">Your expert session one-pager</span><br>Expert Session · Fall 2026</div>
+  </div>
+
+  <h1>Hugo Fenwick</h1>
+  <p class="role">Chief Business Development Officer, Alder Logistics</p>
+  <p class="contact">founder@example.com &nbsp;·&nbsp; linkedin.com/in/invented-profile &nbsp;·&nbsp; Newark, NJ</p>
+  <div class="strip">
+    <div><p class="lab">When · tentatively scheduled</p><p class="val">Session 19<br>Wed, Oct 21 · 12:30 PM ET</p></div>
+    <div><p class="lab">Format</p><p class="val">Fireside chat<br>moderated by Zara Price</p></div>
+    <div><p class="lab">Length</p><p class="val">30 minutes<br>Virtual</p></div>
+  </div>
+
+  <div class="titles">
+    <div class="tcell">
+      <p class="lab">Your title</p>
+      <p class="val">Still to come from you</p>
+    </div>
+    <div class="tcell sug">
+      <p class="lab">Our suggestion</p>
+      <p class="val">A fireside chat, moderated by <b>Zara Price</b>, our CEO. No slides, no deck, nothing to prepare. The topic is the one thing still to pick, and Zara would rather find it with you on a 15 minute call than hand you one.</p>
+    </div>
+  </div>
+
+  <div class="copyband">
+    <span class="l">What is settled, and what is not</span>
+    <span class="n">Format and moderator are set.<br>The topic is the open question.</span>
+  </div>
+  <div class="copyblock">
+    <h2>The format, settled</h2>
+    <p class="txt">A fireside chat, moderated by Zara Price, our CEO. You do not present, you do not build a deck, and there is nothing to prepare. Zara asks, you answer, and founders put their own questions to you at the end.</p>
+
+    <h2>One: your topic</h2>
+    <p class="txt">The one thing still open, and Zara would rather find it with you than assign it. Given what you do at Alder Logistics, the cohort would get the most from the New Jersey side of building a company: what the state actually offers a growing business, how companies decide where to land and expand, and who is worth knowing. That is a room nobody else on our speaker list can fill. Bring an instinct to the call and Zara will shape it with you.</p>
+
+    <h2>Two: your three takeaways</h2>
+    <p class="txt">Three things a founder walks away able to do or decide. One line each is plenty, and these can come out of the call with Zara too.</p>
+
+    <h2>Your date</h2>
+    <p class="txt">We are holding Wednesday Oct 21 at 12:30 pending your reply. If that does not work, these are open: Fri Sept 11 at 12:30 PM, Tue Sept 15 at 5:30 PM, Tue Sept 29 at 5:30 PM, Mon Oct 5 at 12:30 PM and 7 more. All Eastern.</p>
+
+    <h2>About Hugo</h2>
+    <p class="txt">Hugo Fenwick is Chief Business Development Officer at Alder Logistics, based in Newark. He is also a mentor in this fall's Uplift cohort, where he wrote that he wants to mentor startups because he understands the challenges of turning an innovative idea into a sustainable, growing business.</p>
+  </div>
+
+  <h2>What's next</h2>
+  <div class="need">
+    <div class="row"><span class="lab">Book the call with Zara</span><span>Fifteen minutes with Zara Price to land the topic. Any slot that works: <a href="https://calendly.com/mj-techunited/30min">calendly.com/mj-techunited/30min</a></span></div>
+    <div class="row"><span class="lab">Confirm the date</span><span>Reply yes to Wednesday Oct 21 and a new calendar hold goes out. The topic can follow after the call.</span></div>
+    <div class="row"><span class="lab">Your 30 minutes</span><span>A 20 to 25 minute conversation with Zara, then questions from founders. We hold the clock.</span></div>
+  </div>
+
+
+  <div class="spacer"></div>
+  <div class="foot"><span>Bio and headshot received Sept 8 · Uplift Expert Sessions, Fall 2026</span><span>Uplift Mentorship Program · TechUnited:NJ</span></div>
+</div>
+
+</body>
+</html>

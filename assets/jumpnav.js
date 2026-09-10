@@ -17,27 +17,31 @@
   // Sections of the home page. Reachable from anywhere: from a demo page these
   // simply carry you home and land you on the right one.
   const SECTIONS = [
-    ["Walk through the real thing",  "#demos"],
+    ["The programme console",        "#g-console"],
+    ["Matching",                     "#g-matching"],
+    ["Booking the speakers",         "#g-speakers"],
+    ["The Founder Lookbook",         "#g-lookbook"],
+    ["Email and comms",              "#g-email"],
+    ["Applications",                 "#g-apps"],
+    ["The founder portal",           "#g-portal"],
+    ["The resources",                "#g-docs"],
+    ["Walk through more",            "#more"],
     ["Six systems",                  "#systems"],
     ["Write it once",                "#writeonce"],
     ["Programme collateral",         "#collateral"],
     ["Stack and constraints",        "#how"],
     ["What is real here",            "#note"],
-    ["Get in touch",                 "#contact"],
   ];
 
   // Same ranking as the inventory: the pieces that would work somewhere else
   // first, the programme they were built for after.
   const LINKS = [
-    ["Portfolio home",        P + "index.html",              "home"],
-    ["Interface inventory",   P + "demo/book.html",          "123 screens, all of it"],
-    ["The programme console", P + "demo/book.html#g-console", "22 tabs, in the grid"],
+    ["The portfolio",         P + "index.html",              "the inventory and everything under it"],
     ["Why these two",         P + "demo/why-these-two.html", "the matching engine explains itself"],
     ["The speaker loop",      P + "demo/speaker-loop.html",  "one date, five systems"],
     ["The Founder Lookbook",  P + "demo/lookbook.html",      "86 pages from one form"],
     ["The comms board",       P + "demo/comms.html",         "receipt vs reconstruction"],
     ["The peer rooms",        P + "demo/cohorts.html",       "four-factor grouping"],
-    ["The founder portal",    P + "demo/book.html#g-portal",  "gate to certificate"],
     ["The mentor guide",      P + "demo/mentor.html",        "one ungated page"],
     ["Everything I made",     P + "work/library.html",       "95 deliverables"],
   ];
@@ -100,12 +104,12 @@
     `<a class="jn-sec" href="${AT_ROOT ? "" : P + "index.html"}${hash}"><b>${label}</b></a>`).join("");
 
   panel.innerHTML =
-    '<div class="jn-h">On the home page</div>' + sectionRows +
+    '<div class="jn-h">On the portfolio page</div>' + sectionRows +
     '<div class="jn-h jn-h2">Everything you can open</div>' +
     LINKS.map(([label, href, note]) => {
       const target = href.replace(/^\.\.\//, "/").replace(/^index\.html$/, "/");
       const isHere =
-        (label === "Portfolio home" && AT_ROOT && /(^\/$|index\.html$)/.test(location.pathname)) ||
+        (label === "The portfolio" && AT_ROOT && /(^\/$|index\.html$)/.test(location.pathname)) ||
         (!AT_ROOT && location.pathname.endsWith(href.replace("../", "").replace("demo/", "")));
       return `<a href="${href}"${isHere ? ' class="on" aria-current="page"' : ""}>` +
              `<b>${label}</b><i>${note}</i></a>`;

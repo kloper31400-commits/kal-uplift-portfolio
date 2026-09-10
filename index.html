@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kennedy Loper · Summer 2026 Work Portfolio</title>
+<title>Kennedy Loper &middot; Summer 2026 Work Portfolio</title>
 <meta name="description" content="Kennedy Loper, Summer 2026 work portfolio. A founder portal, an admin console, a matching engine, booking loops and about a hundred pieces of collateral, built over fifteen weeks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/portal.css?v=7">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portal.css?v=13">
 <style>
+/* ── the narrative sections, carried over from the old front page ── */
+
   body { background: #fff; }
 
   .hero {
@@ -151,9 +153,10 @@
      no button, so the only rules left are for those three things. The ring
      stops the photo dissolving into the indigo behind it. */
   .cta img.face {
-    width: 116px; height: 116px; border-radius: 50%; object-fit: cover;
+    width: 124px; height: 124px; border-radius: 50%; object-fit: cover;
     display: block; margin: 0 auto 20px;
-    box-shadow: 0 0 0 3px rgba(255,255,255,.30), 0 10px 30px rgba(0,0,0,.30);
+    border: 2px solid rgba(255,255,255,.85);
+    box-shadow: 0 0 0 7px rgba(255,255,255,.10), 0 12px 34px rgba(0,0,0,.34);
   }
   .cta .role {
     font-size: 12.5px; font-weight: 700; letter-spacing: .17em;
@@ -162,6 +165,100 @@
 
   footer.pf { border-top: 1px solid var(--line); padding: 26px 24px 52px; }
   footer.pf div { max-width: 940px; margin: 0 auto; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+/* ── the inventory grid ─────────────────────────────────────────── */
+
+  body { background:#fff; }
+  .wrap { max-width: 1180px; }
+  .hdr-in, .foot-in { max-width: 1180px; }
+
+  .bnav { background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
+  .bnav .in { max-width:1180px; margin:0 auto; padding:0 24px; display:flex; gap:2px; overflow-x:auto; }
+
+  .grp { padding-top: 52px; scroll-margin-top: 62px; }
+  .grp > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+              color:var(--indigo-light); margin-bottom:6px; }
+  .grp > h2 { font-size:26px; font-weight:850; letter-spacing:-.7px; }
+  .grp > p.lead { font-size:14.5px; color:var(--muted); line-height:1.66; margin-top:11px; max-width:70ch; }
+  .grp > p.lead strong { color:var(--ink); font-weight:650; }
+
+  /* Tiny squares. Fixed narrow columns rather than stretching ones, so the
+     embedded documents can be scaled to a known width and every plate is the
+     same size: the point of the grid is taking the whole set in at a glance. */
+  .plates { margin-top:22px; display:grid; gap:16px 14px;
+            grid-template-columns:repeat(auto-fill, 280px); justify-content:space-between; }
+  /* Number and note on top, picture underneath. The caption block is given a
+     floor so a one-line note and a four-line note still start their pictures
+     on the same line: without it the images stagger and the grid stops being
+     scannable. */
+  .plate { display:flex; flex-direction:column; }
+  /* The block is a fixed height so pictures line up, but the text sits at the
+     bottom of it. Top-aligned, a one-line note left a hole under itself and
+     read as belonging to the picture above rather than the one below. */
+  .plate .cap-h { height: 100px; overflow: hidden;
+                  display: flex; flex-direction: column; justify-content: flex-end; }
+  .plate .cap-h .sub { margin-bottom: 0; }
+  .plate .fr { margin-top: 8px; }
+  .plate .pn { display:flex; align-items:baseline; gap:6px; margin-bottom:4px; flex-wrap:wrap; }
+  .plate .idx {
+    font-size:9.5px; font-weight:800; letter-spacing:.05em; color:#fff;
+    background:var(--indigo-light); border-radius:3px; padding:1px 5px;
+  }
+  .plate .ttl { font-size:13.5px; font-weight:750; line-height:1.25; }
+  .plate .sub { font-size:11.5px; color:var(--muted); line-height:1.5; margin-bottom:8px; }
+  .plate .fr {
+    border:1px solid var(--line); border-radius:10px; background:var(--surface);
+    box-shadow:0 1px 3px rgba(26,23,51,.06), 0 10px 26px rgba(26,23,51,.07);
+    height:230px; overflow-y:auto; cursor:zoom-in;
+  }
+  .plate .fr img { display:block; width:100%; height:auto; background:var(--surface); }
+
+
+  /* ── Document plates ────────────────────────────────────────────
+     The resources are real HTML, so they are embedded rather than
+     screenshotted: a miniature of the live page, scrolling in place, and
+     the real thing when you open it. */
+  .doc .fr { padding:0; background:#fff; }
+  .doc .fr .mini { width:1000px; height:2600px; border:0; transform:scale(.28);
+                   transform-origin:top left; display:block; }
+  .doc .fr .cage { width:280px; height:728px; overflow:hidden; }
+  /* A completion certificate is a document somebody could copy, so the
+     portfolio shows that it exists and refuses to hand over a clean one. */
+  .plate.redact .fr img, .plate.redact .fr .mini { filter: blur(3px); }
+  .plate.redact .fr::after {
+    content: "Blurred on purpose"; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%,-50%); background: rgba(26,23,51,.86); color: #fff;
+    font: 800 9.5px 'Inter', system-ui, sans-serif; letter-spacing: .08em;
+    text-transform: uppercase; padding: 6px 11px; border-radius: 20px; white-space: nowrap;
+  }
+  .plate.redact .fr { position: relative; cursor: default; }
+  .doc .open { display:inline-block; margin-top:6px; font-size:10.5px; font-weight:800;
+               color:var(--indigo); text-decoration:none; }
+  .doc .open:hover { text-decoration:underline; }
+
+  .mtx-wrap { border:1px solid var(--line); border-radius:12px; overflow:auto;
+              box-shadow:var(--shadow); }
+  table.mtx { width:100%; border-collapse:collapse; font-size:13px; background:#fff; }
+  table.mtx th { text-align:left; font-size:10px; font-weight:800; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--surface);
+                 padding:10px 13px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  table.mtx td { padding:11px 13px; border-bottom:1px solid var(--line); vertical-align:top;
+                 line-height:1.55; }
+  table.mtx tr:last-child td { border-bottom:0; }
+  .vchip { font-size:10px; font-weight:700; border-radius:4px; padding:2px 7px; white-space:nowrap; }
+  .vchip.ok { background:#e8f8f0; color:#1a6e42; }
+  .vchip.soft { background:#fff3e0; color:#b35c00; }
+  .vchip.bad { background:#fdecec; color:#c0392b; }
+
+  .plate.wide { grid-column: 1 / -1; }
+  .plate.wide .fr { height: 420px; }
+
+
+/* The grid claims body and .wrap at 1180px for itself. The sections
+   underneath it need their narrower measure handed back, or the prose
+   runs to a line length nobody can read. */
+  main.tail { max-width: 940px; margin: 0 auto; padding: 0 24px 10px; }
+  #more { padding-top: 66px; }
 </style>
 </head>
 <body>
@@ -175,36 +272,510 @@
   </div>
 </section>
 
+<div class="demo-bar">
+  <span><strong>MOCK DATA</strong> · 96 screens of the real application, running on a generated
+    cohort. Every person and company is invented.</span>
+</div>
 
-<main>
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="kicker">Interface Inventory</div>
+    <h1>Every screen, end to end</h1>
+    <div class="sub">96 captures: the console, the founder portal, the lookbook, the emails, and the
+      state variations most walkthroughs skip.</div>
+    <div class="sub-2">Click any frame to open it full size.</div>
+  </div>
+</header>
 
-<!-- ══ DEMOS ════════════════════════════════════════════════════ -->
-<section class="sec" id="demos">
-  <div class="k">See it working</div>
-  <h2>Walk through the real thing</h2>
-  <p class="intro">These are captures of the production application, not mockups. The cohort inside
-    it is generated: invented founders, invented mentors, invented companies, loaded into the live
-    console before capture so the longitudinal panels have something in them. Every screen, every
-    number and every piece of copy is the shipped product.</p>
+<nav class="bnav"><div class="in" id="bnav"></div></nav>
+
+<main class="wrap">
+
+<div class="note" style="margin-top:26px">
+  <strong>A note on the two builds.</strong> The console captures run against an anonymised demo
+  build that also renames things: the programme is "the program", mentors are "experts", cohorts are
+  "pods". The founder-portal captures run against the real Uplift naming. Both are populated with
+  invented people. Five frames are withheld entirely because they name real participants.
+</div>
+
+<div class="note" style="margin-top:26px">
+  <strong>Ordered by how much of it lifts out.</strong> The first six are the pieces that would
+  work somewhere else with the nouns changed: a matching engine, a booking loop, a publication that
+  generates itself from a form, compliance exhibits built from live data, and a comms board that
+  knows the difference between a receipt and a reconstruction. The rest is the programme they were
+  built for.
+</div>
+
+<!-- ══ THE PROGRAMME CONSOLE ═══════════════════════════════════ -->
+<section class="grp" id="g-console">
+  <div class="k">Running the cohort</div>
+  <h2>The programme console</h2>
+  <p class="lead">Twenty-two tabs, computed live on each request. This is the screen that replaced
+    eleven spreadsheet tabs and a shared inbox.</p>
+  <p class="lead"><strong>Nothing here is hand-set.</strong> Every number is derived from the sources
+    of truth on load, which is why nobody has to remember to update anything and why the console and
+    the founder portal can never disagree about the same fact.</p>
+  <div class="plates" id="p-console"></div>
+
+  <div class="note" style="margin-top:20px">
+    <strong>One number per person, and it is also their password.</strong> Every founder and mentor
+    gets an Uplift ID: <span class="mono">UF26</span> plus an issue number, in approval order across
+    both groups as a single sequence. It is what the roster, the session log, the grant exhibits and
+    the signed verification forms all key on, so a person can be followed across every document
+    without matching on a name that might be spelled two ways.
+    <br><br>
+    It is also the portal password, which turns a formatting question into a security one.
+    <strong>Before the rule lived in one place, every reader of that column guessed differently</strong>
+    and any stray text typed into the cell became somebody's login. The pattern is now strict and
+    anchored, and it refuses a leading zero on purpose: UF2604 and UF264 are two IDs to a string
+    comparison and one ID to a numeric check, which is exactly the disagreement that lets two people
+    share a login.
+  </div>
+
+</section>
+
+<!-- ══ MATCHING ════════════════════════════════════════════════ -->
+<section class="grp" id="g-matching">
+  <div class="k">The hardest call</div>
+  <h2>Matching</h2>
+  <p class="lead">Solved as a whole waiting room rather than one founder at a time, with the
+    trade-off priced on screen. <strong>Greedy first-come matching rewards whoever applied earliest
+    and leaves the last arrivals with whatever is left.</strong></p>
+  <p class="lead">The competitive point is not the algorithm, it is that the reasoning is publishable.
+    A founder who can read why they got this mentor arrives at the first meeting differently from one
+    who was handed a name, and a programme that can show its working can be argued with rather than
+    just trusted.</p>
+  <div class="plates" id="p-matching"></div>
+</section>
+
+<!-- ══ BOOKING THE SPEAKERS ════════════════════════════════════ -->
+<section class="grp" id="g-speakers">
+  <div class="k">One approval, five systems</div>
+  <h2>Booking the speakers</h2>
+  <p class="lead">An application lands from the form and the console shows the whole of it: who they
+    are, the session they are proposing, <strong>who they say it is aimed at, the three takeaways
+    they are promising</strong>, their bio, what they would cover, the dates they ranked, and how
+    many sessions they are offering. Everything a yes or no needs, on one screen, because applicants
+    were told they would hear back within a business day.</p>
+
+  <p class="lead"><strong>Nobody writes any of it a second time.</strong> The title and description
+    they typed become the published event page founders register through. The three takeaways are
+    printed on the one-page brief the host reads before introducing them, and shown on the event
+    page so a founder can judge whether the hour is worth it. The bio ships as written, because a
+    speaker describes themselves better than a programme manager paraphrasing them at 11pm.</p>
+
+  <p class="lead">Which has a consequence worth naming: <strong>a speaker correcting their own bio
+    corrects the brief and the event page too.</strong> There is no second copy to go and fix, and
+    no version of the truth living in somebody's outbox.</p>
+  <p class="lead"><strong>Approving is the pivot.</strong> It books the slot and takes that date off
+    the board for everyone else in the same action, then the rest of the chain hangs off it: the
+    confirmation email drafts itself with the slot already in the subject, the one-pager brief is
+    generated from their own answers, a calendar hold goes out, and the session copy is pushed to the
+    Luma event page founders register through. Registrations come back the other way into a
+    founder's three-session requirement.</p>
+  <p class="lead">The board's job is knowing which of those actually happened.
+    <strong>Booked and told are different states</strong>, which is why the slot board carries
+    "email sent", "invite accepted", "no reply" and "no invite" rather than a single tick.
+    <a href="demo/speaker-loop.html" style="color:var(--indigo);font-weight:700">Follow the whole loop, with the slot board and the review card →</a></p>
+
+  <div class="plates">
+    <div class="plate doc"><div class="pn"><span class="idx">01</span>
+      <span class="ttl">The review card and the slot board</span></div>
+      <div class="cap-h"><div class="sub">The console screen itself: their audience, the three
+        takeaways they promised, ranked dates with the taken one struck through, and the decision
+        dropdown that books the slot.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/speaker-review.html" loading="lazy"
+        title="Speaker review screen" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/speaker-review.html" target="_blank" rel="noopener">Open the review screen ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">02</span>
+      <span class="ttl">Share Your Expertise</span></div>
+      <div class="cap-h"><div class="sub">The public call. Its date choices are generated from the
+        same source file the board reads, so a schedule change reaches the form.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/share-your-expertise.html" loading="lazy"
+        title="Share Your Expertise" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/share-your-expertise.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">03</span>
+      <span class="ttl">The generated brief</span></div>
+      <div class="cap-h"><div class="sub">One page per speaker, in calendar order, built from the
+        answers they already gave. Nobody writes these.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/speaker-onepagers.html" loading="lazy"
+        title="Speaker briefs" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/speaker-onepagers.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">04</span>
+      <span class="ttl">The speaker runbook</span></div>
+      <div class="cap-h"><div class="sub">Booking 22 speakers without a spreadsheet in your lap.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/speaker-runbook.html" loading="lazy"
+        title="Speaker runbook" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/speaker-runbook.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate"><div class="pn"><span class="idx">05</span>
+      <span class="ttl">The published Luma event</span></div>
+      <div class="cap-h"><div class="sub">Where founders register. The end of the chain that started
+        as a date in a source file.</div></div>
+      <div class="fr"><img src="shots/speaker-luma.jpg" alt="The published Luma event" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ THE FOUNDER LOOKBOOK ════════════════════════════════════ -->
+<section class="grp" id="g-lookbook">
+  <div class="k">The piece I would show first</div>
+  <h2>The Founder Lookbook</h2>
+  <p class="lead">An 86-page publication generated from the cohort's own application data. Every
+    founder gets a page. It opens with a photo wall, then a contents list of all 68, then the
+    aggregate view: stages, industries, counties, and what founders said they most want help with.</p>
+  <p class="lead">The last sections are the working ones. <strong>"Looking for customers and
+    partners" and "Hiring in the next six months" are filters over the same data</strong>, so the
+    book doubles as a directory a partner or an investor can actually act on. It regenerates from
+    the roster, which is why an 86-page document could be reissued whenever the cohort changed.</p>
+
+  <div class="plates">
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">01</span><span class="ttl">Cover</span></div>
+      <div class="sub">The photo wall: 68 founders, one grid.</div></div>
+      <div class="fr"><img src="shots/a25-lookbook.jpg" alt="Lookbook cover" loading="lazy"></div></div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">02</span><span class="ttl">Contents</span></div>
+      <div class="sub">All 68 founders and their companies, paginated.</div></div>
+      <div class="fr"><img src="shots/a25b-lookbook-p2.jpg" alt="Lookbook contents" loading="lazy"></div></div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">03</span><span class="ttl">At a glance</span></div>
+      <div class="sub">Stage, industry, county, and what they want help with. All computed.</div></div>
+      <div class="fr"><img src="shots/a25c-lookbook-p3.jpg" alt="Lookbook at a glance" loading="lazy"></div></div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">04</span><span class="ttl">Hiring in the next six months</span></div>
+      <div class="sub">A filter over the roster, not a hand-written list.</div></div>
+      <div class="fr"><img src="shots/a25d-lookbook-hiring.jpg" alt="Lookbook hiring page" loading="lazy"></div></div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">05</span><span class="ttl">Looking for customers and partners</span></div>
+      <div class="sub">The same mechanism, different question.</div></div>
+      <div class="fr"><img src="shots/a25e-lookbook-partners.jpg" alt="Lookbook partners page" loading="lazy"></div></div>
+    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">06</span><span class="ttl">In the founder portal</span></div>
+      <div class="sub">Founders can browse it from inside their own portal.</div></div>
+      <div class="fr"><img src="shots/m16-lookbook.jpg" alt="Lookbook in the portal" loading="lazy"></div></div>
+  </div>
+</section>
+
+<!-- ══ GRANT REPORTING ═════════════════════════════════════════ -->
+<section class="grp" id="g-reporting">
+  <div class="k">Where the money comes from</div>
+  <h2>Grant reporting</h2>
+  <p class="lead">The programme is state-funded, and funding is released against evidence rather
+    than assertion. Every exhibit is generated from the same rows the console reads.</p>
+  <p class="lead"><strong>These used to be rebuilt by hand each reporting period from spreadsheet
+    exports.</strong> Every hand-rebuild is a chance for the report and the underlying data to drift
+    apart, and the entire point of a compliance document is that it does not drift.</p>
+  <div class="plates" id="p-reporting"></div>
+</section>
+
+<!-- ══ EMAIL AND COMMS ═════════════════════════════════════════ -->
+<section class="grp" id="g-email">
+  <div class="k">Reaching people</div>
+  <h2>Generated email</h2>
+  <p class="lead">Every one of these is built per recipient from the same data the console reads,
+    previewable before it fires and logged after. <strong>None of them is a template somebody fills
+    in.</strong></p>
+  <p class="lead">These are the live renderings rather than screenshots, each with every participant
+    swapped for an invented one. Scroll them in place or open the real file.</p>
+
+  <div class="plates">
+    <div class="plate doc"><div class="pn"><span class="idx">01</span>
+      <span class="ttl">The match reveal</span></div>
+      <div class="cap-h"><div class="sub">Current build. Why you two, the founder's own five Deep
+        Work answers quoted back, and what real progress looks like by November.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/match-email-example.html" loading="lazy"
+        title="The match reveal email" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/match-email-example.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">02</span>
+      <span class="ttl">The mentor update</span></div>
+      <div class="cap-h"><div class="sub">Written from the two onboarding session transcripts, with
+        every claim sourced. Company spellings follow the roster, not the transcript's phonetics.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/mentor-icymi-email.html" loading="lazy"
+        title="The mentor ICYMI update" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/mentor-icymi-email.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">03</span>
+      <span class="ttl">Founder acceptance</span></div>
+      <div class="cap-h"><div class="sub">Generated per founder from the roster. The accept-by date
+        is the only thing a send is allowed to move.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/fall-acceptance-email.html" loading="lazy"
+        title="Founder acceptance email" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/fall-acceptance-email.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">04</span>
+      <span class="ttl">Mentor acceptance</span></div>
+      <div class="cap-h"><div class="sub">Two hand-written lines per mentor, everything else
+        generated, so 45 personal emails cost the time of 45 sentences.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/fall-mentor-acceptance-email.html" loading="lazy"
+        title="Mentor acceptance email" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/fall-mentor-acceptance-email.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate"><div class="pn"><span class="idx">05</span>
+      <span class="ttl">Acceptance, as sent</span></div>
+      <div class="cap-h"><div class="sub">The same email in a mail client, from the capture set.</div></div>
+      <div class="fr"><img src="shots/e01-acceptance.jpg" alt="Acceptance email" loading="lazy"></div>
+    </div>
+    <div class="plate"><div class="pn"><span class="idx">06</span>
+      <span class="ttl">Mentor acceptance, as sent</span></div>
+      <div class="cap-h"><div class="sub">Same again for the mentor side.</div></div>
+      <div class="fr"><img src="shots/e03-expert-acceptance.jpg" alt="Mentor acceptance email" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPLICATIONS AND VERIFICATION ═══════════════════════════ -->
+<section class="grp" id="g-apps">
+  <div class="k">Getting in</div>
+  <h2>Applications and review</h2>
+  <p class="lead">143 founder applications and 46 mentor applications, reviewed in the console with
+    the full submission, the resume and the verification verdict on one screen.</p>
+  <div class="plates" id="p-apps"></div>
+
+  <div class="note" style="margin-top:22px">
+    <strong>The score is on claims, never on people.</strong> Every check asks whether the thing
+    somebody wrote down holds up, not whether they seem impressive. A mentor who has served a cohort
+    before is routed to "already known to us" rather than penalised, and that distinction is the
+    whole design: without it the score punishes exactly the people who have already shown up.
+  </div>
+
+  <div class="mtx-wrap" style="margin-top:16px">
+    <table class="mtx">
+      <thead><tr><th>Score</th><th>What it is called</th><th>What it obliges you to do</th></tr></thead>
+      <tbody>
+        <tr><td><strong>85 and up</strong></td><td><span class="vchip ok">Clear</span></td>
+          <td>Nothing owed. Approve and match. Everything they claimed holds up, or they have
+            mentored for us before.</td></tr>
+        <tr><td><strong>60 to 84</strong></td><td><span class="vchip soft">Check</span></td>
+          <td>Reach out personally and collect the missing pieces. Ask for what the form left blank,
+            confirm the role and the employer, and make sure the rest adds up.</td></tr>
+        <tr><td><strong>Under 60</strong></td><td><span class="vchip bad">Review</span></td>
+          <td>Get a reference before they meet a founder. Someone credible vouches for them by name.
+            Do not match on the application alone.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="lead" style="margin-top:14px"><strong>Written as obligations rather than adjectives, on
+    purpose.</strong> "Thin application" is a description nobody has to act on. "Collect what is
+    missing" is a task with a person's name on it.</p>
+
+  <div class="note" style="margin-top:16px">
+    <strong>The first signal, and why it is checked the way it is.</strong> Does the LinkedIn URL
+    they pasted actually belong to the name they gave? Fetching the profile proves nothing, because
+    LinkedIn answers every request with an authwall whether the person is real or invented. The
+    slug does the work: a profile URL carries a name, and somebody pasting another person's link
+    shows up as zero overlap between the two.
+    <br><br>
+    <strong>Deliberately generous.</strong> LinkedIn truncates, uses initials, and appends a numeric
+    id, so any single matching name token is a pass and only a complete miss is flagged. Across a
+    pool of 38 that produced zero false positives, which is the number that matters: a check that
+    accuses real people is worse than no check.
+  </div>
+
+  <div class="note" style="margin-top:16px">
+    <strong>Two more things the scorer refuses to do.</strong> It will not drop a returning mentor
+    below "check", because serving a previous cohort is worth more than any single missing field
+    costs. And it separates "real person, poor fit" from "cannot confirm this person exists", which
+    are different problems needing different conversations: one is a matching decision, the other is
+    a safety one.
+    <br><br>
+    The weights live in the same module that computes the score, so the tooltip explaining a number
+    to whoever is reading it is generated from the numbers that produced it and cannot drift away
+    from them.
+  </div>
+
+</section>
+
+<!-- ══ THE FOUNDER PORTAL ══════════════════════════════════════ -->
+<section class="grp" id="g-portal">
+  <div class="k">What a founder sees</div>
+  <h2>The founder portal</h2>
+  <p class="lead">Nine tabs, gated week by week, private to each founder.</p>
+  <p class="lead"><strong>The gating is the design.</strong> Showing a founder eight weeks of
+    homework on day one is how you lose them in week two, so each week opens when they reach it and
+    the mentor stays hidden until the work that makes the first meeting useful is done.</p>
+  <div class="plates" id="p-portal"></div>
+</section>
+
+<!-- ══ EVERY STATE ═════════════════════════════════════════════ -->
+<section class="grp" id="g-states">
+  <div class="k">The part most demos skip</div>
+  <h2>Every state, not just the happy one</h2>
+  <p class="lead">A screenshot of a working feature proves very little. These are the same components
+    in each state they can actually reach: a milestone list empty, partly done and complete; a
+    session unsubmitted, pending and approved; a pulse check unanswered, green, amber and red.</p>
+  <p class="lead"><strong>Designing the empty and the failed states is most of the work</strong>, and
+    it is the part that decides whether someone trusts the screen at eight o'clock on a Friday.</p>
+  <div class="plates" id="p-states"></div>
+</section>
+
+<!-- ══ TOOLTIPS ════════════════════════════════════════════════ -->
+<section class="grp" id="g-tips">
+  <div class="k">Explaining itself</div>
+  <h2>Tooltips</h2>
+  <p class="lead">Every tab in the portal carries a plain-English explanation of what it is for.
+    Founders arrive once, at speed, and never read a manual.</p>
+  <div class="plates" id="p-tips"></div>
+</section>
+
+<!-- ══ PUBLIC PAGES ════════════════════════════════════════════ -->
+<section class="grp" id="g-public">
+  <div class="k">Facing outward</div>
+  <h2>Public pages</h2>
+  <p class="lead">The published event, the resource library and the assistant.</p>
+  <div class="plates" id="p-public"></div>
+</section>
+
+<!-- ══ THE RESOURCES ═══════════════════════════════════════════ -->
+<section class="grp" id="g-docs">
+  <div class="k">Everything written for the programme</div>
+  <h2>The resources</h2>
+  <p class="lead">Not screenshots. Each plate is the live document, running, scrolling in place.
+    Click through to read any of them full size.</p>
+  <p class="lead">All of it was built as code and rendered, which is why the whole set could be
+    reissued when the fall dates moved. <strong>Every participant in these has been replaced by an
+    invented one; the design, structure and writing are untouched.</strong></p>
+  <div class="plates">
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">01</span>
+      <span class="ttl">How We Match Founders &amp; Mentors</span></div>
+      <div class="sub">The whole method, published to participants rather than kept internal</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/uplift-matching-logic-one-pager.html" loading="lazy"
+        title="How We Match Founders &amp; Mentors" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/uplift-matching-logic-one-pager.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">02</span>
+      <span class="ttl">Your Three Mentor Meetings</span></div>
+      <div class="sub">Discover, Act, Roadmap, and the job each one does</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/uplift-three-meetings-one-pager.html" loading="lazy"
+        title="Your Three Mentor Meetings" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/uplift-three-meetings-one-pager.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">03</span>
+      <span class="ttl">The Uplift Goal Loop</span></div>
+      <div class="sub">A goal, followed all the way through</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/uplift-goal-loop.html" loading="lazy"
+        title="The Uplift Goal Loop" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/uplift-goal-loop.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">04</span>
+      <span class="ttl">How We Decided</span></div>
+      <div class="sub">Admissions reasoning, published to applicants</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/uplift-how-we-decided.html" loading="lazy"
+        title="How We Decided" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/uplift-how-we-decided.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">05</span>
+      <span class="ttl">The Onboarding Deck</span></div>
+      <div class="sub">29 slides, the session every founder started with</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/onboarding-deck-fall2026.html" loading="lazy"
+        title="The Onboarding Deck" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/onboarding-deck-fall2026.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">06</span>
+      <span class="ttl">The Match Email</span></div>
+      <div class="sub">Current version: why you two, the five Deep Work answers, November</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/match-email-example.html" loading="lazy"
+        title="The Match Email" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/match-email-example.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">07</span>
+      <span class="ttl">The Mentor Update</span></div>
+      <div class="sub">Written from the two Sept 9 onboarding transcripts</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/mentor-icymi-email.html" loading="lazy"
+        title="The Mentor Update" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/mentor-icymi-email.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">08</span>
+      <span class="ttl">The Acceptance Email</span></div>
+      <div class="sub">Generated per founder from the roster</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/fall-acceptance-email.html" loading="lazy"
+        title="The Acceptance Email" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/fall-acceptance-email.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">15</span>
+      <span class="ttl">Portal User Guide</span></div>
+      <div class="sub">Your portal, explained tab by tab</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/portal-guide-fall2026.html" loading="lazy"
+        title="Portal User Guide" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/portal-guide-fall2026.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">16</span>
+      <span class="ttl">Programme Requirements</span></div>
+      <div class="sub">What completion actually takes</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/program-requirements-fall2026.html" loading="lazy"
+        title="Programme Requirements" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/program-requirements-fall2026.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">17</span>
+      <span class="ttl">Speaker Briefs</span></div>
+      <div class="sub">One page per speaker, in calendar order</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/speaker-onepagers.html" loading="lazy"
+        title="Speaker Briefs" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/speaker-onepagers.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">18</span>
+      <span class="ttl">Share Your Expertise</span></div>
+      <div class="sub">The public call that filled the speaker pipeline</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/share-your-expertise.html" loading="lazy"
+        title="Share Your Expertise" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/share-your-expertise.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">19</span>
+      <span class="ttl">Completion Certificate</span></div>
+      <div class="sub">Generated per founder, print-ready</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/certificate.html" loading="lazy"
+        title="Completion Certificate" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/certificate.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">20</span>
+      <span class="ttl">We're Building a Diner</span></div>
+      <div class="sub">A 19-page visual essay on what the programme is</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/uplift-diner-essay.pdf" loading="lazy"
+        title="We're Building a Diner" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/uplift-diner-essay.pdf" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">22</span>
+      <span class="ttl">Hot Seat</span></div>
+      <div class="sub">On listening before telling. Getting curious rather than advisory, and making sure what you put into a room is worth the room's time. Built from a format I saw work in the room.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/hot-seat.html" loading="lazy"
+        title="Hot Seat" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/hot-seat.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">23</span>
+      <span class="ttl">Pitch Without a Deck</span></div>
+      <div class="sub">A design-thinking workshop for the elevator pitch: conciseness and clarity, tested on three minutes with a genuinely cold audience. Built from a format I saw work in the room.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/pitch-without-a-deck.html" loading="lazy"
+        title="Pitch Without a Deck" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/pitch-without-a-deck.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">24</span>
+      <span class="ttl">Customer Hat</span></div>
+      <div class="sub">A workshop for refining your ICP: who the customer actually is, said in their language rather than yours. Built from a format I saw work in the room.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="work/customer-hat.html" loading="lazy"
+        title="Customer Hat" scrolling="no"></iframe></div></div>
+      <a class="open" href="work/customer-hat.html" target="_blank" rel="noopener">Open the real document ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<main class="tail">
+
+<section class="sec" id="more">
+  <div class="k">Want to walk through more?</div>
+  <h2>Three systems, taken apart</h2>
+  <p class="intro">The inventory above is every screen. These three are the ones worth following
+    all the way through, because the interesting part is what happens between the screens.</p>
 
   <div class="demos">
-    <a class="demo" href="demo/book.html#g-console">
-      <div class="shot">📊</div>
-      <div class="db">
-        <h3>The programme console</h3>
-        <p>Nineteen frames across the twenty-two tabs: the daily queue, the roster, application
-           review, mentor verification, the matching engine and its fairness dial, session review
-           and grant reporting.</p>
-        <div class="go">Walk through it →</div>
-      </div>
-    </a>
-    <a class="demo" href="demo/book.html#g-portal">
+    <a class="demo" href="#g-portal">
       <div class="shot">🌱</div>
       <div class="db">
         <h3>The founder portal</h3>
         <p>Fifteen frames: the gate, week-by-week unlocking, the onboarding quiz, Deep Work, the
            mentor reveal, session logging, the assistant and the certificate.</p>
-        <div class="go">Walk through it →</div>
+        <div class="go">Jump to the portal frames &rarr;</div>
       </div>
     </a>
     <a class="demo" href="demo/speaker-loop.html">
@@ -213,21 +784,21 @@
         <h3>The speaker loop</h3>
         <p>One system end to end: a date in a source file becomes a form choice, an application, a
            booking, a printed brief and a published event. Plus the string that holds it together.</p>
-        <div class="go">Follow the loop →</div>
+        <div class="go">Follow the loop &rarr;</div>
+      </div>
+    </a>
+    <a class="demo" href="demo/why-these-two.html">
+      <div class="shot">🔗</div>
+      <div class="db">
+        <h3>Why these two</h3>
+        <p>The matching engine explaining itself: what it weighed, what it traded away, and the
+           sentence each founder actually reads about the mentor they were given.</p>
+        <div class="go">See a match explained &rarr;</div>
       </div>
     </a>
   </div>
-
-  <p class="intro" style="margin-top:22px">
-    The whole thing in one page is
-    <a href="demo/book.html" style="color:var(--indigo);font-weight:650">the interface inventory</a>:
-    122 screens, every state a component can reach, and the live documents.
-    <strong>Everything else is in the <em>Jump to</em> tab on the left</strong>, which follows you
-    down the page.
-  </p>
 </section>
 
-<!-- ══ CASES ════════════════════════════════════════════════════ -->
 <section class="sec" id="systems">
   <div class="k">What I actually built</div>
   <h2>Six systems, and the problem each one solves</h2>
@@ -255,7 +826,7 @@
         <span>React / Next.js</span><span>Offline-tolerant saves</span><span>Auth gating</span>
       </div>
       <div class="links">
-        <a class="pri" href="demo/book.html#g-portal">Walk through the portal</a>
+        <a class="pri" href="#g-portal">Walk through the portal</a>
         <a href="work/portal-guide-fall2026.html">Portal user guide</a>
       </div>
     </div>
@@ -278,7 +849,7 @@
         <span>Dashboard design</span><span>Live data modelling</span>
         <span>~200 API routes</span><span>Google Sheets as a datastore</span>
       </div>
-      <div class="links"><a class="pri" href="demo/book.html#g-console">Walk through the console</a></div>
+      <div class="links"><a class="pri" href="#g-console">Walk through the console</a></div>
     </div>
 
     <div class="case">
@@ -300,7 +871,7 @@
       </div>
       <div class="links">
         <a class="pri" href="work/uplift-matching-logic-one-pager.html">How we match, published</a>
-        <a href="demo/book.html#g-console">See the fairness dial</a>
+        <a href="#g-console">See the fairness dial</a>
       </div>
     </div>
 
@@ -351,7 +922,7 @@
       <p>The standard is published on the public site. The scoring weights and flag names are not,
         because a published threshold is a published way around it.</p>
       <div class="did"><span>Policy design</span><span>Risk framing</span><span>Public / internal split</span></div>
-      <div class="links"><a class="pri" href="demo/book.html#g-console">See the four verdicts</a></div>
+      <div class="links"><a class="pri" href="#g-console">See the four verdicts</a></div>
     </div>
 
 
@@ -377,8 +948,6 @@
   </div>
 </section>
 
-<!-- ══ DESIGN ═══════════════════════════════════════════════════ -->
-<!-- ══ WRITE ONCE ═══════════════════════════════════════════════ -->
 <section class="sec" id="writeonce">
   <div class="k">The rule the whole system follows</div>
   <h2>Write it once. It shows up everywhere.</h2>
@@ -576,7 +1145,6 @@
   </div>
 </section>
 
-<!-- ══ HOW ══════════════════════════════════════════════════════ -->
 <section class="sec" id="how">
   <div class="k">How it was made</div>
   <h2>Stack, and the constraints that shaped it</h2>
@@ -601,7 +1169,6 @@
   </div>
 </section>
 
-<!-- ══ NOTE ═════════════════════════════════════════════════════ -->
 <section class="sec" id="note">
   <div class="k">A note on the data</div>
   <h2>What is real here, and what is not</h2>
@@ -613,11 +1180,10 @@
 </section>
 
 <div class="cta" id="contact">
-  <img class="face" src="assets/img/kennedy-loper.webp" alt="Kennedy Loper" width="116" height="116">
+  <img class="face" src="assets/img/kennedy-loper.webp" alt="Kennedy Loper" width="124" height="124">
   <h2>Kennedy Loper</h2>
-  <div class="role">AI integrator and community builder</div>
+  <div class="role">Community Systems Architect</div>
 </div>
-
 </main>
 
 <footer class="pf"><div>
@@ -625,6 +1191,195 @@
   Demos use synthetic data. Any names and marks appearing in screenshots belong to their owners.
 </div></footer>
 
+<script>
+const GROUPS = {
+  "p-console": [
+    ["a01-gate","The gate","The console is behind a password"],
+    ["a02-today","Today","Every row is work with a name, an age and a route to the screen that fixes it. The age is the point: something waved away five days running reads as five days overdue."],
+    ["a03-deadlines","Deadlines","Everything with a date attached"],
+    ["a04-overview","Overview","Cohort health and the milestone funnel"],
+    ["a05-roster","Roster","Milestones, meetings, attendance, pulse and status on one line each. This is the screen that replaced eleven spreadsheet tabs and a shared inbox."],
+    ["a05b-roster-row","A roster row","Expanded in place"],
+    ["a05c-roster-profile","Founder profile","Everything known about one person"],
+    ["a05d-roster-profile-2","Profile, continued","Sessions, pulse history, emails"],
+    ["a07-founders","Accepted founders","The confirmed cohort"],
+    ["a10-cohorts","Peer rooms","Grouped so the problems in a room rhyme and everyone can make the time. A mentor gives expertise; a room gives the evidence that your problem is normal."],
+    ["a11-signals","Signals","Useful, not urgent. Observations not worth acting on today, plus anomalies found automatically, like one person applying twice under two addresses."],
+    ["a12-pulse","Pulse and wins","Eight weeks is a very compressed timeline, so you have to catch someone falling behind early. Three options a week, and the grid makes a two-week slide visible before it becomes a churn."],
+    ["a21-wins","Wins","Collected all week and sent to the whole cohort every Tuesday. Founders read what other founders shipped, which is how a room of strangers starts introducing itself and helping without being asked."],
+    ["a16-sessions","Sessions","The 22-session calendar"],
+    ["a18-review-meetings","Session review","Nothing counts until both sides agree it happened. That is what makes 8,000 minutes defensible to an auditor, and it costs a mentor four seconds."],
+    ["a19-review-edu","Educational attendance","Pulled from the event platform"],
+    ["a30-intros","Intros this week","A human layer over the data. It reads what founders wrote and surfaces pairs whose problems solve each other, catching connections nobody would have spotted."],
+    ["a29-resources","Resources","The curated library"],
+  ],
+  "p-reporting": [
+    ["a14-reporting","Reporting","Exhibits generated from the same rows the console reads, so the report and the truth cannot drift apart."],
+  ],
+  "p-matching": [
+    ["a08-matching","The matching tab","Solves everyone still waiting as one problem rather than the best next click, then explains the trade in plain English. Greedy matching quietly rewards whoever applied earliest."],
+    ["a08b-founder-profile","The founder side","What they asked for"],
+    ["a08c-mentor-profile","The mentor side","What they offered"],
+    ["a08d-picks","Three picks","The best options once everyone else is accounted for"],
+    ["a08e-override","Override","The human keeps the last word, with a reason"],
+    ["a08g-plan-all","Re-plan everyone","Solve all 69 rather than the 7 waiting"],
+    ["a08h-plan-pruned","The fairness dial","Two objectives that pull apart, with the exchange rate priced on screen instead of buried in a weight. You can see what fairness costs before you choose it."],
+    ["a09-matched","62 matched pairs","Each keeping its reasoning"],
+    ["a09b-match-breakdown","Why this pair","Scored and shown, then published to both sides"],
+  ],
+  "p-apps": [
+    ["a06f-founder-apps","143 founder applications","Live from Typeform"],
+    ["a06g-founder-review","The review screen","Everything needed for a yes or no"],
+    ["a06h-founder-approved","Approved","Writes straight back to the roster"],
+    ["a06i-founder-rejected","Rejected","Recorded, not deleted"],
+    ["a06j-founder-popup","Full submission","Opened without leaving the queue"],
+    ["a06k-founder-resume","The resume","Attached to the application"],
+    ["a31-resumes","All resumes","One page, printable"],
+    ["a06-mentorapps","Mentor applications","The other intake"],
+    ["a06d-approve-before","Before approval","Pending state"],
+    ["a06e-approve-after","After approval","The same row, resolved"],
+    ["a22-credibility-expanded","Verification","Four verdicts, each with a sentence saying what to do next. \"Nothing found\" is deliberately not \"suspicious\": a tool that treats absence as guilt filters for people who post a lot."],
+  ],
+  "p-portal": [
+    ["m01-gate","The gate","Private, addressed by slug"],
+    ["m01c-gate-typed","Code entered","Four digits from the welcome email"],
+    ["m01b-snapshot","Company snapshot","Pulled from their application"],
+    ["m02-week1","Week 1","One week at a time, not eight"],
+    ["m12b-journey","The journey","Where they are in the arc"],
+    ["m03-quiz","The onboarding quiz","One of three gates on the mentor reveal"],
+    ["m03b-quiz-taking","Taking it","Ten questions"],
+    ["m03c-quiz-passed","Passed","10 out of 10 required"],
+    ["m04-deepwork","Deep Work","Written before the match is revealed"],
+    ["m05-mentor","The mentor reveal","Held back until onboarding, quiz and Deep Work are done, so a founder arrives at the first meeting having already worked out what they want from it."],
+    ["m05d-mentor-card","The match card","Who they are, and why you got them"],
+    ["m05b-weekly","The weekly view","Act, week 3"],
+    ["m06-goals","Goals and reflections","Everything they wrote, collected"],
+    ["m07-milestones","Milestones","The same data the console reads"],
+    ["m08-meetings","Logged sessions","Toward the three-hour minimum"],
+    ["m09-edu","Educational sessions","Three required, attendance automatic"],
+    ["m12-roadmap","Programme roadmap","All eight weeks"],
+    ["m10-resources","Resources","Written for this programme"],
+    ["m11-directory","Cohort directory","Who else is in the room"],
+    ["m11b-directory-glance","Company at a glance","One founder, expanded"],
+    ["m13-certificate","The certificate","Produced from the same milestone data that decides whether someone completed. Blurred here: it is a credential, and a clean copy is a forgeable one."],
+    ["a27-ulrike","The portal, from the console","Staff view of a founder's screen"],
+    ["a28-directory","Directory","The same page, console side"],
+    ["a28b-directory-glance","At a glance","Expanded"],
+  ],
+  "p-states": [
+    ["t01-milestones-blank","Milestones · nothing done","Day one"],
+    ["t02-milestones-some","Milestones · partly done","Mid-programme"],
+    ["t03-milestones-all","Milestones · complete","The end state"],
+    ["t04-session-none","Session · not submitted","Nothing logged yet"],
+    ["t05-session-pending","Session · pending","One side has confirmed"],
+    ["t06-session-approved","Session · approved","Both sides agree it happened"],
+    ["t07-session-states","All session states","Side by side"],
+    ["t08-pulse-ask","Pulse · unanswered","The prompt"],
+    ["t09-pulse-green","Pulse · a-okay","Fine"],
+    ["t10-pulse-yellow","Pulse · check in","A steady minority, every week"],
+    ["t11-pulse-red","Pulse · not going to plan","Rare, and never ignored"],
+    ["m05c-pulse-green","Pulse in context","Inside the weekly view"],
+    ["m05e-pulse-ask","Pulse, unanswered","A different founder, same component"],
+  ],
+  "p-tips": [
+    ["tt01-journey-tooltip","My Journey","Week-by-week action items"],
+    ["tt02-written-tooltip","Goals and Reflections","Everything you have written"],
+    ["tt03-snapshot-tooltip","Company snapshot","What we hold about your company"],
+    ["tt04-sessions-tooltip","Logged sessions","Progress toward three hours"],
+    ["tt05-cohort-tooltip","Cohort directory","Who is in your room"],
+  ],
+  "p-public": [
+    ["speaker-luma","The published event","Where founders register"],
+    ["m14-ulrike-widget","The portal assistant","Answering from live data"],
+    ["m15-ulrike-page","The assistant, full page","The same knowledge, more room"],
+    ["u01-ulrike-live","Assistant, live","In use"],
+    ["u02-ulrike-routes","What it can answer","The knowledge surface"],
+  ],
+};
+
+// Build the plates. Dimensions come from the manifest so every box reserves
+// its real shape before the image downloads: a lazy image with no declared
+// size gives its container zero height, the section collapses, and unloaded
+// content reads as missing content.
+function build(DIMS) {
+  let n = 0;
+  for (const [id, items] of Object.entries(GROUPS)) {
+    const host = document.getElementById(id);
+    if (!host) continue;
+    items.forEach(([slug, title, sub]) => {
+      n++;
+      const d = DIMS[slug];
+      const el = document.createElement("div");
+      // The certificate is a credential; the grid shows it blurred.
+      el.className = slug === "m13-certificate" ? "plate redact" : "plate";
+      el.innerHTML =
+        '<div class="cap-h">' +
+          '<div class="pn"><span class="idx">' + String(n).padStart(2, "0") + '</span>' +
+          '<span class="ttl">' + title + '</span></div>' +
+          '<div class="sub">' + sub + '</div>' +
+        '</div>' +
+        '<div class="fr"><img src="shots/' + slug + '.jpg" alt="' + title + '"' +
+          (d ? ' width="' + d[0] + '" height="' + d[1] + '"' : '') +
+          // The first sixteen load immediately so the top is never blank.
+          (n > 16 ? ' loading="lazy"' : '') + '></div>';
+      host.appendChild(el);
+    });
+  }
+  wire();
+}
+
+// The lookbook plates are written into the HTML directly rather than generated,
+// so they need the same treatment.
+function sizeStaticPlates(DIMS) {
+  document.querySelectorAll('.plate .fr img[src^="shots/"]').forEach(img => {
+    if (img.hasAttribute("width")) return;
+    const slug = img.getAttribute("src").split("/").pop().replace(".jpg", "");
+    const d = DIMS[slug];
+    if (!d) return;
+    img.setAttribute("width", d[0]);
+    img.setAttribute("height", d[1]);
+  });
+}
+
+fetch("shots/manifest.json")
+  .then(r => r.json())
+  .catch(() => ({}))
+  .then(dims => { sizeStaticPlates(dims); build(dims); });
+
+// Section nav
+const NAV = [
+  ["g-console","Console"],["g-matching","Matching"],["g-speakers","Speakers"],
+  ["g-lookbook","Lookbook"],["g-reporting","Reporting"],["g-email","Email & comms"],
+  ["g-apps","Applications"],["g-portal","Founder portal"],["g-states","States"],
+  ["g-tips","Tooltips"],["g-public","Public"],["g-docs","Resources"]
+];
+const bn = document.getElementById("bnav");
+NAV.forEach(([id,label]) => {
+  const b = document.createElement("button");
+  b.className = "tab"; b.textContent = label;
+  b.onclick = () => document.getElementById(id).scrollIntoView({behavior:"smooth", block:"start"});
+  bn.appendChild(b);
+});
+
+
+// Missing frames degrade to a note rather than a broken icon. Called after the
+// plates are built: attaching these at load only ever reached the handful of
+// plates written directly into the HTML, never the generated ones.
+function wire() {
+  document.querySelectorAll(".fr img").forEach(img => {
+    if (img.dataset.wired) return;
+    img.dataset.wired = "1";
+    img.addEventListener("error", () => {
+      img.parentElement.innerHTML =
+        '<div style="padding:28px 16px;text-align:center;font-size:12.5px;color:var(--muted)">' +
+        'Frame not generated. Run <code>python3 make-shots.py</code>.</div>';
+    });
+  });
+}
+</script>
+<script src="assets/lightbox.js?v=5"></script>
+<script src="assets/autopan.js?v=4"></script>
 <script src="assets/jumpnav.js?v=3"></script>
+
 </body>
 </html>

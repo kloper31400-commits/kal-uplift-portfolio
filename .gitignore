@@ -8,3 +8,6 @@ private/
 
 # Contact sheets used to audit frames for real names. Working artefacts.
 .audit/
+
+# Personal export, not part of the site.
+speaker-runbook.pdf

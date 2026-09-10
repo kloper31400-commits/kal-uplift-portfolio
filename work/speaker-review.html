@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaker review · Programme console</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--indigo:#5c4eb5;--deep:#3d2f8a;--night:#1a0e4f;--light:#9b8fcf;--pale:#e8e4f5;
+        --surface:#f5f3ff;--ink:#1a1733;--muted:#6b6480;--line:#e8e4f5;
+        --ok-fg:#1a6e42;--ok-bg:#e8f8f0;--warn-fg:#b35c00;--warn-bg:#fff3e0;
+        --risk-fg:#c0392b;--risk-bg:#fef0f0;--off-fg:#6b6480;--off-bg:#f0eef8;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#f7f5ff;font-family:'Inter',system-ui,sans-serif;color:var(--ink);
+       -webkit-font-smoothing:antialiased;font-size:13px}
+  .bar{background:#1a1733;color:#fff;font-size:12px;padding:8px 18px;text-align:center}
+  .bar a{color:#c7bcff}
+  .console-top{background:var(--night);color:#fff;padding:12px 20px 0}
+  .console-top .t{font-size:14px;font-weight:800}
+  .console-top .s{font-size:11px;opacity:.6;margin-top:2px}
+  .tabs{display:flex;gap:2px;overflow-x:auto;margin-top:11px;padding-bottom:0}
+  .tabs span{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.62);padding:8px 10px;
+             white-space:nowrap;border-bottom:2.5px solid transparent}
+  .tabs span.on{color:#fff;border-bottom-color:#9b8fcf;font-weight:800}
+  main{max-width:1080px;margin:0 auto;padding:18px 20px 60px}
+
+  .hdrow{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+  .kick{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--deep)}
+  .note{font-size:11.5px;color:var(--muted);line-height:1.5;margin-bottom:14px;max-width:82ch}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+        box-shadow:0 1px 3px rgba(26,23,51,.06),0 8px 24px rgba(26,23,51,.05);margin-bottom:14px}
+  .ch{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:13px;align-items:center;flex-wrap:wrap}
+  .av{width:40px;height:40px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--deep),var(--indigo));color:#fff;font-weight:700;font-size:13px}
+  .nm{font-size:15px;font-weight:800}
+  .sub{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .chip{display:inline-block;border-radius:20px;padding:2px 9px;font-size:10.5px;font-weight:700}
+  .chip.ok{background:var(--ok-bg);color:var(--ok-fg)}
+  .chip.new{background:#efeaff;color:var(--indigo)}
+  .tagrow{display:flex;gap:5px;flex-wrap:wrap;padding:10px 18px 0}
+  .tag{font-size:10.5px;font-weight:650;background:var(--surface);border:1px solid var(--pale);
+       border-radius:20px;padding:3px 10px;color:var(--deep)}
+  .tag.star{background:#fdf6e3;border-color:#e8d9a8;color:#8a6a10}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:14px 18px 4px}
+  .fld .q{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+          color:var(--light);margin-bottom:4px}
+  .fld .a{font-size:12px;line-height:1.55}
+  .grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:6px 18px 14px;
+         border-top:1px solid var(--line);margin-top:10px}
+
+  .ranks{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+  .ranks span{font-size:11px;font-weight:700;border-radius:6px;padding:3px 9px;
+              background:var(--surface);color:var(--deep);border:1px solid var(--pale)}
+  .ranks span.taken{background:#f2f1f7;color:#a8a3bb;text-decoration:line-through;border-color:#eceaf3}
+  .ranks span.pick{background:var(--ok-bg);color:var(--ok-fg);border-color:#bfe6d1}
+  .anyslot{font-size:11.5px;font-weight:700;color:var(--ok-fg);margin-top:6px}
+
+  .foot{padding:12px 18px;border-top:1px solid var(--line);background:var(--surface);
+        display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+  .decide{display:flex;gap:7px;align-items:center;margin-right:auto}
+  .decide label{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  select,.btn{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:700;
+              border:1px solid var(--line);border-radius:8px;padding:7px 12px;background:#fff;color:var(--deep)}
+  select{padding-right:26px;appearance:none;
+         background-image:linear-gradient(45deg,transparent 50%,var(--indigo) 50%),linear-gradient(135deg,var(--indigo) 50%,transparent 50%);
+         background-position:calc(100% - 14px) 13px,calc(100% - 9px) 13px;
+         background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+  .btn.pri{background:var(--indigo);border-color:var(--indigo);color:#fff}
+  .hint{font-size:11px;color:var(--muted);padding:0 18px 14px;line-height:1.5}
+  @media(max-width:760px){.grid,.grid2{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="bar">MOCK DATA &middot; The speaker review screen, rebuilt with an invented applicant &middot;
+  <a href="../index.html">back to the portfolio</a></div>
+
+<div class="console-top">
+  <div class="t">Programme Console &middot; Autumn 2026</div>
+  <div class="s">One request, computed live from the sources of truth. Nothing here is hand-set.</div>
+  <div class="tabs">
+    <span>📋 Today</span><span>Overview</span><span>Roster</span><span>Founder Apps</span>
+    <span>✔ Coverage</span><span>Matching</span><span>Matched</span><span>Pods</span>
+    <span>Signals</span><span>Pulse &amp; Wins</span><span>✉️ Comms</span><span>📊 Reporting</span>
+    <span>Sessions</span><span class="on">🎤 Speakers (24)</span>
+  </div>
+</div>
+
+<main>
+  <div class="hdrow">
+    <div class="kick">Speaker applications · live from the Speak at Uplift Typeform</div>
+    <div style="font-size:11.5px;color:var(--muted)"><b>13/22</b> sessions programmed &middot; 9 open</div>
+  </div>
+  <p class="note">Applicants were promised an answer within one business day, so everything a yes or
+    no needs is on the card. Nothing here is retyped: it is their form response, read live, with the
+    decision written straight back to the sheet.</p>
+
+  <!-- ── one applicant, undecided ─────────────────────────────── -->
+  <div class="card">
+    <div class="ch">
+      <div class="av">TB</div>
+      <div style="flex:1;min-width:180px">
+        <div class="nm">Theo Bhatt <span class="chip new">New</span></div>
+        <div class="sub">Founder &amp; CTO · Alder Labs · applied 2026-09-01 ·
+          founder@example.com · LinkedIn ↗</div>
+      </div>
+      <span class="chip ok">Credibility 92 · Clear</span>
+    </div>
+
+    <div class="tagrow">
+      <span class="tag">Working session</span>
+      <span class="tag">Often. This is a regular thing for me.</span>
+      <span class="tag">Flexible on dates</span>
+      <span class="tag star">★ Open to a series</span>
+    </div>
+
+    <div class="grid">
+      <div class="fld"><div class="q">Session title</div>
+        <div class="a">Ship AI that actually works: one real workflow, built live</div></div>
+      <div class="fld"><div class="q">What they would cover</div>
+        <div class="a">An introduction to the topic, then a walk through several working
+          applications, then a hands-on stretch where founders describe their own idea and get
+          implementation feedback on it.</div></div>
+      <div class="fld"><div class="q">Three takeaways</div>
+        <div class="a">1. How to write business requirements an engineer can build from.
+          2. Where AI-assisted building actually saves time and where it does not.
+          3. How to ship one workflow rather than plan five.</div></div>
+      <div class="fld"><div class="q">Why it matters now</div>
+        <div class="a">Founders need to be self-sufficient in the tools their business runs on
+          rather than waiting on budget for an engineer.</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="fld"><div class="q">Aimed at</div>
+        <div class="a">Any founder in the cohort · idea stage · MVP or early build ·
+          pre-revenue, testing the market</div></div>
+      <div class="fld"><div class="q">Ranked date choices</div>
+        <div class="ranks"><span>1. #1 Fri Sept 11</span><span class="pick">2. #7 Fri Sept 25</span>
+          <span class="taken">3. #13 Fri Oct 9 (taken)</span></div>
+        <div class="anyslot">Also said any open slot works</div></div>
+      <div class="fld"><div class="q">Sessions offered</div>
+        <div class="a">3 sessions · weekday evenings · video call</div></div>
+      <div class="fld"><div class="q">Resources they would share</div>
+        <div class="a">A working repo and the requirements template used in the session.</div></div>
+    </div>
+
+    <div class="foot">
+      <div class="decide">
+        <label for="d1">Decision</label>
+        <select id="d1">
+          <option>Undecided</option>
+          <option selected>Approve &amp; book</option>
+          <option>Pending — offered, awaiting reply</option>
+          <option>Reject</option>
+          <option>Clear decision</option>
+        </select>
+        <select id="s1">
+          <option>Session 7 · Fri Sept 25 · 12:30 PM ET</option>
+          <option>Session 9 · Tue Sept 29 · 5:30 PM ET</option>
+          <option>Session 11 · Mon Oct 5 · 12:30 PM ET</option>
+          <option>Session 14 · Mon Oct 12 · 12:30 PM ET</option>
+        </select>
+      </div>
+      <button class="btn">✉ Email Theo</button>
+      <button class="btn">Luma event →</button>
+      <button class="btn pri">Confirm &amp; book</button>
+    </div>
+    <p class="hint"><b>Confirm &amp; book</b> marks the speaker confirmed and takes the date off the
+      board for everyone else. It saves to the FallSpeakers sheet tab, and the roster in
+      lib/expert-speakers.js stays the record where the two disagree. <b>Pending</b> holds the slot
+      exactly like an approval does, so a date offered to someone awaiting reply cannot be offered
+      twice.</p>
+  </div>
+
+  <!-- ── one already booked ───────────────────────────────────── -->
+  <div class="card">
+    <div class="ch">
+      <div class="av">MK</div>
+      <div style="flex:1;min-width:180px">
+        <div class="nm">Margit Kovács</div>
+        <div class="sub">VP Retail · Northvale Brands · applied 2026-08-29 ·
+          founder@example.com · LinkedIn ↗</div>
+      </div>
+      <span class="chip ok">Confirmed · Session 4</span>
+    </div>
+    <div class="tagrow">
+      <span class="tag">Fireside chat</span><span class="tag">One session</span>
+      <span class="tag">Weekday afternoons</span>
+    </div>
+    <div class="grid">
+      <div class="fld"><div class="q">Session title</div>
+        <div class="a">Marketing that maps the customer journey</div></div>
+      <div class="fld"><div class="q">Three takeaways</div>
+        <div class="a">1. Where the journey actually starts. 2. Which touchpoint is doing the work.
+          3. What to stop paying for.</div></div>
+      <div class="fld"><div class="q">Aimed at</div>
+        <div class="a">Early traction · revenue-generating</div></div>
+      <div class="fld"><div class="q">State</div>
+        <div class="a"><span class="chip ok">Email sent</span>
+          <span class="chip ok" style="margin-left:4px">Invite accepted</span><br>
+          <span style="font-size:11px;color:var(--muted)">Brief generated · Luma event published</span></div></div>
+    </div>
+    <div class="foot">
+      <div class="decide">
+        <label for="d2">Decision</label>
+        <select id="d2"><option selected>Approved &amp; booked</option><option>Pending</option>
+          <option>Reject</option><option>Clear decision</option></select>
+      </div>
+      <button class="btn">✉ Email Margit</button>
+      <button class="btn">One-pager ↗</button>
+      <button class="btn">Luma event →</button>
+      <button class="btn">undo</button>
+    </div>
+  </div>
+</main>
+</body>
+</html>

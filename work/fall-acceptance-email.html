@@ -41,11 +41,11 @@
     Merge fields use Customer.io liquid, matching demo-night-lineup-email-cio.html:
       {{customer.first_name}}   already synced
       {{customer.uplift_id}}    NEW attribute, not in sync-cio-sheet.js yet
-      {{customer.portal_url}}   NEW attribute, e.g. https://uplift2026.vercel.app/fall/takeerah-jones
+      {{customer.portal_url}}   NEW attribute, the founder's personal portal link
     For a filled version, see public/fall-acceptance-email-example-kennedy.html.
 
-    The Uplift ID appears as text, never inside a link. It is the founder's
-    portal password and must not ride along in a URL that gets forwarded.
+    The Uplift ID appears as text, never inside a link, so it does not ride
+    along in a URL that gets forwarded.
   -->
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&family=Red+Hat+Text:wght@400;500;700&display=swap');

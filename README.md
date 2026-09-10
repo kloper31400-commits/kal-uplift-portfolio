@@ -68,6 +68,5 @@ through Jekyll.
 
 ## The original system
 
-The production application is a Next.js app at `TechUnited-NJ/uplift-app`:
-roughly 200 API routes, 38 library modules, 34 build and automation scripts,
-963 commits over 15 weeks. It stays with TechUnited NJ.
+The production application is a Next.js app built over 15 weeks and 963
+commits. It stays with TechUnited NJ.

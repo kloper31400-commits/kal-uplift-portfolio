@@ -150,16 +150,6 @@ https://github.com/settings/admin → Change username
 **Do it before you share the link, or not at all.** Links you have already sent
 will break.
 
-### Tell TechUnited about the password
-
-`pages/admin-fall.js` line 647 checks the admin console password by comparing
-against the text `SporkMarcel27`, written directly in the code. That code runs
-in the browser, so anyone who opens the page can read it. The same password is
-in two of the capture scripts.
-
-This is not a portfolio problem. It is a handover problem. Mention it to
-whoever takes the system over so they can change it.
-
 ---
 
 # Changing something later

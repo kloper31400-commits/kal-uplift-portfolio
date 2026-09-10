@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kennedy Loper &middot; Summer 2026 Work Portfolio</title>
-<meta name="description" content="Kennedy Loper, Summer 2026 work portfolio. A founder portal, an admin console, a matching engine, booking loops and about a hundred pieces of collateral, built over fifteen weeks.">
+<title>Kennedy Loper &middot; Summer 2026 Case Study</title>
+<meta name="description" content="Kennedy Loper, Summer 2026 case study. The design decisions behind a founder portal, an admin console, a matching engine, booking loops and about a hundred pieces of collateral, built over fifteen weeks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -273,7 +273,7 @@
 <section class="hero">
   <div class="hero-in">
     <h1>Kennedy Loper</h1>
-    <div class="h-sub">Programme Work Portfolio &middot; Summer 2026</div>
+    <div class="h-sub">Programme Design Case Study &middot; Summer 2026</div>
     <div class="h-rule"></div>
     <div class="h-what"><strong>Every screen, end to end.</strong> 120 frames of the console, the
       founder portal, the lookbook, the emails, and the state variations most walkthroughs skip.
@@ -318,18 +318,9 @@
 
 
   <div class="note" style="margin-top:20px">
-    <strong>One number per person, and it is also their password.</strong> Every founder and mentor
-    gets an Uplift ID: <span class="mono">UF26</span> plus an issue number, in approval order across
-    both groups as a single sequence. It is what the roster, the session log, the grant exhibits and
-    the signed verification forms all key on, so a person can be followed across every document
-    without matching on a name that might be spelled two ways.
-    <br><br>
-    It is also the portal password, which turns a formatting question into a security one.
-    <strong>Before the rule lived in one place, every reader of that column guessed differently</strong>
-    and any stray text typed into the cell became somebody's login. The pattern is now strict and
-    anchored, and it refuses a leading zero on purpose: UF2604 and UF264 are two IDs to a string
-    comparison and one ID to a numeric check, which is exactly the disagreement that lets two people
-    share a login.
+    <strong>One persistent ID per person.</strong> A persistent participant ID connects records
+    across the roster, session logs, reporting and verification documents, so a person can be
+    followed across every document without matching on a name that might be spelled two ways.
   </div>
 
 </section>
@@ -539,15 +530,15 @@
 
   <div class="mtx-wrap" style="margin-top:16px">
     <table class="mtx">
-      <thead><tr><th>Score</th><th>What it is called</th><th>What it obliges you to do</th></tr></thead>
+      <thead><tr><th>What it is called</th><th>What it obliges you to do</th></tr></thead>
       <tbody>
-        <tr><td><strong>85 and up</strong></td><td><span class="vchip ok">Clear</span></td>
+        <tr><td><span class="vchip ok">Clear</span></td>
           <td>Nothing owed. Approve and match. Everything they claimed holds up, or they have
             mentored for us before.</td></tr>
-        <tr><td><strong>60 to 84</strong></td><td><span class="vchip soft">Check</span></td>
+        <tr><td><span class="vchip soft">Check</span></td>
           <td>Reach out personally and collect the missing pieces. Ask for what the form left blank,
             confirm the role and the employer, and make sure the rest adds up.</td></tr>
-        <tr><td><strong>Under 60</strong></td><td><span class="vchip bad">Review</span></td>
+        <tr><td><span class="vchip bad">Review</span></td>
           <td>Get a reference before they meet a founder. Someone credible vouches for them by name.
             Do not match on the application alone.</td></tr>
       </tbody>
@@ -559,22 +550,20 @@
     missing" is a task with a person's name on it.</p>
 
   <div class="note" style="margin-top:16px">
-    <strong>The first signal, and why it is checked the way it is.</strong> Does the LinkedIn URL
-    they pasted actually belong to the name they gave? Fetching the profile proves nothing, because
-    LinkedIn answers every request with an authwall whether the person is real or invented. The
-    slug does the work: a profile URL carries a name, and somebody pasting another person's link
-    shows up as zero overlap between the two.
+    <strong>The first signal is identity.</strong> Does the professional profile someone linked
+    actually belong to the person who applied? It is the cheapest check to run and the one most
+    worth getting right, because everything else on the application rests on it.
     <br><br>
-    <strong>Deliberately generous.</strong> LinkedIn truncates, uses initials, and appends a numeric
-    id, so any single matching name token is a pass and only a complete miss is flagged. Across a
-    pool of 38 that produced zero false positives, which is the number that matters: a check that
-    accuses real people is worse than no check.
+    <strong>Deliberately generous.</strong> Real profiles are messy, so the check is tuned to flag
+    only a clear mismatch and to give the benefit of the doubt everywhere else. Across a pool of 38
+    it produced zero false positives, which is the number that matters: a check that accuses real
+    people is worse than no check.
   </div>
 
   <div class="note" style="margin-top:16px">
-    <strong>Two more things the scorer refuses to do.</strong> It will not drop a returning mentor
-    below "check", because serving a previous cohort is worth more than any single missing field
-    costs. And it separates "real person, poor fit" from "cannot confirm this person exists", which
+    <strong>Two more things the scorer refuses to do.</strong> It will not penalise a returning
+    mentor for a thin application, because serving a previous cohort is worth more than any single
+    missing field costs. And it separates "real person, poor fit" from "cannot confirm this person exists", which
     are different problems needing different conversations: one is a matching decision, the other is
     a safety one.
     <br><br>
@@ -626,14 +615,14 @@
     <table class="mtx">
       <thead><tr><th>Rule</th><th>Why it is written that way</th></tr></thead>
       <tbody>
-        <tr><td><strong>Live numbers come from the admin endpoint</strong></td>
-          <td>She cites meetings logged, sessions done and gate status from the same route the
+        <tr><td><strong>Live numbers come from the same source as the console</strong></td>
+          <td>She cites meetings logged, sessions done and gate status from the same data the
             console reads. One source of truth, so the bot and the staff screen can never disagree
             about whether someone completed something.</td></tr>
         <tr><td><strong>Never another founder's progress</strong></td>
           <td>She will discuss only the founder whose portal she is in. Not applicants, not
             decisions, not internal operations.</td></tr>
-        <tr><td><strong>Never revenue, funding, phone, gender, ethnicity or age</strong></td>
+        <tr><td><strong>Never sensitive personal or financial details</strong></td>
           <td>Named explicitly, and the rule says it holds no matter how the question is framed.
             Not because a founder would ask, but because a prompt can be worded to make a model
             think it has permission.</td></tr>
@@ -649,24 +638,22 @@
   </div>
 
   <div class="note" style="margin-top:18px">
-    <strong>One route, two audiences.</strong> The same endpoint serves the gated portal widget and
-    a public "Meet Ulrike" page. The visitor mode gets the rulebook and nothing else: no live state,
-    no directory, no contact details, and a different instruction telling her to answer the question
-    completely rather than deflecting to the team. Two prompts, one code path, and the founder
-    directory is physically not assembled unless the caller is a known founder.
+    <strong>One assistant, two audiences.</strong> Founders meet her inside their portal, and anyone
+    can meet her on a public "Meet Ulrike" page. The visitor gets the rulebook and nothing else: no
+    live state, no directory, no contact details, and she is told to answer the question completely
+    rather than deflecting to the team. Private data is never in reach for a visitor in the first
+    place.
     <br><br>
-    <strong>Every exchange is logged to Slack, fire and forget.</strong> That channel became the
-    most useful thing she produced. A list of what founders actually ask is a list of what the
+    <strong>Every question is logged for the team.</strong> That log became the most useful thing
+    she produced. A list of what founders actually ask is a list of what the
     documentation failed to say, and it arrives without anyone running a survey.
   </div>
 
   <div class="note" style="margin-top:16px">
-    <strong>The small engineering, which is most of it.</strong> Prompt caching on the 28KB
-    knowledge block so the expensive part is paid once. Haiku, because the job is retrieval and
-    tone rather than reasoning. Twenty-five messages an hour per founder, and per IP for visitors.
-    Questions capped, history capped at the last eight turns. If the API key is missing or the call
-    throws, she returns the fallback rather than an error. If live state cannot be reached she says
-    she cannot see it right now instead of inventing it.
+    <strong>The small engineering, which is most of it.</strong> A small, fast model, because the
+    job is retrieval and tone rather than reasoning. If anything upstream fails she returns the
+    fallback sentence rather than an error. If live state cannot be reached she says she cannot see
+    it right now instead of inventing it.
     <br><br>
     And a detail that says the most about the house style: the model is told never to use em dashes
     or markdown, because the chat window renders neither. <strong>Then the reply is stripped of both
@@ -925,7 +912,7 @@
     <div class="case">
       <div class="tag">Product · the thing founders touch</div>
       <h3>The founder portal</h3>
-      <p>A private, slug-addressed portal for every founder in the cohort. It opens week by week
+      <p>A private portal for every founder in the cohort. It opens week by week
         rather than showing eight weeks of homework on day one, tracks eleven milestones, collects
         written reflection prompts, and logs mentor sessions.</p>
       <p><strong>The design decision I care most about:</strong> the mentor match is gated behind a
@@ -961,7 +948,7 @@
         what was outstanding is not a shared queue.</p>
       <div class="did">
         <span>Dashboard design</span><span>Live data modelling</span>
-        <span>~200 API routes</span><span>Google Sheets as a datastore</span>
+        <span>API-driven architecture</span><span>Centralized datastore</span>
       </div>
       <div class="links"><a class="pri" href="#g-console">Walk through the console</a></div>
     </div>
@@ -1014,7 +1001,7 @@
         fix is a hand-maintained roster file that says at the top exactly what it is, so the next
         person inherits the compromise rather than discovering it.</p>
       <div class="did">
-        <span>Typeform API</span><span>Luma API</span><span>Google Sheets</span>
+        <span>Typeform API</span><span>Luma API</span>
         <span>Generated forms</span><span>PDF briefs</span><span>State reconciliation</span>
       </div>
       <div class="links">
@@ -1118,16 +1105,16 @@
             mentor update</td>
         </tr>
         <tr>
-          <td><strong>One Uplift ID</strong><div style="color:var(--muted);font-size:12px">UF26 plus an issue number</div></td>
+          <td><strong>One Uplift ID</strong><div style="color:var(--muted);font-size:12px">A persistent participant ID</div></td>
           <td>Assigned once, at approval</td>
-          <td>Their portal login &middot; the roster row &middot; every logged session &middot; the grant
+          <td>The roster row &middot; every logged session &middot; the grant
             exhibits &middot; the signed verification form &middot; anywhere a person has to be matched
             across documents without relying on the spelling of their name</td>
         </tr>
         <tr>
           <td><strong>An accepted application</strong><div style="color:var(--muted);font-size:12px">One click in the console</div></td>
           <td>Programme</td>
-          <td>Their portal exists · their slug resolves · they enter the matching pool · their
+          <td>Their portal exists · their portal link works · they enter the matching pool · their
             Lookbook page appears · they are counted in every report from that moment</td>
         </tr>
       </tbody>
@@ -1224,11 +1211,11 @@
   <h2>Stack, and the constraints that shaped it</h2>
 
   <div class="stack">
-    <div><h4>Application</h4><p>Next.js and React, deployed on Vercel. Server-rendered pages
-      addressed by private slug, roughly 200 API routes, and Vercel cron for the scheduled loops.</p></div>
-    <div><h4>Data</h4><p>Google Sheets as the primary datastore. Not the choice I would make with a
-      free hand, and the right one here: the programme team could read and correct data without me
-      in the loop.</p></div>
+    <div><h4>Application</h4><p>Next.js and React, deployed on Vercel. Server-rendered pages, an
+      API-driven architecture, and scheduled jobs for the recurring loops.</p></div>
+    <div><h4>Data</h4><p>A centralized datastore the programme team could read and correct
+      directly. Not the choice I would make with a free hand, and the right one here: nobody needed
+      me in the loop to fix a record.</p></div>
     <div><h4>Integrations</h4><p>Luma for events and attendance, Typeform for applications,
       Customer.io for lifecycle email, Slack for team loops, Google Drive for signed documents.</p></div>
     <div><h4>Documents</h4><p>Every PDF is HTML rendered through a headless browser, so collateral
@@ -1239,7 +1226,7 @@
     The constraint that shaped almost everything: I was the only engineer, and the people who
     depended on this were not technical. Anything that needed me to run it was a thing that would
     break the moment I was busy, so it had to be generated, scheduled, or readable by someone else.
-    <span class="src">The reason the grant exhibits generate themselves, and the reason the data lives in a spreadsheet.</span>
+    <span class="src">The reason the grant exhibits generate themselves, and the reason the team can read the data directly.</span>
   </div>
 </section>
 
@@ -1251,6 +1238,10 @@
     collateral is the genuine article with participant records excluded. The production system and
     its database stay with the organisation that runs the programme, and nothing operational is
     published here.</p>
+  <p class="intro" style="margin-top:14px"><strong>This is a professional case study.</strong> It
+    documents what was built, the design decisions behind it, and what they were for. How the
+    production system is accessed, secured and hosted is described only in general terms, on
+    purpose.</p>
   <p class="intro" style="margin-top:14px"><strong>One deliberate exception.</strong> The Founder
     Cards send-off carries forty-four mentors by name, and the reflection wall shows what people
     posted to it. That page was published publicly and shared with the cohort as a thank-you, and
@@ -1320,8 +1311,8 @@ const GROUPS = {
     ["a22-credibility-expanded","Verification","Four verdicts, each with a sentence saying what to do next. \"Nothing found\" is deliberately not \"suspicious\": a tool that treats absence as guilt filters for people who post a lot."],
   ],
   "p-portal": [
-    ["m01-gate","The gate","Private, addressed by slug"],
-    ["m01c-gate-typed","Code entered","Four digits from the welcome email"],
+    ["m01-gate","The gate","Private to each founder"],
+    ["m01c-gate-typed","Code entered","From the welcome email"],
     ["m01b-snapshot","Company snapshot","Pulled from their application"],
     ["m02-week1","Week 1","One week at a time, not eight"],
     ["m12b-journey","The journey","Where they are in the arc"],
@@ -1348,7 +1339,7 @@ const GROUPS = {
   "p-ulrike": [
     ["m14-ulrike-widget","In the portal","The widget every founder has, bottom right of every tab. It answers from this founder's own live numbers, not from a generic help article."],
     ["m15-ulrike-page","Full page","Same bot, more room to read. For the questions that need a paragraph rather than a sentence."],
-    ["u01-ulrike-live","Meet Ulrike, in public","The ungated page. Same code path, visitor mode: the rulebook and nothing else, no live data and no directory."],
+    ["u01-ulrike-live","Meet Ulrike, in public","The ungated page. Visitor mode: the rulebook and nothing else, no live data and no directory."],
     ["u02-ulrike-routes","The suggested questions","What a visitor is offered before they type. The five that answer most of what people email to ask."],
   ],
   "p-legacy": [

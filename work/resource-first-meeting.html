@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Meeting Framework · Uplift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--g:linear-gradient(90deg,#5B8DEF,#9B59B6,#E91E8C);--g135:linear-gradient(135deg,#5B8DEF,#9B59B6,#E91E8C);
+        --soft:#f7f6fb;--card:#fff;--border:#ece9f4;--text:#111;--muted:#888;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--soft);font-family:'Inter',system-ui,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+  .nav{background:var(--card);border-bottom:1px solid var(--border);padding:0 36px;height:52px;
+       display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;
+       box-shadow:0 1px 4px rgba(0,0,0,.04);font-size:13.5px}
+  .nav a{color:var(--text);text-decoration:none;font-weight:600;display:flex;gap:8px;align-items:center}
+  .nav span{font-size:12px;color:var(--muted)}
+  .hero{background:var(--card);border-bottom:1px solid var(--border);padding:44px 40px 48px}
+  .hero-in{max-width:680px;margin:0 auto}
+  .badge{display:inline-block;padding:3px 12px;border-radius:100px;background:var(--g);color:#fff;
+         font-size:10.5px;font-weight:700;margin-bottom:16px}
+  .head{display:flex;align-items:center;gap:16px}
+  .ico{width:52px;height:52px;border-radius:16px;background:var(--g135);flex-shrink:0;
+       display:flex;align-items:center;justify-content:center;font-size:24px}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.8px}
+  .hero p{font-size:14px;color:var(--muted);line-height:1.6}
+  main{max-width:680px;margin:0 auto;padding:28px 20px 80px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 26px;
+        margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:12px;padding-left:12px;
+           border-left:3px solid #9B59B6}
+  .card p{font-size:14px;color:#444;line-height:1.8;margin-bottom:12px}
+  .card p:last-child{margin-bottom:0}
+  .card ul{margin:8px 0 0;padding-left:20px}
+  .card li{font-size:13.5px;color:#444;line-height:1.75;margin-bottom:4px}
+  .q{color:#5B2D8E}
+  .tl{position:relative;padding-left:28px}
+  .tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;
+             background:linear-gradient(180deg,#5B8DEF,#E91E8C);border-radius:1px}
+  .ti{position:relative;padding-bottom:24px}
+  .ti:before{content:"";position:absolute;left:-27px;top:4px;width:16px;height:16px;border-radius:8px;
+             background:var(--card);border:2px solid var(--border)}
+  .ti.done:before,.ti.active:before{background:var(--g135);border:none}
+  .tw{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+  .ti.active .tw{color:#9B59B6}
+  .td{font-weight:400;text-transform:none;letter-spacing:0}
+  .now{margin-left:8px;font-size:9.5px;font-weight:700;background:var(--g);color:#fff;border-radius:100px;padding:2px 8px}
+  .tt{font-size:15px;font-weight:700;margin-bottom:8px}
+  .ti.done .tt{color:var(--muted)}
+  .foot{text-align:center;padding:20px 0 0;font-size:12px;color:var(--muted)}
+  .foot a{color:var(--muted)}
+  .demo{background:#1a1733;color:#fff;font-size:12.5px;padding:9px 20px;text-align:center}
+  .demo a{color:#c7bcff}
+  @media(max-width:640px){.hero{padding:30px 20px 34px}h1{font-size:24px}.nav{padding:0 16px}}
+</style>
+</head>
+<body>
+<div class="demo">Uplift programme resource, written for participants ·
+  <a href="../index.html">back to the portfolio</a></div>
+<div class="nav"><a href="resources-index.html"><span>←</span> All resources</a>
+  <span>Uplift · TechUnited NJ</span></div>
+<div class="hero"><div class="hero-in">
+  <span class="badge">Session Guide</span>
+  <div class="head"><div class="ico">🤝</div>
+    <div><h1>First Meeting Framework</h1><p>A structured guide to running a great first session</p></div></div>
+</div></div>
+<main>
+    <section class="card">
+      <h2>Before You Meet</h2>
+      
+      <ul><li>Review your mentee's profile in the portal — their focus area, industry, stage, and what they're stuck on</li><li>Skim their LinkedIn if available — understand their background before they explain it</li><li>Come with 2–3 open questions ready, not advice</li><li>Set aside 60 uninterrupted minutes</li></ul>
+    </section>
+    <section class="card">
+      <h2>Opening (5–10 min): Get Oriented</h2>
+      <p>Start by making them comfortable — this might be their first mentor relationship. Briefly introduce yourself: who you are, what you've built or worked on, and why you wanted to mentor.</p>
+<p>Then hand it to them: "Tell me about what you're building and where you are right now."</p>
+      
+    </section>
+    <section class="card">
+      <h2>The Core Questions (20–25 min)</h2>
+      
+      <ul><li>What does success look like for you at the end of this program?</li><li>What's the one thing you're most uncertain about right now?</li><li>What have you already tried? What worked, what didn't?</li><li>Where do you feel most stuck — and why do you think that is?</li><li>Is there something you haven't told anyone yet that's weighing on you about the business?</li></ul>
+    </section>
+    <section class="card">
+      <h2>Alignment (10 min): Set the Relationship Up</h2>
+      <p>Before you go deep on advice, align on how you'll work together:</p>
+<p>• How do you prefer to communicate between sessions? (Text, email, Slack?)<br>• Do you want me to challenge you directly, or do you prefer I ask more questions?<br>• What would make this mentorship feel like a waste of your time? (Useful to know!)<br>• Is there anything that's off-limits for you right now?</p>
+<p>This conversation prevents a lot of future friction.</p>
+      
+    </section>
+    <section class="card">
+      <h2>Going Deep (15–20 min): Pick One Thing</h2>
+      <p>Resist the urge to solve everything. Pick the one issue that seems most urgent or most foundational, and go deep on it.</p>
+<p>A good depth question: "If you resolved this one thing, what would become possible?"</p>
+<p>You don't need to have the answer — sometimes the most valuable thing is helping them think through it out loud.</p>
+      
+    </section>
+    <section class="card">
+      <h2>Close (5 min): Clear Next Steps</h2>
+      
+      <ul><li>Summarize what you discussed and what stood out to you</li><li>Agree on 1–2 concrete things they'll do before the next session</li><li>Schedule the next session before you hang up — don't leave it open</li><li>Ask: 'Was this useful? What would make the next session even better?'</li></ul>
+    </section>
+    <section class="card">
+      <h2>After the Session</h2>
+      <p>Send a short follow-up message — even just 2 sentences. Something like: "Great meeting you today. I'm thinking about [specific thing they mentioned] — let me know how it goes."</p>
+<p>This signals that you were listening and you care. It takes 30 seconds and matters more than you'd expect.</p>
+      
+    </section>
+    <section class="card">
+      <h2>What This Cohort Is Working On</h2>
+      <p>Based on what founders shared in their onboarding reflections, the most common themes across this cohort are:</p>
+<p><strong>Securing first paying customers</strong> — The dominant goal. Most want 2–10 paying customers to validate market demand. Many are stuck relying on warm intros and referrals that don't scale.</p>
+<p><strong>ICP uncertainty</strong> — Founders know roughly who their customer is, but aren't confident they've identified the right segment, the right buyer persona, or whether those buyers have actual budget authority.</p>
+<p><strong>Untested assumptions</strong> — Many have never validated whether customers will actually pay, what price point works, or whether the product solves a problem people prioritize.</p>
+<p><strong>Fundraising readiness</strong> — The second most common focus. Founders are preparing for conversations but uncertain on timing, which investors to approach, and what milestone makes them "ready."</p>
+<p>Use this as context — not a script. Your mentee may have different priorities. Let them tell you what's most urgent.</p>
+      
+    </section>
+    <section class="card">
+      <h2>Common First-Session Traps</h2>
+      
+      <ul><li>Jumping to advice before understanding the full picture</li><li>Spending the whole session on backstory — push toward present-day challenges</li><li>Overpromising your availability or expertise</li><li>Letting them defer all decision-making to you — push it back</li><li>Not scheduling the next session before ending</li></ul>
+    </section>
+  <div class="foot">TechUnited NJ · Uplift · <a href="mailto:uplift@techunited.co">uplift@techunited.co</a></div>
+</main>
+</body>
+</html>

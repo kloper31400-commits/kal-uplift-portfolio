@@ -438,6 +438,79 @@
     against double-offering a Friday.</p>
 </section>
 
+<!-- ══ THE FAN-OUT ══════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="k">One click, four systems</div>
+  <h2>What confirming a speaker actually sets off</h2>
+  <p class="intro">Pressing <em>Confirm &amp; book</em> does one thing: it writes the booking and takes
+    the date off the board for everyone else. Three more things then have to happen in three
+    different places, and none of them are the same act as booking.</p>
+  <p class="intro"><strong>So the board's real job is knowing which of the four actually happened.</strong>
+    A system that fires all four and assumes they worked is a system where a speaker turns up to an
+    event that was never published, or does not turn up because the invite went to an address nobody
+    reads.</p>
+
+  <div class="chain" style="margin-top:24px">
+    <div class="link">
+      <div class="num">1</div>
+      <div>
+        <span class="who sys">Automatic</span>
+        <h3>The booking</h3>
+        <p>Written to the <code>FallSpeakers</code> sheet, append-only, latest row per applicant wins.
+          The slot is now held and cannot be offered twice. This is the only step the click performs.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="link">
+      <div class="num">2</div>
+      <div>
+        <span class="who human">Recorded, not fired</span>
+        <h3>The confirmation email</h3>
+        <p>Goes to the speaker with their slot, the format and what to prepare. The board carries
+          <code>confirmationEmailSent</code> as a date, so an unbooked-but-emailed and a
+          booked-but-unemailed speaker are visibly different states rather than both reading
+          as green.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="link">
+      <div class="num">3</div>
+      <div>
+        <span class="who human">Recorded, not fired</span>
+        <h3>The calendar hold</h3>
+        <p>Two fields, not one: <code>calendarInviteSent</code> and <code>inviteResponse</code>.
+          Sending a hold and having it accepted are different facts, and the gap between them is the
+          single best predictor of a no-show. <strong>"Invite sent, no reply" is the state worth
+          chasing</strong>, and it is invisible to anything tracking only booked or not booked.</p>
+      </div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="link">
+      <div class="num">4</div>
+      <div>
+        <span class="who ext">Scripted</span>
+        <h3>The Luma event</h3>
+        <p>The session copy is pushed to the published event page founders register through, from the
+          same application text. Registration counts come back the other way into the console.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trap" style="margin-top:24px">
+    <h3>The read that lied, and the fix that matters more than the feature</h3>
+    <p>Reading registration counts back from Luma broke twice, and both times it surfaced as
+      "the onboarding bookings stopped working".</p>
+    <p>First, the console asked Luma for thirty-odd guest lists at once. Luma rate-limits, the
+      calendar listing itself came back 429, and the listing loop treated a non-ok response as the
+      end of the data. An empty calendar matches no events, so <em>every</em> session read "not on
+      Luma" and every count read zero.</p>
+    <p>Then those zeros were cached for five minutes and served as fact. <strong>A failed read is now
+      never cached and never rendered as a number.</strong> The payload says it failed and the screen
+      says so too, because nothing about this programme should be measured by "we could not reach
+      Luma" quietly meaning "nobody came".</p>
+  </div>
+</section>
+
 <!-- ══ THE SECOND PATH ══════════════════════════════════════════ -->
 <section class="sec">
   <div class="k">What the design missed</div>

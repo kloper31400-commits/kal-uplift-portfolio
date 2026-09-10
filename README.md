@@ -1,10 +1,22 @@
-# Uplift · portfolio
+# Kennedy Loper · Uplift portfolio
+
+**Personal. Not a TechUnited NJ asset.**
+
+This repository, and the archive beside it at `~/kal-uplift-archive`, belong to
+Kennedy Loper. Neither is connected to any TechUnited account: no TechUnited
+GitHub org, no TechUnited Vercel project, no TechUnited email on any commit.
+They live on a personal machine and, once pushed, on a personal GitHub account.
+
+The work documented here was done for Uplift at TechUnited NJ, and the client is
+credited throughout. The record of it is mine.
+
+---
 
 Design and engineering work for **Uplift**, TechUnited NJ's founder mentorship
 programme. Two cohorts, 70 New Jersey founders, 8,000+ verified minutes of
 one-to-one mentorship delivered against a state grant.
 
-**Live site:** https://kloper31400-commits.github.io/uplift-portfolio/
+**Live site:** https://kloper31400-commits.github.io/kal-uplift-portfolio/
 
 Built by Kennedy Loper, 2026.
 

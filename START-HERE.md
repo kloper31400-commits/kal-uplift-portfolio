@@ -15,7 +15,7 @@ not need to run anything.
 If you ever re-capture frames in `uplift-app` and want them picked up:
 
 ```
-python3 /Users/kennedy/uplift-portfolio/make-shots.py
+python3 /Users/kennedy/kal-uplift-portfolio/make-shots.py
 ```
 
 ---
@@ -23,7 +23,7 @@ python3 /Users/kennedy/uplift-portfolio/make-shots.py
 # Part 2 · Look at it yourself (5 minutes)
 
 ```
-open /Users/kennedy/uplift-portfolio/index.html
+open /Users/kennedy/kal-uplift-portfolio/index.html
 ```
 
 Your browser opens the portfolio. Click every link. You are checking for:
@@ -45,14 +45,23 @@ internet it has been on the internet.
 
 # Part 3 · Put it online (5 minutes)
 
-You already created the repo `kloper31400-commits/uplift-portfolio`.
+### 3a. Rename the empty repo first (30 seconds)
 
-### 3a. Send the files up
+The repo you made is called `uplift-portfolio`. Nothing has been pushed to it
+yet, so renaming it now costs nothing and no link breaks.
+
+1. Open https://github.com/kloper31400-commits/uplift-portfolio
+2. **Settings** &rarr; the **Repository name** box at the top
+3. Change it to `kal-uplift-portfolio` and click **Rename**
+
+Everything below assumes the new name.
+
+### 3b. Send the files up
 
 Copy this whole block as one piece:
 
 ```
-cd /Users/kennedy/uplift-portfolio && git add -A && git commit -m "Portfolio" && git branch -M main && git remote add origin https://github.com/kloper31400-commits/uplift-portfolio.git && git push -u origin main
+cd /Users/kennedy/kal-uplift-portfolio && git add -A && git commit -m "Portfolio" && git branch -M main && git remote add origin https://github.com/kloper31400-commits/kal-uplift-portfolio.git && git push -u origin main
 ```
 
 GitHub will ask you to sign in. A browser window opens. Approve it there.
@@ -60,19 +69,19 @@ GitHub will ask you to sign in. A browser window opens. Approve it there.
 **If it says `remote origin already exists`,** use this instead:
 
 ```
-cd /Users/kennedy/uplift-portfolio && git add -A && git commit -m "Portfolio" && git push -u origin main
+cd /Users/kennedy/kal-uplift-portfolio && git add -A && git commit -m "Portfolio" && git push -u origin main
 ```
 
 **If it says `nothing to commit`,** that is fine, it means everything is already
 saved. Use this:
 
 ```
-cd /Users/kennedy/uplift-portfolio && git push -u origin main
+cd /Users/kennedy/kal-uplift-portfolio && git push -u origin main
 ```
 
-### 3b. Turn the website on
+### 3c. Turn the website on
 
-1. Open https://github.com/kloper31400-commits/uplift-portfolio
+1. Open https://github.com/kloper31400-commits/kal-uplift-portfolio
 2. Click **Settings** (the tab across the top of the repo, not your profile menu)
 3. Click **Pages** in the left sidebar
 4. Under **Source**, pick **Deploy from a branch**
@@ -82,7 +91,7 @@ cd /Users/kennedy/uplift-portfolio && git push -u origin main
 
 Your site is live at:
 
-### https://kloper31400-commits.github.io/uplift-portfolio/
+### https://kloper31400-commits.github.io/kal-uplift-portfolio/
 
 That is the link you send people.
 
@@ -90,30 +99,31 @@ That is the link you send people.
 
 # Part 4 · Protect the things that are not backed up (15 minutes)
 
-This is the part that actually matters for the job transfer, and it has a
-deadline: the day your laptop goes back.
+This is your own Mac, so nothing here is on a clock. The archive is worth
+copying anyway for the ordinary reason: it is 1.6 GB that exists in exactly
+one place, and a dead drive would be the end of it.
 
 ### 4a. There are two folders, and only one is safe
 
 | Folder | What it is | Where it lives |
 |---|---|---|
-| `~/uplift-portfolio` | The public site | GitHub, after Part 3 |
-| `~/uplift-archive` | Everything, 1.6 GB | **This Mac only** |
+| `~/kal-uplift-portfolio` | The public site | GitHub, after Part 3 |
+| `~/kal-uplift-archive` | Everything, 1.6 GB | **This Mac only** |
 
-`~/uplift-archive` is the complete application: all 963 commits, every
+`~/kal-uplift-archive` is the complete application: all 963 commits, every
 screenshot, the one-on-one logs, the certificates, and your `.env` files with
 the live credentials. **It exists in exactly one place.**
 
 ### 4b. Copy the archive somewhere personal
 
 Plug in a personal external drive, or use a personal cloud account. Not a work
-account, not a work drive. Then drag `uplift-archive` onto it, or run:
+account, not a work drive. Then drag `kal-uplift-archive` onto it, or run:
 
 ```
 open /Users/kennedy
 ```
 
-and copy the `uplift-archive` folder across by hand.
+and copy the `kal-uplift-archive` folder across by hand.
 
 ### 4c. Never push the archive anywhere
 
@@ -152,7 +162,7 @@ whoever takes the system over so they can change it.
 Edit the file, then:
 
 ```
-cd /Users/kennedy/uplift-portfolio && git add -A && git commit -m "Update" && git push
+cd /Users/kennedy/kal-uplift-portfolio && git add -A && git commit -m "Update" && git push
 ```
 
 The live site updates about a minute later.
@@ -160,7 +170,7 @@ The live site updates about a minute later.
 If you ever re-run the collector after changing the source repo:
 
 ```
-cd /Users/kennedy/uplift-portfolio && python3 collect-everything.py
+cd /Users/kennedy/kal-uplift-portfolio && python3 collect-everything.py
 ```
 
 It re-reads all 235 real participant names and re-sorts every file into

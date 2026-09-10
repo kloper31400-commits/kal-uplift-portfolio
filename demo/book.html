@@ -37,9 +37,13 @@
   .plate .fr {
     border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface);
     box-shadow:0 1px 3px rgba(26,23,51,.06), 0 10px 26px rgba(26,23,51,.07);
-    max-height:340px; overflow-y:auto; cursor:zoom-in;
+    max-height:340px; min-height:200px; overflow-y:auto; cursor:zoom-in;
   }
-  .plate .fr img { display:block; width:100%; height:auto; }
+  .plate .fr img { display:block; width:100%; height:auto; background:var(--surface); }
+  /* The box reserves its real shape from the manifest before the image
+     downloads. Without this a lazy image gives its container zero height, the
+     section collapses, and unloaded content reads as missing content. */
+  .plate .fr img[data-ar] { aspect-ratio: var(--ar); }
 
   .plate.wide { grid-column: 1 / -1; }
   .plate.wide .fr { max-height: 620px; }
@@ -312,22 +316,51 @@ const GROUPS = {
   ],
 };
 
-let n = 0;
-for (const [id, items] of Object.entries(GROUPS)) {
-  const host = document.getElementById(id);
-  if (!host) continue;
-  items.forEach(([slug, title, sub]) => {
-    n++;
-    const d = document.createElement("div");
-    d.className = "plate";
-    d.innerHTML =
-      '<div class="pn"><span class="idx">' + String(n).padStart(2,"0") + '</span>' +
-      '<span class="ttl">' + title + '</span></div>' +
-      '<div class="sub">' + sub + '</div>' +
-      '<div class="fr"><img src="../shots/' + slug + '.jpg" alt="' + title + '" loading="lazy"></div>';
-    host.appendChild(d);
+// Build the plates. Dimensions come from the manifest so every box reserves
+// its real shape before the image downloads: a lazy image with no declared
+// size gives its container zero height, the section collapses, and unloaded
+// content reads as missing content.
+function build(DIMS) {
+  let n = 0;
+  for (const [id, items] of Object.entries(GROUPS)) {
+    const host = document.getElementById(id);
+    if (!host) continue;
+    items.forEach(([slug, title, sub]) => {
+      n++;
+      const d = DIMS[slug];
+      const el = document.createElement("div");
+      el.className = "plate";
+      el.innerHTML =
+        '<div class="pn"><span class="idx">' + String(n).padStart(2, "0") + '</span>' +
+        '<span class="ttl">' + title + '</span></div>' +
+        '<div class="sub">' + sub + '</div>' +
+        '<div class="fr"><img src="../shots/' + slug + '.jpg" alt="' + title + '"' +
+          (d ? ' width="' + d[0] + '" height="' + d[1] + '"' : '') +
+          // The first sixteen load immediately so the top is never blank.
+          (n > 16 ? ' loading="lazy"' : '') + '></div>';
+      host.appendChild(el);
+    });
+  }
+  wire();
+}
+
+// The lookbook plates are written into the HTML directly rather than generated,
+// so they need the same treatment.
+function sizeStaticPlates(DIMS) {
+  document.querySelectorAll('.plate .fr img[src^="../shots/"]').forEach(img => {
+    if (img.hasAttribute("width")) return;
+    const slug = img.getAttribute("src").split("/").pop().replace(".jpg", "");
+    const d = DIMS[slug];
+    if (!d) return;
+    img.setAttribute("width", d[0]);
+    img.setAttribute("height", d[1]);
   });
 }
+
+fetch("../shots/manifest.json")
+  .then(r => r.json())
+  .catch(() => ({}))
+  .then(dims => { sizeStaticPlates(dims); build(dims); });
 
 // Section nav
 const NAV = [["g-lookbook","Lookbook"],["g-console","Console"],["g-matching","Matching"],
@@ -355,14 +388,20 @@ function closeLb() { lb.classList.remove("on"); document.body.style.overflow = "
 lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
 
-// Missing frames degrade to a note rather than a broken icon.
-document.querySelectorAll(".fr img").forEach(img => {
-  img.addEventListener("error", () => {
-    img.parentElement.innerHTML =
-      '<div style="padding:28px 16px;text-align:center;font-size:12.5px;color:var(--muted)">' +
-      'Frame not generated. Run <code>python3 make-shots.py</code>.</div>';
+// Missing frames degrade to a note rather than a broken icon. Called after the
+// plates are built: attaching these at load only ever reached the handful of
+// plates written directly into the HTML, never the generated ones.
+function wire() {
+  document.querySelectorAll(".fr img").forEach(img => {
+    if (img.dataset.wired) return;
+    img.dataset.wired = "1";
+    img.addEventListener("error", () => {
+      img.parentElement.innerHTML =
+        '<div style="padding:28px 16px;text-align:center;font-size:12.5px;color:var(--muted)">' +
+        'Frame not generated. Run <code>python3 make-shots.py</code>.</div>';
+    });
   });
-});
+}
 </script>
 </body>
 </html>

@@ -1,0 +1,386 @@
+{
+"a01-gate": [
+1400,
+875
+],
+"a02-today": [
+1400,
+980
+],
+"a03-deadlines": [
+1400,
+4464
+],
+"a04-overview": [
+1400,
+1245
+],
+"a05-roster": [
+1400,
+4510
+],
+"a05b-roster-row": [
+1400,
+875
+],
+"a05c-roster-profile": [
+1400,
+875
+],
+"a05d-roster-profile-2": [
+1400,
+875
+],
+"a06-mentorapps": [
+891,
+5200
+],
+"a06d-approve-before": [
+1400,
+875
+],
+"a06e-approve-after": [
+1400,
+875
+],
+"a06f-founder-apps": [
+599,
+5200
+],
+"a06g-founder-review": [
+1400,
+875
+],
+"a06h-founder-approved": [
+1400,
+875
+],
+"a06i-founder-rejected": [
+1400,
+875
+],
+"a06j-founder-popup": [
+1400,
+875
+],
+"a06k-founder-resume": [
+1400,
+875
+],
+"a07-founders": [
+1400,
+3551
+],
+"a08-matching": [
+1400,
+1604
+],
+"a08b-founder-profile": [
+1400,
+875
+],
+"a08c-mentor-profile": [
+1400,
+875
+],
+"a08d-picks": [
+1400,
+875
+],
+"a08e-override": [
+1400,
+875
+],
+"a08g-plan-all": [
+1400,
+875
+],
+"a08h-plan-pruned": [
+1400,
+875
+],
+"a09-matched": [
+939,
+5200
+],
+"a09b-match-breakdown": [
+1400,
+875
+],
+"a10-cohorts": [
+904,
+5200
+],
+"a11-signals": [
+1400,
+2135
+],
+"a12-pulse": [
+1400,
+3171
+],
+"a14-reporting": [
+1400,
+4657
+],
+"a15-decided": [
+1400,
+1442
+],
+"a16-sessions": [
+1400,
+1805
+],
+"a18-review-meetings": [
+1400,
+2669
+],
+"a19-review-edu": [
+1400,
+2669
+],
+"a21-wins": [
+1400,
+875
+],
+"a22-credibility-expanded": [
+1400,
+875
+],
+"a25-lookbook": [
+1400,
+898
+],
+"a25b-lookbook-p2": [
+1400,
+875
+],
+"a25c-lookbook-p3": [
+1400,
+875
+],
+"a25d-lookbook-hiring": [
+1400,
+875
+],
+"a25e-lookbook-partners": [
+1400,
+875
+],
+"a27-ulrike": [
+1400,
+875
+],
+"a28-directory": [
+1207,
+5200
+],
+"a28b-directory-glance": [
+1400,
+875
+],
+"a29-resources": [
+1400,
+3506
+],
+"a30-intros": [
+1400,
+2144
+],
+"a31-resumes": [
+374,
+5200
+],
+"e01-acceptance": [
+1400,
+3813
+],
+"e02-match": [
+1400,
+3379
+],
+"e03-expert-acceptance": [
+1400,
+2694
+],
+"m01-gate": [
+1400,
+875
+],
+"m01b-snapshot": [
+1400,
+875
+],
+"m01c-gate-typed": [
+1400,
+875
+],
+"m02-week1": [
+1400,
+2429
+],
+"m03-quiz": [
+1400,
+2577
+],
+"m03b-quiz-taking": [
+1400,
+2577
+],
+"m03c-quiz-passed": [
+1400,
+2577
+],
+"m04-deepwork": [
+1112,
+5200
+],
+"m05-mentor": [
+1400,
+3746
+],
+"m05b-weekly": [
+1400,
+2187
+],
+"m05c-pulse-green": [
+1400,
+875
+],
+"m05d-mentor-card": [
+1400,
+875
+],
+"m05e-pulse-ask": [
+1400,
+875
+],
+"m06-goals": [
+1400,
+1350
+],
+"m07-milestones": [
+1400,
+1712
+],
+"m08-meetings": [
+1400,
+2101
+],
+"m09-edu": [
+1400,
+3638
+],
+"m10-resources": [
+1400,
+3522
+],
+"m11-directory": [
+1351,
+5200
+],
+"m11b-directory-glance": [
+1400,
+875
+],
+"m12-roadmap": [
+1400,
+4117
+],
+"m12b-journey": [
+1400,
+2429
+],
+"m13-certificate": [
+1400,
+965
+],
+"m14-ulrike-widget": [
+1400,
+875
+],
+"m15-ulrike-page": [
+1400,
+875
+],
+"m16-lookbook": [
+1400,
+921
+],
+"speaker-luma": [
+1400,
+933
+],
+"t01-milestones-blank": [
+1400,
+1754
+],
+"t02-milestones-some": [
+1400,
+1712
+],
+"t03-milestones-all": [
+1400,
+1712
+],
+"t04-session-none": [
+1400,
+1240
+],
+"t05-session-pending": [
+1400,
+1499
+],
+"t06-session-approved": [
+1400,
+1322
+],
+"t07-session-states": [
+1400,
+2101
+],
+"t08-pulse-ask": [
+1400,
+875
+],
+"t09-pulse-green": [
+1400,
+875
+],
+"t10-pulse-yellow": [
+1400,
+875
+],
+"t11-pulse-red": [
+1400,
+875
+],
+"tt01-journey-tooltip": [
+1400,
+875
+],
+"tt02-written-tooltip": [
+1400,
+875
+],
+"tt03-snapshot-tooltip": [
+1400,
+875
+],
+"tt04-sessions-tooltip": [
+1400,
+875
+],
+"tt05-cohort-tooltip": [
+1400,
+875
+],
+"u01-ulrike-live": [
+1400,
+1353
+],
+"u02-ulrike-routes": [
+1400,
+875
+]
+}

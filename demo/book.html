@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Screenshot Book · Uplift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/portal.css">
+<style>
+  body { background:#fff; }
+  .wrap { max-width: 1180px; }
+  .hdr-in, .foot-in { max-width: 1180px; }
+
+  .bnav { background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
+  .bnav .in { max-width:1180px; margin:0 auto; padding:0 24px; display:flex; gap:2px; overflow-x:auto; }
+
+  .grp { padding-top: 52px; scroll-margin-top: 62px; }
+  .grp > .k { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+              color:var(--indigo-light); margin-bottom:6px; }
+  .grp > h2 { font-size:26px; font-weight:850; letter-spacing:-.7px; }
+  .grp > p.lead { font-size:14.5px; color:var(--muted); line-height:1.66; margin-top:11px; max-width:70ch; }
+  .grp > p.lead strong { color:var(--ink); font-weight:650; }
+
+  .plates { margin-top:24px; display:grid; gap:22px; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); }
+  .plate { }
+  .plate .pn {
+    display:flex; align-items:baseline; gap:8px; margin-bottom:7px; flex-wrap:wrap;
+  }
+  .plate .idx {
+    font-size:10.5px; font-weight:800; letter-spacing:.06em; color:#fff;
+    background:var(--indigo-light); border-radius:4px; padding:2px 6px;
+  }
+  .plate .ttl { font-size:14px; font-weight:750; }
+  .plate .sub { font-size:12.5px; color:var(--muted); line-height:1.5; margin-bottom:9px; }
+  .plate .fr {
+    border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface);
+    box-shadow:0 1px 3px rgba(26,23,51,.06), 0 10px 26px rgba(26,23,51,.07);
+    max-height:340px; overflow-y:auto; cursor:zoom-in;
+  }
+  .plate .fr img { display:block; width:100%; height:auto; }
+
+  .plate.wide { grid-column: 1 / -1; }
+  .plate.wide .fr { max-height: 620px; }
+
+  /* lightbox */
+  #lb { position:fixed; inset:0; background:rgba(16,13,38,.93); z-index:200; display:none;
+        overflow:auto; padding:26px; }
+  #lb.on { display:block; }
+  #lb img { display:block; max-width:1180px; width:100%; margin:0 auto; border-radius:10px; }
+  #lb .x { position:fixed; top:16px; right:22px; background:#fff; border:0; border-radius:9px;
+           font:800 13px var(--font); padding:9px 15px; cursor:pointer; color:var(--indigo-deep); }
+  #lb .cap { max-width:1180px; margin:0 auto 12px; color:#cfc7f5; font-size:13px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span><strong>MOCK DATA</strong> · 96 screens of the real application, running on a generated
+    cohort. Every person and company is invented.</span>
+  <a href="../index.html">Back to portfolio</a>
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <img class="logo" src="../work/uplift-logo-white.png" alt="Uplift">
+    <div class="kicker">Uplift · The Screenshot Book</div>
+    <h1>Every screen, end to end</h1>
+    <div class="sub">96 captures: the console, the founder portal, the lookbook, the emails, and the
+      state variations most walkthroughs skip.</div>
+    <div class="sub-2">Click any frame to open it full size.</div>
+  </div>
+</header>
+
+<nav class="bnav"><div class="in" id="bnav"></div></nav>
+
+<main class="wrap">
+
+<div class="note" style="margin-top:26px">
+  <strong>A note on the two builds.</strong> The console captures run against an anonymised demo
+  build that also renames things: the programme is "the program", mentors are "experts", cohorts are
+  "pods". The founder-portal captures run against the real Uplift naming. Both are populated with
+  invented people. Five frames are withheld entirely because they name real participants.
+</div>
+
+<!-- ══ LOOKBOOK ═════════════════════════════════════════════════ -->
+<section class="grp" id="g-lookbook">
+  <div class="k">The piece I would show first</div>
+  <h2>The Founder Lookbook</h2>
+  <p class="lead">An 86-page publication generated from the cohort's own application data. Every
+    founder gets a page. It opens with a photo wall, then a contents list of all 68, then the
+    aggregate view: stages, industries, counties, and what founders said they most want help with.</p>
+  <p class="lead">The last sections are the working ones. <strong>"Looking for customers and
+    partners" and "Hiring in the next six months" are filters over the same data</strong>, so the
+    book doubles as a directory a partner or an investor can actually act on. It regenerates from
+    the roster, which is why an 86-page document could be reissued whenever the cohort changed.</p>
+
+  <div class="plates">
+    <div class="plate wide"><div class="pn"><span class="idx">01</span><span class="ttl">Cover</span></div>
+      <div class="sub">The photo wall: 68 founders, one grid.</div>
+      <div class="fr"><img src="../shots/a25-lookbook.jpg" alt="Lookbook cover" loading="lazy"></div></div>
+    <div class="plate"><div class="pn"><span class="idx">02</span><span class="ttl">Contents</span></div>
+      <div class="sub">All 68 founders and their companies, paginated.</div>
+      <div class="fr"><img src="../shots/a25b-lookbook-p2.jpg" alt="Lookbook contents" loading="lazy"></div></div>
+    <div class="plate"><div class="pn"><span class="idx">03</span><span class="ttl">At a glance</span></div>
+      <div class="sub">Stage, industry, county, and what they want help with. All computed.</div>
+      <div class="fr"><img src="../shots/a25c-lookbook-p3.jpg" alt="Lookbook at a glance" loading="lazy"></div></div>
+    <div class="plate"><div class="pn"><span class="idx">04</span><span class="ttl">Hiring in the next six months</span></div>
+      <div class="sub">A filter over the roster, not a hand-written list.</div>
+      <div class="fr"><img src="../shots/a25d-lookbook-hiring.jpg" alt="Lookbook hiring page" loading="lazy"></div></div>
+    <div class="plate"><div class="pn"><span class="idx">05</span><span class="ttl">Looking for customers and partners</span></div>
+      <div class="sub">The same mechanism, different question.</div>
+      <div class="fr"><img src="../shots/a25e-lookbook-partners.jpg" alt="Lookbook partners page" loading="lazy"></div></div>
+    <div class="plate"><div class="pn"><span class="idx">06</span><span class="ttl">In the founder portal</span></div>
+      <div class="sub">Founders can browse it from inside their own portal.</div>
+      <div class="fr"><img src="../shots/m16-lookbook.jpg" alt="Lookbook in the portal" loading="lazy"></div></div>
+  </div>
+</section>
+
+<!-- ══ CONSOLE ══════════════════════════════════════════════════ -->
+<section class="grp" id="g-console">
+  <div class="k">Running the cohort</div>
+  <h2>The programme console</h2>
+  <p class="lead">Twenty-two tabs, computed live on each request. This is the screen that replaced
+    eleven spreadsheet tabs and a shared inbox.</p>
+  <div class="plates" id="p-console"></div>
+</section>
+
+<!-- ══ MATCHING ═════════════════════════════════════════════════ -->
+<section class="grp" id="g-matching">
+  <div class="k">The hardest call</div>
+  <h2>Matching</h2>
+  <p class="lead">Solved as a whole waiting room rather than one founder at a time, with the
+    trade-off priced on screen. <strong>Greedy first-come matching rewards whoever applied earliest
+    and leaves the last arrivals with whatever is left.</strong></p>
+  <div class="plates" id="p-matching"></div>
+</section>
+
+<!-- ══ APPLICATIONS ═════════════════════════════════════════════ -->
+<section class="grp" id="g-apps">
+  <div class="k">Getting in</div>
+  <h2>Applications and review</h2>
+  <p class="lead">143 founder applications and 46 mentor applications, reviewed in the console with
+    the full submission, the resume and the verification verdict on one screen.</p>
+  <div class="plates" id="p-apps"></div>
+</section>
+
+<!-- ══ PORTAL ═══════════════════════════════════════════════════ -->
+<section class="grp" id="g-portal">
+  <div class="k">What a founder sees</div>
+  <h2>The founder portal</h2>
+  <p class="lead">Nine tabs, gated week by week, private to each founder.</p>
+  <div class="plates" id="p-portal"></div>
+</section>
+
+<!-- ══ STATES ═══════════════════════════════════════════════════ -->
+<section class="grp" id="g-states">
+  <div class="k">The part most demos skip</div>
+  <h2>Every state, not just the happy one</h2>
+  <p class="lead">A screenshot of a working feature proves very little. These are the same components
+    in each state they can actually reach: a milestone list empty, partly done and complete; a
+    session unsubmitted, pending and approved; a pulse check unanswered, green, amber and red.</p>
+  <p class="lead"><strong>Designing the empty and the failed states is most of the work</strong>, and
+    it is the part that decides whether someone trusts the screen at eight o'clock on a Friday.</p>
+  <div class="plates" id="p-states"></div>
+</section>
+
+<!-- ══ TOOLTIPS ═════════════════════════════════════════════════ -->
+<section class="grp" id="g-tips">
+  <div class="k">Explaining itself</div>
+  <h2>Tooltips</h2>
+  <p class="lead">Every tab in the portal carries a plain-English explanation of what it is for.
+    Founders arrive once, at speed, and never read a manual.</p>
+  <div class="plates" id="p-tips"></div>
+</section>
+
+<!-- ══ EMAIL ════════════════════════════════════════════════════ -->
+<section class="grp" id="g-email">
+  <div class="k">Reaching people</div>
+  <h2>Generated email</h2>
+  <p class="lead">Acceptance, match reveal and mentor acceptance. Each is generated per recipient,
+    previewable before it fires and logged after.</p>
+  <div class="plates" id="p-email"></div>
+</section>
+
+<!-- ══ PUBLIC ═══════════════════════════════════════════════════ -->
+<section class="grp" id="g-public">
+  <div class="k">Facing outward</div>
+  <h2>Public pages</h2>
+  <p class="lead">The published event, the resource library and the assistant.</p>
+  <div class="plates" id="p-public"></div>
+</section>
+
+</main>
+
+<div id="lb"><button class="x" onclick="closeLb()">Close ✕</button>
+  <div class="cap" id="lbc"></div><img id="lbi" src="" alt=""></div>
+
+<footer class="foot"><div class="foot-in">
+  96 captures of the Uplift application on a generated cohort.
+  Designed and built by Kennedy Loper. <a href="../index.html">Back to the portfolio</a>
+</div></footer>
+
+<script>
+const GROUPS = {
+  "p-console": [
+    ["a01-gate","The gate","The console is behind a password"],
+    ["a02-today","Today","What needs you, sorted by urgency then age"],
+    ["a03-deadlines","Deadlines","Everything with a date attached"],
+    ["a04-overview","Overview","Cohort health and the milestone funnel"],
+    ["a05-roster","Roster","Around 70 founders, one row each"],
+    ["a05b-roster-row","A roster row","Expanded in place"],
+    ["a05c-roster-profile","Founder profile","Everything known about one person"],
+    ["a05d-roster-profile-2","Profile, continued","Sessions, pulse history, emails"],
+    ["a07-founders","Accepted founders","The confirmed cohort"],
+    ["a10-cohorts","Peer rooms","Five rooms, grouped by stage and focus"],
+    ["a11-signals","Signals","Themes clustered from what founders wrote"],
+    ["a12-pulse","Pulse and wins","One rating per founder per week"],
+    ["a21-wins","Wins","Collected for the Tuesday update"],
+    ["a14-reporting","Reporting","Grant exhibits, generated from live data"],
+    ["a15-decided","Decisions","The admissions record"],
+    ["a16-sessions","Sessions","The 22-session calendar"],
+    ["a18-review-meetings","Session review","Two-sided confirmation before an hour counts"],
+    ["a19-review-edu","Educational attendance","Pulled from the event platform"],
+    ["a30-intros","Intros this week","Founders who should meet each other"],
+    ["a29-resources","Resources","The curated library"],
+  ],
+  "p-matching": [
+    ["a08-matching","The matching tab","The whole waiting room at once"],
+    ["a08b-founder-profile","The founder side","What they asked for"],
+    ["a08c-mentor-profile","The mentor side","What they offered"],
+    ["a08d-picks","Three picks","The best options once everyone else is accounted for"],
+    ["a08e-override","Override","The human keeps the last word, with a reason"],
+    ["a08g-plan-all","Re-plan everyone","Solve all 69 rather than the 7 waiting"],
+    ["a08h-plan-pruned","The fairness dial","Every mentor placed, against best possible matches"],
+    ["a09-matched","62 matched pairs","Each keeping its reasoning"],
+    ["a09b-match-breakdown","Why this pair","Scored and shown, then published to both sides"],
+  ],
+  "p-apps": [
+    ["a06f-founder-apps","143 founder applications","Live from Typeform"],
+    ["a06g-founder-review","The review screen","Everything needed for a yes or no"],
+    ["a06h-founder-approved","Approved","Writes straight back to the roster"],
+    ["a06i-founder-rejected","Rejected","Recorded, not deleted"],
+    ["a06j-founder-popup","Full submission","Opened without leaving the queue"],
+    ["a06k-founder-resume","The resume","Attached to the application"],
+    ["a31-resumes","All resumes","One page, printable"],
+    ["a06-mentorapps","Mentor applications","The other intake"],
+    ["a06d-approve-before","Before approval","Pending state"],
+    ["a06e-approve-after","After approval","The same row, resolved"],
+    ["a22-credibility-expanded","Verification","Corroborated, partial, nothing found, contradicted"],
+  ],
+  "p-portal": [
+    ["m01-gate","The gate","Private, addressed by slug"],
+    ["m01c-gate-typed","Code entered","Four digits from the welcome email"],
+    ["m01b-snapshot","Company snapshot","Pulled from their application"],
+    ["m02-week1","Week 1","One week at a time, not eight"],
+    ["m12b-journey","The journey","Where they are in the arc"],
+    ["m03-quiz","The onboarding quiz","One of three gates on the mentor reveal"],
+    ["m03b-quiz-taking","Taking it","Ten questions"],
+    ["m03c-quiz-passed","Passed","10 out of 10 required"],
+    ["m04-deepwork","Deep Work","Written before the match is revealed"],
+    ["m05-mentor","The mentor reveal","Earned by clearing the Week 1 gate"],
+    ["m05d-mentor-card","The match card","Who they are, and why you got them"],
+    ["m05b-weekly","The weekly view","Act, week 3"],
+    ["m06-goals","Goals and reflections","Everything they wrote, collected"],
+    ["m07-milestones","Milestones","The same data the console reads"],
+    ["m08-meetings","Logged sessions","Toward the three-hour minimum"],
+    ["m09-edu","Educational sessions","Three required, attendance automatic"],
+    ["m12-roadmap","Programme roadmap","All eight weeks"],
+    ["m10-resources","Resources","Written for this programme"],
+    ["m11-directory","Cohort directory","Who else is in the room"],
+    ["m11b-directory-glance","Company at a glance","One founder, expanded"],
+    ["m13-certificate","The certificate","Generated on completion"],
+    ["a27-ulrike","The portal, from the console","Staff view of a founder's screen"],
+    ["a28-directory","Directory","The same page, console side"],
+    ["a28b-directory-glance","At a glance","Expanded"],
+  ],
+  "p-states": [
+    ["t01-milestones-blank","Milestones · nothing done","Day one"],
+    ["t02-milestones-some","Milestones · partly done","Mid-programme"],
+    ["t03-milestones-all","Milestones · complete","The end state"],
+    ["t04-session-none","Session · not submitted","Nothing logged yet"],
+    ["t05-session-pending","Session · pending","One side has confirmed"],
+    ["t06-session-approved","Session · approved","Both sides agree it happened"],
+    ["t07-session-states","All session states","Side by side"],
+    ["t08-pulse-ask","Pulse · unanswered","The prompt"],
+    ["t09-pulse-green","Pulse · a-okay","Fine"],
+    ["t10-pulse-yellow","Pulse · check in","A steady minority, every week"],
+    ["t11-pulse-red","Pulse · not going to plan","Rare, and never ignored"],
+    ["m05c-pulse-green","Pulse in context","Inside the weekly view"],
+    ["m05e-pulse-ask","Pulse, unanswered","A different founder, same component"],
+  ],
+  "p-tips": [
+    ["tt01-journey-tooltip","My Journey","Week-by-week action items"],
+    ["tt02-written-tooltip","Goals and Reflections","Everything you have written"],
+    ["tt03-snapshot-tooltip","Company snapshot","What we hold about your company"],
+    ["tt04-sessions-tooltip","Logged sessions","Progress toward three hours"],
+    ["tt05-cohort-tooltip","Cohort directory","Who is in your room"],
+  ],
+  "p-email": [
+    ["e01-acceptance","Founder acceptance","Generated per founder"],
+    ["e02-match","Match reveal","The mentor, and the reasoning"],
+    ["e03-expert-acceptance","Mentor acceptance","Two hand-written lines, the rest generated"],
+  ],
+  "p-public": [
+    ["speaker-luma","The published event","Where founders register"],
+    ["m14-ulrike-widget","The portal assistant","Answering from live data"],
+    ["m15-ulrike-page","The assistant, full page","The same knowledge, more room"],
+    ["u01-ulrike-live","Assistant, live","In use"],
+    ["u02-ulrike-routes","What it can answer","The knowledge surface"],
+  ],
+};
+
+let n = 0;
+for (const [id, items] of Object.entries(GROUPS)) {
+  const host = document.getElementById(id);
+  if (!host) continue;
+  items.forEach(([slug, title, sub]) => {
+    n++;
+    const d = document.createElement("div");
+    d.className = "plate";
+    d.innerHTML =
+      '<div class="pn"><span class="idx">' + String(n).padStart(2,"0") + '</span>' +
+      '<span class="ttl">' + title + '</span></div>' +
+      '<div class="sub">' + sub + '</div>' +
+      '<div class="fr"><img src="../shots/' + slug + '.jpg" alt="' + title + '" loading="lazy"></div>';
+    host.appendChild(d);
+  });
+}
+
+// Section nav
+const NAV = [["g-lookbook","Lookbook"],["g-console","Console"],["g-matching","Matching"],
+             ["g-apps","Applications"],["g-portal","Founder portal"],["g-states","States"],
+             ["g-tips","Tooltips"],["g-email","Email"],["g-public","Public"]];
+const bn = document.getElementById("bnav");
+NAV.forEach(([id,label]) => {
+  const b = document.createElement("button");
+  b.className = "tab"; b.textContent = label;
+  b.onclick = () => document.getElementById(id).scrollIntoView({behavior:"smooth", block:"start"});
+  bn.appendChild(b);
+});
+
+// Lightbox
+const lb = document.getElementById("lb"), lbi = document.getElementById("lbi"), lbc = document.getElementById("lbc");
+document.addEventListener("click", e => {
+  const img = e.target.closest(".fr img");
+  if (!img) return;
+  lbi.src = img.getAttribute("src");
+  lbc.textContent = img.getAttribute("alt");
+  lb.classList.add("on");
+  document.body.style.overflow = "hidden";
+});
+function closeLb() { lb.classList.remove("on"); document.body.style.overflow = ""; }
+lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
+
+// Missing frames degrade to a note rather than a broken icon.
+document.querySelectorAll(".fr img").forEach(img => {
+  img.addEventListener("error", () => {
+    img.parentElement.innerHTML =
+      '<div style="padding:28px 16px;text-align:center;font-size:12.5px;color:var(--muted)">' +
+      'Frame not generated. Run <code>python3 make-shots.py</code>.</div>';
+  });
+});
+</script>
+</body>
+</html>

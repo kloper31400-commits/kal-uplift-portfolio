@@ -34,7 +34,7 @@ Your browser opens the portfolio. Click every link. You are checking for:
 
 **Two pages to read properly:**
 
-- **The screenshot book** — all 96 screens, linked just under the three cards.
+- **The interface inventory** — all 96 screens, linked just under the three cards.
   The Founder Lookbook is the first section.
 - **The speaker loop** — the fourth card under "Walk through the real thing".
 

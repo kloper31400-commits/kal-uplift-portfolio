@@ -283,11 +283,14 @@ html.lbx-locked, html.lbx-locked body { overflow: hidden; }
    These pages are Kennedy's portfolio, not Uplift's product, so the header
    carries his name. Uplift and TechUnited marks stay in the attribution
    line at the foot of each page, where crediting the client belongs. */
-.wordmark { display: block; margin-bottom: 15px; }
+.wordmark { display: inline-block; margin-bottom: 22px; }
 .wordmark .nm {
-  font-size: 15px; font-weight: 800; letter-spacing: -.2px; color: #fff;
+  font-size: 25px; font-weight: 900; letter-spacing: -.9px; color: #fff;
+  line-height: 1; display: block;
 }
 .wordmark .rl {
-  font-size: 10.5px; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: #b6a9ff; margin-top: 2px;
+  font-size: 10px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase;
+  color: #b6a9ff; margin-top: 9px; padding-top: 9px; display: block;
+  border-top: 1.5px solid rgba(255,255,255,.28);
 }
+.wordmark:hover .nm { color: #ede9ff; }

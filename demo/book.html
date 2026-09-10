@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/portal.css?v=9">
+<link rel="stylesheet" href="../assets/portal.css?v=12">
 <style>
   body { background:#fff; }
   .wrap { max-width: 1180px; }
@@ -33,7 +33,13 @@
      on the same line: without it the images stagger and the grid stops being
      scannable. */
   .plate { display:flex; flex-direction:column; }
-  .plate .cap-h { height: 100px; overflow: hidden; }
+  /* The block is a fixed height so pictures line up, but the text sits at the
+     bottom of it. Top-aligned, a one-line note left a hole under itself and
+     read as belonging to the picture above rather than the one below. */
+  .plate .cap-h { height: 100px; overflow: hidden;
+                  display: flex; flex-direction: column; justify-content: flex-end; }
+  .plate .cap-h .sub { margin-bottom: 0; }
+  .plate .fr { margin-top: 8px; }
   .plate .pn { display:flex; align-items:baseline; gap:6px; margin-bottom:4px; flex-wrap:wrap; }
   .plate .idx {
     font-size:9.5px; font-weight:800; letter-spacing:.05em; color:#fff;
@@ -57,9 +63,33 @@
   .doc .fr .mini { width:1000px; height:2600px; border:0; transform:scale(.28);
                    transform-origin:top left; display:block; }
   .doc .fr .cage { width:280px; height:728px; overflow:hidden; }
+  /* A completion certificate is a document somebody could copy, so the
+     portfolio shows that it exists and refuses to hand over a clean one. */
+  .plate.redact .fr img, .plate.redact .fr .mini { filter: blur(3px); }
+  .plate.redact .fr::after {
+    content: "Blurred on purpose"; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%,-50%); background: rgba(26,23,51,.86); color: #fff;
+    font: 800 9.5px 'Inter', system-ui, sans-serif; letter-spacing: .08em;
+    text-transform: uppercase; padding: 6px 11px; border-radius: 20px; white-space: nowrap;
+  }
+  .plate.redact .fr { position: relative; cursor: default; }
   .doc .open { display:inline-block; margin-top:6px; font-size:10.5px; font-weight:800;
                color:var(--indigo); text-decoration:none; }
   .doc .open:hover { text-decoration:underline; }
+
+  .mtx-wrap { border:1px solid var(--line); border-radius:12px; overflow:auto;
+              box-shadow:var(--shadow); }
+  table.mtx { width:100%; border-collapse:collapse; font-size:13px; background:#fff; }
+  table.mtx th { text-align:left; font-size:10px; font-weight:800; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--surface);
+                 padding:10px 13px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  table.mtx td { padding:11px 13px; border-bottom:1px solid var(--line); vertical-align:top;
+                 line-height:1.55; }
+  table.mtx tr:last-child td { border-bottom:0; }
+  .src { font-size:10px; font-weight:700; border-radius:4px; padding:2px 7px; white-space:nowrap; }
+  .src.ok { background:#e8f8f0; color:#1a6e42; }
+  .src.soft { background:#fff3e0; color:#b35c00; }
+  .src.bad { background:#fdecec; color:#c0392b; }
 
   .plate.wide { grid-column: 1 / -1; }
   .plate.wide .fr { height: 420px; }
@@ -117,6 +147,22 @@
     of truth on load, which is why nobody has to remember to update anything and why the console and
     the founder portal can never disagree about the same fact.</p>
   <div class="plates" id="p-console"></div>
+
+  <div class="note" style="margin-top:20px">
+    <strong>One number per person, and it is also their password.</strong> Every founder and mentor
+    gets an Uplift ID: <span class="mono">UF26</span> plus an issue number, in approval order across
+    both groups as a single sequence. It is what the roster, the session log, the grant exhibits and
+    the signed verification forms all key on, so a person can be followed across every document
+    without matching on a name that might be spelled two ways.
+    <br><br>
+    It is also the portal password, which turns a formatting question into a security one.
+    <strong>Before the rule lived in one place, every reader of that column guessed differently</strong>
+    and any stray text typed into the cell became somebody's login. The pattern is now strict and
+    anchored, and it refuses a leading zero on purpose: UF2604 and UF264 are two IDs to a string
+    comparison and one ID to a numeric check, which is exactly the disagreement that lets two people
+    share a login.
+  </div>
+
 </section>
 
 <!-- ══ MATCHING ════════════════════════════════════════════════ -->
@@ -135,42 +181,60 @@
 
 <!-- ══ BOOKING THE SPEAKERS ════════════════════════════════════ -->
 <section class="grp" id="g-speakers">
-  <div class="k">One date, five systems</div>
+  <div class="k">One approval, five systems</div>
   <h2>Booking the speakers</h2>
-  <p class="lead">Twenty-two educational sessions a cohort, each needing a speaker, a title, a
-    published event page and a printed brief. <strong>A date written once in a source file becomes a
-    dropdown choice on the application form, an application, a booking, a brief and a live event</strong>,
-    and attendance comes back the other way into a founder's three-session requirement.</p>
-  <p class="lead">The part worth understanding is what the board tracks rather than what it fires.
-    Booked and told are different states, and a system that assumes all four steps worked is a system
-    where a speaker turns up to an event that was never published.
-    <a href="speaker-loop.html" style="color:var(--indigo);font-weight:700">Follow the whole loop, with the slot board →</a></p>
+  <p class="lead">An application lands from the form and the console shows the whole of it: who they
+    are, the session they are proposing, <strong>who they say it is aimed at, the three takeaways
+    they are promising</strong>, what they would cover, the dates they ranked, and how many sessions
+    they are offering. Everything a yes or no needs, on one screen, because applicants were told they
+    would hear back within a business day.</p>
+  <p class="lead"><strong>Approving is the pivot.</strong> It books the slot and takes that date off
+    the board for everyone else in the same action, then the rest of the chain hangs off it: the
+    confirmation email drafts itself with the slot already in the subject, the one-pager brief is
+    generated from their own answers, a calendar hold goes out, and the session copy is pushed to the
+    Luma event page founders register through. Registrations come back the other way into a
+    founder's three-session requirement.</p>
+  <p class="lead">The board's job is knowing which of those actually happened.
+    <strong>Booked and told are different states</strong>, which is why the slot board carries
+    "email sent", "invite accepted", "no reply" and "no invite" rather than a single tick.
+    <a href="speaker-loop.html" style="color:var(--indigo);font-weight:700">Follow the whole loop, with the slot board and the review card →</a></p>
 
   <div class="plates">
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">01</span>
+    <div class="plate doc"><div class="pn"><span class="idx">01</span>
+      <span class="ttl">The review card and the slot board</span></div>
+      <div class="cap-h"><div class="sub">The application as the console shows it: audience, the
+        three takeaways, ranked dates, and the confirm that books the slot.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="speaker-loop.html#s-example" loading="lazy"
+        title="Speaker review and slot board" scrolling="no"></iframe></div></div>
+      <a class="open" href="speaker-loop.html" target="_blank" rel="noopener">Follow the loop ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">02</span>
       <span class="ttl">Share Your Expertise</span></div>
-      <div class="sub">The public call. Its date choices are generated from the same source file the board reads.</div></div>
+      <div class="cap-h"><div class="sub">The public call. Its date choices are generated from the
+        same source file the board reads, so a schedule change reaches the form.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/share-your-expertise.html" loading="lazy"
         title="Share Your Expertise" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/share-your-expertise.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">02</span>
-      <span class="ttl">The Speaker Briefs</span></div>
-      <div class="sub">One page per speaker, in calendar order, generated from the roster.</div></div>
+    <div class="plate doc"><div class="pn"><span class="idx">03</span>
+      <span class="ttl">The generated brief</span></div>
+      <div class="cap-h"><div class="sub">One page per speaker, in calendar order, built from the
+        answers they already gave. Nobody writes these.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/speaker-onepagers.html" loading="lazy"
         title="Speaker briefs" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/speaker-onepagers.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">03</span>
-      <span class="ttl">The Speaker Runbook</span></div>
-      <div class="sub">Booking 22 speakers without a spreadsheet in your lap.</div></div>
+    <div class="plate doc"><div class="pn"><span class="idx">04</span>
+      <span class="ttl">The speaker runbook</span></div>
+      <div class="cap-h"><div class="sub">Booking 22 speakers without a spreadsheet in your lap.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/speaker-runbook.html" loading="lazy"
         title="Speaker runbook" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/speaker-runbook.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate"><div class="cap-h"><div class="pn"><span class="idx">04</span>
-      <span class="ttl">The published event</span></div>
-      <div class="sub">Where founders register. Registration comes back as attendance.</div></div>
+    <div class="plate"><div class="pn"><span class="idx">05</span>
+      <span class="ttl">The published Luma event</span></div>
+      <div class="cap-h"><div class="sub">Where founders register. The end of the chain that started
+        as a date in a source file.</div></div>
       <div class="fr"><img src="../shots/speaker-luma.jpg" alt="The published Luma event" loading="lazy"></div>
     </div>
   </div>
@@ -226,9 +290,56 @@
 <section class="grp" id="g-email">
   <div class="k">Reaching people</div>
   <h2>Generated email</h2>
-  <p class="lead">Acceptance, match reveal and mentor acceptance. Each is generated per recipient,
-    previewable before it fires and logged after.</p>
-  <div class="plates" id="p-email"></div>
+  <p class="lead">Every one of these is built per recipient from the same data the console reads,
+    previewable before it fires and logged after. <strong>None of them is a template somebody fills
+    in.</strong></p>
+  <p class="lead">These are the live renderings rather than screenshots, each with every participant
+    swapped for an invented one. Scroll them in place or open the real file.</p>
+
+  <div class="plates">
+    <div class="plate doc"><div class="pn"><span class="idx">01</span>
+      <span class="ttl">The match reveal</span></div>
+      <div class="cap-h"><div class="sub">Current build. Why you two, the founder's own five Deep
+        Work answers quoted back, and what real progress looks like by November.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="../work/match-email-example.html" loading="lazy"
+        title="The match reveal email" scrolling="no"></iframe></div></div>
+      <a class="open" href="../work/match-email-example.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">02</span>
+      <span class="ttl">The mentor update</span></div>
+      <div class="cap-h"><div class="sub">Written from the two onboarding session transcripts, with
+        every claim sourced. Company spellings follow the roster, not the transcript's phonetics.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="../work/mentor-icymi-email.html" loading="lazy"
+        title="The mentor ICYMI update" scrolling="no"></iframe></div></div>
+      <a class="open" href="../work/mentor-icymi-email.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">03</span>
+      <span class="ttl">Founder acceptance</span></div>
+      <div class="cap-h"><div class="sub">Generated per founder from the roster. The accept-by date
+        is the only thing a send is allowed to move.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="../work/fall-acceptance-email.html" loading="lazy"
+        title="Founder acceptance email" scrolling="no"></iframe></div></div>
+      <a class="open" href="../work/fall-acceptance-email.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate doc"><div class="pn"><span class="idx">04</span>
+      <span class="ttl">Mentor acceptance</span></div>
+      <div class="cap-h"><div class="sub">Two hand-written lines per mentor, everything else
+        generated, so 45 personal emails cost the time of 45 sentences.</div></div>
+      <div class="fr"><div class="cage"><iframe class="mini" src="../work/fall-mentor-acceptance-email.html" loading="lazy"
+        title="Mentor acceptance email" scrolling="no"></iframe></div></div>
+      <a class="open" href="../work/fall-mentor-acceptance-email.html" target="_blank" rel="noopener">Open the real email ↗</a>
+    </div>
+    <div class="plate"><div class="pn"><span class="idx">05</span>
+      <span class="ttl">Acceptance, as sent</span></div>
+      <div class="cap-h"><div class="sub">The same email in a mail client, from the capture set.</div></div>
+      <div class="fr"><img src="../shots/e01-acceptance.jpg" alt="Acceptance email" loading="lazy"></div>
+    </div>
+    <div class="plate"><div class="pn"><span class="idx">06</span>
+      <span class="ttl">Mentor acceptance, as sent</span></div>
+      <div class="cap-h"><div class="sub">Same again for the mentor side.</div></div>
+      <div class="fr"><img src="../shots/e03-expert-acceptance.jpg" alt="Mentor acceptance email" loading="lazy"></div>
+    </div>
+  </div>
 </section>
 
 <!-- ══ APPLICATIONS AND VERIFICATION ═══════════════════════════ -->
@@ -238,6 +349,60 @@
   <p class="lead">143 founder applications and 46 mentor applications, reviewed in the console with
     the full submission, the resume and the verification verdict on one screen.</p>
   <div class="plates" id="p-apps"></div>
+
+  <div class="note" style="margin-top:22px">
+    <strong>The score is on claims, never on people.</strong> Every check asks whether the thing
+    somebody wrote down holds up, not whether they seem impressive. A mentor who has served a cohort
+    before is routed to "already known to us" rather than penalised, and that distinction is the
+    whole design: without it the score punishes exactly the people who have already shown up.
+  </div>
+
+  <div class="mtx-wrap" style="margin-top:16px">
+    <table class="mtx">
+      <thead><tr><th>Score</th><th>What it is called</th><th>What it obliges you to do</th></tr></thead>
+      <tbody>
+        <tr><td><strong>85 and up</strong></td><td><span class="src ok">Clear</span></td>
+          <td>Nothing owed. Approve and match. Everything they claimed holds up, or they have
+            mentored for us before.</td></tr>
+        <tr><td><strong>60 to 84</strong></td><td><span class="src soft">Check</span></td>
+          <td>Reach out personally and collect the missing pieces. Ask for what the form left blank,
+            confirm the role and the employer, and make sure the rest adds up.</td></tr>
+        <tr><td><strong>Under 60</strong></td><td><span class="src bad">Review</span></td>
+          <td>Get a reference before they meet a founder. Someone credible vouches for them by name.
+            Do not match on the application alone.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="lead" style="margin-top:14px"><strong>Written as obligations rather than adjectives, on
+    purpose.</strong> "Thin application" is a description nobody has to act on. "Collect what is
+    missing" is a task with a person's name on it.</p>
+
+  <div class="note" style="margin-top:16px">
+    <strong>The first signal, and why it is checked the way it is.</strong> Does the LinkedIn URL
+    they pasted actually belong to the name they gave? Fetching the profile proves nothing, because
+    LinkedIn answers every request with an authwall whether the person is real or invented. The
+    slug does the work: a profile URL carries a name, and somebody pasting another person's link
+    shows up as zero overlap between the two.
+    <br><br>
+    <strong>Deliberately generous.</strong> LinkedIn truncates, uses initials, and appends a numeric
+    id, so any single matching name token is a pass and only a complete miss is flagged. Across a
+    pool of 38 that produced zero false positives, which is the number that matters: a check that
+    accuses real people is worse than no check.
+  </div>
+
+  <div class="note" style="margin-top:16px">
+    <strong>Two more things the scorer refuses to do.</strong> It will not drop a returning mentor
+    below "check", because serving a previous cohort is worth more than any single missing field
+    costs. And it separates "real person, poor fit" from "cannot confirm this person exists", which
+    are different problems needing different conversations: one is a matching decision, the other is
+    a safety one.
+    <br><br>
+    The weights live in the same module that computes the score, so the tooltip explaining a number
+    to whoever is reading it is generated from the numbers that produced it and cannot drift away
+    from them.
+  </div>
+
 </section>
 
 <!-- ══ THE FOUNDER PORTAL ══════════════════════════════════════ -->
@@ -346,48 +511,6 @@
         title="The Acceptance Email" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/fall-acceptance-email.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">09</span>
-      <span class="ttl">Mentor Handbook</span></div>
-      <div class="sub">Everything a mentor needs, written for this programme</div></div>
-      <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-mentor-handbook.html" loading="lazy"
-        title="Mentor Handbook" scrolling="no"></iframe></div></div>
-      <a class="open" href="../work/resource-mentor-handbook.html" target="_blank" rel="noopener">Open the real document ↗</a>
-    </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">10</span>
-      <span class="ttl">First Meeting Framework</span></div>
-      <div class="sub">How to run a good first session</div></div>
-      <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-first-meeting.html" loading="lazy"
-        title="First Meeting Framework" scrolling="no"></iframe></div></div>
-      <a class="open" href="../work/resource-first-meeting.html" target="_blank" rel="noopener">Open the real document ↗</a>
-    </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">11</span>
-      <span class="ttl">How to Give Feedback to Founders</span></div>
-      <div class="sub">Why founder feedback is different</div></div>
-      <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-feedback-guide.html" loading="lazy"
-        title="How to Give Feedback to Founders" scrolling="no"></iframe></div></div>
-      <a class="open" href="../work/resource-feedback-guide.html" target="_blank" rel="noopener">Open the real document ↗</a>
-    </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">12</span>
-      <span class="ttl">How We Verify Mentors</span></div>
-      <div class="sub">The standard published, the scoring key withheld</div></div>
-      <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-mentor-credibility.html" loading="lazy"
-        title="How We Verify Mentors" scrolling="no"></iframe></div></div>
-      <a class="open" href="../work/resource-mentor-credibility.html" target="_blank" rel="noopener">Open the real document ↗</a>
-    </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">13</span>
-      <span class="ttl">NJ Startup Ecosystem</span></div>
-      <div class="sub">Capital, networks and key players</div></div>
-      <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-nj-ecosystem.html" loading="lazy"
-        title="NJ Startup Ecosystem" scrolling="no"></iframe></div></div>
-      <a class="open" href="../work/resource-nj-ecosystem.html" target="_blank" rel="noopener">Open the real document ↗</a>
-    </div>
-    <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">14</span>
-      <span class="ttl">Programme Schedule</span></div>
-      <div class="sub">Key dates as a timeline</div></div>
-      <div class="fr"><div class="cage"><iframe class="mini" src="../work/resource-program-schedule.html" loading="lazy"
-        title="Programme Schedule" scrolling="no"></iframe></div></div>
-      <a class="open" href="../work/resource-program-schedule.html" target="_blank" rel="noopener">Open the real document ↗</a>
-    </div>
     <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">15</span>
       <span class="ttl">Portal User Guide</span></div>
       <div class="sub">Your portal, explained tab by tab</div></div>
@@ -433,22 +556,21 @@
 
     <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">22</span>
       <span class="ttl">Hot Seat</span></div>
-      <div class="sub">Session 17, as founders received it. Halftone, Impact display and an animated flame. The format is the programming, so there is no speaker to chase.</div></div>
+      <div class="sub">On listening before telling. Getting curious rather than advisory, and making sure what you put into a room is worth the room's time. Built from a format I saw work in the room.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/hot-seat.html" loading="lazy"
         title="Hot Seat" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/hot-seat.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
     <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">23</span>
       <span class="ttl">Pitch Without a Deck</span></div>
-      <div class="sub">Session 1. Three minutes to a genuinely cold audience.</div></div>
+      <div class="sub">A design-thinking workshop for the elevator pitch: conciseness and clarity, tested on three minutes with a genuinely cold audience. Built from a format I saw work in the room.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/pitch-without-a-deck.html" loading="lazy"
         title="Pitch Without a Deck" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/pitch-without-a-deck.html" target="_blank" rel="noopener">Open the real document ↗</a>
     </div>
     <div class="plate doc"><div class="cap-h"><div class="pn"><span class="idx">24</span>
       <span class="ttl">Customer Hat</span></div>
-      <div class="sub">The same build in blue and yellow: rules of engagement, a comic-strip run of
-        show, good-versus-vague examples, and what not to do.</div></div>
+      <div class="sub">A workshop for refining your ICP: who the customer actually is, said in their language rather than yours. Built from a format I saw work in the room.</div></div>
       <div class="fr"><div class="cage"><iframe class="mini" src="../work/customer-hat.html" loading="lazy"
         title="Customer Hat" scrolling="no"></iframe></div></div>
       <a class="open" href="../work/customer-hat.html" target="_blank" rel="noopener">Open the real document ↗</a>
@@ -478,13 +600,12 @@ const GROUPS = {
     ["a07-founders","Accepted founders","The confirmed cohort"],
     ["a10-cohorts","Peer rooms","Grouped so the problems in a room rhyme and everyone can make the time. A mentor gives expertise; a room gives the evidence that your problem is normal."],
     ["a11-signals","Signals","Useful, not urgent. Observations not worth acting on today, plus anomalies found automatically, like one person applying twice under two addresses."],
-    ["a12-pulse","Pulse and wins","Three options a week, cheap enough that people answer. The grid shows who is sliding, and which weeks dip for everyone at once: a founder having a hard week thinks it is just them, and it rarely is."],
-    ["a21-wins","Wins","Collected for the Tuesday update"],
-    ["a15-decided","Decisions","The admissions record"],
+    ["a12-pulse","Pulse and wins","Eight weeks is a very compressed timeline, so you have to catch someone falling behind early. Three options a week, and the grid makes a two-week slide visible before it becomes a churn."],
+    ["a21-wins","Wins","Collected all week and sent to the whole cohort every Tuesday. Founders read what other founders shipped, which is how a room of strangers starts introducing itself and helping without being asked."],
     ["a16-sessions","Sessions","The 22-session calendar"],
     ["a18-review-meetings","Session review","Nothing counts until both sides agree it happened. That is what makes 8,000 minutes defensible to an auditor, and it costs a mentor four seconds."],
     ["a19-review-edu","Educational attendance","Pulled from the event platform"],
-    ["a30-intros","Intros this week","Finds the pairs whose problems solve each other, from what founders wrote. Three a week, cross-room, with the evidence attached."],
+    ["a30-intros","Intros this week","A human layer over the data. It reads what founders wrote and surfaces pairs whose problems solve each other, catching connections nobody would have spotted."],
     ["a29-resources","Resources","The curated library"],
   ],
   "p-reporting": [
@@ -535,7 +656,7 @@ const GROUPS = {
     ["m10-resources","Resources","Written for this programme"],
     ["m11-directory","Cohort directory","Who else is in the room"],
     ["m11b-directory-glance","Company at a glance","One founder, expanded"],
-    ["m13-certificate","The certificate","Produced from the same milestone data that decides whether someone completed, so it cannot be issued to a founder the records disagree about."],
+    ["m13-certificate","The certificate","Produced from the same milestone data that decides whether someone completed. Blurred here: it is a credential, and a clean copy is a forgeable one."],
     ["a27-ulrike","The portal, from the console","Staff view of a founder's screen"],
     ["a28-directory","Directory","The same page, console side"],
     ["a28b-directory-glance","At a glance","Expanded"],
@@ -562,11 +683,6 @@ const GROUPS = {
     ["tt04-sessions-tooltip","Logged sessions","Progress toward three hours"],
     ["tt05-cohort-tooltip","Cohort directory","Who is in your room"],
   ],
-  "p-email": [
-    ["e01-acceptance","Founder acceptance","Generated per founder"],
-    ["e02-match","Match reveal","The mentor, and the reasoning"],
-    ["e03-expert-acceptance","Mentor acceptance","Two hand-written lines, the rest generated"],
-  ],
   "p-public": [
     ["speaker-luma","The published event","Where founders register"],
     ["m14-ulrike-widget","The portal assistant","Answering from live data"],
@@ -589,7 +705,8 @@ function build(DIMS) {
       n++;
       const d = DIMS[slug];
       const el = document.createElement("div");
-      el.className = "plate";
+      // The certificate is a credential; the grid shows it blurred.
+      el.className = slug === "m13-certificate" ? "plate redact" : "plate";
       el.innerHTML =
         '<div class="cap-h">' +
           '<div class="pn"><span class="idx">' + String(n).padStart(2, "0") + '</span>' +
